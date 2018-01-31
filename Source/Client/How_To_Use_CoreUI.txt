@@ -1,0 +1,6 @@
+Core UI is a free open source theme.
+
+Please refer following Git directory for more info
+https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template
+
+Refer Angular 4 template (full project) to know usage of different component

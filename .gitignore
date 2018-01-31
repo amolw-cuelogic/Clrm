@@ -1,0 +1,4 @@
+Source/Server/**/bin/**/*
+Source/Server/**/obj/*
+Source/Server/**/Logs/*
+Source/Server/**/obj/**/*
