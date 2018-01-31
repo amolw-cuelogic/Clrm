@@ -83,7 +83,11 @@ CREATE TABLE `Employee` (
   `CreatedOn` int(11) NOT NULL,
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedOn` date DEFAULT NULL,
-  PRIMARY KEY (`Id`)
+  PRIMARY KEY (`Id`),
+  KEY `EmployeeUpdatedBy_Employee` (`UpdatedBy`),
+  KEY `EmployeeCreatedByBy_Employee` (`CreatedBy`),
+  CONSTRAINT `EmployeeCreatedByBy_Employee` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
+  CONSTRAINT `EmployeeUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -628,4 +632,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-30 14:30:00
+-- Dump completed on 2018-01-31 16:11:25
