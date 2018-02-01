@@ -1,11 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
+import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
+
+//Model
 import { User } from '../model/user'
+
+//Service
 import { AppconfigService } from '../service/appconfig.service'
+
+//Router
+import { Router } from '@angular/router';
+
+//HTTP 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './full-layout.component.html',
-    providers: [AppconfigService]
+    providers: [AppconfigService, AngularFireAuth, AuthService]
 })
 export class FullLayoutComponent implements OnInit {
 
@@ -14,8 +26,9 @@ export class FullLayoutComponent implements OnInit {
 
     user: User = this.srvAppconfig.GetToken();
 
-    constructor(private srvAppconfig: AppconfigService) {
-        //this.user = this.srvAppconfig.GetToken();
+    constructor(private srvAppconfig: AppconfigService, private httpClient: HttpClient,
+        private router: Router, private srvAuth: AuthService) {
+
     }
 
     public toggled(open: boolean): void {
@@ -28,7 +41,18 @@ export class FullLayoutComponent implements OnInit {
         this.status.isopen = !this.status.isopen;
     }
 
+    Logout() {
+        var baseUrl = this.srvAppconfig.GetBaseUrl();
+        this.httpClient.post(baseUrl + "api/Account/Logout", null).subscribe(
+            m => {
+                this.srvAuth.logoutFromGoogle();
+                this.srvAppconfig.ClearToken();
+                this.router.navigate(['/login']);
+            }
+        );
+    }
+
     ngOnInit(): void {
-        
+
     }
 }

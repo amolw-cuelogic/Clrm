@@ -15,7 +15,7 @@ import { AngularFireModule } from 'angularfire2';
 
 //HTTP Module
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
@@ -29,6 +29,7 @@ import { LoginComponent } from './component/login/login.component';
 //Service
 import { AuthService } from './service/auth.service';
 import { AppconfigService } from './service/appconfig.service';
+import { InterceptorService } from './service/interceptor.service';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDMQ55IMy9XFdhggn0w9ru4x5ECXcnY9qo",
@@ -59,7 +60,14 @@ export const firebaseConfig = {
         AsideToggleDirective,
         LoginComponent
     ],
-    providers: [AuthService, AppconfigService],
+    providers: [AuthService,
+        AppconfigService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: InterceptorService,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

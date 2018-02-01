@@ -41,4 +41,11 @@ export class AppconfigService {
             return new User();
     }
 
+    ClearToken() {
+        localStorage.setItem("AccessToken", "");
+        localStorage.setItem("DisplayName", "");
+        localStorage.setItem("Email", "");
+        localStorage.setItem("PhotoUrl", "");
+    }
+
 }
