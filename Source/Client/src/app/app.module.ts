@@ -44,6 +44,10 @@ let config = new AuthServiceConfig([
     }
 ]);
 
+export function provideConfig() {
+    return config;
+}
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -53,7 +57,7 @@ let config = new AuthServiceConfig([
         ChartsModule,
         HttpModule,
         HttpClientModule,
-        SocialLoginModule.initialize(config)
+        SocialLoginModule
     ],
     declarations: [
         AppComponent,
@@ -67,6 +71,10 @@ let config = new AuthServiceConfig([
     providers: [
         AuthGuard,
         AppconfigService,
+        {
+            provide: AuthServiceConfig,
+            useFactory: provideConfig
+        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
