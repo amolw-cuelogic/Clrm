@@ -29,23 +29,31 @@ namespace Cuelogic.Clrm.Api.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            /*** Replace below user authentication code as per your Entity Framework Model ***
+         using (var obj = new UserDBEntities())
+         {
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+             tblUserMaster entry = obj.tblUserMasters.Where
+             <tblUserMaster>(record => 
+             record.User_ID == context.UserName && 
+             record.User_Password == context.Password).FirstOrDefault();
 
-            if (user == null)
-            {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
-                return;
-            }
+             if (entry == null)
+             {
+                 context.SetError("invalid_grant", 
+                 "The user name or password is incorrect.");
+                 return;
+             }                
+         }
+         */
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
-
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            ClaimsIdentity oAuthIdentity =
+            new ClaimsIdentity(context.Options.AuthenticationType);
+            ClaimsIdentity cookiesIdentity =
+            new ClaimsIdentity(context.Options.AuthenticationType);
+            AuthenticationProperties properties = CreateProperties(context.UserName);
+            AuthenticationTicket ticket =
+            new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }

@@ -11,32 +11,55 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+import { AngularFireModule } from 'angularfire2';
+
+//HTTP Module
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
-import { LoginComponent } from './Component/login/login.component';
+
+//Component
+import { LoginComponent } from './component/login/login.component';
+
+//Service
+import { AuthService } from './service/auth.service';
+import { AppconfigService } from './service/appconfig.service';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDMQ55IMy9XFdhggn0w9ru4x5ECXcnY9qo",
+    authDomain: "cuelogicresourcemanagement.firebaseapp.com",
+    databaseURL: "https://cuelogicresourcemanagement.firebaseio.com",
+    projectId: "cuelogicresourcemanagement",
+    storageBucket: "cuelogicresourcemanagement.appspot.com",
+    messagingSenderId: "563336911403"
+};
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule
-  ],
-  declarations: [
-    AppComponent,
-    FullLayoutComponent,
-    NAV_DROPDOWN_DIRECTIVES,
-    BreadcrumbsComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective,
-    LoginComponent
-  ],
-  providers: [],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BsDropdownModule.forRoot(),
+        TabsModule.forRoot(),
+        ChartsModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        HttpModule,
+        HttpClientModule
+    ],
+    declarations: [
+        AppComponent,
+        FullLayoutComponent,
+        NAV_DROPDOWN_DIRECTIVES,
+        BreadcrumbsComponent,
+        SIDEBAR_TOGGLE_DIRECTIVES,
+        AsideToggleDirective,
+        LoginComponent
+    ],
+    providers: [AuthService, AppconfigService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,23 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../model/user'
+import { AppconfigService } from '../service/appconfig.service'
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './full-layout.component.html'
+    selector: 'app-dashboard',
+    templateUrl: './full-layout.component.html',
+    providers: [AppconfigService]
 })
 export class FullLayoutComponent implements OnInit {
 
-  public disabled = false;
-  public status: {isopen: boolean} = {isopen: false};
+    public disabled = false;
+    public status: { isopen: boolean } = { isopen: false };
 
-  public toggled(open: boolean): void {
-    console.log('Dropdown is now: ', open);
-  }
+    user: User = this.srvAppconfig.GetToken();
 
-  public toggleDropdown($event: MouseEvent): void {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.status.isopen = !this.status.isopen;
-  }
+    constructor(private srvAppconfig: AppconfigService) {
+        //this.user = this.srvAppconfig.GetToken();
+    }
 
-  ngOnInit(): void {}
+    public toggled(open: boolean): void {
+        console.log('Dropdown is now: ', open);
+    }
+
+    public toggleDropdown($event: MouseEvent): void {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.status.isopen = !this.status.isopen;
+    }
+
+    ngOnInit(): void {
+        
+    }
 }
