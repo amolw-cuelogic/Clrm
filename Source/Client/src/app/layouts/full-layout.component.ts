@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../service/auth.service';
-import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
+
+//angular social login
+import { AuthService } from "angular4-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
+import { SocialUser } from "angular4-social-login";
 
 //Model
 import { User } from '../model/user'
@@ -14,10 +17,11 @@ import { Router } from '@angular/router';
 //HTTP 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './full-layout.component.html',
-    providers: [AppconfigService, AngularFireAuth, AuthService]
+    providers: [AppconfigService]
 })
 export class FullLayoutComponent implements OnInit {
 
@@ -27,7 +31,7 @@ export class FullLayoutComponent implements OnInit {
     user: User = this.srvAppconfig.GetToken();
 
     constructor(private srvAppconfig: AppconfigService, private httpClient: HttpClient,
-        private router: Router, private srvAuth: AuthService) {
+        private router: Router, public authService: AuthService) {
 
     }
 
@@ -45,7 +49,10 @@ export class FullLayoutComponent implements OnInit {
         var baseUrl = this.srvAppconfig.GetBaseUrl();
         this.httpClient.post(baseUrl + "api/Account/Logout", null).subscribe(
             m => {
-                this.srvAuth.logoutFromGoogle();
+                var domain = domain || document.domain;
+                var path = path || "/";
+                document.cookie = "HSID=; expires=" + new Date + "; domain=.google.com; path=/";
+
                 this.srvAppconfig.ClearToken();
                 this.router.navigate(['/login']);
             }

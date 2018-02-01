@@ -11,7 +11,6 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
-import { AngularFireModule } from 'angularfire2';
 
 //HTTP Module
 import { HttpModule } from '@angular/http';
@@ -27,18 +26,23 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
 import { LoginComponent } from './component/login/login.component';
 
 //Service
-import { AuthService } from './service/auth.service';
 import { AppconfigService } from './service/appconfig.service';
 import { InterceptorService } from './service/interceptor.service';
+import { AuthGuard } from './service/authguard.service';
 
-export const firebaseConfig = {
-    apiKey: "AIzaSyDMQ55IMy9XFdhggn0w9ru4x5ECXcnY9qo",
-    authDomain: "cuelogicresourcemanagement.firebaseapp.com",
-    databaseURL: "https://cuelogicresourcemanagement.firebaseio.com",
-    projectId: "cuelogicresourcemanagement",
-    storageBucket: "cuelogicresourcemanagement.appspot.com",
-    messagingSenderId: "563336911403"
-};
+import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+
+let config = new AuthServiceConfig([
+    {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("15147801980-uhliicuk0kpn72ukm45oobidk14afguc.apps.googleusercontent.com")
+    },
+    {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("Facebook-App-Id")
+    }
+]);
 
 @NgModule({
     imports: [
@@ -47,9 +51,9 @@ export const firebaseConfig = {
         BsDropdownModule.forRoot(),
         TabsModule.forRoot(),
         ChartsModule,
-        AngularFireModule.initializeApp(firebaseConfig),
         HttpModule,
-        HttpClientModule
+        HttpClientModule,
+        SocialLoginModule.initialize(config)
     ],
     declarations: [
         AppComponent,
@@ -60,7 +64,8 @@ export const firebaseConfig = {
         AsideToggleDirective,
         LoginComponent
     ],
-    providers: [AuthService,
+    providers: [
+        AuthGuard,
         AppconfigService,
         {
             provide: HTTP_INTERCEPTORS,

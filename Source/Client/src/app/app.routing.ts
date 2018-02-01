@@ -5,11 +5,15 @@ import { LoginComponent } from './component/login/login.component'
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
+//Service
+import { AuthGuard } from './service/authguard.service';
+
 export const routes: Routes = [
     {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
+        canActivate: [AuthGuard]
     },
     {
         path: 'login',
@@ -24,14 +28,22 @@ export const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                loadChildren: './Component/dashboard/dashboard.module#DashboardModule'
+                loadChildren: './Component/dashboard/dashboard.module#DashboardModule',
+                canActivate: [AuthGuard]
             },
             {
                 path: 'newfolder',
-                loadChildren: './Component/newfolder/newfolder.module#NewfolderModule'
+                loadChildren: './Component/newfolder/newfolder.module#NewfolderModule',
+                canActivate: [AuthGuard]
             }
         ]
-    }
+    },
+    {
+        path: '**',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
+    },
 ];
 
 @NgModule({

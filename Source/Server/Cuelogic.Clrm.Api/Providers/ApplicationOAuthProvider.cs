@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Cuelogic.Clrm.Api.Models;
+using System.Text.RegularExpressions;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
@@ -46,6 +47,15 @@ namespace Cuelogic.Clrm.Api.Providers
              }                
          }
          */
+
+            var domain = Regex.Match(context.UserName, @"@(.+?).com").Groups[1].Value.ToLower();
+            if (domain != "cuelogic")
+            {
+                context.SetError("invalid_domain",
+                 "Please login from cuelogic Id");
+                context.Response.StatusCode = 401;
+                return;
+            }
 
             ClaimsIdentity oAuthIdentity =
             new ClaimsIdentity(context.Options.AuthenticationType);

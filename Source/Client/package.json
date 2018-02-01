@@ -25,7 +25,7 @@
     "@angular/platform-browser-dynamic": "4.3.4",
     "@angular/router": "4.3.4",
     "@angular/upgrade": "4.3.4",
-    "angularfire2": "^5.0.0-rc.3",
+    "angular4-social-login": "^1.1.1",
     "chart.js": "2.6.0",
     "core-js": "2.5.0",
     "firebase": "^4.9.0",
