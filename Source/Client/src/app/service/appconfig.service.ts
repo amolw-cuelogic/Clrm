@@ -48,4 +48,10 @@ export class AppconfigService {
         localStorage.setItem("PhotoUrl", "");
     }
 
+    GetGmailLogoutUrl() {
+        var ClientBaseUrl = window.location.origin;
+        var url = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" + ClientBaseUrl;
+        return url;
+    }
+
 }

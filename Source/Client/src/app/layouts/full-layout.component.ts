@@ -47,13 +47,12 @@ export class FullLayoutComponent implements OnInit {
 
     Logout() {
         var baseUrl = this.srvAppconfig.GetBaseUrl();
-        var ClientBaseUrl = window.location.origin;
+        var gmailLogoutUrl = this.srvAppconfig.GetGmailLogoutUrl();
         this.httpClient.post(baseUrl + "api/Account/Logout", null).subscribe(
             m => {
                 this.authService.signOut();
                 this.srvAppconfig.ClearToken();
-                location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" + ClientBaseUrl;
-                //this.router.navigate(['/login']);
+                location.href = gmailLogoutUrl;
             }
         );
     }

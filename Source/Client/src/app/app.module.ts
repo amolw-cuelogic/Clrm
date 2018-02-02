@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
@@ -24,23 +24,24 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
 
 //Component
 import { LoginComponent } from './component/login/login.component';
+import { BootstrapmodalComponent } from './shared/bootstrapmodal.component';
 
 //Service
 import { AppconfigService } from './service/appconfig.service';
 import { InterceptorService } from './service/interceptor.service';
 import { AuthGuard } from './service/authguard.service';
+import { ErrorhandlerService } from './service/errorhandler.service'
+import { BootstrapmodalService } from './service/bootstrapmodal.service'
 
+//Social login
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+import { GoogleLoginProvider } from "angular4-social-login";
+
 
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider("15147801980-uhliicuk0kpn72ukm45oobidk14afguc.apps.googleusercontent.com")
-    },
-    {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("Facebook-App-Id")
     }
 ]);
 
@@ -66,11 +67,13 @@ export function provideConfig() {
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,
         AsideToggleDirective,
-        LoginComponent
+        LoginComponent,
+        BootstrapmodalComponent
     ],
     providers: [
         AuthGuard,
         AppconfigService,
+        BootstrapmodalService,
         {
             provide: AuthServiceConfig,
             useFactory: provideConfig
@@ -79,6 +82,10 @@ export function provideConfig() {
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
             multi: true
+        },
+        {
+            provide: ErrorHandler,
+            useClass: ErrorhandlerService
         }
     ],
     bootstrap: [AppComponent]

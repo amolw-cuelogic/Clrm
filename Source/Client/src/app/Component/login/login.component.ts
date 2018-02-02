@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        
+        //throw Error("hi");
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
             m => {
                 this.RegisterGmailToken(m);

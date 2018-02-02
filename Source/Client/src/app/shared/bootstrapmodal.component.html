@@ -1,0 +1,21 @@
+﻿
+<div class="modal fade" id="idGlobalErrorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-{{bootstrapModal.MessageType}}" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{bootstrapModal.Title}}</h4>
+                <button (click)="Close()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{bootstrapModal.Message}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="Close()" class="btn btn-{{bootstrapModal.MessageType}}" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
