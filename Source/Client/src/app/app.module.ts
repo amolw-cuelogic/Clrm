@@ -31,7 +31,7 @@ import { AppconfigService } from './service/appconfig.service';
 import { InterceptorService } from './service/interceptor.service';
 import { AuthGuard } from './service/authguard.service';
 import { ErrorhandlerService } from './service/errorhandler.service'
-import { BootstrapmodalService } from './service/bootstrapmodal.service'
+import { ComponentSubscriptionService } from './service/componentsubscription.service'
 
 //Social login
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
@@ -73,7 +73,7 @@ export function provideConfig() {
     providers: [
         AuthGuard,
         AppconfigService,
-        BootstrapmodalService,
+        ComponentSubscriptionService,
         {
             provide: AuthServiceConfig,
             useFactory: provideConfig

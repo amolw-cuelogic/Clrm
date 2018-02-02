@@ -1,12 +1,11 @@
 import { ErrorHandler, Injectable } from '@angular/core';
-import { BootstrapmodalService } from './bootstrapmodal.service'
+import { ComponentSubscriptionService } from './componentsubscription.service'
 import { BootstrapModel } from '../model/bootstrapmodel'
 
 @Injectable()
 export class ErrorhandlerService implements ErrorHandler {
-    constructor(private srvBootstrapModal: BootstrapmodalService) { }
+    constructor(private srvCompSub: ComponentSubscriptionService) { }
     handleError(error) {
-
 
         var model = new BootstrapModel();
         model.Title = "Error";
@@ -35,10 +34,8 @@ export class ErrorhandlerService implements ErrorHandler {
         else {
             model.Message = "Error occured";
         }
-        
-        
 
-        this.srvBootstrapModal.Open(model);
+        this.srvCompSub.OpenBootstrapModal(model);
         console.log(error)
         // IMPORTANT: Rethrow the error otherwise it gets swallowed
         //throw error;

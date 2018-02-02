@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { BootstrapModel } from '../model/bootstrapmodel'
-import { BootstrapmodalService } from '../service/bootstrapmodal.service'
+import { ComponentSubscriptionService } from '../service/componentsubscription.service'
 import * as $ from 'jquery';
 
 @Component({
@@ -11,7 +11,7 @@ export class BootstrapmodalComponent implements OnInit {
 
     bootstrapModal: any = new Object();
 
-    constructor(private srvBootstrapModal: BootstrapmodalService, private zone: NgZone) {
+    constructor(private srvCompSub: ComponentSubscriptionService, private zone: NgZone) {
         
         
     }
@@ -19,9 +19,10 @@ export class BootstrapmodalComponent implements OnInit {
     ngAfterViewInit() {
       
 
-        this.srvBootstrapModal.Listen.subscribe(message => {
+        this.srvCompSub.ListenBootstrapModal.subscribe(message => {
             if ('Message' in message) {
-                //this.bootstrapModal = new BootstrapModel();
+                //This is added in order to bind it to the expression (one way data binding)
+                //Solution if does not work first time
                 this.zone.run(() => {
                     this.bootstrapModal = message;
                 });
