@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes,
      RouterModule } from '@angular/router';
 
-import { NewfolderComponent } from './newfolder.component';
+import { GroupComponent } from './group.component';
 
 const routes: Routes = [
   {
     path: '',
-        component: NewfolderComponent,
+        component: GroupComponent,
     data: {
-      title: 'Masters'
+      title: 'Group'
     }
   }
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class NewfolderRoutingModule {}
+export class GroupRoutingModule {}

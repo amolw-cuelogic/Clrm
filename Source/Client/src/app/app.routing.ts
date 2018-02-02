@@ -32,8 +32,13 @@ export const routes: Routes = [
                 canActivate: [AuthGuard]
             },
             {
-                path: 'newfolder',
-                loadChildren: './Component/newfolder/newfolder.module#NewfolderModule',
+                path: 'group',
+                loadChildren: './component/admin/group/group.module#GroupModule',
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'usergroup',
+                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
                 canActivate: [AuthGuard]
             }
         ]

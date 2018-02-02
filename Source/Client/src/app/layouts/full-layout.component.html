@@ -1,3 +1,10 @@
+<style type="text/css">
+    .Child-item
+{
+    padding-left:10px;
+}
+</style>
+
 <header class="app-header navbar">
     <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>&#9776;</button>
     <a class="navbar-brand" href="#"></a>
@@ -30,8 +37,19 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard </a>
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/newfolder']"><i class="icon-speedometer"></i> Masters</a>
                 </li>
+                <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-user"></i> Admin</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item Child-item">
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/group']"><i class="icon-arrow-right"></i> Group</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link Child-item" routerLinkActive="active" [routerLink]="['/usergroup']"><i class="icon-arrow-right"></i> User Group</a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
     </div>
@@ -45,7 +63,7 @@
             <router-outlet></router-outlet>
         </div><!-- /.conainer-fluid -->
     </main>
-    
+    <global-bootstrapmodal></global-bootstrapmodal>
 </div>
 <footer class="app-footer">
     <span><a href="#">Cuelogic Resource Management</a></span>
