@@ -17,7 +17,7 @@
     <AssemblyName>Cuelogic.Clrm.Api</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -272,6 +272,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MasterGroupController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -361,6 +362,14 @@
       <Project>{52f6a540-2454-42c5-ab55-857b19026daf}</Project>
       <Name>Cuelogic.Clrm.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Model\Cuelogic.Clrm.Model.csproj">
+      <Project>{3e12eeed-cbe7-40ab-b78d-0df7a32ecb81}</Project>
+      <Name>Cuelogic.Clrm.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Service\Cuelogic.Clrm.Service.csproj">
+      <Project>{890a491f-7e3f-470a-ab5d-af552e99c869}</Project>
+      <Name>Cuelogic.Clrm.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -380,7 +389,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57712</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57712/</IISUrl>
+          <IISUrl>http://localhost/Cuelogic.Clrm.Api</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

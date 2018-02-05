@@ -1,0 +1,66 @@
+﻿using log4net;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cuelogic.Clrm.Common
+{
+    public class DataAccessHelper
+    {
+        static ILog applogManager = AppLogManager.GetLogger();
+        static string connectionString = string.Empty;
+
+        static DataAccessHelper()
+        {
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["MySqlConnectionString"].ConnectionString;
+
+            }
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw;
+            }
+        }
+
+
+
+        public static void ExecuteNonQuery(string commandText, CommandType commandType, MySqlParameter[] commandParameters = null)
+        {
+            if (commandParameters == null)
+                commandParameters = new MySqlParameter[] { new MySqlParameter() };
+            using (var connection = new MySqlConnection(connectionString))
+            using (var command = new MySqlCommand(commandText, connection))
+            {
+                command.CommandType = commandType;
+                command.Parameters.AddRange(commandParameters);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public static DataSet ExecuteQuery(string commandText, CommandType commandType, MySqlParameter[] commandParameters = null)
+        {
+            if (commandParameters == null)
+                commandParameters = new MySqlParameter[] { new MySqlParameter() };
+            using (var connection = new MySqlConnection(connectionString))
+            using (var command = new MySqlCommand(commandText, connection))
+            {
+                DataSet ds = new DataSet();
+                command.CommandType = commandType;
+                command.Parameters.AddRange(commandParameters);
+                MySqlDataAdapter da = new MySqlDataAdapter(command);
+                da.Fill(ds);
+                connection.Close();
+                return ds;
+            }
+        }
+    }
+}
