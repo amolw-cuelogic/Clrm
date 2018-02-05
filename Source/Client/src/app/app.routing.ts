@@ -30,7 +30,16 @@ export const routes: Routes = [
                 path: 'dashboard',
                 loadChildren: './Component/dashboard/dashboard.module#DashboardModule',
                 canActivate: [AuthGuardService]
-            },
+            }
+        ]
+    },
+    {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Master'
+        },
+        children: [
             {
                 path: 'group',
                 loadChildren: './component/admin/group/group.module#GroupModule',
