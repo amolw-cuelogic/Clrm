@@ -29,7 +29,7 @@ import { BootstrapmodalComponent } from './shared/bootstrapmodal.component';
 //Service
 import { AppconfigService } from './service/appconfig.service';
 import { InterceptorService } from './service/interceptor.service';
-import { AuthGuard } from './service/authguard.service';
+import { AuthGuardService } from './service/authguard.service';
 import { ErrorhandlerService } from './service/errorhandler.service'
 import { ComponentSubscriptionService } from './service/componentsubscription.service'
 
@@ -71,7 +71,7 @@ export function provideConfig() {
         BootstrapmodalComponent
     ],
     providers: [
-        AuthGuard,
+        AuthGuardService,
         AppconfigService,
         ComponentSubscriptionService,
         {

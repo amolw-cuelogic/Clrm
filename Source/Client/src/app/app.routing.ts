@@ -6,14 +6,14 @@ import { LoginComponent } from './component/login/login.component'
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
 //Service
-import { AuthGuard } from './service/authguard.service';
+import { AuthGuardService } from './service/authguard.service';
 
 export const routes: Routes = [
     {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService]
     },
     {
         path: 'login',
@@ -29,17 +29,17 @@ export const routes: Routes = [
             {
                 path: 'dashboard',
                 loadChildren: './Component/dashboard/dashboard.module#DashboardModule',
-                canActivate: [AuthGuard]
+                canActivate: [AuthGuardService]
             },
             {
                 path: 'group',
                 loadChildren: './component/admin/group/group.module#GroupModule',
-                canActivate: [AuthGuard]
+                canActivate: [AuthGuardService]
             },
             {
                 path: 'usergroup',
                 loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
-                canActivate: [AuthGuard]
+                canActivate: [AuthGuardService]
             }
         ]
     },
@@ -47,7 +47,7 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full',
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService]
     },
 ];
 

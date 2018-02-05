@@ -34,7 +34,8 @@ export class ErrorhandlerService implements ErrorHandler {
         else {
             model.Message = "Error occured";
         }
-
+        if(model.Message == "" || model.Message == undefined || model.Message == null)
+          model.Message = "Something went wrong";
         this.srvCompSub.OpenBootstrapModal(model);
         console.log(error)
         // IMPORTANT: Rethrow the error otherwise it gets swallowed
