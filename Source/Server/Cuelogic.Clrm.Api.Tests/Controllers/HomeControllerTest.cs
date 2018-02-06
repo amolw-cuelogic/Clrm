@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cuelogic.Clrm.Api;
 using Cuelogic.Clrm.Api.Controllers;
+using Cuelogic.Clrm.DataAccessLayer;
 
 namespace Cuelogic.Clrm.Api.Tests.Controllers
 {
@@ -11,17 +12,9 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // Arrange
-            HomeController controller = new HomeController();
 
-            // Act
-            //ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            //Assert.IsNotNull(result);
-            //Assert.AreEqual("Home Page", result.ViewBag.Title);
-
-            controller.Index();
+            var temp = MasterGroupDa.GetIdentityGroupList();
+            
         }
     }
 }

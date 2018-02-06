@@ -1,6 +1,7 @@
-import { NgModule, ErrorHandler  } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule  } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -52,6 +53,8 @@ export function provideConfig() {
 @NgModule({
     imports: [
         BrowserModule,
+        CommonModule,
+        FormsModule,
         AppRoutingModule,
         BsDropdownModule.forRoot(),
         TabsModule.forRoot(),

@@ -13,11 +13,11 @@ namespace Cuelogic.Clrm.Service
 {
     public static class MasterGroupSrv
     {
-        public static DataSet GetIdentityGroupList()
+        public static string GetIdentityGroupList()
         {
-            DataSet list = MasterGroupRepo.GetIdentityGroupList();
-            var temp = list.Tables[0].ToModel<IdentityGroup>();
-            return list;
+            DataSet ds = MasterGroupRepo.GetIdentityGroupList();
+            var IdentityGroupJson = ds.Tables[0].ToJsonString();
+            return IdentityGroupJson;
         }
 
         

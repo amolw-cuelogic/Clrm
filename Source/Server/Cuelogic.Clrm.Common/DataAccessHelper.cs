@@ -56,8 +56,10 @@ namespace Cuelogic.Clrm.Common
                 DataSet ds = new DataSet();
                 command.CommandType = commandType;
                 command.Parameters.AddRange(commandParameters);
-                MySqlDataAdapter da = new MySqlDataAdapter(command);
-                da.Fill(ds);
+                using (var da = new MySqlDataAdapter(command))
+                {
+                    da.Fill(ds);
+                }
                 connection.Close();
                 return ds;
             }

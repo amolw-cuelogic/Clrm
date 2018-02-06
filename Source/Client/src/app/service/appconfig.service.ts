@@ -7,7 +7,7 @@ import { User } from '../model/user';
 @Injectable()
 export class AppconfigService {
 
-    private baseUrlDev: any = "http://localhost:57712/";
+    private baseUrlDev: any = "http://localhost/Cuelogic.Clrm.Api/";
     private baseUrlProd: any = "";
     private user: User = new User();
 

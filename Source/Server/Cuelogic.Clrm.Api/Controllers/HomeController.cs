@@ -13,7 +13,6 @@ namespace Cuelogic.Clrm.Api.Controllers
         {
 
             ViewBag.Title = "Home Page";
-            var list = MasterGroupSrv.GetIdentityGroupList();
             return View();
         }
     }

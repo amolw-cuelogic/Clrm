@@ -15,9 +15,8 @@ namespace Cuelogic.Clrm.DataAccessLayer
         public static DataSet GetIdentityGroupList()
         {
             MySqlParameter[] para = new MySqlParameter[] { new MySqlParameter() };
-            var ds = DataAccessHelper.ExecuteQuery(
-                "select * from IdentityGroup",
-                CommandType.Text,
+            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupList",
+                CommandType.Text, //Even though it is store procedure, Command type is text, MySql does not accepts c# command type as storeprocedure
                 null);
             return ds;
         }
