@@ -12,10 +12,10 @@ namespace Cuelogic.Clrm.Api.Controllers
     public class MasterGroupController : ApiController
     {
         // GET: api/MasterGroup
-        public List<IdentityGroup> Get()
+        public string Get()
         {
-            var list = MasterGroupSrv.GetIdentityGroupList();
-            return new List<IdentityGroup>();
+            var ListIdentityGroup = MasterGroupSrv.GetIdentityGroupList();
+            return ListIdentityGroup;
         }
 
         // GET: api/MasterGroup/5
