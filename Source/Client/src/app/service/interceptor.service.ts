@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/throw'
 import 'rxjs/add/operator/catch';
@@ -20,9 +20,15 @@ export class InterceptorService implements HttpInterceptor {
         this.authReq = req.clone({ headers: req.headers.set("Authorization", "Bearer " + token) });
 
         //send the newly created request
-        return next.handle(this.authReq)
+        return next.handle(this.authReq).map((event: HttpResponse<any>) => {
+            if (event instanceof HttpResponse) {
+                //Write you code here after Http request is complete
+                
+                return event;
+            }
+        })
             .catch((error, caught) => {
-
+                
                 this.token = token;
                 if (this.token == null || this.token == undefined) {
                     this.router.navigate(['/login']);
