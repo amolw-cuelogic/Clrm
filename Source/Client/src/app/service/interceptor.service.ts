@@ -5,6 +5,7 @@ import 'rxjs/add/observable/throw'
 import 'rxjs/add/operator/catch';
 import { Router } from '@angular/router';
 import { AppconfigService } from './appconfig.service'
+import * as $ from 'jquery'
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
@@ -14,7 +15,7 @@ export class InterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         //Clone the request to add the new header.
-
+        $('body').addClass('loader');
         var token = this.srvAppConfig.GetToken().AccessToken;
 
         this.authReq = req.clone({ headers: req.headers.set("Authorization", "Bearer " + token) });
@@ -23,12 +24,12 @@ export class InterceptorService implements HttpInterceptor {
         return next.handle(this.authReq).map((event: HttpResponse<any>) => {
             if (event instanceof HttpResponse) {
                 //Write you code here after Http request is complete
-                
+                $('body').removeClass('loader');
                 return event;
             }
         })
             .catch((error, caught) => {
-                
+                $('body').removeClass('loader');
                 this.token = token;
                 if (this.token == null || this.token == undefined) {
                     this.router.navigate(['/login']);
