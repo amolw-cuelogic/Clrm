@@ -9,12 +9,17 @@ using System.Web.Http;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
+    [Authorize]
     public class MasterGroupController : ApiController
     {
-        // GET: api/MasterGroup
-        public string Get()
+        // GET: api/MasterGroup SearchParam objSearchParam
+        public string Get(int Show, int Page, string FilterText)
         {
-            var ListIdentityGroup = MasterGroupSrv.GetIdentityGroupList();
+            var objSearchParam = new SearchParam();
+            objSearchParam.FilterText = FilterText ?? "";
+            objSearchParam.Page = Page;
+            objSearchParam.Show = Show;
+            var ListIdentityGroup = MasterGroupSrv.GetIdentityGroupList(objSearchParam);
             return ListIdentityGroup;
         }
 

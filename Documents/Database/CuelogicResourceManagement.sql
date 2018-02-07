@@ -88,7 +88,7 @@ CREATE TABLE `Employee` (
   KEY `EmployeeCreatedByBy_Employee` (`CreatedBy`),
   CONSTRAINT `EmployeeCreatedByBy_Employee` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `EmployeeUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +97,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','0000-00-00',NULL,'9595519028','amol.wabale@cuelogic.com','',1,0,NULL,NULL);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +271,7 @@ CREATE TABLE `IdentityGroup` (
   KEY `IdentityGroupUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `IdentityGroupCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,6 +280,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
+INSERT INTO `IdentityGroup` VALUES (1,'SuperAdmin','SuperAdmin','\0',1,'2018-02-05',NULL,NULL),(2,'Admin','Admin','',1,'2018-02-06',NULL,NULL),(3,'Staff','Staff','',1,'2018-03-06',NULL,NULL),(4,'User','User','',1,'2018-02-07',NULL,NULL),(5,'Employee','Employee','',1,'2018-02-08',NULL,NULL),(6,'Hr','Hr','',1,'2018-02-10',NULL,NULL),(7,'Sales','Sales','',1,'2018-02-12',NULL,NULL),(8,'Delivery','Delivery','',1,'2017-10-06',NULL,NULL),(9,'Non Technical','Non Technical','',1,'2018-03-14',NULL,NULL),(10,'Infrastructure','Infrastructure','',1,'2018-02-21',NULL,NULL),(11,'Hardware','Hardware','',1,'2018-02-28',NULL,NULL),(12,'Interior','Interior','',1,'2018-01-01',NULL,NULL);
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -622,6 +624,54 @@ LOCK TABLES `ProjectClient` WRITE;
 /*!40000 ALTER TABLE `ProjectClient` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ProjectClient` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'CuelogicResourceManagement'
+--
+
+--
+-- Dumping routines for database 'CuelogicResourceManagement'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `spGetIdentityGroupList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetIdentityGroupList`(
+IN FilterText varchar(200), 
+IN RecordFrom int(4), 
+IN RecordTill int(4)
+)
+BEGIN
+
+SELECT a.Id, a.GroupName,a.GroupDescription,if(a.IsValid,'Yes','No') as IsValid,
+concat(b.FirstName ,' ', b.LastName) as Name, 
+DATE_FORMAT(a.CreatedOn,'%d/%m/%Y') as CreatedOn
+
+FROM CuelogicResourceManagement.IdentityGroup a
+
+inner join Employee b on a.CreatedBy = b.Id
+
+where a.IsValid = if(FilterText = 'yes',true,false) or
+a.GroupName like concat('%', FilterText,'%') or
+a.GroupDescription like concat('%', FilterText,'%') or
+b.FirstName like concat('%', FilterText,'%') or
+b.LastName like concat('%', FilterText,'%') or
+a.CreatedOn like concat('%', FilterText,'%')
+
+limit RecordFrom, RecordTill;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -632,4 +682,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-31 16:11:25
+-- Dump completed on 2018-02-07 16:49:26

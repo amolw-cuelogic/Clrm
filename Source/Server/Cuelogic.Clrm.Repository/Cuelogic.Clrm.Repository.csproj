@@ -48,6 +48,10 @@
       <Project>{07d0b68a-d234-4a2f-ad9b-c7d5dbe687ee}</Project>
       <Name>Cuelogic.Clrm.DataAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Model\Cuelogic.Clrm.Model.csproj">
+      <Project>{3E12EEED-CBE7-40AB-B78D-0DF7A32ECB81}</Project>
+      <Name>Cuelogic.Clrm.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

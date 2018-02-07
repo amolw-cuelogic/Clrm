@@ -13,9 +13,9 @@ namespace Cuelogic.Clrm.Service
 {
     public static class MasterGroupSrv
     {
-        public static string GetIdentityGroupList()
+        public static string GetIdentityGroupList(SearchParam objSearchParam)
         {
-            DataSet ds = MasterGroupRepo.GetIdentityGroupList();
+            DataSet ds = MasterGroupRepo.GetIdentityGroupList(objSearchParam);
             var IdentityGroupJson = ds.Tables[0].ToJsonString();
             return IdentityGroupJson;
         }

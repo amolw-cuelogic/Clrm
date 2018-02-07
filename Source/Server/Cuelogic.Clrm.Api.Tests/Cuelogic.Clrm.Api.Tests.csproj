@@ -35,6 +35,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -106,9 +110,17 @@
       <Project>{BED16960-D1AA-4971-BE68-A97EC301B87B}</Project>
       <Name>Cuelogic.Clrm.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Common\Cuelogic.Clrm.Common.csproj">
+      <Project>{52F6A540-2454-42C5-AB55-857B19026DAF}</Project>
+      <Name>Cuelogic.Clrm.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccessLayer.csproj">
       <Project>{07d0b68a-d234-4a2f-ad9b-c7d5dbe687ee}</Project>
       <Name>Cuelogic.Clrm.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Model\Cuelogic.Clrm.Model.csproj">
+      <Project>{3E12EEED-CBE7-40AB-B78D-0DF7A32ECB81}</Project>
+      <Name>Cuelogic.Clrm.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

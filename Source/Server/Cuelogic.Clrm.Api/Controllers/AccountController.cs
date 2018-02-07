@@ -21,6 +21,7 @@ namespace Cuelogic.Clrm.Api.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
