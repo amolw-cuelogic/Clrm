@@ -29,9 +29,9 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             };
             var objDa = new DataAccessHelper();
            
-            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupList('"+ obj.FilterText + "','"++"','"++"')",
-                CommandType.Text, //Even though it is store procedure, Command type is text, MySql does not accepts c# command type as storeprocedure
-                para);
+            //var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupList('"+ obj.FilterText + "','"++"','"++"')",
+            //    CommandType.Text, //Even though it is store procedure, Command type is text, MySql does not accepts c# command type as storeprocedure
+            //    para);
 
             var temp = MasterGroupDa.GetIdentityGroupList(obj);
             

@@ -37,7 +37,7 @@
     border-top:10px solid white !important;
 }*/
 
-.SearchPannelTable {
+.dynamicBottomDiv {
     overflow:auto;
   }
 
@@ -45,4 +45,8 @@
     background-image:url(../img/loader3.gif) ;
     background-repeat:no-repeat;
     background-position:center;
+}
+
+input.ng-invalid, textarea.ng-invalid{
+    border:1px solid red;
 }

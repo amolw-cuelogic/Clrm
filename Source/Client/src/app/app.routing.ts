@@ -37,7 +37,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Master'
+            title: 'Admin'
         },
         children: [
             {
@@ -46,10 +46,16 @@ export const routes: Routes = [
                 canActivate: [AuthGuardService]
             },
             {
+                path: 'editgroup/:id',
+                loadChildren: './component/admin/group/editgroup.module#EditGroupModule',
+                canActivate: [AuthGuardService]
+            },
+            {
                 path: 'usergroup',
                 loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
                 canActivate: [AuthGuardService]
             }
+            
         ]
     },
     {

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppconfigService } from '../../../service/appconfig.service'
 import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import * as $ from 'jquery'
+import { Router } from '@angular/router'
 
 @Component({
     templateUrl: 'group.component.html'
@@ -55,7 +56,7 @@ export class GroupComponent {
     }
 
     EditRecord(id: any) {
-
+        this.router.navigate(['/editgroup/'+ id]);
     }
 
     ViewRecord(id: any) {
@@ -68,7 +69,8 @@ export class GroupComponent {
 
     //Common Search Module - END
 
-    constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService) {
+    constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
+        private router: Router) {
 
         this.InitControls();
         this.baseUrl = this.SrvAppConfig.GetBaseUrl();
@@ -90,10 +92,7 @@ export class GroupComponent {
         ).subscribe(
             m => {
                 this.GroupList = m;
-                var topTableOffSet = $('.SearchPannelTable').offset().top;
-                var topFooterOffSet = $('.app-footer').offset().top;
-                var ht =  (topFooterOffSet - topTableOffSet) -5;
-                $('.SearchPannelTable').css({ "height": ht + "px" });
+                this.SrvAppConfig.AdjustBottomHeight();
                 
             }
         );

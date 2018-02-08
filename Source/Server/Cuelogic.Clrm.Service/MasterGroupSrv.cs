@@ -20,6 +20,11 @@ namespace Cuelogic.Clrm.Service
             return IdentityGroupJson;
         }
 
-        
+        public static IdentityGroup GetGroup(int GroupId)
+        {
+            var grp = MasterGroupRepo.GetGroup(GroupId);
+            return grp;
+        }
+
     }
 }

@@ -54,4 +54,11 @@ export class AppconfigService {
         return url;
     }
 
+    AdjustBottomHeight() {
+        var topTableOffSet = $('.dynamicBottomDiv').offset().top;
+        var topFooterOffSet = $('.app-footer').offset().top;
+        var ht = (topFooterOffSet - topTableOffSet) - 5;
+        $('.dynamicBottomDiv').css({ "height": ht + "px" });
+    }
+
 }

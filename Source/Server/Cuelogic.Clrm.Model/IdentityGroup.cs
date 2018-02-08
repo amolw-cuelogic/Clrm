@@ -16,5 +16,10 @@ namespace Cuelogic.Clrm.Model
         public DateTime CreatedOn { get; set; }
         public int UpdatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
+
+        public string CreatedByName { get; set; }
+        public string UpdatedByName { get; set; }
+
+        public List<IdentityGroupRight> GroupRight { get; set; }
     }
 }

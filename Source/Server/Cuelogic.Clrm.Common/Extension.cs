@@ -62,20 +62,23 @@ namespace Cuelogic.Clrm.Common
                 }
                 else
                 {
-                    if (row[property.Name] == DBNull.Value)
-                        property.SetValue(item, null, null);
-                    else
+                    if (row.Table.Columns.Contains(property.Name))
                     {
-                        if (property.PropertyType.FullName == "System.Boolean")
-                        {
-                            var boolean = Convert.ToBoolean(Convert.ToInt16(row[property.Name].ToString()));
-                            property.SetValue(item, boolean, null);
-                        }
+                        if (row[property.Name] == DBNull.Value)
+                            property.SetValue(item, null, null);
                         else
                         {
-                            property.SetValue(item, row[property.Name], null);
-                        }
+                            if (property.PropertyType.FullName == "System.Boolean")
+                            {
+                                var boolean = Convert.ToBoolean(Convert.ToInt16(row[property.Name].ToString()));
+                                property.SetValue(item, boolean, null);
+                            }
+                            else
+                            {
+                                property.SetValue(item, row[property.Name], null);
+                            }
 
+                        }
                     }
                 }
             }

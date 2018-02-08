@@ -53,10 +53,17 @@
     <Compile Include="AppLogManager.cs" />
     <Compile Include="DataAccessHelper.cs" />
     <Compile Include="Extension.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cuelogic.Clrm.Model\Cuelogic.Clrm.Model.csproj">
+      <Project>{3E12EEED-CBE7-40AB-B78D-0DF7A32ECB81}</Project>
+      <Name>Cuelogic.Clrm.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

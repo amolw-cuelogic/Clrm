@@ -12,7 +12,7 @@ namespace Cuelogic.Clrm.Api.Controllers
     [Authorize]
     public class MasterGroupController : ApiController
     {
-        // GET: api/MasterGroup SearchParam objSearchParam
+        // GET: api/MasterGroup | TODO : Revise returning logic later
         public string Get(int Show, int Page, string FilterText)
         {
             var objSearchParam = new SearchParam();
@@ -24,9 +24,10 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         // GET: api/MasterGroup/5
-        public string Get(int id)
+        public IdentityGroup Get(int id)
         {
-            return "value";
+            var ObjIdentityGroup = MasterGroupSrv.GetGroup(id);
+            return ObjIdentityGroup;
         }
 
         // POST: api/MasterGroup
