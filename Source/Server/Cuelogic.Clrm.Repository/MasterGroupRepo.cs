@@ -31,5 +31,15 @@ namespace Cuelogic.Clrm.Repository
             GroupObj.GroupRight = GroupRightLlist;
             return GroupObj;
         }
+
+        public static void SaveIdentityGroup(IdentityGroup ObjIdentityGroup)
+        {
+
+        }
+
+        public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup)
+        {
+
+        }
     }
 }

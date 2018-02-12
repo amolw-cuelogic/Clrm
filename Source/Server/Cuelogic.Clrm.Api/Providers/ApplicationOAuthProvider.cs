@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Cuelogic.Clrm.Api.Models;
 using System.Text.RegularExpressions;
+using Cuelogic.Clrm.Service;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
@@ -48,7 +49,7 @@ namespace Cuelogic.Clrm.Api.Providers
          }
          */
 
-            var domain = Regex.Match(context.UserName, @"@(.+?).com").Groups[1].Value.ToLower();
+            var domain = Regex.Match(context.UserName, @"@(.+?).co").Groups[1].Value.ToLower();
             if (domain != "cuelogic")
             {
                 context.SetError("invalid_domain",
@@ -57,8 +58,14 @@ namespace Cuelogic.Clrm.Api.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity =
-            new ClaimsIdentity(context.Options.AuthenticationType);
+            var EmployeeDetails = CommonSrv.GetEmployeeDetails(context.UserName);
+
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            identity.AddClaim(new Claim("Email", EmployeeDetails.Email));
+            identity.AddClaim(new Claim("Id", EmployeeDetails.Id.ToString()));
+            identity.AddClaim(new Claim("UserName", EmployeeDetails.FirstName + " " + EmployeeDetails.LastName));
+
+            ClaimsIdentity oAuthIdentity = identity;
             ClaimsIdentity cookiesIdentity =
             new ClaimsIdentity(context.Options.AuthenticationType);
             AuthenticationProperties properties = CreateProperties(context.UserName);

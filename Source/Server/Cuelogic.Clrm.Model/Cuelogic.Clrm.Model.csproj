@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooleanRights.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="IdentityGroup.cs" />
     <Compile Include="IdentityGroupRight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
-    [Authorize]
-    public class MasterGroupController : ApiController
+    public class MasterGroupController : ApiBaseController
     {
         // GET: api/MasterGroup | TODO : Revise returning logic later
         public string Get(int Show, int Page, string FilterText)
@@ -31,7 +31,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         // POST: api/MasterGroup
-        public void Post([FromBody]string value)
+        public void Post([FromBody]IdentityGroup objIdentityGroup)
         {
         }
 

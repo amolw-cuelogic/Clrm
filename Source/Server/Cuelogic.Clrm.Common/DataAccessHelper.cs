@@ -48,6 +48,9 @@ namespace Cuelogic.Clrm.Common
 
         public static DataSet ExecuteQuery(string commandText, CommandType commandType, MySqlParameter[] commandParameters = null)
         {
+            try
+            {
+
             if (commandParameters == null)
                 commandParameters = new MySqlParameter[] { new MySqlParameter() };
             using (var connection = new MySqlConnection(connectionString))
@@ -62,6 +65,13 @@ namespace Cuelogic.Clrm.Common
                 }
                 connection.Close();
                 return ds;
+            }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

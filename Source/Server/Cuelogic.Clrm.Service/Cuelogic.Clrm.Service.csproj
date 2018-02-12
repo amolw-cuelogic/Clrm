@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonSrv.cs" />
     <Compile Include="MasterGroupSrv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

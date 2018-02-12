@@ -26,5 +26,9 @@ namespace Cuelogic.Clrm.Service
             return grp;
         }
 
+        public static void Save(IdentityGroup ObjIdentityGroup)
+        {
+
+        }
     }
 }
