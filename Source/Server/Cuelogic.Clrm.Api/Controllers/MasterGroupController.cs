@@ -1,4 +1,6 @@
 ﻿using Cuelogic.Clrm.Model;
+using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         // POST: api/MasterGroup
         public void Post([FromBody]IdentityGroup objIdentityGroup)
         {
+            var userCtx = base.GetUserContext();
+            MasterGroupSrv.Save(objIdentityGroup, userCtx);
         }
 
         // PUT: api/MasterGroup/5

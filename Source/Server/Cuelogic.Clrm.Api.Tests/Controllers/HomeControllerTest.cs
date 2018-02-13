@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Data;
 using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Model.CommonModel;
 
 namespace Cuelogic.Clrm.Api.Tests.Controllers
 {

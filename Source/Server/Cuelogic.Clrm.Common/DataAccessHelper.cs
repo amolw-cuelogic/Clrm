@@ -31,46 +31,46 @@ namespace Cuelogic.Clrm.Common
 
 
 
-        public static void ExecuteNonQuery(string commandText, CommandType commandType, MySqlParameter[] commandParameters = null)
+        public static void ExecuteNonQuery(string commandText, MySqlParameter[] commandParameters = null, CommandType commandType = CommandType.Text)
         {
             if (commandParameters == null)
                 commandParameters = new MySqlParameter[] { new MySqlParameter() };
             using (var connection = new MySqlConnection(connectionString))
+
             using (var command = new MySqlCommand(commandText, connection))
             {
                 command.CommandType = commandType;
-                command.Parameters.AddRange(commandParameters);
+                command.Parameters.AddRange(commandParameters.ToArray());
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
             }
         }
 
-        public static DataSet ExecuteQuery(string commandText, CommandType commandType, MySqlParameter[] commandParameters = null)
+        public static DataSet ExecuteQuery(string commandText, MySqlParameter[] commandParameters = null, CommandType commandType = CommandType.Text)
         {
             try
             {
 
-            if (commandParameters == null)
-                commandParameters = new MySqlParameter[] { new MySqlParameter() };
-            using (var connection = new MySqlConnection(connectionString))
-            using (var command = new MySqlCommand(commandText, connection))
-            {
-                DataSet ds = new DataSet();
-                command.CommandType = commandType;
-                command.Parameters.AddRange(commandParameters);
-                using (var da = new MySqlDataAdapter(command))
+                if (commandParameters == null)
+                    commandParameters = new MySqlParameter[] { new MySqlParameter() };
+                using (var connection = new MySqlConnection(connectionString))
+                using (var command = new MySqlCommand(commandText, connection))
                 {
-                    da.Fill(ds);
+                    DataSet ds = new DataSet();
+                    command.CommandType = commandType;
+                    command.Parameters.AddRange(commandParameters);
+                    using (var da = new MySqlDataAdapter(command))
+                    {
+                        da.Fill(ds);
+                    }
+                    connection.Close();
+                    return ds;
                 }
-                connection.Close();
-                return ds;
-            }
-
             }
             catch (Exception ex)
             {
-
+                applogManager.Error(ex);
                 throw;
             }
         }

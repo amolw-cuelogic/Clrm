@@ -46,7 +46,7 @@ export const routes: Routes = [
                 canActivate: [AuthGuardService]
             },
             {
-                path: 'editgroup/:id',
+                path: 'editgroup/:mode/:id',
                 loadChildren: './component/admin/group/editgroup.module#EditGroupModule',
                 canActivate: [AuthGuardService]
             },

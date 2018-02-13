@@ -38,7 +38,8 @@ import { ComponentSubscriptionService } from './service/componentsubscription.se
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider } from "angular4-social-login";
 
-
+//Model
+import { FormMode } from './model/FormMode'
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
@@ -76,6 +77,7 @@ export function provideConfig() {
     providers: [
         AuthGuardService,
         AppconfigService,
+        FormMode,
         ComponentSubscriptionService,
         {
             provide: AuthServiceConfig,

@@ -7,6 +7,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cuelogic.Clrm.Model.DatabaseModel;
+using Cuelogic.Clrm.Model.CommonModel;
 
 namespace Cuelogic.Clrm.Repository
 {
@@ -32,14 +34,17 @@ namespace Cuelogic.Clrm.Repository
             return GroupObj;
         }
 
-        public static void SaveIdentityGroup(IdentityGroup ObjIdentityGroup)
+        public static void SaveIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
-
+            ObjIdentityGroup.CreatedBy = userCtx.UserId;
+            ObjIdentityGroup.CreatedOn = DateTime.Now;
         }
 
-        public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup)
+        public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
-
+            ObjIdentityGroup.UpdatedBy = userCtx.UserId;
+            ObjIdentityGroup.UpdatedOn = DateTime.Now;
+            MasterGroupDa.UpdateIdentityGroup(ObjIdentityGroup);
         }
     }
 }

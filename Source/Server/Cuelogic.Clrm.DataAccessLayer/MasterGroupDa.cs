@@ -1,5 +1,7 @@
 ﻿using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Model;
+using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -17,26 +19,39 @@ namespace Cuelogic.Clrm.DataAccessLayer
         {
             var RecordFrom = objSearchParam.Page * objSearchParam.Show;
             var RecordTill = RecordFrom + objSearchParam.Show;
-            MySqlParameter[] para = new MySqlParameter[] { new MySqlParameter() };
             var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupList('" + objSearchParam.FilterText +
-                    "','" + RecordFrom + "','" + RecordTill + "')",
-                CommandType.Text, //Even though it is store procedure, Command type is text, MySql does not accepts c# command type as storeprocedure
-                para);
+                    "','" + RecordFrom + "','" + RecordTill + "')");
             return ds;
         }
 
         public static DataSet GetIdentityGroup(int GroupId)
         {
-            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroup("+ GroupId + ")", 
-                CommandType.Text, null);
+            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroup(" + GroupId + ")");
             return ds;
         }
 
         public static DataSet GetIdentityGroupRights(int GroupId)
         {
-            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupRights(" + GroupId+")",
-                CommandType.Text, null);
+            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupRights(" + GroupId + ")");
             return ds;
+        }
+
+        public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = "spUpdateIdentityGroup";
+
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@GroupId", ObjIdentityGroup.Id),
+                new MySqlParameter("@grpn", ObjIdentityGroup.GroupName),
+                new MySqlParameter("@groupdesc", ObjIdentityGroup.GroupDescription),
+                new MySqlParameter("@valid", ObjIdentityGroup.IsValid),
+                new MySqlParameter("@updatedby", ObjIdentityGroup.UpdatedBy),
+                new MySqlParameter("@updatedon", ObjIdentityGroup.UpdatedOn)
+            };
+            
+            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
         }
 
     }

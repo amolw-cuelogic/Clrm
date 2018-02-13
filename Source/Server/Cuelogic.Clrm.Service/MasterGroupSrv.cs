@@ -8,6 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Model.DatabaseModel;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -26,9 +28,12 @@ namespace Cuelogic.Clrm.Service
             return grp;
         }
 
-        public static void Save(IdentityGroup ObjIdentityGroup)
+        public static void Save(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
-
+            if (ObjIdentityGroup.Id == 0)
+                MasterGroupRepo.SaveIdentityGroup(ObjIdentityGroup, userCtx);
+            else
+                MasterGroupRepo.UpdateIdentityGroup(ObjIdentityGroup, userCtx);
         }
     }
 }

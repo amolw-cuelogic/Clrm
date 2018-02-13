@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Model
+namespace Cuelogic.Clrm.Model.CommonModel
 {
     public class SearchParam
     {

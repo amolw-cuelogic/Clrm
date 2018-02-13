@@ -12,8 +12,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
     {
         public static DataSet GetEmployeeDetails(string EmailId)
         {
-            var ds = DataAccessHelper.ExecuteQuery("spGetEmployeeByEmailId('" + EmailId + "')",
-                CommandType.Text, null);
+            var ds = DataAccessHelper.ExecuteQuery("spGetEmployeeByEmailId('" + EmailId + "')");
             return ds;
         }
     }

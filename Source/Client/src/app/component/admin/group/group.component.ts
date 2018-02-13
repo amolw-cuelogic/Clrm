@@ -4,6 +4,7 @@ import { AppconfigService } from '../../../service/appconfig.service'
 import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import * as $ from 'jquery'
 import { Router } from '@angular/router'
+import { FormMode } from '../../../model/FormMode';
 
 @Component({
     templateUrl: 'group.component.html'
@@ -56,7 +57,7 @@ export class GroupComponent {
     }
 
     EditRecord(id: any) {
-        this.router.navigate(['/editgroup/'+ id]);
+        this.router.navigate(['/editgroup/' + this.formMode.Edit + '/' + id]);
     }
 
     ViewRecord(id: any) {
@@ -70,7 +71,7 @@ export class GroupComponent {
     //Common Search Module - END
 
     constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
-        private router: Router) {
+        private router: Router, private formMode: FormMode) {
 
         this.InitControls();
         this.baseUrl = this.SrvAppConfig.GetBaseUrl();

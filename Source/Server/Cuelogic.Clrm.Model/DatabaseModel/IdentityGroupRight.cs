@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Cuelogic.Clrm.Model.CommonModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Model
+namespace Cuelogic.Clrm.Model.DatabaseModel
 {
     public class IdentityGroupRight
     {

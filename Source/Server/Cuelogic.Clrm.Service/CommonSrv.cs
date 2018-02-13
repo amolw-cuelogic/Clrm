@@ -1,4 +1,5 @@
 ﻿using Cuelogic.Clrm.Model;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository;
 using System;
 using System.Collections.Generic;

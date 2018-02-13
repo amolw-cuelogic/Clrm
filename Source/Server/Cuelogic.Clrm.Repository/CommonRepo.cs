@@ -1,6 +1,7 @@
 ﻿using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.DataAccessLayer;
 using Cuelogic.Clrm.Model;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

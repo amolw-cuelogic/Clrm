@@ -50,6 +50,10 @@ namespace Cuelogic.Clrm.Common
             return jsSerializer.Serialize(parentRow);
         }
 
+        public static string ToMySqlDateString(this DateTime dt)
+        {
+            return dt.ToString("yyyy-MM-dd");
+        }
         private static T CreateItemFromRow<T>(DataRow row, IList<PropertyInfo> properties) where T : new()
         {
             T item = new T();
