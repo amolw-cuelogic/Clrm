@@ -80,7 +80,7 @@ CREATE TABLE `Employee` (
   `Email` varchar(50) NOT NULL,
   `IsValid` bit(1) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedOn` int(11) NOT NULL,
+  `CreatedOn` date NOT NULL,
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedOn` date DEFAULT NULL,
   PRIMARY KEY (`Id`),
@@ -97,7 +97,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','0000-00-00',NULL,'9595519028','amol.wabale@cuelogic.com','',1,0,NULL,NULL),(2,'Vivek','-','Phadke','CUE355','0000-00-00',NULL,'9595519028','Vivek.Phadke@cuelogic.com','',1,505,NULL,NULL);
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','0000-00-00','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-02',NULL,NULL),(2,'Vivek','-','Phadke','CUE355','0000-00-00',NULL,'9595519028','Vivek.Phadke@cuelogic.com','',1,'2018-02-03',NULL,NULL);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,11 +267,11 @@ CREATE TABLE `IdentityGroup` (
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedOn` date DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  KEY `IdentityGroupCreatedBy_Employee_Id` (`CreatedBy`),
   KEY `IdentityGroupUpdatedBy_Employee_Id` (`UpdatedBy`),
+  KEY `IdentityGroupCreatedBy_Employee_Id` (`CreatedBy`),
   CONSTRAINT `IdentityGroupCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
-INSERT INTO `IdentityGroup` VALUES (1,'SuperAdmin','SuperAdmin','',1,'2018-02-05',2,'2018-02-02'),(2,'Admin','Admin','',1,'2018-02-06',NULL,NULL),(3,'Staff','Staff','',1,'2018-03-06',NULL,NULL),(4,'User','User','',1,'2018-02-07',NULL,NULL),(5,'Employee','Employee','',1,'2018-02-08',NULL,NULL),(6,'Hr','Hr','',1,'2018-02-10',NULL,NULL),(7,'Sales','Sales','',1,'2018-02-12',NULL,NULL),(8,'Delivery','Delivery','',1,'2017-10-06',NULL,NULL),(9,'Non Technical','Non Technical','',1,'2018-03-14',NULL,NULL),(10,'Infrastructure','Infrastructure','',1,'2018-02-21',NULL,NULL),(11,'Hardware','Hardware','',1,'2018-02-28',NULL,NULL),(12,'Interior','Interior','',1,'2018-01-01',NULL,NULL);
+INSERT INTO `IdentityGroup` VALUES (1,'amol waban n d','fg','',1,'2018-02-05',1,'2018-02-13'),(13,'as as','Admin','',1,'2018-02-06',1,'2018-02-13'),(14,'Staffone','Staff','',1,'2018-03-06',1,'2018-02-13'),(15,'User 78','User','',1,'2018-02-07',1,'2018-02-13'),(16,'Employee','Employee','',1,'2018-02-08',NULL,NULL),(17,'Hr','Hr','',1,'2018-02-10',NULL,NULL),(18,'Saleshj','Sales','',1,'2018-02-12',1,'2018-02-13'),(19,'Delivery','Delivery','',1,'2017-10-06',NULL,NULL),(20,'Non Technical','Non Technical','',1,'2018-03-14',NULL,NULL),(21,'Infrastructure','Infrastructure','',1,'2018-02-21',NULL,NULL),(22,'Hardware','Hardware','',1,'2018-02-28',NULL,NULL),(23,'Interior','Interior','',1,'2018-01-01',NULL,NULL);
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +319,7 @@ CREATE TABLE `IdentityGroupRight` (
 
 LOCK TABLES `IdentityGroupRight` WRITE;
 /*!40000 ALTER TABLE `IdentityGroupRight` DISABLE KEYS */;
-INSERT INTO `IdentityGroupRight` VALUES (1,1,1,3,'',1,'2018-02-02',2,NULL),(2,1,2,6,'',1,'2018-02-02',NULL,NULL),(3,1,3,7,'',1,'2018-02-02',2,NULL);
+INSERT INTO `IdentityGroupRight` VALUES (1,1,1,4,'',1,'2018-02-02',2,NULL),(2,1,2,6,'',1,'2018-02-02',NULL,NULL),(3,1,3,7,'',1,'2018-02-02',2,NULL);
 /*!40000 ALTER TABLE `IdentityGroupRight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -634,6 +634,25 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'CuelogicResourceManagement'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `spGetEmployeeByEmailId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetEmployeeByEmailId`(IN EmailId varchar(100))
+BEGIN
+select * from Employee where Email = EmailId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spGetIdentityGroup` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -646,7 +665,7 @@ UNLOCK TABLES;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetIdentityGroup`(IN GroupId int(4))
 BEGIN
-select a.Id, a.GroupName, a.GroupDescription,a.IsValid, a.CreatedOn, a.UpdatedOn,
+select a.Id, a.GroupName, a.GroupDescription,a.IsValid, a.CreatedOn, a.UpdatedOn, a.CreatedBy, a.UpdatedBy,
 concat(b.FirstName, ' ', b.LastName) as CreatedByName,
 concat(c.FirstName, ' ', c.LastName) as UpdatedByName
 from IdentityGroup a 
@@ -725,6 +744,39 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spUpdateIdentityGroup` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateIdentityGroup`(
+IN GroupId int(11),
+IN grpname VARCHAR(150),
+IN groupdesc VARCHAR(500),
+IN valid bit,
+IN updatedby int(11),
+IN updatedon date
+)
+BEGIN
+update IdentityGroup set 
+GroupName = grpname ,
+`GroupDescription` = groupdesc,
+`IsValid` = valid,
+`UpdatedBy` = updatedby,
+`UpdatedOn` = updatedon
+where 
+`Id` = GroupId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -735,4 +787,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-08 18:37:52
+-- Dump completed on 2018-02-13 17:06:20
