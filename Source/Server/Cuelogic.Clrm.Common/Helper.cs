@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Cuelogic.Clrm.Common
 {
@@ -31,6 +32,14 @@ namespace Cuelogic.Clrm.Common
             }
             Console.WriteLine("Binary:  {0}", result);
             return objBinaryRights;
+        }
+
+        public static string ObjectToXml(object t)
+        {
+            var stringwriter = new System.IO.StringWriter();
+            var serializer = new XmlSerializer(t.GetType());
+            serializer.Serialize(stringwriter, t);
+            return stringwriter.ToString();
         }
     }
 }

@@ -37,14 +37,22 @@ namespace Cuelogic.Clrm.Repository
         public static void SaveIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
             ObjIdentityGroup.CreatedBy = userCtx.UserId;
-            ObjIdentityGroup.CreatedOn = DateTime.Now;
+            ObjIdentityGroup.CreatedOn = DateTime.Now.ToMySqlDateString();
         }
 
         public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
             ObjIdentityGroup.UpdatedBy = userCtx.UserId;
-            ObjIdentityGroup.UpdatedOn = DateTime.Now;
+            ObjIdentityGroup.UpdatedOn = DateTime.Now.ToMySqlDateString();
             MasterGroupDa.UpdateIdentityGroup(ObjIdentityGroup);
+            foreach(var item in ObjIdentityGroup.GroupRight)
+            {
+                item.UpdatedBy = userCtx.UserId;
+                item.UpdatedOn = DateTime.Now.ToMySqlDateString();
+                item.SetDecimalRights();
+            }
+            var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
+            MasterGroupDa.UpdateIdentityGroupRight(XmlString);
         }
     }
 }

@@ -54,5 +54,18 @@ namespace Cuelogic.Clrm.DataAccessLayer
                  sqlparam.StoreProcedureParam);
         }
 
+        public static void UpdateIdentityGroupRight(string XmlString)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = "spBulkUpdateIdentityGroupRight";
+
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@xmltext", XmlString)
+            };
+
+            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
+        }
+
     }
 }
