@@ -67,5 +67,60 @@ namespace Cuelogic.Clrm.DataAccessLayer
                  sqlparam.StoreProcedureParam);
         }
 
+        public static DataSet SaveIdentityGroup(IdentityGroup ObjIdentityGroup)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = "spInsertIdentityGroup";
+
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@groupName", ObjIdentityGroup.GroupName),
+                new MySqlParameter("@groupDesc", ObjIdentityGroup.GroupDescription),
+                new MySqlParameter("@isValid", ObjIdentityGroup.IsValid),
+                new MySqlParameter("@createdBy", ObjIdentityGroup.CreatedBy),
+                new MySqlParameter("@createdOn", ObjIdentityGroup.CreatedOn)
+            };
+
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
+            return ds;
+        }
+
+        public static void SaveIdentityGroupRight(string XmlString)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = "spBulkInsertIdentityGroupRight";
+
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@xmltext", XmlString)
+            };
+
+            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
+        }
+
+        public static void MarkGroupInvalid(int GroupId)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = "spIdentityGroupMarkInvalid";
+
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@groupId", GroupId)
+            };
+
+            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
+        }
+
+        public static DataSet GetIdentityRightList()
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = "spGetIdentityRight";
+
+            sqlparam.StoreProcedureParam = null;
+
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
+            return ds;
+        }
+
     }
 }

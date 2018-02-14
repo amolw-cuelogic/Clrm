@@ -8,6 +8,18 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
 {
     public class IdentityGroup
     {
+        public IdentityGroup()
+        {
+            Id = 0;
+            GroupName = "";
+            GroupDescription = "";
+            IsValid = false;
+            CreatedBy = 0;
+            CreatedOn = "";
+            CreatedByName = "";
+            UpdatedByName = "";
+            GroupRight = new List<IdentityGroupRight>();
+        }
         public int Id { get; set; }
         public string GroupName { get; set; }
         public string GroupDescription { get; set; }

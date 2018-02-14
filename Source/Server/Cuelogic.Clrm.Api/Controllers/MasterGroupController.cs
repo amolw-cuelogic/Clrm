@@ -48,6 +48,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         // DELETE: api/MasterGroup/5
         public void Delete(int id)
         {
+            MasterGroupSrv.Delete(id);
         }
     }
 }

@@ -35,5 +35,10 @@ namespace Cuelogic.Clrm.Service
             else
                 MasterGroupRepo.UpdateIdentityGroup(ObjIdentityGroup, userCtx);
         }
+
+        public static void Delete(int GroupId)
+        {
+            MasterGroupRepo.MarkGroupInvalid(GroupId);
+        }
     }
 }

@@ -22,15 +22,34 @@ namespace Cuelogic.Clrm.Repository
 
         public static IdentityGroup GetGroup(int GroupId)
         {
-            var GroupDs = MasterGroupDa.GetIdentityGroup(GroupId);
-            var GroupRightDs = MasterGroupDa.GetIdentityGroupRights(GroupId);
-            var GroupObj = GroupDs.Tables[0].ToModel<IdentityGroup>();
-            var GroupRightLlist = GroupRightDs.Tables[0].ToList<IdentityGroupRight>();
-            foreach(var item in GroupRightLlist)
+            var GroupObj = new IdentityGroup();
+            if (GroupId != 0)
             {
-                item.BooleanRight = Helper.GetBooleanRights(item.Action);
+                var GroupDs = MasterGroupDa.GetIdentityGroup(GroupId);
+                var GroupRightDs = MasterGroupDa.GetIdentityGroupRights(GroupId);
+                GroupObj = GroupDs.Tables[0].ToModel<IdentityGroup>();
+                var GroupRightLlist = GroupRightDs.Tables[0].ToList<IdentityGroupRight>();
+                foreach (var item in GroupRightLlist)
+                {
+                    item.SetBooleanRights(item.Action);
+                }
+                GroupObj.GroupRight = GroupRightLlist;
             }
-            GroupObj.GroupRight = GroupRightLlist;
+            else
+            {
+                var RightDs = MasterGroupDa.GetIdentityRightList();
+                var RightObj = RightDs.Tables[0].ToList<IdentityRight>();
+                foreach(var item in RightObj)
+                {
+                    var temp = new IdentityGroupRight();
+                    temp.Action = 4; //Set read right by default
+                    temp.IsValid = true;
+                    temp.RightId = item.Id;
+                    temp.RightTitle = item.RightTitle;
+                    temp.SetBooleanRights(temp.Action);
+                    GroupObj.GroupRight.Add(temp);
+                }
+            }
             return GroupObj;
         }
 
@@ -38,6 +57,18 @@ namespace Cuelogic.Clrm.Repository
         {
             ObjIdentityGroup.CreatedBy = userCtx.UserId;
             ObjIdentityGroup.CreatedOn = DateTime.Now.ToMySqlDateString();
+            var ds = MasterGroupDa.SaveIdentityGroup(ObjIdentityGroup);
+            var LatestId = ds.Tables[0].ToId();
+            foreach(var item in ObjIdentityGroup.GroupRight)
+            {
+                item.GroupId = LatestId;
+                item.CreatedBy = userCtx.UserId; ;
+                item.CreatedOn = DateTime.Now.ToMySqlDateString();
+                item.IsValid = true;
+                item.SetDecimalRights();
+            }
+            var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
+            MasterGroupDa.SaveIdentityGroupRight(XmlString);
         }
 
         public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
@@ -53,6 +84,11 @@ namespace Cuelogic.Clrm.Repository
             }
             var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
             MasterGroupDa.UpdateIdentityGroupRight(XmlString);
+        }
+
+        public static void MarkGroupInvalid(int GroupId)
+        {
+            MasterGroupDa.MarkGroupInvalid(GroupId);
         }
     }
 }

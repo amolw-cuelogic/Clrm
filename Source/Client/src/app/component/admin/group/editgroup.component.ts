@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router'
 import { FormMode } from '../../../model/FormMode';
 import { BootstrapModel } from '../../../model/bootstrapmodel'
 import { ComponentSubscriptionService } from '../../../service/componentsubscription.service'
+import { Router } from '@angular/router'
 
 @Component({
     templateUrl: 'editgroup.component.html'
@@ -19,7 +20,7 @@ export class EditGroupComponent {
     IdentityGroup: any = new Object();
     loaded: boolean = false;
 
-
+    Disabled = false;
 
     ngOnInit() {
         this.actroute.params.subscribe(params => {
@@ -29,6 +30,11 @@ export class EditGroupComponent {
             this.LoadGroup(this.id);
 
         });
+    }
+
+    SetFormModeView() {
+        this.Disabled = true;
+        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"]').attr("disabled", "true");
     }
 
     SaveGroup() {
@@ -45,6 +51,15 @@ export class EditGroupComponent {
                     model.Message = "Saved Successfully";
                     this.compSubSrv.OpenBootstrapModal(model);
                 }
+                else
+                {
+                    this.router.navigate(["/group"]);
+                    var model = new BootstrapModel();
+                    model.Title = "Saved";
+                    model.MessageType = model.ModelType.Success;
+                    model.Message = "Saved Successfully";
+                    this.compSubSrv.OpenBootstrapModal(model);
+                }
             }
         );
     }
@@ -55,16 +70,19 @@ export class EditGroupComponent {
         ).subscribe(
             m => {
                 this.IdentityGroup = m;
-
                 this.SrvAppConfig.AdjustBottomHeight();
 
+                if (this.mode == this.formMode.View) {
+                    this.SetFormModeView();
+                }
             }
             );
     }
-
+    
 
     constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
-        private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService) {
+        private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,
+        private router: Router) {
         this.baseUrl = this.SrvAppConfig.GetBaseUrl();
     }
 

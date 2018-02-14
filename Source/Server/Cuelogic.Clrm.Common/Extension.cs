@@ -49,6 +49,22 @@ namespace Cuelogic.Clrm.Common
             }
             return jsSerializer.Serialize(parentRow);
         }
+        public static int ToId(this DataTable table)
+        {
+            int id = 0;
+            try
+            {
+                var data = table.Rows[0][0];
+                id = int.Parse(data.ToString());
+                return id;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+        }
+
 
         public static string ToMySqlDateString(this DateTime dt)
         {

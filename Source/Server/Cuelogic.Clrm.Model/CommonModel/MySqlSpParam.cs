@@ -16,11 +16,14 @@ namespace Cuelogic.Clrm.Model.CommonModel
         {
             string sqlCmd = "";
             sqlCmd = "call " + StoreProcedureName + "(";
-            for (var i = 0; i < StoreProcedureParam.Count(); i++)
+            if (StoreProcedureParam != null)
             {
-                sqlCmd += StoreProcedureParam[i].ParameterName;
-                if (i < StoreProcedureParam.Count() - 1)
-                    sqlCmd += ",";
+                for (var i = 0; i < StoreProcedureParam.Count(); i++)
+                {
+                    sqlCmd += StoreProcedureParam[i].ParameterName;
+                    if (i < StoreProcedureParam.Count() - 1)
+                        sqlCmd += ",";
+                }
             }
             sqlCmd += ")";
             return sqlCmd;

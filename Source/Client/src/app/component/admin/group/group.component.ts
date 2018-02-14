@@ -42,8 +42,7 @@ export class GroupComponent {
         this.GetGroupList();
     }
 
-    ClearFilter()
-    {
+    ClearFilter() {
         this.InitControls();
         this.GetGroupList();
     }
@@ -53,7 +52,7 @@ export class GroupComponent {
     }
 
     NewRecord() {
-
+        this.router.navigate(['/editgroup/' + this.formMode.Add + '/0']);
     }
 
     EditRecord(id: any) {
@@ -61,11 +60,16 @@ export class GroupComponent {
     }
 
     ViewRecord(id: any) {
-
+        this.router.navigate(['/editgroup/' + this.formMode.View + '/' + id]);
     }
 
     DeleteRecord(id: any) {
+        this.httpClient.delete(this.baseUrl + "api/MasterGroup/" + id
+        ).subscribe(
+            m => {
+                this.GetGroupList();
 
+            });
     }
 
     //Common Search Module - END
@@ -76,10 +80,10 @@ export class GroupComponent {
         this.InitControls();
         this.baseUrl = this.SrvAppConfig.GetBaseUrl();
         this.GetGroupList();
-        
+
     }
 
-   
+
 
     GetGroupList() {
 
@@ -87,16 +91,16 @@ export class GroupComponent {
         params.set('Show', this.Show.toString());
         params.set('FilterText', this.FilterText);
         params.set('Page', this.Page.toString());
-        
+
         var SearchParam = "?Show=" + this.Show + "&FilterText=" + this.FilterText + "&Page=" + this.Page;
         this.httpClient.get(this.baseUrl + "api/MasterGroup" + SearchParam
         ).subscribe(
             m => {
                 this.GroupList = m;
                 this.SrvAppConfig.AdjustBottomHeight();
-                
+
             }
-        );
+            );
     }
 }
 
