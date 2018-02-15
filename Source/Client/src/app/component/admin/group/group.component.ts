@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppconfigService } from '../../../service/appconfig.service'
-import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import * as $ from 'jquery'
 import { Router } from '@angular/router'
 import { FormMode } from '../../../model/FormMode';
