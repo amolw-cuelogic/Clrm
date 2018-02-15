@@ -20,14 +20,14 @@ namespace Cuelogic.Clrm.DataAccessLayer
         public static DataSet GetIdentityGroupList(SearchParam objSearchParam)
         {
             var RecordFrom = objSearchParam.Page * objSearchParam.Show;
-            var RecordTill = RecordFrom + objSearchParam.Show;
+            var ShowRecord = objSearchParam.Show;
 
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroupList;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@FilterText", objSearchParam.FilterText),
                 new MySqlParameter("@RecordFrom", RecordFrom),
-                new MySqlParameter("@RecordTill", RecordTill)
+                new MySqlParameter("@RecordTill", ShowRecord)
             };
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;

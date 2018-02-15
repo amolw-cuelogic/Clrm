@@ -27,8 +27,10 @@ export class GroupComponent {
     }
 
     NextPage() {
-        this.Page = this.Page + 1;
-        this.GetGroupList();
+        if (this.GroupList.length == this.Show) {
+            this.Page = this.Page + 1;
+            this.GetGroupList();
+        }
     }
 
     PreviousPage() {

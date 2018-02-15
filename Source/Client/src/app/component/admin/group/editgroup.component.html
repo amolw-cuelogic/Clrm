@@ -20,12 +20,17 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <label for="name">Group Name</label>
-                                        <input type="text" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
-
+                                        <input type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
+                                        <div *ngIf="GroupName.errors && (GroupName.dirty || GroupName.touched)" class="error">
+                                            Group Name is required
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Group Description</label>
-                                        <textarea class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
+                                        <textarea #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
+                                        <div *ngIf="GroupDescription.errors && (GroupDescription.dirty || GroupDescription.touched)" class="error">
+                                            Group Description is required
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Is Valid Group</label><br />
