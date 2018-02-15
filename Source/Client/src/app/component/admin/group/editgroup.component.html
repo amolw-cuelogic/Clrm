@@ -19,14 +19,14 @@
                             <div class="col-sm-12 col-md-6 col-xs-12">
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
-                                        <label for="name">Group Name</label>
+                                        <ngx-label value="Group Name"></ngx-label>
                                         <input type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
                                         <div *ngIf="GroupName.errors && (GroupName.dirty || GroupName.touched)" class="error">
                                             Group Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Group Description</label>
+                                        <ngx-label value="Group Description"></ngx-label>
                                         <textarea #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
                                         <div *ngIf="GroupDescription.errors && (GroupDescription.dirty || GroupDescription.touched)" class="error">
                                             Group Description is required

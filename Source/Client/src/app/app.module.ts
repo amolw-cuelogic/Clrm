@@ -40,6 +40,11 @@ import { GoogleLoginProvider } from "angular4-social-login";
 
 //Model
 import { FormMode } from './model/FormMode'
+
+//Directive
+import { LabelDirective } from "./directive/label-directive"
+
+
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,

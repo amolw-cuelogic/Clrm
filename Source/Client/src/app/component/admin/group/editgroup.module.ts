@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 
 import { EditGroupComponent } from './editgroup.component';
 import { EditGroupRoutingModule } from './editgroup-routing.module';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+
+import { SharedModule } from '../../../shared.module'
 
 @NgModule({
     imports: [
         EditGroupRoutingModule,
-        CommonModule,
-        FormsModule
+        SharedModule
     ],
     declarations: [EditGroupComponent]
 })

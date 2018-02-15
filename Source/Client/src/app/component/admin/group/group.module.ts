@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 
 import { GroupComponent } from './group.component';
 import { GroupRoutingModule } from './group-routing.module';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+
+import { SharedModule } from '../../../shared.module'
 
 @NgModule({
     imports: [
         GroupRoutingModule,
-        CommonModule,
-        FormsModule
+        SharedModule
     ],
     declarations: [GroupComponent]
 })
