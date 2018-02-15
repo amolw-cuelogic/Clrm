@@ -19,26 +19,29 @@ namespace Cuelogic.Clrm.Api.Controllers
         // GET: api/MasterGroup | TODO : Revise returning logic later
         public string Get(int Show, int Page, string FilterText)
         {
+            var MasterObj = new MasterGroupSrv();
             var objSearchParam = new SearchParam();
             objSearchParam.FilterText = FilterText ?? "";
             objSearchParam.Page = Page;
             objSearchParam.Show = Show;
-            var ListIdentityGroup = MasterGroupSrv.GetList(objSearchParam);
+            var ListIdentityGroup = MasterObj.GetList(objSearchParam);
             return ListIdentityGroup;
         }
 
         // GET: api/MasterGroup/5
         public IdentityGroup Get(int id)
         {
-            var ObjIdentityGroup = MasterGroupSrv.GetItem(id);
+            var MasterObj = new MasterGroupSrv();
+            var ObjIdentityGroup = MasterObj.GetItem(id);
             return ObjIdentityGroup;
         }
 
         // POST: api/MasterGroup
         public void Post([FromBody]IdentityGroup objIdentityGroup)
         {
+            var MasterObj = new MasterGroupSrv();
             var userCtx = base.GetUserContext();
-            MasterGroupSrv.Save(objIdentityGroup, userCtx);
+            MasterObj.Save(objIdentityGroup, userCtx);
         }
 
         // PUT: api/MasterGroup/5
@@ -49,7 +52,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         // DELETE: api/MasterGroup/5
         public void Delete(int id)
         {
-            MasterGroupSrv.Delete(id);
+            var MasterObj = new MasterGroupSrv();
+            MasterObj.Delete(id);
         }
     }
 }

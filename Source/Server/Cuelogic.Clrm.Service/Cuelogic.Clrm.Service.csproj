@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IMasterGroup.cs" />
     <Compile Include="Service\CommonSrv.cs" />
     <Compile Include="Service\MasterGroupSrv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,9 +66,7 @@
       <Name>Cuelogic.Clrm.Repository</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

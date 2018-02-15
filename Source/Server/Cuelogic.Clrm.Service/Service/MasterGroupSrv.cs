@@ -10,25 +10,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Service.Service
 {
-    public static class MasterGroupSrv
+    public class MasterGroupSrv : IMasterGroup
     {
-        public static string GetList(SearchParam objSearchParam)
+        public string GetList(SearchParam objSearchParam)
         {
             DataSet ds = MasterGroupRepo.GetIdentityGroupList(objSearchParam);
             var IdentityGroupJson = ds.Tables[0].ToJsonString();
             return IdentityGroupJson;
         }
 
-        public static IdentityGroup GetItem(int GroupId)
+        public IdentityGroup GetItem(int GroupId)
         {
             var grp = MasterGroupRepo.GetGroup(GroupId);
             return grp;
         }
 
-        public static void Save(IdentityGroup ObjIdentityGroup, UserContext userCtx)
+        public void Save(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
             if (ObjIdentityGroup.Id == 0)
                 MasterGroupRepo.SaveIdentityGroup(ObjIdentityGroup, userCtx);
@@ -36,7 +37,7 @@ namespace Cuelogic.Clrm.Service.Service
                 MasterGroupRepo.UpdateIdentityGroup(ObjIdentityGroup, userCtx);
         }
 
-        public static void Delete(int GroupId)
+        public void Delete(int GroupId)
         {
             MasterGroupRepo.MarkGroupInvalid(GroupId);
         }
