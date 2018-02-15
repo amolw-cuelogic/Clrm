@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Service
+namespace Cuelogic.Clrm.Service.Service
 {
     public class CommonSrv
     {

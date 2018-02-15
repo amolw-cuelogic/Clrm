@@ -57,7 +57,7 @@ namespace Cuelogic.Clrm.Repository
         {
             ObjIdentityGroup.CreatedBy = userCtx.UserId;
             ObjIdentityGroup.CreatedOn = DateTime.Now.ToMySqlDateString();
-            var ds = MasterGroupDa.SaveIdentityGroup(ObjIdentityGroup);
+            var ds = MasterGroupDa.InsertIdentityGroup(ObjIdentityGroup);
             var LatestId = ds.Tables[0].ToId();
             foreach(var item in ObjIdentityGroup.GroupRight)
             {
@@ -68,7 +68,7 @@ namespace Cuelogic.Clrm.Repository
                 item.SetDecimalRights();
             }
             var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
-            MasterGroupDa.SaveIdentityGroupRight(XmlString);
+            MasterGroupDa.InsertIdentityGroupRight(XmlString);
         }
 
         public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)

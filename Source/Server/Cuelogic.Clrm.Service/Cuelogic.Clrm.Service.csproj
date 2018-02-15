@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonSrv.cs" />
-    <Compile Include="MasterGroupSrv.cs" />
+    <Compile Include="Service\CommonSrv.cs" />
+    <Compile Include="Service\MasterGroupSrv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +64,9 @@
       <Project>{8b5c7274-1f0e-41cf-97bf-e161a46c64ec}</Project>
       <Name>Cuelogic.Clrm.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

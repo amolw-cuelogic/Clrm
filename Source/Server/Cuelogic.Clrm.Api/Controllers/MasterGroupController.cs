@@ -3,6 +3,7 @@ using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,14 @@ namespace Cuelogic.Clrm.Api.Controllers
             objSearchParam.FilterText = FilterText ?? "";
             objSearchParam.Page = Page;
             objSearchParam.Show = Show;
-            var ListIdentityGroup = MasterGroupSrv.GetIdentityGroupList(objSearchParam);
+            var ListIdentityGroup = MasterGroupSrv.GetList(objSearchParam);
             return ListIdentityGroup;
         }
 
         // GET: api/MasterGroup/5
         public IdentityGroup Get(int id)
         {
-            var ObjIdentityGroup = MasterGroupSrv.GetGroup(id);
+            var ObjIdentityGroup = MasterGroupSrv.GetItem(id);
             return ObjIdentityGroup;
         }
 

@@ -15,32 +15,63 @@ namespace Cuelogic.Clrm.DataAccessLayer
     public class MasterGroupDa
     {
 
+        #region GET FUNCTIONS
+
         public static DataSet GetIdentityGroupList(SearchParam objSearchParam)
         {
             var RecordFrom = objSearchParam.Page * objSearchParam.Show;
             var RecordTill = RecordFrom + objSearchParam.Show;
-            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupList('" + objSearchParam.FilterText +
-                    "','" + RecordFrom + "','" + RecordTill + "')");
+
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroupList;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@FilterText", objSearchParam.FilterText),
+                new MySqlParameter("@RecordFrom", RecordFrom),
+                new MySqlParameter("@RecordTill", RecordTill)
+            };
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;
         }
 
         public static DataSet GetIdentityGroup(int GroupId)
         {
-            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroup(" + GroupId + ")");
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroup;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@GroupId", GroupId)
+            };
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;
         }
 
         public static DataSet GetIdentityGroupRights(int GroupId)
         {
-            var ds = DataAccessHelper.ExecuteQuery("spGetIdentityGroupRights(" + GroupId + ")");
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroupRights;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                new MySqlParameter("@GroupId", GroupId)
+            };
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;
         }
+
+        public static DataSet GetIdentityRightList()
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityRight;
+            sqlparam.StoreProcedureParam = null;
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
+            return ds;
+        }
+
+        #endregion
+
+        #region UPDATE FUNCTIONS
 
         public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = "spUpdateIdentityGroup";
-
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spUpdateIdentityGroup;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@GroupId", ObjIdentityGroup.Id),
                 new MySqlParameter("@grpn", ObjIdentityGroup.GroupName),
@@ -49,7 +80,6 @@ namespace Cuelogic.Clrm.DataAccessLayer
                 new MySqlParameter("@updatedby", ObjIdentityGroup.UpdatedBy),
                 new MySqlParameter("@updatedon", ObjIdentityGroup.UpdatedOn)
             };
-            
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);
         }
@@ -57,21 +87,22 @@ namespace Cuelogic.Clrm.DataAccessLayer
         public static void UpdateIdentityGroupRight(string XmlString)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = "spBulkUpdateIdentityGroupRight";
-
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spBulkUpdateIdentityGroupRight;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@xmltext", XmlString)
             };
-
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);
         }
 
-        public static DataSet SaveIdentityGroup(IdentityGroup ObjIdentityGroup)
+        #endregion
+
+        #region INSERT FUNCTIONS
+
+        public static DataSet InsertIdentityGroup(IdentityGroup ObjIdentityGroup)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = "spInsertIdentityGroup";
-
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spInsertIdentityGroup;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@groupName", ObjIdentityGroup.GroupName),
                 new MySqlParameter("@groupDesc", ObjIdentityGroup.GroupDescription),
@@ -79,48 +110,38 @@ namespace Cuelogic.Clrm.DataAccessLayer
                 new MySqlParameter("@createdBy", ObjIdentityGroup.CreatedBy),
                 new MySqlParameter("@createdOn", ObjIdentityGroup.CreatedOn)
             };
-
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);
             return ds;
         }
 
-        public static void SaveIdentityGroupRight(string XmlString)
+        public static void InsertIdentityGroupRight(string XmlString)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = "spBulkInsertIdentityGroupRight";
-
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spBulkInsertIdentityGroupRight;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@xmltext", XmlString)
             };
-
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);
         }
+
+        #endregion
+
+        #region OTHER FUNCTIONS
 
         public static void MarkGroupInvalid(int GroupId)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = "spIdentityGroupMarkInvalid";
-
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroupMarkInvalid;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@groupId", GroupId)
             };
-
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);
         }
 
-        public static DataSet GetIdentityRightList()
-        {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = "spGetIdentityRight";
-
-            sqlparam.StoreProcedureParam = null;
-
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
-            return ds;
-        }
+        #endregion
 
     }
 }

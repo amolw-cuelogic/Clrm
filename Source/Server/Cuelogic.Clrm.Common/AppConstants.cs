@@ -8,5 +8,21 @@ namespace Cuelogic.Clrm.Common
 {
     public class AppConstants
     {
+        public static class StoreProcedure
+        {
+            #region IdentityGroup | IdentityGroupRight 
+
+            public const string spGetIdentityGroupList = "spGetIdentityGroupList";
+            public const string spGetIdentityGroup = "spGetIdentityGroup";
+            public const string spGetIdentityGroupRights = "spGetIdentityGroupRights";
+            public const string spUpdateIdentityGroup = "spUpdateIdentityGroup";
+            public const string spBulkUpdateIdentityGroupRight = "spBulkUpdateIdentityGroupRight";
+            public const string spInsertIdentityGroup = "spInsertIdentityGroup";
+            public const string spBulkInsertIdentityGroupRight = "spBulkInsertIdentityGroupRight";
+            public const string spIdentityGroupMarkInvalid = "spIdentityGroupMarkInvalid";
+            public const string spGetIdentityRight = "spGetIdentityRight";
+
+            #endregion
+        }
     }
 }

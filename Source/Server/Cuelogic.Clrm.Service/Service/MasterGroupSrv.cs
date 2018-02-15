@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 
-namespace Cuelogic.Clrm.Service
+namespace Cuelogic.Clrm.Service.Service
 {
     public static class MasterGroupSrv
     {
-        public static string GetIdentityGroupList(SearchParam objSearchParam)
+        public static string GetList(SearchParam objSearchParam)
         {
             DataSet ds = MasterGroupRepo.GetIdentityGroupList(objSearchParam);
             var IdentityGroupJson = ds.Tables[0].ToJsonString();
             return IdentityGroupJson;
         }
 
-        public static IdentityGroup GetGroup(int GroupId)
+        public static IdentityGroup GetItem(int GroupId)
         {
             var grp = MasterGroupRepo.GetGroup(GroupId);
             return grp;

@@ -12,6 +12,7 @@ using Microsoft.Owin.Security.OAuth;
 using Cuelogic.Clrm.Api.Models;
 using System.Text.RegularExpressions;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.Service.Service;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
