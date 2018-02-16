@@ -26,7 +26,7 @@ namespace Cuelogic.Clrm.Service.Service
         {
             try
             {
-                throw new NotImplementedException();
+                _masterDepartmentRepository.MarkMasterDepartmentInvalid(DepartmentId);
             }
             catch (Exception ex)
             {
@@ -68,7 +68,10 @@ namespace Cuelogic.Clrm.Service.Service
         {
             try
             {
-                throw new NotImplementedException();
+                if (ObjMasterDepartment.Id == 0)
+                    _masterDepartmentRepository.SaveMasterDepartment(ObjMasterDepartment, userCtx);
+                else
+                    _masterDepartmentRepository.UpdateMasterDepartment(ObjMasterDepartment, userCtx);
             }
             catch (Exception ex)
             {

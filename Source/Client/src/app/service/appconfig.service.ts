@@ -8,7 +8,7 @@ import { User } from '../model/user';
 export class AppconfigService {
 
     private baseUrlDev: any = "http://localhost/Cuelogic.Clrm.Api/";
-    private baseUrlProd: any = "";
+    private baseUrlProd: any = "http://localhost/Cuelogic.Clrm.Api/";
     private user: User = new User();
 
     constructor() { }

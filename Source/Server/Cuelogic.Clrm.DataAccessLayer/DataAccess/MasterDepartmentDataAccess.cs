@@ -59,24 +59,21 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
             }
         }
 
-        public DataSet InsertMasterDepartment(MasterDepartment ObjMasterDepartment)
+        public void InsertMasterDepartment(MasterDepartment ObjMasterDepartment)
         {
             try
             {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
-        }
-
-        public void MarkMasterDepartmentInvalid(int MasterDepartmentId)
-        {
-            try
-            {
-                throw new NotImplementedException();
+                var sqlparam = new MySqlSpParam();
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spInsertMasterDepartment;
+                sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@departmentName", ObjMasterDepartment.DepartmentName),
+                    new MySqlParameter("@departmentHead", ObjMasterDepartment.DepartmentHead),
+                    new MySqlParameter("@isValid", ObjMasterDepartment.IsValid),
+                    new MySqlParameter("@createdBy", ObjMasterDepartment.CreatedBy),
+                    new MySqlParameter("@createdOn", ObjMasterDepartment.CreatedOn)
+                };
+                DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                     sqlparam.StoreProcedureParam);
             }
             catch (Exception ex)
             {
@@ -89,7 +86,18 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
         {
             try
             {
-                throw new NotImplementedException();
+                var sqlparam = new MySqlSpParam();
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spUpdateMasterDepartment;
+                sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@departmentId", ObjMasterDepartment.Id),
+                    new MySqlParameter("@departmentName", ObjMasterDepartment.DepartmentName),
+                    new MySqlParameter("@departmentHead", ObjMasterDepartment.DepartmentHead),
+                    new MySqlParameter("@isValid", ObjMasterDepartment.IsValid),
+                    new MySqlParameter("@updatedby", ObjMasterDepartment.UpdatedBy),
+                    new MySqlParameter("@updatedon", ObjMasterDepartment.UpdatedOn)
+                };
+                DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                     sqlparam.StoreProcedureParam);
             }
             catch (Exception ex)
             {
@@ -97,5 +105,26 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
                 throw ex;
             }
         }
+        
+        public void MarkMasterDepartmentInvalid(int MasterDepartmentId)
+        {
+            try
+            {
+                var sqlparam = new MySqlSpParam();
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartmentMarkInvalid;
+                sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterDepartmentId", MasterDepartmentId)
+                };
+                DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                     sqlparam.StoreProcedureParam);
+            }
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw ex;
+            }
+        }
+
+
     }
 }

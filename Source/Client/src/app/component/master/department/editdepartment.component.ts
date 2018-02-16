@@ -26,8 +26,7 @@ export class EditDepartmentComponent {
             this.id = +params['id'];
             this.mode = params['mode'];
             console.log(this.mode);
-            this.LoadGroup(this.id);
-
+            this.LoadDepartment(this.id);
         });
     }
 
@@ -43,7 +42,7 @@ export class EditDepartmentComponent {
         this.httpClient.post(this.baseUrl + "api/MasterDepartment", da, { headers: headers }).subscribe(
             m => {
                 if (this.mode == this.formMode.Edit) {
-                    this.LoadGroup(this.id);
+                    this.LoadDepartment(this.id);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
@@ -64,7 +63,7 @@ export class EditDepartmentComponent {
     }
 
 
-    LoadGroup(id: any) {
+    LoadDepartment(id: any) {
         this.httpClient.get(this.baseUrl + "api/MasterDepartment/" + id
         ).subscribe(
             m => {

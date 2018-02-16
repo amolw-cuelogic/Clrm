@@ -28,7 +28,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Interface
 
         #region INSERT FUNCTIONS
 
-        DataSet InsertMasterDepartment(MasterDepartment ObjMasterDepartment);
+        void InsertMasterDepartment(MasterDepartment ObjMasterDepartment);
         
         #endregion
 

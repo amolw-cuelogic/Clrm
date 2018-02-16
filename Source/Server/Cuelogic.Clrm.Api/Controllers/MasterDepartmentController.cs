@@ -37,8 +37,10 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         // POST: api/MasterDepartment
-        public void Post([FromBody]string value)
+        public void Post([FromBody]MasterDepartment objMasterDepartment)
         {
+            var userCtx = base.GetUserContext();
+            _masterDepartmentService.Save(objMasterDepartment, userCtx);
         }
 
         // PUT: api/MasterDepartment/5
@@ -49,6 +51,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         // DELETE: api/MasterDepartment/5
         public void Delete(int id)
         {
+            _masterDepartmentService.Delete(id);
         }
     }
 }

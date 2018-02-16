@@ -20,6 +20,6 @@ namespace Cuelogic.Clrm.Repository.Interface
 
         void UpdateMasterDepartment(MasterDepartment ObjMasterDepartment, UserContext userCtx);
 
-        void MarkMasterDepartmentInvalid(int GroupId);
+        void MarkMasterDepartmentInvalid(int MasterDepartmentId);
     }
 }

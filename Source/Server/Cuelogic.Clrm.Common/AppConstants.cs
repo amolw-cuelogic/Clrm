@@ -34,6 +34,9 @@ namespace Cuelogic.Clrm.Common
 
             public const string spGetMasterDepartmentList = "spGetMasterDepartmentList";
             public const string spGetMasterDepartment = "spGetMasterDepartment";
+            public const string spMasterDepartmentMarkInvalid = "spMasterDepartmentMarkInvalid";
+            public const string spUpdateMasterDepartment = "spUpdateMasterDepartment";
+            public const string spInsertMasterDepartment = "spInsertMasterDepartment";
 
             #endregion
         }
