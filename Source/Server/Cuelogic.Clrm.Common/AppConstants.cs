@@ -33,6 +33,7 @@ namespace Cuelogic.Clrm.Common
             #region MASTER DEPARTMENT 
 
             public const string spGetMasterDepartmentList = "spGetMasterDepartmentList";
+            public const string spGetMasterDepartment = "spGetMasterDepartment";
 
             #endregion
         }

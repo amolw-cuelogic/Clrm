@@ -16,7 +16,7 @@ export class EditDepartmentComponent {
     id: number;
     mode: string;
     baseUrl: string;
-    IdentityGroup: any = new Object();
+    MasterDepartment: any = new Object();
     loaded: boolean = false;
 
     Disabled = false;
@@ -37,10 +37,10 @@ export class EditDepartmentComponent {
     }
 
     SaveGroup() {
-        var da = JSON.stringify(this.IdentityGroup);
+        var da = JSON.stringify(this.MasterDepartment);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        this.httpClient.post(this.baseUrl + "api/MasterGroup", da, { headers: headers }).subscribe(
+        this.httpClient.post(this.baseUrl + "api/MasterDepartment", da, { headers: headers }).subscribe(
             m => {
                 if (this.mode == this.formMode.Edit) {
                     this.LoadGroup(this.id);
@@ -52,7 +52,7 @@ export class EditDepartmentComponent {
                 }
                 else
                 {
-                    this.router.navigate(["/group"]);
+                    this.router.navigate(["/department"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
@@ -65,10 +65,10 @@ export class EditDepartmentComponent {
 
 
     LoadGroup(id: any) {
-        this.httpClient.get(this.baseUrl + "api/MasterGroup/" + id
+        this.httpClient.get(this.baseUrl + "api/MasterDepartment/" + id
         ).subscribe(
             m => {
-                this.IdentityGroup = m;
+                this.MasterDepartment = m;
                 this.SrvAppConfig.AdjustBottomHeight();
 
                 if (this.mode == this.formMode.View) {

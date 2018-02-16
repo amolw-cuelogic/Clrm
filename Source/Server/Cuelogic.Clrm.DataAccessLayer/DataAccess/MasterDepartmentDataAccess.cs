@@ -20,7 +20,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
         {
             try
             {
-                throw new NotImplementedException();
+                var sqlparam = new MySqlSpParam();
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetMasterDepartment;
+                sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterDepartmentId", MasterDepartmentId)
+                };
+                var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+                return ds;
             }
             catch (Exception ex)
             {

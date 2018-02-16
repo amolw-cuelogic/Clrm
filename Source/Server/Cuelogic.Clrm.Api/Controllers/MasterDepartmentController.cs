@@ -1,4 +1,5 @@
 ﻿using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,10 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         // GET: api/MasterDepartment/5
-        public string Get(int id)
+        public MasterDepartment Get(int id)
         {
-            return "value";
+            var masterDepartmentObj = _masterDepartmentService.GetItem(id);
+            return masterDepartmentObj;
         }
 
         // POST: api/MasterDepartment

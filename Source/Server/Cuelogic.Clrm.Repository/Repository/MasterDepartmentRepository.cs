@@ -10,6 +10,7 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using System.Data;
 using Cuelogic.Clrm.DataAccessLayer.Interface;
 using log4net;
+using Cuelogic.Clrm.DataAccessLayer.DataAccess;
 
 namespace Cuelogic.Clrm.Repository.Repository
 {
@@ -18,15 +19,17 @@ namespace Cuelogic.Clrm.Repository.Repository
         private ILog applogManager = AppLogManager.GetLogger();
         private readonly IMasterDepartmentDataAccess _masterDepartmentDataAccess;
 
-        public MasterDepartmentRepository(IMasterDepartmentDataAccess masterDepartmentDataAccess)
+        public MasterDepartmentRepository()
         {
-            _masterDepartmentDataAccess = masterDepartmentDataAccess;
+            _masterDepartmentDataAccess = new MasterDepartmentDataAccess();
         }
         public MasterDepartment GetMasterDepartment(int MasterDepartmentId)
         {
             try
             {
-                throw new NotImplementedException();
+                var MasterDepartmentDs = _masterDepartmentDataAccess.GetMasterDepartment(MasterDepartmentId);
+                var MasterDepartmentObj = MasterDepartmentDs.Tables[0].ToModel<MasterDepartment>();
+                return MasterDepartmentObj;
             }
             catch (Exception ex)
             {

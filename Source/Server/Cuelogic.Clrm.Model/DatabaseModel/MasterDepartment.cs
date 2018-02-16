@@ -11,7 +11,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public MasterDepartment()
         {
             Id = 0;
-            Name = "";
+            DepartmentName = "";
             DepartmentHead = "";
             IsValid = false;
             CreatedBy = 0;
@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             UpdatedByName = "";
         }
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string DepartmentName { get; set; }
         public string DepartmentHead { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }

@@ -3,14 +3,14 @@
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
         <button [hidden]="Disabled" type="button" class="btn btn-primary" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
-        <button routerLink="/group" type="button" class="btn btn-primary">Back</button>
+        <button routerLink="/department" type="button" class="btn btn-primary">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
         <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
             <div class="col-sm-12 col-md-9 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Group </strong>
+                        <strong>Department </strong>
                         <small>Details</small>
                     </div>
                     <div class="card-body">
@@ -19,23 +19,21 @@
                             <div class="col-sm-12 col-md-6 col-xs-12">
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
-                                        <ngx-label value="Group Name"></ngx-label>
-                                        <input type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
-                                        <div *ngIf="GroupName.errors && (GroupName.dirty || GroupName.touched)" class="error">
-                                            Group Name is required
+                                        <ngx-label value="Department Name"></ngx-label>
+                                        <input type="text" #DepartmentName="ngModel" [(ngModel)]="MasterDepartment.DepartmentName" class="form-control" required name="MasterDepartment.DepartmentName" placeholder="Enter Department Name">
+                                        <div *ngIf="DepartmentName.errors && (DepartmentName.dirty || DepartmentName.touched)" class="error">
+                                            Department Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <ngx-label value="Group Description"></ngx-label>
-                                        <textarea #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
-                                        <div *ngIf="GroupDescription.errors && (GroupDescription.dirty || GroupDescription.touched)" class="error">
-                                            Group Description is required
-                                        </div>
+                                        <label>Department Head</label>
+                                        <input class="form-control" [(ngModel)]="MasterDepartment.DepartmentHead" rows="5" name="MasterDepartment.DepartmentHead" placeholder="Enter Department Head" />
+
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Is Valid Group</label><br />
+                                        <label for="name">Is Valid Department</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
-                                            <input type="checkbox" class="switch-input" [(ngModel)]="IdentityGroup.IsValid" name="IdentityGroup.IsValid">
+                                            <input type="checkbox" class="switch-input" [(ngModel)]="MasterDepartment.IsValid" name="MasterDepartment.IsValid">
                                             <span class="switch-label"></span>
                                             <span class="switch-handle"></span>
                                         </label>
@@ -44,38 +42,7 @@
                             </div>
 
                             <div class="col-sm-12 col-md-6 col-xs-12">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>
-                                            Right
-                                        </th>
-                                        <th>
-                                            Read
-                                        </th>
-                                        <th>
-                                            Write
-                                        </th>
-                                        <th>
-                                            Delete
-                                        </th>
-                                    </tr>
-                                    <tbody>
-                                        <tr *ngFor="let item of IdentityGroup.GroupRight">
-                                            <td>
-                                                {{item.RightTitle}}
-                                            </td>
-                                            <td>
-                                                <input [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
-                                            </td>
-                                            <td>
-                                                <input [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
-                                            </td>
-                                            <td>
-                                                <input [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
                             </div>
                         </div>
                     </div>
@@ -89,13 +56,12 @@
 
                         <table style="width:100%">
                             <tr><th colspan="2">User Actions</th></tr>
-                            <tr><th colspan="2">Group</th></tr>
                             <tr>
                                 <td style="width:50%">
                                     Created By
                                 </td>
                                 <td>
-                                    {{IdentityGroup.CreatedByName}}
+                                    {{MasterDepartment.CreatedByName}}
                                 </td>
                             </tr>
                             <tr>
@@ -103,7 +69,7 @@
                                     Created On
                                 </td>
                                 <td>
-                                    {{IdentityGroup.CreatedOn | date :  "dd/MM/y"}}
+                                    {{MasterDepartment.CreatedOn | date :  "y/MM/dd"}}
                                 </td>
                             </tr>
                             <tr>
@@ -111,7 +77,7 @@
                                     Updated By
                                 </td>
                                 <td>
-                                    {{IdentityGroup.UpdatedByName}}
+                                    {{MasterDepartment.UpdatedByName}}
                                 </td>
                             </tr>
                             <tr>
@@ -119,43 +85,9 @@
                                     Updated On
                                 </td>
                                 <td>
-                                    {{IdentityGroup.UpdatedOn | date :  "dd/MM/y"}}
+                                    {{MasterDepartment.UpdatedOn | date :  "y/MM/dd"}}
                                 </td>
                             </tr>
-                            <tr><th colspan="2">Group Rights</th></tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Created By
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].CreatedByName}}
-                                </td>
-                            </tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Created On
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].CreatedOn | date :  "dd/MM/y"}}
-                                </td>
-                            </tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Updated By
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].UpdatedByName}}
-                                </td>
-                            </tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Updated On
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].UpdatedOn | date :  "dd/MM/y"}}
-                                </td>
-                            </tr>
-
                         </table>
                     </div>
                 </div>

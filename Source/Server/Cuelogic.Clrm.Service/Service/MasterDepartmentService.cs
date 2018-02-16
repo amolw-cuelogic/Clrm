@@ -10,6 +10,7 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
 using log4net;
 using System.Data;
+using Cuelogic.Clrm.Repository.Repository;
 
 namespace Cuelogic.Clrm.Service.Service
 {
@@ -17,9 +18,9 @@ namespace Cuelogic.Clrm.Service.Service
     {
         private ILog applogManager = AppLogManager.GetLogger();
         private readonly IMasterDepartmentRepository _masterDepartmentRepository;
-        public MasterDepartmentService(IMasterDepartmentRepository masterDepartmentRepository)
+        public MasterDepartmentService()
         {
-            _masterDepartmentRepository = masterDepartmentRepository;
+            _masterDepartmentRepository = new MasterDepartmentRepository();
         }
         public void Delete(int DepartmentId)
         {
@@ -38,7 +39,8 @@ namespace Cuelogic.Clrm.Service.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var masterDepartment = _masterDepartmentRepository.GetMasterDepartment(DepartmentId);
+                return masterDepartment;
             }
             catch (Exception ex)
             {

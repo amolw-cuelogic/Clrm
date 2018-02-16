@@ -20,10 +20,11 @@ namespace Cuelogic.Clrm.Api
         {
 			var container = new UnityContainer();
             
-            container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
+            
             container.RegisterType<IMasterGroup, MasterGroupService>();
             container.RegisterType<IMasterDepartmentService, MasterDepartmentService>();
 
+            container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             
         }
