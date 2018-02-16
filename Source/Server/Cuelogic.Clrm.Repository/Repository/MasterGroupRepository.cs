@@ -12,91 +12,133 @@ using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.DataAccessLayer.Interface;
 using Cuelogic.Clrm.DataAccessLayer.DataAccess;
+using log4net;
 
 namespace Cuelogic.Clrm.Repository.Repository
 {
     public class MasterGroupRepository : IMasterGroupRepository
     {
         private readonly IMasterGroupDataAccess _masterGroupDataAccess;
+        private ILog applogManager = AppLogManager.GetLogger();
         public MasterGroupRepository()
         {
             _masterGroupDataAccess = new MasterGroupDataAccess();
         }
         public DataSet GetIdentityGroupList(SearchParam objSearchParam)
         {
-            var ds = _masterGroupDataAccess.GetIdentityGroupList(objSearchParam);
-            return ds;
+            try
+            {
+                var ds = _masterGroupDataAccess.GetIdentityGroupList(objSearchParam);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw ex;
+            }
         }
 
         public IdentityGroup GetGroup(int GroupId)
         {
-            var GroupObj = new IdentityGroup();
-            if (GroupId != 0)
+            try
             {
-                var GroupDs = _masterGroupDataAccess.GetIdentityGroup(GroupId);
-                var GroupRightDs = _masterGroupDataAccess.GetIdentityGroupRights(GroupId);
-                GroupObj = GroupDs.Tables[0].ToModel<IdentityGroup>();
-                var GroupRightLlist = GroupRightDs.Tables[0].ToList<IdentityGroupRight>();
-                foreach (var item in GroupRightLlist)
+                var GroupObj = new IdentityGroup();
+                if (GroupId != 0)
                 {
-                    item.SetBooleanRights(item.Action);
+                    var GroupDs = _masterGroupDataAccess.GetIdentityGroup(GroupId);
+                    var GroupRightDs = _masterGroupDataAccess.GetIdentityGroupRights(GroupId);
+                    GroupObj = GroupDs.Tables[0].ToModel<IdentityGroup>();
+                    var GroupRightLlist = GroupRightDs.Tables[0].ToList<IdentityGroupRight>();
+                    foreach (var item in GroupRightLlist)
+                    {
+                        item.SetBooleanRights(item.Action);
+                    }
+                    GroupObj.GroupRight = GroupRightLlist;
                 }
-                GroupObj.GroupRight = GroupRightLlist;
+                else
+                {
+                    var RightDs = _masterGroupDataAccess.GetIdentityRightList();
+                    var RightObj = RightDs.Tables[0].ToList<IdentityRight>();
+                    foreach (var item in RightObj)
+                    {
+                        var temp = new IdentityGroupRight();
+                        temp.Action = 4; //Set read right by default
+                        temp.IsValid = true;
+                        temp.RightId = item.Id;
+                        temp.RightTitle = item.RightTitle;
+                        temp.SetBooleanRights(temp.Action);
+                        GroupObj.GroupRight.Add(temp);
+                    }
+                }
+                return GroupObj;
             }
-            else
+            catch (Exception ex)
             {
-                var RightDs = _masterGroupDataAccess.GetIdentityRightList();
-                var RightObj = RightDs.Tables[0].ToList<IdentityRight>();
-                foreach(var item in RightObj)
-                {
-                    var temp = new IdentityGroupRight();
-                    temp.Action = 4; //Set read right by default
-                    temp.IsValid = true;
-                    temp.RightId = item.Id;
-                    temp.RightTitle = item.RightTitle;
-                    temp.SetBooleanRights(temp.Action);
-                    GroupObj.GroupRight.Add(temp);
-                }
+                applogManager.Error(ex);
+                throw ex;
             }
-            return GroupObj;
         }
 
         public void SaveIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
-            ObjIdentityGroup.CreatedBy = userCtx.UserId;
-            ObjIdentityGroup.CreatedOn = DateTime.Now.ToMySqlDateString();
-            var ds = _masterGroupDataAccess.InsertIdentityGroup(ObjIdentityGroup);
-            var LatestId = ds.Tables[0].ToId();
-            foreach(var item in ObjIdentityGroup.GroupRight)
+            try
             {
-                item.GroupId = LatestId;
-                item.CreatedBy = userCtx.UserId; ;
-                item.CreatedOn = DateTime.Now.ToMySqlDateString();
-                item.IsValid = true;
-                item.SetDecimalRights();
+                ObjIdentityGroup.CreatedBy = userCtx.UserId;
+                ObjIdentityGroup.CreatedOn = DateTime.Now.ToMySqlDateString();
+                var ds = _masterGroupDataAccess.InsertIdentityGroup(ObjIdentityGroup);
+                var LatestId = ds.Tables[0].ToId();
+                foreach (var item in ObjIdentityGroup.GroupRight)
+                {
+                    item.GroupId = LatestId;
+                    item.CreatedBy = userCtx.UserId; ;
+                    item.CreatedOn = DateTime.Now.ToMySqlDateString();
+                    item.IsValid = true;
+                    item.SetDecimalRights();
+                }
+                var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
+                _masterGroupDataAccess.InsertIdentityGroupRight(XmlString);
             }
-            var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
-            _masterGroupDataAccess.InsertIdentityGroupRight(XmlString);
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw ex;
+            }
         }
 
         public void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
-            ObjIdentityGroup.UpdatedBy = userCtx.UserId;
-            ObjIdentityGroup.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterGroupDataAccess.UpdateIdentityGroup(ObjIdentityGroup);
-            foreach(var item in ObjIdentityGroup.GroupRight)
+            try
             {
-                item.UpdatedBy = userCtx.UserId;
-                item.UpdatedOn = DateTime.Now.ToMySqlDateString();
-                item.SetDecimalRights();
+                ObjIdentityGroup.UpdatedBy = userCtx.UserId;
+                ObjIdentityGroup.UpdatedOn = DateTime.Now.ToMySqlDateString();
+                _masterGroupDataAccess.UpdateIdentityGroup(ObjIdentityGroup);
+                foreach (var item in ObjIdentityGroup.GroupRight)
+                {
+                    item.UpdatedBy = userCtx.UserId;
+                    item.UpdatedOn = DateTime.Now.ToMySqlDateString();
+                    item.SetDecimalRights();
+                }
+                var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
+                _masterGroupDataAccess.UpdateIdentityGroupRight(XmlString);
             }
-            var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
-            _masterGroupDataAccess.UpdateIdentityGroupRight(XmlString);
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw ex;
+            }
         }
 
         public void MarkGroupInvalid(int GroupId)
         {
-            _masterGroupDataAccess.MarkGroupInvalid(GroupId);
+            try
+            {
+                _masterGroupDataAccess.MarkGroupInvalid(GroupId);
+            }
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw ex;
+            }
         }
     }
 }

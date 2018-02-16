@@ -53,15 +53,15 @@ export class GroupComponent {
     }
 
     NewRecord() {
-        this.router.navigate(['/editgroup/' + this.formMode.Add + '/0']);
+        this.router.navigate(['/group/' + this.formMode.Add + '/0']);
     }
 
     EditRecord(id: any) {
-        this.router.navigate(['/editgroup/' + this.formMode.Edit + '/' + id]);
+        this.router.navigate(['/group/' + this.formMode.Edit + '/' + id]);
     }
 
     ViewRecord(id: any) {
-        this.router.navigate(['/editgroup/' + this.formMode.View + '/' + id]);
+        this.router.navigate(['/group/' + this.formMode.View + '/' + id]);
     }
 
     DeleteRecord(id: any) {

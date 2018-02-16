@@ -95,7 +95,7 @@ namespace Cuelogic.Clrm.Common
                         }
                         else if(row[property.Name] is DateTime)
                         {
-                            var data = (row[property.Name] != null) ? row[property.Name].ToString() : "";
+                            var data = (row[property.Name] != null) ? DateTime.Parse(row[property.Name].ToString()).ToMySqlDateString() : "";
                             property.SetValue(item, data, null);
                         }
                         else

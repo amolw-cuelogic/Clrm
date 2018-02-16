@@ -12,8 +12,8 @@ namespace Cuelogic.Clrm.Common
 {
     public static class DataAccessHelper
     {
-        static ILog applogManager = AppLogManager.GetLogger();
-        static string connectionString = string.Empty;
+        private static ILog applogManager = AppLogManager.GetLogger();
+        private static string connectionString = string.Empty;
 
         static DataAccessHelper()
         {
@@ -25,7 +25,7 @@ namespace Cuelogic.Clrm.Common
             catch (Exception ex)
             {
                 applogManager.Error(ex);
-                throw;
+                throw ex;
             }
         }
 
@@ -33,17 +33,24 @@ namespace Cuelogic.Clrm.Common
 
         public static void ExecuteNonQuery(string commandText, MySqlParameter[] commandParameters = null, CommandType commandType = CommandType.Text)
         {
-            if (commandParameters == null)
-                commandParameters = new MySqlParameter[] { new MySqlParameter() };
-            using (var connection = new MySqlConnection(connectionString))
-
-            using (var command = new MySqlCommand(commandText, connection))
+            try
             {
-                command.CommandType = commandType;
-                command.Parameters.AddRange(commandParameters.ToArray());
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (commandParameters == null)
+                    commandParameters = new MySqlParameter[] { new MySqlParameter() };
+                using (var connection = new MySqlConnection(connectionString))
+                using (var command = new MySqlCommand(commandText, connection))
+                {
+                    command.CommandType = commandType;
+                    command.Parameters.AddRange(commandParameters.ToArray());
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                applogManager.Error(ex);
+                throw ex;
             }
         }
 
@@ -51,7 +58,6 @@ namespace Cuelogic.Clrm.Common
         {
             try
             {
-
                 if (commandParameters == null)
                     commandParameters = new MySqlParameter[] { new MySqlParameter() };
                 using (var connection = new MySqlConnection(connectionString))
@@ -71,7 +77,7 @@ namespace Cuelogic.Clrm.Common
             catch (Exception ex)
             {
                 applogManager.Error(ex);
-                throw;
+                throw ex;
             }
         }
     }

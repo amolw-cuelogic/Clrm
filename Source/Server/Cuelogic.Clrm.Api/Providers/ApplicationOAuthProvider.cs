@@ -20,7 +20,6 @@ namespace Cuelogic.Clrm.Api.Providers
     {
         private ICommonService _commonService;
         private readonly string _publicClientId;
-        
 
         public ApplicationOAuthProvider(string publicClientId)
         {

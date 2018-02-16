@@ -23,6 +23,12 @@ namespace Cuelogic.Clrm.Common
             public const string spGetIdentityRight = "spGetIdentityRight";
 
             #endregion
+
+            #region Employee 
+
+            public const string spGetEmployeeByEmailId = "spGetEmployeeByEmailId";
+
+            #endregion
         }
     }
 }
