@@ -1,4 +1,5 @@
 ﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.DataAccessLayer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer
+namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
 {
-    public class CommonDa
+    public class CommonDataAccess : ICommonDataAccess
     {
-        public static DataSet GetEmployeeDetails(string EmailId)
+        public DataSet GetEmployeeDetails(string EmailId)
         {
             var ds = DataAccessHelper.ExecuteQuery("spGetEmployeeByEmailId('" + EmailId + "')");
             return ds;

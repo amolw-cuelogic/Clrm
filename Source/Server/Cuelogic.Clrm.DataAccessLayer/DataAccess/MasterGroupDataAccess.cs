@@ -1,4 +1,5 @@
 ﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.DataAccessLayer.Interface;
 using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
@@ -10,30 +11,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer
+namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
 {
-    public class MasterGroupDa
+    public class MasterGroupDataAccess : IMasterGroupDataAccess
     {
 
         #region GET FUNCTIONS
 
-        public static DataSet GetIdentityGroupList(SearchParam objSearchParam)
+        public DataSet GetIdentityGroupList(SearchParam objSearchParam)
         {
             var RecordFrom = objSearchParam.Page * objSearchParam.Show;
-            var ShowRecord = objSearchParam.Show;
+            var Show = objSearchParam.Show;
 
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroupList;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                 new MySqlParameter("@FilterText", objSearchParam.FilterText),
                 new MySqlParameter("@RecordFrom", RecordFrom),
-                new MySqlParameter("@RecordTill", ShowRecord)
+                new MySqlParameter("@RecordTill", Show)
             };
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;
         }
 
-        public static DataSet GetIdentityGroup(int GroupId)
+        public DataSet GetIdentityGroup(int GroupId)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroup;
@@ -44,7 +45,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
             return ds;
         }
 
-        public static DataSet GetIdentityGroupRights(int GroupId)
+        public DataSet GetIdentityGroupRights(int GroupId)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityGroupRights;
@@ -55,7 +56,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
             return ds;
         }
 
-        public static DataSet GetIdentityRightList()
+        public DataSet GetIdentityRightList()
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetIdentityRight;
@@ -68,7 +69,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
 
         #region UPDATE FUNCTIONS
 
-        public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup)
+        public void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spUpdateIdentityGroup;
@@ -84,7 +85,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
                  sqlparam.StoreProcedureParam);
         }
 
-        public static void UpdateIdentityGroupRight(string XmlString)
+        public void UpdateIdentityGroupRight(string XmlString)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spBulkUpdateIdentityGroupRight;
@@ -97,9 +98,9 @@ namespace Cuelogic.Clrm.DataAccessLayer
 
         #endregion
 
-        #region INSERT FUNCTIONS
+        #region UPDATE FUNCTIONS
 
-        public static DataSet InsertIdentityGroup(IdentityGroup ObjIdentityGroup)
+        public DataSet InsertIdentityGroup(IdentityGroup ObjIdentityGroup)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spInsertIdentityGroup;
@@ -115,7 +116,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
             return ds;
         }
 
-        public static void InsertIdentityGroupRight(string XmlString)
+        public void InsertIdentityGroupRight(string XmlString)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spBulkInsertIdentityGroupRight;
@@ -130,7 +131,7 @@ namespace Cuelogic.Clrm.DataAccessLayer
 
         #region OTHER FUNCTIONS
 
-        public static void MarkGroupInvalid(int GroupId)
+        public void MarkGroupInvalid(int GroupId)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroupMarkInvalid;

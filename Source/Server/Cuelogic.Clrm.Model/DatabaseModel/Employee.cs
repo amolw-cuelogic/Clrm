@@ -13,15 +13,15 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string OrgEmpId { get; set; }
-        public DateTime JoiningDate { get; set; }
-        public DateTime LeavingDate { get; set; }
+        public string JoiningDate { get; set; }
+        public string LeavingDate { get; set; }
         public string ContactNum { get; set; }
         public string Email { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public string CreatedOn { get; set; }
         public int UpdatedBy { get; set; }
-        public DateTime UpdatedOn { get; set; }
+        public string UpdatedOn { get; set; }
         public string CreatedByName { get; set; }
         public string UpdatedByName { get; set; }
 

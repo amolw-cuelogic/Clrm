@@ -404,6 +404,10 @@
       <Project>{3e12eeed-cbe7-40ab-b78d-0df7a32ecb81}</Project>
       <Name>Cuelogic.Clrm.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Repository\Cuelogic.Clrm.Repository.csproj">
+      <Project>{8b5c7274-1f0e-41cf-97bf-e161a46c64ec}</Project>
+      <Name>Cuelogic.Clrm.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cuelogic.Clrm.Service\Cuelogic.Clrm.Service.csproj">
       <Project>{890a491f-7e3f-470a-ab5d-af552e99c869}</Project>
       <Name>Cuelogic.Clrm.Service</Name>

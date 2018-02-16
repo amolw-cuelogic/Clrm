@@ -11,14 +11,16 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Cuelogic.Clrm.Api.Models;
 using System.Text.RegularExpressions;
-using Cuelogic.Clrm.Service;
 using Cuelogic.Clrm.Service.Service;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
+        private ICommonService _commonService;
         private readonly string _publicClientId;
+        
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -28,6 +30,7 @@ namespace Cuelogic.Clrm.Api.Providers
             }
 
             _publicClientId = publicClientId;
+            _commonService = new CommonService();
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -58,8 +61,8 @@ namespace Cuelogic.Clrm.Api.Providers
                 context.Response.StatusCode = 401;
                 return;
             }
-
-            var EmployeeDetails = CommonSrv.GetEmployeeDetails(context.UserName);
+            
+            var EmployeeDetails = _commonService.GetEmployeeDetails(context.UserName);
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("Email", EmployeeDetails.Email));

@@ -44,9 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\ICommonService.cs" />
     <Compile Include="Interface\IMasterGroup.cs" />
-    <Compile Include="Service\CommonSrv.cs" />
-    <Compile Include="Service\MasterGroupSrv.cs" />
+    <Compile Include="Service\CommonService.cs" />
+    <Compile Include="Service\MasterGroupService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

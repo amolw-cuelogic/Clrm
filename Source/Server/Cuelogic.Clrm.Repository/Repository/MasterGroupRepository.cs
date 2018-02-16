@@ -9,24 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Repository.Interface;
+using Cuelogic.Clrm.DataAccessLayer.Interface;
+using Cuelogic.Clrm.DataAccessLayer.DataAccess;
 
-namespace Cuelogic.Clrm.Repository
+namespace Cuelogic.Clrm.Repository.Repository
 {
-    public class MasterGroupRepo
+    public class MasterGroupRepository : IMasterGroupRepository
     {
-        public static DataSet GetIdentityGroupList(SearchParam objSearchParam)
+        private readonly IMasterGroupDataAccess _masterGroupDataAccess;
+        public MasterGroupRepository()
         {
-            var ds = MasterGroupDa.GetIdentityGroupList(objSearchParam);
+            _masterGroupDataAccess = new MasterGroupDataAccess();
+        }
+        public DataSet GetIdentityGroupList(SearchParam objSearchParam)
+        {
+            var ds = _masterGroupDataAccess.GetIdentityGroupList(objSearchParam);
             return ds;
         }
 
-        public static IdentityGroup GetGroup(int GroupId)
+        public IdentityGroup GetGroup(int GroupId)
         {
             var GroupObj = new IdentityGroup();
             if (GroupId != 0)
             {
-                var GroupDs = MasterGroupDa.GetIdentityGroup(GroupId);
-                var GroupRightDs = MasterGroupDa.GetIdentityGroupRights(GroupId);
+                var GroupDs = _masterGroupDataAccess.GetIdentityGroup(GroupId);
+                var GroupRightDs = _masterGroupDataAccess.GetIdentityGroupRights(GroupId);
                 GroupObj = GroupDs.Tables[0].ToModel<IdentityGroup>();
                 var GroupRightLlist = GroupRightDs.Tables[0].ToList<IdentityGroupRight>();
                 foreach (var item in GroupRightLlist)
@@ -37,7 +45,7 @@ namespace Cuelogic.Clrm.Repository
             }
             else
             {
-                var RightDs = MasterGroupDa.GetIdentityRightList();
+                var RightDs = _masterGroupDataAccess.GetIdentityRightList();
                 var RightObj = RightDs.Tables[0].ToList<IdentityRight>();
                 foreach(var item in RightObj)
                 {
@@ -53,11 +61,11 @@ namespace Cuelogic.Clrm.Repository
             return GroupObj;
         }
 
-        public static void SaveIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
+        public void SaveIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
             ObjIdentityGroup.CreatedBy = userCtx.UserId;
             ObjIdentityGroup.CreatedOn = DateTime.Now.ToMySqlDateString();
-            var ds = MasterGroupDa.InsertIdentityGroup(ObjIdentityGroup);
+            var ds = _masterGroupDataAccess.InsertIdentityGroup(ObjIdentityGroup);
             var LatestId = ds.Tables[0].ToId();
             foreach(var item in ObjIdentityGroup.GroupRight)
             {
@@ -68,14 +76,14 @@ namespace Cuelogic.Clrm.Repository
                 item.SetDecimalRights();
             }
             var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
-            MasterGroupDa.InsertIdentityGroupRight(XmlString);
+            _masterGroupDataAccess.InsertIdentityGroupRight(XmlString);
         }
 
-        public static void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
+        public void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
             ObjIdentityGroup.UpdatedBy = userCtx.UserId;
             ObjIdentityGroup.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            MasterGroupDa.UpdateIdentityGroup(ObjIdentityGroup);
+            _masterGroupDataAccess.UpdateIdentityGroup(ObjIdentityGroup);
             foreach(var item in ObjIdentityGroup.GroupRight)
             {
                 item.UpdatedBy = userCtx.UserId;
@@ -83,12 +91,12 @@ namespace Cuelogic.Clrm.Repository
                 item.SetDecimalRights();
             }
             var XmlString = Helper.ObjectToXml(ObjIdentityGroup.GroupRight);
-            MasterGroupDa.UpdateIdentityGroupRight(XmlString);
+            _masterGroupDataAccess.UpdateIdentityGroupRight(XmlString);
         }
 
-        public static void MarkGroupInvalid(int GroupId)
+        public void MarkGroupInvalid(int GroupId)
         {
-            MasterGroupDa.MarkGroupInvalid(GroupId);
+            _masterGroupDataAccess.MarkGroupInvalid(GroupId);
         }
     }
 }

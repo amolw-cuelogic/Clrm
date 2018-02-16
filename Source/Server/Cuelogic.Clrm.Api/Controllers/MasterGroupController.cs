@@ -20,6 +20,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         IMasterGroup MasterObj;
         public MasterGroupController(IMasterGroup iobjMasterGroup)
         {
+            
             MasterObj = iobjMasterGroup;
         }
         // GET: api/MasterGroup | TODO : Revise returning logic later

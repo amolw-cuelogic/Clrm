@@ -11,35 +11,42 @@ using System.Threading.Tasks;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service.Interface;
+using Cuelogic.Clrm.Repository.Interface;
+using Cuelogic.Clrm.Repository.Repository;
 
 namespace Cuelogic.Clrm.Service.Service
 {
-    public class MasterGroupSrv : IMasterGroup
+    public class MasterGroupService : IMasterGroup
     {
+        private readonly IMasterGroupRepository _masterGroupRepository;
+        public MasterGroupService()
+        {
+            _masterGroupRepository = new MasterGroupRepository();
+        }
         public string GetList(SearchParam objSearchParam)
         {
-            DataSet ds = MasterGroupRepo.GetIdentityGroupList(objSearchParam);
+            DataSet ds = _masterGroupRepository.GetIdentityGroupList(objSearchParam);
             var IdentityGroupJson = ds.Tables[0].ToJsonString();
             return IdentityGroupJson;
         }
 
         public IdentityGroup GetItem(int GroupId)
         {
-            var grp = MasterGroupRepo.GetGroup(GroupId);
+            var grp = _masterGroupRepository.GetGroup(GroupId);
             return grp;
         }
 
         public void Save(IdentityGroup ObjIdentityGroup, UserContext userCtx)
         {
             if (ObjIdentityGroup.Id == 0)
-                MasterGroupRepo.SaveIdentityGroup(ObjIdentityGroup, userCtx);
+                _masterGroupRepository.SaveIdentityGroup(ObjIdentityGroup, userCtx);
             else
-                MasterGroupRepo.UpdateIdentityGroup(ObjIdentityGroup, userCtx);
+                _masterGroupRepository.UpdateIdentityGroup(ObjIdentityGroup, userCtx);
         }
 
         public void Delete(int GroupId)
         {
-            MasterGroupRepo.MarkGroupInvalid(GroupId);
+            _masterGroupRepository.MarkGroupInvalid(GroupId);
         }
     }
 }

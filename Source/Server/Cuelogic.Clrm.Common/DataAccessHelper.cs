@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.Common
 {
-    public class DataAccessHelper
+    public static class DataAccessHelper
     {
         static ILog applogManager = AppLogManager.GetLogger();
         static string connectionString = string.Empty;
