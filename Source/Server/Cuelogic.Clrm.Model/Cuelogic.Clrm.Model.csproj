@@ -50,6 +50,7 @@
     <Compile Include="DatabaseModel\IdentityGroup.cs" />
     <Compile Include="DatabaseModel\IdentityGroupRight.cs" />
     <Compile Include="DatabaseModel\IdentityRight.cs" />
+    <Compile Include="DatabaseModel\MasterDepartment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommonModel\SearchParam.cs" />
   </ItemGroup>

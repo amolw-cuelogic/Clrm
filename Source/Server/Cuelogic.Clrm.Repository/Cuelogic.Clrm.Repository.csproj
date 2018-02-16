@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\ICommonRepository.cs" />
+    <Compile Include="Interface\IMasterDepartmentRepository.cs" />
     <Compile Include="Repository\CommonRepository.cs" />
     <Compile Include="Interface\IMasterGroupRepository.cs" />
+    <Compile Include="Repository\MasterDepartmentRepository.cs" />
     <Compile Include="Repository\MasterGroupRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

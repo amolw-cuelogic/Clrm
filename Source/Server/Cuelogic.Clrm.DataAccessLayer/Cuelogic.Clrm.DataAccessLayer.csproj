@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\CommonDataAccess.cs" />
+    <Compile Include="DataAccess\MasterDepartmentDataAccess.cs" />
     <Compile Include="DataAccess\MasterGroupDataAccess.cs" />
     <Compile Include="Interface\ICommonDataAccess.cs" />
+    <Compile Include="Interface\IMasterDepartmentDataAccess.cs" />
     <Compile Include="Interface\IMasterGroupDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

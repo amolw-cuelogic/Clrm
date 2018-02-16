@@ -31,7 +31,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Interface
 
         #endregion
 
-        #region UPDATE FUNCTIONS
+        #region INSERT FUNCTIONS
 
         DataSet InsertIdentityGroup(IdentityGroup ObjIdentityGroup);
 

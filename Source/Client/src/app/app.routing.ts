@@ -50,12 +50,27 @@ export const routes: Routes = [
                 loadChildren: './component/admin/group/editgroup.module#EditGroupModule',
                 canActivate: [AuthGuardService]
             },
-            {
-                path: 'usergroup',
-                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
-                canActivate: [AuthGuardService]
-            }
             
+        ]
+    },
+    {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Master'
+        },
+        children: [
+            {
+                path: 'department',
+                loadChildren: './component/master/department/department.module#DepartmentModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'department/:mode/:id',
+                loadChildren: './component/master/department/editdepartment.module#EditDepartmentModule',
+                canActivate: [AuthGuardService]
+            },
+
         ]
     },
     {

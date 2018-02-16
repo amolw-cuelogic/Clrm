@@ -19,13 +19,11 @@ namespace Cuelogic.Clrm.Api
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
-            //container.RegisterType<MasterGroupController>(new InjectionConstructor());
-           
+            
+            container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
             container.RegisterType<IMasterGroup, MasterGroupService>();
-            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<IMasterDepartmentService, MasterDepartmentService>();
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             
         }

@@ -23,15 +23,15 @@ namespace Cuelogic.Clrm.Api.Controllers
             
             MasterObj = iobjMasterGroup;
         }
-        // GET: api/MasterGroup | TODO : Revise returning logic later
+        // GET: api/MasterGroup 
         public string Get(int Show, int Page, string FilterText)
         {
             var objSearchParam = new SearchParam();
             objSearchParam.FilterText = FilterText ?? "";
             objSearchParam.Page = Page;
             objSearchParam.Show = Show;
-            var ListIdentityGroup = MasterObj.GetList(objSearchParam);
-            return ListIdentityGroup;
+            var identityGroupJsonString = MasterObj.GetList(objSearchParam);
+            return identityGroupJsonString;
         }
 
         // GET: api/MasterGroup/5

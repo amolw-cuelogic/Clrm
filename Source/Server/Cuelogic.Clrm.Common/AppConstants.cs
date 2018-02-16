@@ -10,7 +10,7 @@ namespace Cuelogic.Clrm.Common
     {
         public static class StoreProcedure
         {
-            #region IdentityGroup | IdentityGroupRight 
+            #region MASTER GROUP 
 
             public const string spGetIdentityGroupList = "spGetIdentityGroupList";
             public const string spGetIdentityGroup = "spGetIdentityGroup";
@@ -24,9 +24,15 @@ namespace Cuelogic.Clrm.Common
 
             #endregion
 
-            #region Employee 
+            #region COMMON 
 
             public const string spGetEmployeeByEmailId = "spGetEmployeeByEmailId";
+
+            #endregion
+
+            #region MASTER DEPARTMENT 
+
+            public const string spGetMasterDepartmentList = "spGetMasterDepartmentList";
 
             #endregion
         }
