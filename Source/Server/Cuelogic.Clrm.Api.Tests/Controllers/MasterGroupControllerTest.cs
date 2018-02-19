@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cuelogic.Clrm.Api.Controllers;
-using Cuelogic.Clrm.Service.Service;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
@@ -18,6 +17,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NSubstitute;
 using System.Security.Principal;
+using Cuelogic.Clrm.Service.Group;
 
 namespace Cuelogic.Clrm.Api.Tests.Controllers
 {

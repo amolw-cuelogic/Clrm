@@ -1,9 +1,6 @@
-using Cuelogic.Clrm.Service.Interface;
-using Cuelogic.Clrm.Service.Service;
 using System.Web.Http;
 using Unity;
 using Unity.WebApi;
-using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Repository;
 using System.Web.Mvc;
 using Cuelogic.Clrm.Api.Controllers;
@@ -11,6 +8,8 @@ using Unity.Injection;
 using Microsoft.AspNet.Identity;
 using Cuelogic.Clrm.Api.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Cuelogic.Clrm.Service.Group;
+using Cuelogic.Clrm.Service.Department;
 
 namespace Cuelogic.Clrm.Api
 {

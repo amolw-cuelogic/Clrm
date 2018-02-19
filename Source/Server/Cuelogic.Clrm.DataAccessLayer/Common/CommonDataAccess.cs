@@ -1,5 +1,4 @@
 ﻿using Cuelogic.Clrm.Common;
-using Cuelogic.Clrm.DataAccessLayer.Interface;
 using Cuelogic.Clrm.Model.CommonModel;
 using log4net;
 using MySql.Data.MySqlClient;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
+namespace Cuelogic.Clrm.DataAccessLayer.Common
 {
     public class CommonDataAccess : ICommonDataAccess
     {

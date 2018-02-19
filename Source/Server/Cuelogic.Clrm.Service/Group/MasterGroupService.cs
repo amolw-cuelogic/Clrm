@@ -10,12 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Service.Interface;
-using Cuelogic.Clrm.Repository.Interface;
-using Cuelogic.Clrm.Repository.Repository;
 using log4net;
+using Cuelogic.Clrm.Repository.Group;
 
-namespace Cuelogic.Clrm.Service.Service
+namespace Cuelogic.Clrm.Service.Group
 {
     public class MasterGroupService : IMasterGroup
     {

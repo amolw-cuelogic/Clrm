@@ -7,35 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer.Interface
+namespace Cuelogic.Clrm.DataAccessLayer.Department
 {
     public interface IMasterDepartmentDataAccess
     {
-        #region GET FUNCTIONS
-
         DataSet GetMasterDepartmentList(SearchParam objSearchParam);
 
         DataSet GetMasterDepartment(int MasterDepartmentId);
         
-
-        #endregion
-
-        #region UPDATE FUNCTIONS
-
         void UpdateMasterDepartment(MasterDepartment ObjMasterDepartment);
         
-        #endregion
-
-        #region INSERT FUNCTIONS
-
         void InsertMasterDepartment(MasterDepartment ObjMasterDepartment);
         
-        #endregion
-
-        #region OTHER FUNCTIONS
-
         void MarkMasterDepartmentInvalid(int MasterDepartmentId);
-
-        #endregion
+        
     }
 }

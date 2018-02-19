@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Service.Interface
+namespace Cuelogic.Clrm.Service.Group
 {
     public interface IMasterGroup
     {

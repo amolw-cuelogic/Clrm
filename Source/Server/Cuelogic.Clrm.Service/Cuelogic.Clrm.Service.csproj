@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\ICommonService.cs" />
-    <Compile Include="Interface\IMasterDepartmentService.cs" />
-    <Compile Include="Interface\IMasterGroup.cs" />
-    <Compile Include="Service\CommonService.cs" />
-    <Compile Include="Service\MasterDepartmentService.cs" />
-    <Compile Include="Service\MasterGroupService.cs" />
+    <Compile Include="Common\ICommonService.cs" />
+    <Compile Include="Department\IMasterDepartmentService.cs" />
+    <Compile Include="Group\IMasterGroup.cs" />
+    <Compile Include="Common\CommonService.cs" />
+    <Compile Include="Department\MasterDepartmentService.cs" />
+    <Compile Include="Group\MasterGroupService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

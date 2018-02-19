@@ -48,12 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\CommonDataAccess.cs" />
-    <Compile Include="DataAccess\MasterDepartmentDataAccess.cs" />
-    <Compile Include="DataAccess\MasterGroupDataAccess.cs" />
-    <Compile Include="Interface\ICommonDataAccess.cs" />
-    <Compile Include="Interface\IMasterDepartmentDataAccess.cs" />
-    <Compile Include="Interface\IMasterGroupDataAccess.cs" />
+    <Compile Include="Common\CommonDataAccess.cs" />
+    <Compile Include="Department\MasterDepartmentDataAccess.cs" />
+    <Compile Include="Group\MasterGroupDataAccess.cs" />
+    <Compile Include="OrganizationRole\MasterOrganizationRoleDataAccess.cs" />
+    <Compile Include="Common\ICommonDataAccess.cs" />
+    <Compile Include="Department\IMasterDepartmentDataAccess.cs" />
+    <Compile Include="Group\IMasterGroupDataAccess.cs" />
+    <Compile Include="OrganizationRole\IMasterOrganizationRoleDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

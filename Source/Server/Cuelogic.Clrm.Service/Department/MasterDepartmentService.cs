@@ -1,5 +1,4 @@
-﻿using Cuelogic.Clrm.Service.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +6,11 @@ using System.Threading.Tasks;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Repository.Interface;
 using log4net;
 using System.Data;
-using Cuelogic.Clrm.Repository.Repository;
+using Cuelogic.Clrm.Repository.Department;
 
-namespace Cuelogic.Clrm.Service.Service
+namespace Cuelogic.Clrm.Service.Department
 {
     public class MasterDepartmentService : IMasterDepartmentService
     {

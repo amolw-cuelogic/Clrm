@@ -2,9 +2,7 @@
 using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository;
-using Cuelogic.Clrm.Repository.Interface;
-using Cuelogic.Clrm.Repository.Repository;
-using Cuelogic.Clrm.Service.Interface;
+using Cuelogic.Clrm.Repository.Common;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -12,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Service.Service
+namespace Cuelogic.Clrm.Service.Common
 {
     public class CommonService : ICommonService
     {

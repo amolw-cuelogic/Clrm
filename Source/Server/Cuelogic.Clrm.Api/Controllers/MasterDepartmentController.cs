@@ -1,6 +1,6 @@
 ﻿using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Service.Interface;
+using Cuelogic.Clrm.Service.Department;
 using System;
 using System.Collections.Generic;
 using System.Linq;

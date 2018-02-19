@@ -1,5 +1,4 @@
-﻿using Cuelogic.Clrm.Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +7,10 @@ using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using System.Data;
-using Cuelogic.Clrm.DataAccessLayer.Interface;
 using log4net;
-using Cuelogic.Clrm.DataAccessLayer.DataAccess;
+using Cuelogic.Clrm.DataAccessLayer.Department;
 
-namespace Cuelogic.Clrm.Repository.Repository
+namespace Cuelogic.Clrm.Repository.Department
 {
     public class MasterDepartmentRepository : IMasterDepartmentRepository
     {

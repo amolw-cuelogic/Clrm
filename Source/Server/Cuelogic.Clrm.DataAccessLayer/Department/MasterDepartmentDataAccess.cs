@@ -1,5 +1,4 @@
-﻿using Cuelogic.Clrm.DataAccessLayer.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +10,7 @@ using log4net;
 using Cuelogic.Clrm.Common;
 using MySql.Data.MySqlClient;
 
-namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
+namespace Cuelogic.Clrm.DataAccessLayer.Department
 {
     public class MasterDepartmentDataAccess : IMasterDepartmentDataAccess
     {

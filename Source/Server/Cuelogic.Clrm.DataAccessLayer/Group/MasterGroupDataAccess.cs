@@ -1,5 +1,4 @@
 ﻿using Cuelogic.Clrm.Common;
-using Cuelogic.Clrm.DataAccessLayer.Interface;
 using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
+namespace Cuelogic.Clrm.DataAccessLayer.Group
 {
     public class MasterGroupDataAccess : IMasterGroupDataAccess
     {

@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\ICommonRepository.cs" />
-    <Compile Include="Interface\IMasterDepartmentRepository.cs" />
-    <Compile Include="Repository\CommonRepository.cs" />
-    <Compile Include="Interface\IMasterGroupRepository.cs" />
-    <Compile Include="Repository\MasterDepartmentRepository.cs" />
-    <Compile Include="Repository\MasterGroupRepository.cs" />
+    <Compile Include="Common\ICommonRepository.cs" />
+    <Compile Include="Department\IMasterDepartmentRepository.cs" />
+    <Compile Include="Common\CommonRepository.cs" />
+    <Compile Include="Group\IMasterGroupRepository.cs" />
+    <Compile Include="Department\MasterDepartmentRepository.cs" />
+    <Compile Include="Group\MasterGroupRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

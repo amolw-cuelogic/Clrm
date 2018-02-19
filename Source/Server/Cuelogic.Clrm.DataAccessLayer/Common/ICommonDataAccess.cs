@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer.Interface
+namespace Cuelogic.Clrm.DataAccessLayer.Common
 {
     public interface ICommonDataAccess
     {

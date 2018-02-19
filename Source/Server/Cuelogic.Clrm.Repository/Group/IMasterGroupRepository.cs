@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Repository.Interface
+namespace Cuelogic.Clrm.Repository.Group
 {
     public interface IMasterGroupRepository
     {

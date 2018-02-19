@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Service.Interface
+namespace Cuelogic.Clrm.Service.Department
 {
     public interface IMasterDepartmentService
     {
