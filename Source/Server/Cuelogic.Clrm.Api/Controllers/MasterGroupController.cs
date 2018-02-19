@@ -16,46 +16,38 @@ namespace Cuelogic.Clrm.Api.Controllers
 {
     public class MasterGroupController : ApiBaseController
     {
-        IMasterGroup MasterObj;
-        public MasterGroupController(IMasterGroup iobjMasterGroup)
+        private readonly IMasterGroup _masterGroup;
+        public MasterGroupController(IMasterGroup masterGroup)
         {
             
-            MasterObj = iobjMasterGroup;
+            _masterGroup = masterGroup;
         }
-        // GET: api/MasterGroup 
+        
         public string Get(int Show, int Page, string FilterText)
         {
             var objSearchParam = new SearchParam();
             objSearchParam.FilterText = FilterText ?? "";
             objSearchParam.Page = Page;
             objSearchParam.Show = Show;
-            var identityGroupJsonString = MasterObj.GetList(objSearchParam);
+            var identityGroupJsonString = _masterGroup.GetList(objSearchParam);
             return identityGroupJsonString;
         }
-
-        // GET: api/MasterGroup/5
+        
         public IdentityGroup Get(int id)
         {
-            var ObjIdentityGroup = MasterObj.GetItem(id);
+            var ObjIdentityGroup = _masterGroup.GetItem(id);
             return ObjIdentityGroup;
         }
-
-        // POST: api/MasterGroup
+        
         public void Post([FromBody]IdentityGroup objIdentityGroup)
         {
             var userCtx = base.GetUserContext();
-            MasterObj.Save(objIdentityGroup, userCtx);
+            _masterGroup.Save(objIdentityGroup, userCtx);
         }
-
-        // PUT: api/MasterGroup/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/MasterGroup/5
+        
         public void Delete(int id)
         {
-            MasterObj.Delete(id);
+            _masterGroup.Delete(id);
         }
     }
 }
