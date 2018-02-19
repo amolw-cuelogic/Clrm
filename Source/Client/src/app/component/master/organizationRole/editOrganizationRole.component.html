@@ -1,0 +1,93 @@
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
+        <button [hidden]="Disabled" type="button" class="btn btn-primary" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button routerLink="/organizationrole" type="button" class="btn btn-primary">Back</button>
+    </div>
+    <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
+        <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
+            <div class="col-sm-12 col-md-9 col-xs-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Organization Role </strong>
+                        <small>Details</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-6 col-xs-12">
+                                <form form #formCtrl="ngForm">
+                                    <div class="form-group">
+                                        <ngx-label value="Role"></ngx-label>
+                                        <input type="text" #OrganizationRole="ngModel" [(ngModel)]="MasterOrganizationRole.Role" class="form-control" required name="MasterOrganizationRole.Role" placeholder="Enter Organization Role">
+                                        <div *ngIf="OrganizationRole.errors && (OrganizationRole.dirty || OrganizationRole.touched)" class="error">
+                                            Organization Role is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Is Valid Organization Role</label><br />
+                                        <label class="switch switch-3d switch-success switch-sm">
+                                            <input type="checkbox" class="switch-input" [(ngModel)]="MasterOrganizationRole.IsValid" name="MasterOrganizationRole.IsValid">
+                                            <span class="switch-label"></span>
+                                            <span class="switch-handle"></span>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-xs-12">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-12 col-md-3 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+
+                        <table style="width:100%">
+                            <tr><th colspan="2">User Actions</th></tr>
+                            <tr>
+                                <td style="width:50%">
+                                    Created By
+                                </td>
+                                <td>
+                                    {{MasterOrganizationRole.CreatedByName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Created On
+                                </td>
+                                <td>
+                                    {{MasterOrganizationRole.CreatedOn | date :  "y/MM/dd"}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Updated By
+                                </td>
+                                <td>
+                                    {{MasterOrganizationRole.UpdatedByName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Updated On
+                                </td>
+                                <td>
+                                    {{MasterOrganizationRole.UpdatedOn | date :  "y/MM/dd"}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

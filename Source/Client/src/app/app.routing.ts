@@ -70,6 +70,16 @@ export const routes: Routes = [
                 loadChildren: './component/master/department/editdepartment.module#EditDepartmentModule',
                 canActivate: [AuthGuardService]
             },
+            {
+                path: 'organizationrole',
+                loadChildren: './component/master/organizationRole/organizationRole.module#OrganizationRoleModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'organizationrole/:mode/:id',
+                loadChildren: './component/master/organizationRole/editOrganizationRole.module#EditOrganizationRoleModule',
+                canActivate: [AuthGuardService]
+            },
 
         ]
     },

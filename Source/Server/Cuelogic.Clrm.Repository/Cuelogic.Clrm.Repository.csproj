@@ -50,6 +50,8 @@
     <Compile Include="Group\IMasterGroupRepository.cs" />
     <Compile Include="Department\MasterDepartmentRepository.cs" />
     <Compile Include="Group\MasterGroupRepository.cs" />
+    <Compile Include="OrganizationRole\IMasterOrganizationRoleRepository.cs" />
+    <Compile Include="OrganizationRole\MasterOrganizationRoleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

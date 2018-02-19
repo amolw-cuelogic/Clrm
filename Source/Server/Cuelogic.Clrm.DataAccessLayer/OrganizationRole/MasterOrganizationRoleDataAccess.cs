@@ -56,12 +56,28 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
 
         public void MarkMasterOrganizationRoleInvalid(int MasterOrganizationRoleId)
         {
-            throw new NotImplementedException();
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_MarkInvalid;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterOrganizationRoleId", MasterOrganizationRoleId)
+                };
+            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
         }
 
         public void UpdateMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole)
         {
-            throw new NotImplementedException();
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Update;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@masterOrganizationRoleId", ObjMasterOrganizationRole.Id),
+                    new MySqlParameter("@role", ObjMasterOrganizationRole.Role),
+                    new MySqlParameter("@isValid", ObjMasterOrganizationRole.IsValid),
+                    new MySqlParameter("@updatedby", ObjMasterOrganizationRole.UpdatedBy),
+                    new MySqlParameter("@updatedon", ObjMasterOrganizationRole.UpdatedOn)
+                };
+            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
+                 sqlparam.StoreProcedureParam);
         }
     }
 }

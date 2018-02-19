@@ -10,6 +10,7 @@ using Cuelogic.Clrm.Api.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Cuelogic.Clrm.Service.Group;
 using Cuelogic.Clrm.Service.Department;
+using Cuelogic.Clrm.Service.OrganizationRole;
 
 namespace Cuelogic.Clrm.Api
 {
@@ -22,6 +23,7 @@ namespace Cuelogic.Clrm.Api
             
             container.RegisterType<IMasterGroup, MasterGroupService>();
             container.RegisterType<IMasterDepartmentService, MasterDepartmentService>();
+            container.RegisterType<IMasterOrganizationRoleService, MasterOrganizationRoleService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

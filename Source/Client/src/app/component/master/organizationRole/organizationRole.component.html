@@ -1,0 +1,86 @@
+
+<div class="row" style="padding-bottom:7px;">
+
+    <div class="col-sm-12 col-md-7 col-xs-12">
+        <div class="row">
+            <div class="col-sm-6 col-md-9 col-xs-6">
+                <ul class="pagination" style="margin:0">
+                    <li class="page-item" (click)="PreviousPage()">
+                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">Page - {{Page+1}}</a></li>
+                    <li class="page-item" (click)="NextPage()">
+                        <a class="page-link" href="javascript:void(0);" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-1 col-xs-6">
+                <div class="" style="vertical-align:middle;line-height:2.5;">
+                    <span>Show</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-2 col-xs-6" style="">
+                <select [(ngModel)]="Show" (ngModelChange)="ShowDropDownChange($event)" class="form-control" id="" style="width:100%;">
+                    <option *ngFor="let item of ShowOptions" value="{{item}}">{{item}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-5 col-xs-12">
+        <div class="input-group input-sm ">
+            <input [(ngModel)]="FilterText" type="email" id="input2-group2" name="" class="form-control" placeholder="Filter">
+            <span class="input-group-append">
+                <button (click)="SearchFilter()" type="button" title="Search" class="btn btn-primary ">Search&nbsp;<i class="fa fa-search"></i></button>
+            </span>
+            <span class="input-group-append">
+                <button (click)="ClearFilter()" title="Clear" type="button" class="btn btn-danger "><i class="fa fa-times"></i></button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="dynamicBottomDiv" style="">
+    <table class="table table-sm table-hover  ">
+        <thead class="thead-light">
+            <tr>
+                <th><button (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
+                <th>Organization Role</th>
+                <th>
+                    Is Valid
+                </th>
+                <th>
+                    Created By
+                </th>
+                <th>
+                    Created On
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of GroupList">
+                <td>
+                    <button (click)="EditRecord(item.Id)" type="button" title="Edit Record" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
+                    <button (click)="ViewRecord(item.Id)" type="button" title="View Record" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
+                    <button (click)="DeleteRecord(item.Id)" type="button" title="Mark Record InValid" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                </td>
+                <td>
+                    {{item.Role}}
+                </td>
+                <td>
+                    {{item.IsValid}}
+                </td>
+                <td>
+                    {{item.CreatedByName}}
+                </td>
+                <td>
+                    {{item.CreatedOn}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

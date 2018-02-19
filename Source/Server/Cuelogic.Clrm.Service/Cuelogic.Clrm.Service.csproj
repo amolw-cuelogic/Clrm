@@ -50,6 +50,8 @@
     <Compile Include="Common\CommonService.cs" />
     <Compile Include="Department\MasterDepartmentService.cs" />
     <Compile Include="Group\MasterGroupService.cs" />
+    <Compile Include="OrganizationRole\IMasterOrganizationRoleService.cs" />
+    <Compile Include="OrganizationRole\MasterOrganizationRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

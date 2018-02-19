@@ -46,6 +46,7 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterOrganizationRole_Get = "spMasterOrganizationRole_Get";
             public const string spMasterOrganizationRole_Insert = "spMasterOrganizationRole_Insert";
             public const string spMasterOrganizationRole_Update = "spMasterOrganizationRole_Update";
+            public const string spMasterOrganizationRole_MarkInvalid = "spMasterOrganizationRole_MarkInvalid";
 
             #endregion
         }
