@@ -410,7 +410,7 @@ CREATE TABLE `MasterDepartment` (
   KEY `MasterDepartmentUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterDepartmentCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterDepartmentUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +419,7 @@ CREATE TABLE `MasterDepartment` (
 
 LOCK TABLES `MasterDepartment` WRITE;
 /*!40000 ALTER TABLE `MasterDepartment` DISABLE KEYS */;
-INSERT INTO `MasterDepartment` VALUES (1,'Delivery','Vivek Pandhre','',1,'2010-01-01',1,'2018-02-19'),(2,'HR','Uma Ramani','',1,'2018-02-16',1,'2018-02-19'),(3,'Sales','Neel Vartikar','',1,'2018-02-16',1,'2018-02-19'),(4,'Research & Development','Vikrant Labde','',1,'2018-02-19',1,'2018-02-19'),(5,'Accounts','Ganesh','',1,'2018-02-19',1,'2018-02-19');
+INSERT INTO `MasterDepartment` VALUES (1,'Delivery','Vivek Pandhre','',1,'2010-01-01',1,'2018-02-19'),(2,'HR','Uma Ramani','',1,'2018-02-16',1,'2018-02-19'),(3,'Sales','Neel Vartikar','',1,'2018-02-16',1,'2018-02-19'),(4,'Research & Development','Vikrant Labde','',1,'2018-02-19',1,'2018-02-19'),(5,'Accounts','Ganesh','',1,'2018-02-19',1,'2018-02-19'),(6,'SAa','aSa','',1,'2018-02-19',1,'2018-02-19'),(7,'78','78','',1,'2018-02-19',1,'2018-02-19');
 /*!40000 ALTER TABLE `MasterDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,7 +443,7 @@ CREATE TABLE `MasterOrganizationRole` (
   KEY `MasterOrganizationRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterOrganizationRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterOrganizationRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,7 +452,7 @@ CREATE TABLE `MasterOrganizationRole` (
 
 LOCK TABLES `MasterOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `MasterOrganizationRole` DISABLE KEYS */;
-INSERT INTO `MasterOrganizationRole` VALUES (1,'Sr. Rails Developer','',1,'2018-02-19',1,'2018-02-19'),(2,'Sr Principle Developer','',1,'2018-02-19',1,'2018-02-19'),(3,'Devops','',1,'2018-02-19',1,'2018-02-19'),(4,'Sr Software engineer','',1,'2018-02-19',1,'2018-02-19');
+INSERT INTO `MasterOrganizationRole` VALUES (1,'Sr. Rails Developer','',1,'2018-02-19',1,'2018-02-19'),(2,'Sr Principle Developer','',1,'2018-02-19',1,'2018-02-19'),(3,'Devops','',1,'2018-02-19',1,'2018-02-19'),(4,'Sr Software engineer','',1,'2018-02-19',1,'2018-02-19'),(5,'R&D Engineer','',1,'2018-02-19',1,'2018-02-19'),(6,'asa','',1,'2018-02-19',1,'2018-02-19');
 /*!40000 ALTER TABLE `MasterOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -541,7 +541,7 @@ CREATE TABLE `MasterSkill` (
   KEY `MasterSkillUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterSkillCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -550,6 +550,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
+INSERT INTO `MasterSkill` VALUES (1,'as','',1,'2018-02-19',1,'2018-02-19'),(2,'c#','',1,'2018-02-19',1,'2018-02-19'),(3,'676','',1,'2018-02-19',1,'2018-02-19');
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1266,7 +1267,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_Get`(IN Id int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_Get`(IN MasterSkillId int(11))
 BEGIN
 	SELECT 
 		a.Id, 
@@ -1285,7 +1286,7 @@ BEGIN
 	LEFT JOIN 
 		Employee c on a.UpdatedBy = c.Id 
 	WHERE 
-		a.Id = Id;
+		a.Id = MasterSkillId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1431,4 +1432,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-19 15:01:44
+-- Dump completed on 2018-02-19 18:20:23
