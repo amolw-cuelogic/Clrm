@@ -21,7 +21,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
             try
             {
                 var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetMasterDepartment;
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Get;
                 sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterDepartmentId", MasterDepartmentId)
                 };
@@ -43,7 +43,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
                 var Show = objSearchParam.Show;
 
                 var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetMasterDepartmentList;
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_GetList;
                 sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@FilterText", objSearchParam.FilterText),
                     new MySqlParameter("@RecordFrom", RecordFrom),
@@ -64,7 +64,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
             try
             {
                 var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spInsertMasterDepartment;
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Insert;
                 sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@departmentName", ObjMasterDepartment.DepartmentName),
                     new MySqlParameter("@departmentHead", ObjMasterDepartment.DepartmentHead),
@@ -87,7 +87,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
             try
             {
                 var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spUpdateMasterDepartment;
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Update;
                 sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@departmentId", ObjMasterDepartment.Id),
                     new MySqlParameter("@departmentName", ObjMasterDepartment.DepartmentName),
@@ -111,7 +111,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
             try
             {
                 var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartmentMarkInvalid;
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_MarkInvalid;
                 sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterDepartmentId", MasterDepartmentId)
                 };

@@ -20,7 +20,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
             try
             {
                 var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spGetEmployeeByEmailId;
+                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByEmailId;
                 sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@EmailId", EmailId)
                 };

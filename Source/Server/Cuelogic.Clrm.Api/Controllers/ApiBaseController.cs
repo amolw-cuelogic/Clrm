@@ -21,5 +21,6 @@ namespace Cuelogic.Clrm.Api.Controllers
             ObjUserContext.UserName = principal.Claims.Where(c => c.Type == "UserName").Single().Value;
             return ObjUserContext;
         }
+
     }
 }
