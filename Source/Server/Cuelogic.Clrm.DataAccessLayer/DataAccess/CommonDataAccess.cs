@@ -14,24 +14,15 @@ namespace Cuelogic.Clrm.DataAccessLayer.DataAccess
 {
     public class CommonDataAccess : ICommonDataAccess
     {
-        private ILog applogManager = AppLogManager.GetLogger();
         public DataSet GetEmployeeDetails(string EmailId)
         {
-            try
-            {
-                var sqlparam = new MySqlSpParam();
-                sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByEmailId;
-                sqlparam.StoreProcedureParam = new MySqlParameter[] {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByEmailId;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@EmailId", EmailId)
                 };
-                var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            return ds;
         }
     }
 }

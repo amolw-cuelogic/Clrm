@@ -7,9 +7,11 @@ import { SocialUser } from "angular4-social-login";
 
 //Service
 import { AppconfigService } from '../../service/appconfig.service';
+import { ComponentSubscriptionService } from '../../service/componentsubscription.service'
 
 //Model
 import { User } from '../../model/user';
+import { BootstrapModel } from '../../model/bootstrapmodel'
 
 //HTTP 
 import { Http } from '@angular/http';
@@ -27,15 +29,26 @@ export class LoginComponent implements OnInit {
 
     constructor(public authService: AuthService, private srvAppConfig: AppconfigService,
         private httpClient: Http, private user: User,
-        private router: Router) {
+        private router: Router, private srvCompSub: ComponentSubscriptionService) {
 
     }
 
     login() {
-        //throw Error("hi");
+        var gmailLogoutUrl = this.srvAppConfig.GetGmailLogoutUrl();
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
             m => {
-                this.RegisterGmailToken(m);
+                var temp = m.email.replace(/.*@/, '').split('.');
+                var domain = temp[temp.length - 2];
+                if (domain.toUpperCase() == "CUELOGIC") {
+                    this.RegisterGmailToken(m);
+                }
+                else {
+                    var model = new BootstrapModel();
+                    model.Title = "Error";
+                    model.MessageType = model.ModelType.Danger;
+                    model.Message = "Please login using Cuelogic gmail Id. Signout from your current login @ " + m.email;
+                    this.srvCompSub.OpenBootstrapModal(model);
+                }
             }
         );
     }
@@ -63,7 +76,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-       
+
     }
 
 }

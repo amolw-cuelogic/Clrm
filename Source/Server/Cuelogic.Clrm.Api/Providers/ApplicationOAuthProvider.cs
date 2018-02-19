@@ -57,7 +57,7 @@ namespace Cuelogic.Clrm.Api.Providers
             {
                 context.SetError("invalid_domain",
                  "Please login from cuelogic Id, Signout from your Gmail account : " + context.UserName);
-                context.Response.StatusCode = 401;
+                context.Response.StatusCode = 500;
                 return;
             }
             

@@ -17,23 +17,14 @@ namespace Cuelogic.Clrm.Service.Service
     public class CommonService : ICommonService
     {
         private readonly ICommonRepository _commonRepository;
-        private ILog applogManager = AppLogManager.GetLogger();
         public CommonService()
         {
             _commonRepository = new CommonRepository();
         }
         public Employee GetEmployeeDetails(string EmailId)
         {
-            try
-            {
-                var data = _commonRepository.GetEmployeeDetails(EmailId);
-                return data;
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
+            var data = _commonRepository.GetEmployeeDetails(EmailId);
+            return data;
         }
     }
 }

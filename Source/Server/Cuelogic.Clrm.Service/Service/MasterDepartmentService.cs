@@ -16,7 +16,6 @@ namespace Cuelogic.Clrm.Service.Service
 {
     public class MasterDepartmentService : IMasterDepartmentService
     {
-        private ILog applogManager = AppLogManager.GetLogger();
         private readonly IMasterDepartmentRepository _masterDepartmentRepository;
         public MasterDepartmentService()
         {
@@ -24,60 +23,32 @@ namespace Cuelogic.Clrm.Service.Service
         }
         public void Delete(int DepartmentId)
         {
-            try
-            {
-                _masterDepartmentRepository.MarkMasterDepartmentInvalid(DepartmentId);
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
+            _masterDepartmentRepository.MarkMasterDepartmentInvalid(DepartmentId);
+
         }
 
         public MasterDepartment GetItem(int DepartmentId)
         {
-            try
-            {
-                var masterDepartment = _masterDepartmentRepository.GetMasterDepartment(DepartmentId);
-                return masterDepartment;
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
+            var masterDepartment = _masterDepartmentRepository.GetMasterDepartment(DepartmentId);
+            return masterDepartment;
+
         }
 
         public string GetList(SearchParam objSearchParam)
         {
-            try
-            {
-                DataSet ds = _masterDepartmentRepository.GetMasterDepartmentList(objSearchParam);
-                var masterDepartmentJson = ds.Tables[0].ToJsonString();
-                return masterDepartmentJson;
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
+            DataSet ds = _masterDepartmentRepository.GetMasterDepartmentList(objSearchParam);
+            var masterDepartmentJson = ds.Tables[0].ToJsonString();
+            return masterDepartmentJson;
+
         }
 
         public void Save(MasterDepartment ObjMasterDepartment, UserContext userCtx)
         {
-            try
-            {
-                if (ObjMasterDepartment.Id == 0)
-                    _masterDepartmentRepository.SaveMasterDepartment(ObjMasterDepartment, userCtx);
-                else
-                    _masterDepartmentRepository.UpdateMasterDepartment(ObjMasterDepartment, userCtx);
-            }
-            catch (Exception ex)
-            {
-                applogManager.Error(ex);
-                throw ex;
-            }
+            if (ObjMasterDepartment.Id == 0)
+                _masterDepartmentRepository.SaveMasterDepartment(ObjMasterDepartment, userCtx);
+            else
+                _masterDepartmentRepository.UpdateMasterDepartment(ObjMasterDepartment, userCtx);
+
         }
     }
 }
