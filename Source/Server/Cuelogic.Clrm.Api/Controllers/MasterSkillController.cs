@@ -1,6 +1,6 @@
 ﻿using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Service.OrganizationRole;
+using Cuelogic.Clrm.Service.Skill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,14 @@ using System.Web.Http;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
-    [RoutePrefix("api/OrganizationRole")]
-    public class MasterOrganizationRoleController : ApiBaseController
+    [RoutePrefix("api/Skill")]
+    public class MasterSkillController : ApiBaseController
     {
-        private readonly IMasterOrganizationRoleService _masterOrganizationRoleService;
+        private readonly IMasterSkillService _masterSkillService;
 
-        public MasterOrganizationRoleController(IMasterOrganizationRoleService masterOrganizationRoleService)
+        public MasterSkillController(IMasterSkillService masterSkillService)
         {
-            _masterOrganizationRoleService = masterOrganizationRoleService;
+            _masterSkillService = masterSkillService;
         }
 
         [Route("")]
@@ -27,28 +27,28 @@ namespace Cuelogic.Clrm.Api.Controllers
             objSearchParam.FilterText = FilterText ?? "";
             objSearchParam.Page = Page;
             objSearchParam.Show = Show;
-            var identityGroupJsonString = _masterOrganizationRoleService.GetList(objSearchParam);
+            var identityGroupJsonString = _masterSkillService.GetList(objSearchParam);
             return Ok(identityGroupJsonString);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var ObjMasterOrganizationRole = _masterOrganizationRoleService.GetItem(id);
-            return Ok(ObjMasterOrganizationRole);
+            var ObjMasterSkill = _masterSkillService.GetItem(id);
+            return Ok(ObjMasterSkill);
         }
 
         [Route("")]
-        public void Post([FromBody]MasterOrganizationRole ObjMasterOrganizationRole)
+        public void Post([FromBody]MasterSkill ObjMasterSkill)
         {
             var userCtx = base.GetUserContext();
-            _masterOrganizationRoleService.Save(ObjMasterOrganizationRole, userCtx);
+            _masterSkillService.Save(ObjMasterSkill, userCtx);
         }
 
         [Route("{id}")]
         public void Delete(int id)
         {
-            _masterOrganizationRoleService.Delete(id);
+            _masterSkillService.Delete(id);
         }
     }
 }

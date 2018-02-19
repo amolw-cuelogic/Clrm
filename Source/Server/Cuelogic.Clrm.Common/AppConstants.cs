@@ -49,6 +49,16 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterOrganizationRole_MarkInvalid = "spMasterOrganizationRole_MarkInvalid";
 
             #endregion
+
+            #region MASTER SKILLS
+
+            public const string spMasterSkill_Get = "spMasterSkill_Get";
+            public const string spMasterSkill_GetList = "spMasterSkill_GetList";
+            public const string spMasterSkill_Insert = "spMasterSkill_Insert";
+            public const string spMasterSkill_MarkInvalid = "spMasterSkill_MarkInvalid";
+            public const string spMasterSkill_Update = "spMasterSkill_Update";
+
+            #endregion
         }
     }
 }

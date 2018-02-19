@@ -16,8 +16,9 @@ export class EditOrganizationRoleComponent {
     id: number;
     mode: string;
     baseUrl: string;
-    MasterOrganizationRole: any = new Object();
+    PageObject: any = new Object();
     loaded: boolean = false;
+    ApiController: string = "api/OrganizationRole";
 
     Disabled = false;
 
@@ -25,7 +26,6 @@ export class EditOrganizationRoleComponent {
         this.actroute.params.subscribe(params => {
             this.id = +params['id'];
             this.mode = params['mode'];
-            console.log(this.mode);
             this.LoadDepartment(this.id);
         });
     }
@@ -36,10 +36,10 @@ export class EditOrganizationRoleComponent {
     }
 
     SaveGroup() {
-        var da = JSON.stringify(this.MasterOrganizationRole);
+        var da = JSON.stringify(this.PageObject);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        this.httpClient.post(this.baseUrl + "api/MasterOrganizationRole", da, { headers: headers }).subscribe(
+        this.httpClient.post(this.baseUrl + this.ApiController, da, { headers: headers }).subscribe(
             m => {
                 if (this.mode == this.formMode.Edit) {
                     this.LoadDepartment(this.id);
@@ -64,10 +64,10 @@ export class EditOrganizationRoleComponent {
 
 
     LoadDepartment(id: any) {
-        this.httpClient.get(this.baseUrl + "api/MasterOrganizationRole/" + id
+        this.httpClient.get(this.baseUrl + this.ApiController + "/" + id
         ).subscribe(
             m => {
-                this.MasterOrganizationRole = m;
+                this.PageObject = m;
                 this.SrvAppConfig.AdjustBottomHeight();
 
                 if (this.mode == this.formMode.View) {

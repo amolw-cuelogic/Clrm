@@ -9,16 +9,16 @@ import { ComponentSubscriptionService } from '../../../service/componentsubscrip
 import { Router } from '@angular/router'
 
 @Component({
-    templateUrl: 'editdepartment.component.html'
+    templateUrl: 'editskill.component.html'
 })
-export class EditDepartmentComponent {
+export class EditSkillComponent {
 
     id: number;
     mode: string;
     baseUrl: string;
     PageObject: any = new Object();
     loaded: boolean = false;
-    ApiController: string = "api/Department";
+    ApiController: string = "api/Skill";
 
     Disabled = false;
 
@@ -26,7 +26,7 @@ export class EditDepartmentComponent {
         this.actroute.params.subscribe(params => {
             this.id = +params['id'];
             this.mode = params['mode'];
-            this.LoadDepartment(this.id);
+            this.LoadEditPage(this.id);
         });
     }
 
@@ -39,10 +39,10 @@ export class EditDepartmentComponent {
         var da = JSON.stringify(this.PageObject);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        this.httpClient.post(this.baseUrl + this.ApiController, da, { headers: headers }).subscribe(
+        this.httpClient.post(this.baseUrl +  this.ApiController, da, { headers: headers }).subscribe(
             m => {
                 if (this.mode == this.formMode.Edit) {
-                    this.LoadDepartment(this.id);
+                    this.LoadEditPage(this.id);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
@@ -51,7 +51,7 @@ export class EditDepartmentComponent {
                 }
                 else
                 {
-                    this.router.navigate(["/department"]);
+                    this.router.navigate(["/skill"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
@@ -63,8 +63,8 @@ export class EditDepartmentComponent {
     }
 
 
-    LoadDepartment(id: any) {
-        this.httpClient.get(this.baseUrl + this.ApiController +"/"+ id
+    LoadEditPage(id: any) {
+        this.httpClient.get(this.baseUrl + this.ApiController + "/"+id
         ).subscribe(
             m => {
                 this.PageObject = m;

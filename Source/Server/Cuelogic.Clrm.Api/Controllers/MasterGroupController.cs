@@ -23,20 +23,20 @@ namespace Cuelogic.Clrm.Api.Controllers
             _masterGroup = masterGroup;
         }
         
-        public string Get(int Show, int Page, string FilterText)
+        public IHttpActionResult Get(int Show, int Page, string FilterText)
         {
             var objSearchParam = new SearchParam();
             objSearchParam.FilterText = FilterText ?? "";
             objSearchParam.Page = Page;
             objSearchParam.Show = Show;
             var identityGroupJsonString = _masterGroup.GetList(objSearchParam);
-            return identityGroupJsonString;
+            return Ok(identityGroupJsonString);
         }
         
-        public IdentityGroup Get(int id)
+        public IHttpActionResult Get(int id)
         {
             var ObjIdentityGroup = _masterGroup.GetItem(id);
-            return ObjIdentityGroup;
+            return Ok(ObjIdentityGroup);
         }
         
         public void Post([FromBody]IdentityGroup objIdentityGroup)

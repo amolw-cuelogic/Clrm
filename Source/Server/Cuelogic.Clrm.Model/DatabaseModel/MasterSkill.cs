@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.Model.DatabaseModel
 {
-    public class MasterDepartment
+    public class MasterSkill
     {
-        public MasterDepartment()
+        public MasterSkill()
         {
             Id = 0;
-            DepartmentName = "";
-            DepartmentHead = "";
+            Skill = "";
             IsValid = false;
             CreatedBy = 0;
             CreatedOn = "";
@@ -22,8 +21,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             UpdatedByName = "";
         }
         public int Id { get; set; }
-        public string DepartmentName { get; set; }
-        public string DepartmentHead { get; set; }
+        public string Skill { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }
         public string CreatedOn { get; set; }

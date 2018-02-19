@@ -49,8 +49,7 @@
         <thead class="thead-light">
             <tr>
                 <th><button (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
-                <th>Department Name</th>
-                <th>Department Head</th>
+                <th>Skills</th>
                 <th>
                     Is Valid
                 </th>
@@ -70,10 +69,7 @@
                     <button (click)="DeleteRecord(item.Id)" type="button" title="Mark Record InValid" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                 </td>
                 <td>
-                    {{item.DepartmentName}}
-                </td>
-                <td>
-                    {{item.DepartmentHead}}
+                    {{item.Skill}}
                 </td>
                 <td>
                     {{item.IsValid}}

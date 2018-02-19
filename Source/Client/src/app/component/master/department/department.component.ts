@@ -11,7 +11,8 @@ import { FormMode } from '../../../model/FormMode';
 export class DepartmentComponent {
 
     baseUrl: string;
-    GroupList: any;
+    PageList: any;
+    ApiController: string = "api/Department/";
 
     //Common Search Module
     Show: number;
@@ -26,7 +27,7 @@ export class DepartmentComponent {
     }
 
     NextPage() {
-        if (this.GroupList.length == this.Show) {
+        if (this.PageList.length == this.Show) {
             this.Page = this.Page + 1;
             this.GetList();
         }
@@ -65,7 +66,7 @@ export class DepartmentComponent {
     }
 
     DeleteRecord(id: any) {
-        this.httpClient.delete(this.baseUrl + "api/MasterDepartment/" + id
+        this.httpClient.delete(this.baseUrl + this.ApiController + id
         ).subscribe(
             m => {
                 this.GetList();
@@ -91,10 +92,10 @@ export class DepartmentComponent {
         params.set('Page', this.Page.toString());
 
         var SearchParam = "?Show=" + this.Show + "&FilterText=" + this.FilterText + "&Page=" + this.Page;
-        this.httpClient.get(this.baseUrl + "api/MasterDepartment" + SearchParam
+        this.httpClient.get(this.baseUrl + this.ApiController + SearchParam
         ).subscribe(
             m => {
-                this.GroupList = m;
+                this.PageList = m;
                 this.SrvAppConfig.AdjustBottomHeight();
 
             });

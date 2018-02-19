@@ -25,7 +25,6 @@ export class EditGroupComponent {
         this.actroute.params.subscribe(params => {
             this.id = +params['id'];
             this.mode = params['mode'];
-            console.log(this.mode);
             this.LoadGroup(this.id);
 
         });

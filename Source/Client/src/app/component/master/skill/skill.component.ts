@@ -6,9 +6,9 @@ import { Router } from '@angular/router'
 import { FormMode } from '../../../model/FormMode';
 
 @Component({
-    templateUrl: 'organizationRole.component.html'
+    templateUrl: 'skill.component.html'
 })
-export class OrganizationRoleComponent{
+export class SkillComponent {
 
     baseUrl: string;
     PageList: any;
@@ -18,7 +18,7 @@ export class OrganizationRoleComponent{
     ShowOptions: any = [10, 50, 100];
     FilterText: string;
     Page: number = 0;
-    ApiController: string = "api/OrganizationRole/";
+    ApiController: string = "api/Skill/";
 
     InitControls() {
         this.Show = this.ShowOptions[0];
@@ -54,15 +54,15 @@ export class OrganizationRoleComponent{
     }
 
     NewRecord() {
-        this.router.navigate(['/organizationrole/' + this.formMode.Add + '/0']);
+        this.router.navigate(['/skill/' + this.formMode.Add + '/0']);
     }
 
     EditRecord(id: any) {
-        this.router.navigate(['/organizationrole/' + this.formMode.Edit + '/' + id]);
+        this.router.navigate(['/skill/' + this.formMode.Edit + '/' + id]);
     }
 
     ViewRecord(id: any) {
-        this.router.navigate(['/organizationrole/' + this.formMode.View + '/' + id]);
+        this.router.navigate(['/skill/' + this.formMode.View + '/' + id]);
     }
 
     DeleteRecord(id: any) {
