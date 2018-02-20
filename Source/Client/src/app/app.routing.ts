@@ -89,6 +89,16 @@ export const routes: Routes = [
                 path: 'skill/:mode/:id',
                 loadChildren: './component/master/skill/editskill.module#EditSkillModule',
                 canActivate: [AuthGuardService]
+            },
+            {
+                path: 'employee',
+                loadChildren: './component/employee/employee.module#EmployeeModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'employee/:mode/:id',
+                loadChildren: './component/employee/editemployee.module#EditEmployeeModule',
+                canActivate: [AuthGuardService]
             }
 
         ]

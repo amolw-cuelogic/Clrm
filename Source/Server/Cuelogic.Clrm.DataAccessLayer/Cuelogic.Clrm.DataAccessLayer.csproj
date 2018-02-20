@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="Common\CommonDataAccess.cs" />
     <Compile Include="Department\MasterDepartmentDataAccess.cs" />
+    <Compile Include="Employees\EmployeeDataAccess.cs" />
+    <Compile Include="Employees\IEmployeeDataAccess.cs" />
     <Compile Include="Group\MasterGroupDataAccess.cs" />
     <Compile Include="OrganizationRole\MasterOrganizationRoleDataAccess.cs" />
     <Compile Include="Common\ICommonDataAccess.cs" />

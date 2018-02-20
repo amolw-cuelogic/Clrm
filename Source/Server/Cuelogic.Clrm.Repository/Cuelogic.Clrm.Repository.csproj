@@ -47,6 +47,8 @@
     <Compile Include="Common\ICommonRepository.cs" />
     <Compile Include="Department\IMasterDepartmentRepository.cs" />
     <Compile Include="Common\CommonRepository.cs" />
+    <Compile Include="Employees\EmployeeRepository.cs" />
+    <Compile Include="Employees\IEmployeeRepository.cs" />
     <Compile Include="Group\IMasterGroupRepository.cs" />
     <Compile Include="Department\MasterDepartmentRepository.cs" />
     <Compile Include="Group\MasterGroupRepository.cs" />

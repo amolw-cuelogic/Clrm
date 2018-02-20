@@ -59,6 +59,14 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterSkill_Update = "spMasterSkill_Update";
 
             #endregion
+
+            #region EMPLOYEE
+
+            public const string spEmployee_GetList = "spEmployee_GetList";
+            public const string spEmployeeVm_GetValidList = "spEmployeeVm_GetValidList";
+            public const string spEmployee_GetById = "spEmployee_GetById";
+
+            #endregion
         }
     }
 }

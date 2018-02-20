@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Common\ICommonService.cs" />
     <Compile Include="Department\IMasterDepartmentService.cs" />
+    <Compile Include="Employees\EmployeeService.cs" />
+    <Compile Include="Employees\IEmployeeService.cs" />
     <Compile Include="Group\IMasterGroup.cs" />
     <Compile Include="Common\CommonService.cs" />
     <Compile Include="Department\MasterDepartmentService.cs" />

@@ -2,5 +2,6 @@ Source/Server/**/bin/**/*
 Source/Server/**/obj/*
 Source/Server/**/Logs/*
 Source/Server/**/obj/**/*
+Source/Server/.vs/Clrm.VS.2015/v14/.suo
 
 Source/Client/node_modules/

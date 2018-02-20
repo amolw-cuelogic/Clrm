@@ -309,6 +309,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\MasterDepartmentController.cs" />
     <Compile Include="Controllers\MasterGroupController.cs" />
     <Compile Include="Controllers\MasterOrganizationRoleController.cs" />

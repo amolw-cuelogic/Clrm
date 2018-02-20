@@ -47,6 +47,11 @@
     <Compile Include="CommonModel\BooleanRights.cs" />
     <Compile Include="CommonModel\MySqlSpParam.cs" />
     <Compile Include="DatabaseModel\Employee.cs" />
+    <Compile Include="DatabaseModel\EmployeeDepartment.cs" />
+    <Compile Include="DatabaseModel\EmployeeOrganizationRole.cs" />
+    <Compile Include="DatabaseModel\EmployeeSkill.cs" />
+    <Compile Include="DatabaseModel\EmployeeVm.cs" />
+    <Compile Include="DatabaseModel\IdentityEmployeeGroup.cs" />
     <Compile Include="DatabaseModel\IdentityGroup.cs" />
     <Compile Include="DatabaseModel\IdentityGroupRight.cs" />
     <Compile Include="DatabaseModel\IdentityRight.cs" />
