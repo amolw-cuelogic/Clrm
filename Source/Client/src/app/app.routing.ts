@@ -46,16 +46,51 @@ export const routes: Routes = [
                 canActivate: [AuthGuardService]
             },
             {
-                path: 'editgroup/:mode/:id',
+                path: 'group/:mode/:id',
                 loadChildren: './component/admin/group/editgroup.module#EditGroupModule',
                 canActivate: [AuthGuardService]
             },
+            
+        ]
+    },
+    {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Master'
+        },
+        children: [
             {
-                path: 'usergroup',
-                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
+                path: 'department',
+                loadChildren: './component/master/department/department.module#DepartmentModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'department/:mode/:id',
+                loadChildren: './component/master/department/editdepartment.module#EditDepartmentModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'organizationrole',
+                loadChildren: './component/master/organizationRole/organizationRole.module#OrganizationRoleModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'organizationrole/:mode/:id',
+                loadChildren: './component/master/organizationRole/editOrganizationRole.module#EditOrganizationRoleModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'skill',
+                loadChildren: './component/master/skill/skill.module#SkillModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'skill/:mode/:id',
+                loadChildren: './component/master/skill/editskill.module#EditSkillModule',
                 canActivate: [AuthGuardService]
             }
-            
+
         ]
     },
     {

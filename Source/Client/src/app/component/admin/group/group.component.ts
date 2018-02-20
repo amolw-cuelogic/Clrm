@@ -18,6 +18,7 @@ export class GroupComponent {
     ShowOptions: any = [10, 50, 100];
     FilterText: string;
     Page: number = 0;
+    ApiController: string = "api/Group/";
 
     InitControls() {
         this.Show = this.ShowOptions[0];
@@ -53,19 +54,19 @@ export class GroupComponent {
     }
 
     NewRecord() {
-        this.router.navigate(['/editgroup/' + this.formMode.Add + '/0']);
+        this.router.navigate(['/group/' + this.formMode.Add + '/0']);
     }
 
     EditRecord(id: any) {
-        this.router.navigate(['/editgroup/' + this.formMode.Edit + '/' + id]);
+        this.router.navigate(['/group/' + this.formMode.Edit + '/' + id]);
     }
 
     ViewRecord(id: any) {
-        this.router.navigate(['/editgroup/' + this.formMode.View + '/' + id]);
+        this.router.navigate(['/group/' + this.formMode.View + '/' + id]);
     }
 
     DeleteRecord(id: any) {
-        this.httpClient.delete(this.baseUrl + "api/MasterGroup/" + id
+        this.httpClient.delete(this.baseUrl + this.ApiController + id
         ).subscribe(
             m => {
                 this.GetGroupList();
@@ -94,7 +95,7 @@ export class GroupComponent {
         params.set('Page', this.Page.toString());
 
         var SearchParam = "?Show=" + this.Show + "&FilterText=" + this.FilterText + "&Page=" + this.Page;
-        this.httpClient.get(this.baseUrl + "api/MasterGroup" + SearchParam
+        this.httpClient.get(this.baseUrl + this.ApiController + SearchParam
         ).subscribe(
             m => {
                 this.GroupList = m;

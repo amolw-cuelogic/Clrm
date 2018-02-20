@@ -1,41 +1,25 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ComponentSubscriptionService } from './componentsubscription.service'
 import { BootstrapModel } from '../model/bootstrapmodel'
+import { isDevMode } from '@angular/core';
 
 @Injectable()
 export class ErrorhandlerService implements ErrorHandler {
     constructor(private srvCompSub: ComponentSubscriptionService) { }
     handleError(error) {
 
+        var StringifiedError = JSON.stringify(error);
+
         var model = new BootstrapModel();
         model.Title = "Error";
         model.MessageType = model.ModelType.Danger;
-        if ('_body' in error) {
-            var errorJson = error['_body'];
-            try {
-                var errorString = error['_body'] as string;
-                var errorObject = JSON.parse(errorString);
-                if ('error_description' in errorObject) {
-                    model.Message = errorObject['error_description'] as string;
-                }
-            }
-            catch (ex) {
-
-            }
-        }
-        else if ('message' in error) {
-            model.Message = error.message;
-        }
-        else if ('error' in error) {
-            model.Message = error.error;
-            model.Title = "Info";
-            model.MessageType = model.ModelType.Info;
+        
+        if (isDevMode()) {
+            model.Message = StringifiedError;
         }
         else {
-            model.Message = "Error occured";
+            model.Message = "Something went wrong";
         }
-        if(model.Message == "" || model.Message == undefined || model.Message == null)
-          model.Message = "Something went wrong";
         this.srvCompSub.OpenBootstrapModal(model);
         console.log(error)
         // IMPORTANT: Rethrow the error otherwise it gets swallowed

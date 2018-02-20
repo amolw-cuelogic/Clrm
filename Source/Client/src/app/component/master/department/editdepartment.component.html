@@ -1,0 +1,98 @@
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
+        <button [hidden]="Disabled" type="button" class="btn btn-primary" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button routerLink="/department" type="button" class="btn btn-primary">Back</button>
+    </div>
+    <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
+        <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
+            <div class="col-sm-12 col-md-9 col-xs-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Department </strong>
+                        <small>Details</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-6 col-xs-12">
+                                <form form #formCtrl="ngForm">
+                                    <div class="form-group">
+                                        <ngx-label value="Department Name"></ngx-label>
+                                        <input type="text" #DepartmentName="ngModel" [(ngModel)]="PageObject.DepartmentName" class="form-control" required name="PageObject.DepartmentName" placeholder="Enter Department Name">
+                                        <div *ngIf="DepartmentName.errors && (DepartmentName.dirty || DepartmentName.touched)" class="error">
+                                            Department Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Department Head</label>
+                                        <input class="form-control" [(ngModel)]="PageObject.DepartmentHead" rows="5" name="PageObject.DepartmentHead" placeholder="Enter Department Head" />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Is Valid Department</label><br />
+                                        <label class="switch switch-3d switch-success switch-sm">
+                                            <input type="checkbox" class="switch-input" [(ngModel)]="PageObject.IsValid" name="PageObject.IsValid">
+                                            <span class="switch-label"></span>
+                                            <span class="switch-handle"></span>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-xs-12">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-12 col-md-3 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+
+                        <table style="width:100%">
+                            <tr><th colspan="2">User Actions</th></tr>
+                            <tr>
+                                <td style="width:50%">
+                                    Created By
+                                </td>
+                                <td>
+                                    {{PageObject.CreatedByName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Created On
+                                </td>
+                                <td>
+                                    {{PageObject.CreatedOn | date :  "y/MM/dd"}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Updated By
+                                </td>
+                                <td>
+                                    {{PageObject.UpdatedByName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Updated On
+                                </td>
+                                <td>
+                                    {{PageObject.UpdatedOn | date :  "y/MM/dd"}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

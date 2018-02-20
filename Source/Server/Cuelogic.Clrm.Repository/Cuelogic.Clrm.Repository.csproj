@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,9 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonRepo.cs" />
-    <Compile Include="MasterGroupRepo.cs" />
+    <Compile Include="Common\ICommonRepository.cs" />
+    <Compile Include="Department\IMasterDepartmentRepository.cs" />
+    <Compile Include="Common\CommonRepository.cs" />
+    <Compile Include="Group\IMasterGroupRepository.cs" />
+    <Compile Include="Department\MasterDepartmentRepository.cs" />
+    <Compile Include="Group\MasterGroupRepository.cs" />
+    <Compile Include="OrganizationRole\IMasterOrganizationRoleRepository.cs" />
+    <Compile Include="OrganizationRole\MasterOrganizationRoleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skill\IMasterSkillRepository.cs" />
+    <Compile Include="Skill\MasterSkillRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cuelogic.Clrm.Common\Cuelogic.Clrm.Common.csproj">
@@ -58,6 +70,7 @@
       <Name>Cuelogic.Clrm.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

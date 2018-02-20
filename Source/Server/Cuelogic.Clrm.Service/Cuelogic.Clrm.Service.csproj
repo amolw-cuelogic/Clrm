@@ -44,10 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IMasterGroup.cs" />
-    <Compile Include="Service\CommonSrv.cs" />
-    <Compile Include="Service\MasterGroupSrv.cs" />
+    <Compile Include="Common\ICommonService.cs" />
+    <Compile Include="Department\IMasterDepartmentService.cs" />
+    <Compile Include="Group\IMasterGroup.cs" />
+    <Compile Include="Common\CommonService.cs" />
+    <Compile Include="Department\MasterDepartmentService.cs" />
+    <Compile Include="Group\MasterGroupService.cs" />
+    <Compile Include="OrganizationRole\IMasterOrganizationRoleService.cs" />
+    <Compile Include="OrganizationRole\MasterOrganizationRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skill\IMasterSkillService.cs" />
+    <Compile Include="Skill\MasterSkillService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -62,7 +62,7 @@ namespace Cuelogic.Clrm.Common
             {
                 throw;
             }
-            
+
         }
 
 
@@ -75,13 +75,6 @@ namespace Cuelogic.Clrm.Common
             T item = new T();
             foreach (var property in properties)
             {
-                //if (property.PropertyType == typeof(System.DayOfWeek))
-                //{
-                //    DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), row[property.Name].ToString());
-                //    property.SetValue(item, day, null);
-                //}
-                //else
-                //{
                 if (row.Table.Columns.Contains(property.Name))
                 {
                     if (row[property.Name] == DBNull.Value)
@@ -93,19 +86,17 @@ namespace Cuelogic.Clrm.Common
                             var boolean = Convert.ToBoolean(Convert.ToInt16(row[property.Name].ToString()));
                             property.SetValue(item, boolean, null);
                         }
-                        else if(row[property.Name] is DateTime)
+                        else if (row[property.Name] is DateTime)
                         {
-                            var data = (row[property.Name] != null) ? row[property.Name].ToString() : "";
+                            var data = (row[property.Name] != null) ? DateTime.Parse(row[property.Name].ToString()).ToMySqlDateString() : "";
                             property.SetValue(item, data, null);
                         }
                         else
                         {
                             property.SetValue(item, row[property.Name], null);
                         }
-
                     }
                 }
-                //}
             }
             return item;
         }

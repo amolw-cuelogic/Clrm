@@ -16,7 +16,7 @@ export class BootstrapmodalComponent implements OnInit {
         
     }
 
-    ngAfterViewInit() {
+    ngAfterContentInit () {
       
 
         this.srvCompSub.ListenBootstrapModal.subscribe(message => {
@@ -31,11 +31,8 @@ export class BootstrapmodalComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.bootstrapModal.Title = "";
-        this.bootstrapModal.Message = "";
-        this.bootstrapModal.MessageType = "";
+   
     }
-
 
     Close() {
         $('body').removeClass('modal-open');

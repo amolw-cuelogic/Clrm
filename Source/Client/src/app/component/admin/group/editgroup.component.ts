@@ -18,6 +18,7 @@ export class EditGroupComponent {
     baseUrl: string;
     IdentityGroup: any = new Object();
     loaded: boolean = false;
+    ApiController: string = "api/Group";
 
     Disabled = false;
 
@@ -25,7 +26,6 @@ export class EditGroupComponent {
         this.actroute.params.subscribe(params => {
             this.id = +params['id'];
             this.mode = params['mode'];
-            console.log(this.mode);
             this.LoadGroup(this.id);
 
         });
@@ -40,7 +40,7 @@ export class EditGroupComponent {
         var da = JSON.stringify(this.IdentityGroup);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        this.httpClient.post(this.baseUrl + "api/MasterGroup", da, { headers: headers }).subscribe(
+        this.httpClient.post(this.baseUrl + this.ApiController, da, { headers: headers }).subscribe(
             m => {
                 if (this.mode == this.formMode.Edit) {
                     this.LoadGroup(this.id);
@@ -65,7 +65,7 @@ export class EditGroupComponent {
 
 
     LoadGroup(id: any) {
-        this.httpClient.get(this.baseUrl + "api/MasterGroup/" + id
+        this.httpClient.get(this.baseUrl + this.ApiController + "/" + id
         ).subscribe(
             m => {
                 this.IdentityGroup = m;

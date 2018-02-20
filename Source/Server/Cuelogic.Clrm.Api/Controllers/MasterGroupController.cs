@@ -3,8 +3,7 @@ using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service;
-using Cuelogic.Clrm.Service.Interface;
-using Cuelogic.Clrm.Service.Service;
+using Cuelogic.Clrm.Service.Group;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,47 +14,47 @@ using System.Web.Http;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
+    [RoutePrefix("api/Group")]
     public class MasterGroupController : ApiBaseController
     {
-        IMasterGroup MasterObj;
-        public MasterGroupController(IMasterGroup iobjMasterGroup)
+        private readonly IMasterGroup _masterGroup;
+        public MasterGroupController(IMasterGroup masterGroup)
         {
-            MasterObj = iobjMasterGroup;
-        }
-        // GET: api/MasterGroup | TODO : Revise returning logic later
-        public string Get(int Show, int Page, string FilterText)
-        {
-            var objSearchParam = new SearchParam();
-            objSearchParam.FilterText = FilterText ?? "";
-            objSearchParam.Page = Page;
-            objSearchParam.Show = Show;
-            var ListIdentityGroup = MasterObj.GetList(objSearchParam);
-            return ListIdentityGroup;
+            
+            _masterGroup = masterGroup;
         }
 
-        // GET: api/MasterGroup/5
-        public IdentityGroup Get(int id)
+        [Route("")]
+        public IHttpActionResult Get(int show, int page, string filterText)
         {
-            var ObjIdentityGroup = MasterObj.GetItem(id);
-            return ObjIdentityGroup;
+            var searchParam = new SearchParam();
+            searchParam.FilterText = filterText ?? "";
+            searchParam.Page = page;
+            searchParam.Show = show;
+            var identityGroupJsonString = _masterGroup.GetList(searchParam);
+            return Ok(identityGroupJsonString);
         }
 
-        // POST: api/MasterGroup
-        public void Post([FromBody]IdentityGroup objIdentityGroup)
+        [Route("{id}")]
+        public IHttpActionResult Get(int id)
+        {
+            var identityGroup = _masterGroup.GetItem(id);
+            return Ok(identityGroup);
+        }
+
+        [Route("")]
+        public IHttpActionResult Post([FromBody]IdentityGroup identityGroup)
         {
             var userCtx = base.GetUserContext();
-            MasterObj.Save(objIdentityGroup, userCtx);
+            _masterGroup.Save(identityGroup, userCtx);
+            return Ok();
         }
 
-        // PUT: api/MasterGroup/5
-        public void Put(int id, [FromBody]string value)
+        [Route("{id}")]
+        public IHttpActionResult Delete(int id)
         {
-        }
-
-        // DELETE: api/MasterGroup/5
-        public void Delete(int id)
-        {
-            MasterObj.Delete(id);
+            _masterGroup.Delete(id);
+            return Ok();
         }
     }
 }
