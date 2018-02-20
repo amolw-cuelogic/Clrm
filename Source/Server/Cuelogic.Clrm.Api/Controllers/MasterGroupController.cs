@@ -25,34 +25,36 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(int Show, int Page, string FilterText)
+        public IHttpActionResult Get(int show, int page, string filterText)
         {
-            var objSearchParam = new SearchParam();
-            objSearchParam.FilterText = FilterText ?? "";
-            objSearchParam.Page = Page;
-            objSearchParam.Show = Show;
-            var identityGroupJsonString = _masterGroup.GetList(objSearchParam);
+            var searchParam = new SearchParam();
+            searchParam.FilterText = filterText ?? "";
+            searchParam.Page = page;
+            searchParam.Show = show;
+            var identityGroupJsonString = _masterGroup.GetList(searchParam);
             return Ok(identityGroupJsonString);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var ObjIdentityGroup = _masterGroup.GetItem(id);
-            return Ok(ObjIdentityGroup);
+            var identityGroup = _masterGroup.GetItem(id);
+            return Ok(identityGroup);
         }
 
         [Route("")]
-        public void Post([FromBody]IdentityGroup objIdentityGroup)
+        public IHttpActionResult Post([FromBody]IdentityGroup identityGroup)
         {
             var userCtx = base.GetUserContext();
-            _masterGroup.Save(objIdentityGroup, userCtx);
+            _masterGroup.Save(identityGroup, userCtx);
+            return Ok();
         }
 
         [Route("{id}")]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _masterGroup.Delete(id);
+            return Ok();
         }
     }
 }

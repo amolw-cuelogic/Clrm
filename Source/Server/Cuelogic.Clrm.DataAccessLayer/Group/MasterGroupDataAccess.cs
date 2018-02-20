@@ -18,50 +18,50 @@ namespace Cuelogic.Clrm.DataAccessLayer.Group
 
         #region GET FUNCTIONS
 
-        public DataSet GetIdentityGroupList(SearchParam objSearchParam)
+        public DataSet GetIdentityGroupList(SearchParam searchParam)
         {
-            var RecordFrom = objSearchParam.Page * objSearchParam.Show;
-            var Show = objSearchParam.Show;
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
 
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroup_GetList;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@FilterText", objSearchParam.FilterText),
-                    new MySqlParameter("@RecordFrom", RecordFrom),
-                    new MySqlParameter("@RecordTill", Show)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroup_GetList;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@FilterText", searchParam.FilterText),
+                    new MySqlParameter("@RecordFrom", recordFrom),
+                    new MySqlParameter("@RecordTill", show)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public DataSet GetIdentityGroup(int GroupId)
+        public DataSet GetIdentityGroup(int groupId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroup_Get;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@GroupId", GroupId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroup_Get;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@GroupId", groupId)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public DataSet GetIdentityGroupRights(int GroupId)
+        public DataSet GetIdentityGroupRights(int groupId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroupRight_Get;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@GroupId", GroupId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityGroupRight_Get;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@GroupId", groupId)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
         public DataSet GetIdentityRightList()
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityRight_Get;
-            sqlparam.StoreProcedureParam = null;
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spIdentityRight_Get;
+            sqlParam.StoreProcedureParam = null;
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
         }
 

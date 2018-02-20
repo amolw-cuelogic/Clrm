@@ -11,12 +11,12 @@ namespace Cuelogic.Clrm.Service.OrganizationRole
 {
     public interface IMasterOrganizationRoleService
     {
-        string GetList(SearchParam objSearchParam);
+        string GetList(SearchParam searchParam);
 
-        MasterOrganizationRole GetItem(int MasterOrganizationRoleId);
+        MasterOrganizationRole GetItem(int masterOrganizationRoleId);
 
-        void Save(MasterOrganizationRole ObjMasterOrganizationRole, UserContext userCtx);
+        void Save(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
 
-        void Delete(int MasterOrganizationRoleId);
+        void Delete(int masterOrganizationRoleId);
     }
 }

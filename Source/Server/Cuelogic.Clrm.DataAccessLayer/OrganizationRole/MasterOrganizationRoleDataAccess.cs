@@ -13,71 +13,71 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
 {
     public class MasterOrganizationRoleDataAccess : IMasterOrganizationRoleDataAccess
     {
-        public DataSet GetMasterOrganizationRole(int MasterOrganizationRoleId)
+        public DataSet GetMasterOrganizationRole(int masterOrganizationRoleId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Get;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@Id", MasterOrganizationRoleId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Get;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@Id", masterOrganizationRoleId)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public DataSet GetMasterOrganizationRoleList(SearchParam objSearchParam)
+        public DataSet GetMasterOrganizationRoleList(SearchParam searchParam)
         {
-            var RecordFrom = objSearchParam.Page * objSearchParam.Show;
-            var Show = objSearchParam.Show;
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
 
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_GetList;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@FilterText", objSearchParam.FilterText),
-                    new MySqlParameter("@RecordFrom", RecordFrom),
-                    new MySqlParameter("@RecordTill", Show)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_GetList;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@FilterText", searchParam.FilterText),
+                    new MySqlParameter("@RecordFrom", recordFrom),
+                    new MySqlParameter("@RecordTill", show)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public void InsertMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole)
+        public void InsertMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Insert;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@role", ObjMasterOrganizationRole.Role),
-                    new MySqlParameter("@isValid", ObjMasterOrganizationRole.IsValid),
-                    new MySqlParameter("@createdBy", ObjMasterOrganizationRole.CreatedBy),
-                    new MySqlParameter("@createdOn", ObjMasterOrganizationRole.CreatedOn)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Insert;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@role", masterOrganizationRole.Role),
+                    new MySqlParameter("@isValid", masterOrganizationRole.IsValid),
+                    new MySqlParameter("@createdBy", masterOrganizationRole.CreatedBy),
+                    new MySqlParameter("@createdOn", masterOrganizationRole.CreatedOn)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
-        public void MarkMasterOrganizationRoleInvalid(int MasterOrganizationRoleId)
+        public void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_MarkInvalid;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterOrganizationRoleId", MasterOrganizationRoleId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_MarkInvalid;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterOrganizationRoleId", masterOrganizationRoleId)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
-        public void UpdateMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole)
+        public void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Update;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@masterOrganizationRoleId", ObjMasterOrganizationRole.Id),
-                    new MySqlParameter("@role", ObjMasterOrganizationRole.Role),
-                    new MySqlParameter("@isValid", ObjMasterOrganizationRole.IsValid),
-                    new MySqlParameter("@updatedby", ObjMasterOrganizationRole.UpdatedBy),
-                    new MySqlParameter("@updatedon", ObjMasterOrganizationRole.UpdatedOn)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Update;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@masterOrganizationRoleId", masterOrganizationRole.Id),
+                    new MySqlParameter("@role", masterOrganizationRole.Role),
+                    new MySqlParameter("@isValid", masterOrganizationRole.IsValid),
+                    new MySqlParameter("@updatedby", masterOrganizationRole.UpdatedBy),
+                    new MySqlParameter("@updatedon", masterOrganizationRole.UpdatedOn)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
     }
 }

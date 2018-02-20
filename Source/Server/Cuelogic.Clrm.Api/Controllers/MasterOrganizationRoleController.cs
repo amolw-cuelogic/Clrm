@@ -21,34 +21,36 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(int Show, int Page, string FilterText)
+        public IHttpActionResult Get(int show, int page, string filterText)
         {
-            var objSearchParam = new SearchParam();
-            objSearchParam.FilterText = FilterText ?? "";
-            objSearchParam.Page = Page;
-            objSearchParam.Show = Show;
-            var identityGroupJsonString = _masterOrganizationRoleService.GetList(objSearchParam);
+            var searchParam = new SearchParam();
+            searchParam.FilterText = filterText ?? "";
+            searchParam.Page = page;
+            searchParam.Show = show;
+            var identityGroupJsonString = _masterOrganizationRoleService.GetList(searchParam);
             return Ok(identityGroupJsonString);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var ObjMasterOrganizationRole = _masterOrganizationRoleService.GetItem(id);
-            return Ok(ObjMasterOrganizationRole);
+            var masterOrganizationRole = _masterOrganizationRoleService.GetItem(id);
+            return Ok(masterOrganizationRole);
         }
 
         [Route("")]
-        public void Post([FromBody]MasterOrganizationRole ObjMasterOrganizationRole)
+        public IHttpActionResult Post([FromBody]MasterOrganizationRole masterOrganizationRole)
         {
             var userCtx = base.GetUserContext();
-            _masterOrganizationRoleService.Save(ObjMasterOrganizationRole, userCtx);
+            _masterOrganizationRoleService.Save(masterOrganizationRole, userCtx);
+            return Ok();
         }
 
         [Route("{id}")]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _masterOrganizationRoleService.Delete(id);
+            return Ok();
         }
     }
 }

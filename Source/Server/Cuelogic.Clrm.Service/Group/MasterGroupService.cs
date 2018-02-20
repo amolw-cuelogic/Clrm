@@ -22,33 +22,33 @@ namespace Cuelogic.Clrm.Service.Group
         {
             _masterGroupRepository = new MasterGroupRepository();
         }
-        public string GetList(SearchParam objSearchParam)
+        public string GetList(SearchParam searchParam)
         {
-            DataSet ds = _masterGroupRepository.GetIdentityGroupList(objSearchParam);
-            var IdentityGroupJson = ds.Tables[0].ToJsonString();
-            return IdentityGroupJson;
+            DataSet ds = _masterGroupRepository.GetIdentityGroupList(searchParam);
+            var identityGroupJson = ds.Tables[0].ToJsonString();
+            return identityGroupJson;
 
         }
 
-        public IdentityGroup GetItem(int GroupId)
+        public IdentityGroup GetItem(int groupId)
         {
-            var grp = _masterGroupRepository.GetGroup(GroupId);
+            var grp = _masterGroupRepository.GetGroup(groupId);
             return grp;
 
         }
 
-        public void Save(IdentityGroup ObjIdentityGroup, UserContext userCtx)
+        public void Save(IdentityGroup identityGroup, UserContext userCtx)
         {
-            if (ObjIdentityGroup.Id == 0)
-                _masterGroupRepository.SaveIdentityGroup(ObjIdentityGroup, userCtx);
+            if (identityGroup.Id == 0)
+                _masterGroupRepository.SaveIdentityGroup(identityGroup, userCtx);
             else
-                _masterGroupRepository.UpdateIdentityGroup(ObjIdentityGroup, userCtx);
+                _masterGroupRepository.UpdateIdentityGroup(identityGroup, userCtx);
 
         }
 
-        public void Delete(int GroupId)
+        public void Delete(int groupId)
         {
-            _masterGroupRepository.MarkGroupInvalid(GroupId);
+            _masterGroupRepository.MarkGroupInvalid(groupId);
 
         }
     }

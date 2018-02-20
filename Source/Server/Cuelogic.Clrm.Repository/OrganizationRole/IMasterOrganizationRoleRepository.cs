@@ -12,14 +12,14 @@ namespace Cuelogic.Clrm.Repository.OrganizationRole
 {
     public interface IMasterOrganizationRoleRepository
     {
-        DataSet GetMasterOrganizationRoleList(SearchParam objSearchParam);
+        DataSet GetMasterOrganizationRoleList(SearchParam searchParam);
 
-        MasterOrganizationRole GetMasterOrganizationRole(int MasterOrganizationRoleId);
+        MasterOrganizationRole GetMasterOrganizationRole(int masterOrganizationRoleId);
 
-        void SaveMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole, UserContext userCtx);
+        void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
 
-        void UpdateMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole, UserContext userCtx);
+        void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
 
-        void MarkMasterOrganizationRoleInvalid(int MasterOrganizationRoleId);
+        void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId);
     }
 }

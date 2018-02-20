@@ -14,73 +14,73 @@ namespace Cuelogic.Clrm.DataAccessLayer.Department
 {
     public class MasterDepartmentDataAccess : IMasterDepartmentDataAccess
     {
-        public DataSet GetMasterDepartment(int MasterDepartmentId)
+        public DataSet GetMasterDepartment(int masterDepartmentId)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Get;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterDepartmentId", MasterDepartmentId)
+                    new MySqlParameter("@MasterDepartmentId", masterDepartmentId)
                 };
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;
         }
 
-        public DataSet GetMasterDepartmentList(SearchParam objSearchParam)
+        public DataSet GetMasterDepartmentList(SearchParam searchParam)
         {
-            var RecordFrom = objSearchParam.Page * objSearchParam.Show;
-            var Show = objSearchParam.Show;
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
 
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_GetList;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@FilterText", objSearchParam.FilterText),
-                    new MySqlParameter("@RecordFrom", RecordFrom),
-                    new MySqlParameter("@RecordTill", Show)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_GetList;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@FilterText", searchParam.FilterText),
+                    new MySqlParameter("@RecordFrom", recordFrom),
+                    new MySqlParameter("@RecordTill", show)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public void InsertMasterDepartment(MasterDepartment ObjMasterDepartment)
+        public void InsertMasterDepartment(MasterDepartment masterDepartment)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Insert;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@departmentName", ObjMasterDepartment.DepartmentName),
-                    new MySqlParameter("@departmentHead", ObjMasterDepartment.DepartmentHead),
-                    new MySqlParameter("@isValid", ObjMasterDepartment.IsValid),
-                    new MySqlParameter("@createdBy", ObjMasterDepartment.CreatedBy),
-                    new MySqlParameter("@createdOn", ObjMasterDepartment.CreatedOn)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Insert;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@departmentName", masterDepartment.DepartmentName),
+                    new MySqlParameter("@departmentHead", masterDepartment.DepartmentHead),
+                    new MySqlParameter("@isValid", masterDepartment.IsValid),
+                    new MySqlParameter("@createdBy", masterDepartment.CreatedBy),
+                    new MySqlParameter("@createdOn", masterDepartment.CreatedOn)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
-        public void UpdateMasterDepartment(MasterDepartment ObjMasterDepartment)
+        public void UpdateMasterDepartment(MasterDepartment masterDepartment)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Update;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@departmentId", ObjMasterDepartment.Id),
-                    new MySqlParameter("@departmentName", ObjMasterDepartment.DepartmentName),
-                    new MySqlParameter("@departmentHead", ObjMasterDepartment.DepartmentHead),
-                    new MySqlParameter("@isValid", ObjMasterDepartment.IsValid),
-                    new MySqlParameter("@updatedby", ObjMasterDepartment.UpdatedBy),
-                    new MySqlParameter("@updatedon", ObjMasterDepartment.UpdatedOn)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_Update;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@departmentId", masterDepartment.Id),
+                    new MySqlParameter("@departmentName", masterDepartment.DepartmentName),
+                    new MySqlParameter("@departmentHead", masterDepartment.DepartmentHead),
+                    new MySqlParameter("@isValid", masterDepartment.IsValid),
+                    new MySqlParameter("@updatedby", masterDepartment.UpdatedBy),
+                    new MySqlParameter("@updatedon", masterDepartment.UpdatedOn)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
-        public void MarkMasterDepartmentInvalid(int MasterDepartmentId)
+        public void MarkMasterDepartmentInvalid(int masterDepartmentId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_MarkInvalid;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterDepartmentId", MasterDepartmentId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterDepartment_MarkInvalid;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterDepartmentId", masterDepartmentId)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
     }

@@ -13,68 +13,68 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
 {
     public class MasterSkillDataAccess : IMasterSkillDataAccess
     {
-        public DataSet GetMasterSkill(int MasterSkillId)
+        public DataSet GetMasterSkill(int masterSkillId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Get;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterSkillId", MasterSkillId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Get;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterSkillId", masterSkillId)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public DataSet GetMasterSkillList(SearchParam objSearchParam)
+        public DataSet GetMasterSkillList(SearchParam searchParam)
         {
-            var RecordFrom = objSearchParam.Page * objSearchParam.Show;
-            var Show = objSearchParam.Show;
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
 
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_GetList;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@FilterText", objSearchParam.FilterText),
-                    new MySqlParameter("@RecordFrom", RecordFrom),
-                    new MySqlParameter("@RecordTill", Show)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_GetList;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@FilterText", searchParam.FilterText),
+                    new MySqlParameter("@RecordFrom", recordFrom),
+                    new MySqlParameter("@RecordTill", show)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
 
-        public void InsertMasterSkill(MasterSkill ObjMasterSkill)
+        public void InsertMasterSkill(MasterSkill masterSkill)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Insert;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@skill", ObjMasterSkill.Skill),
-                    new MySqlParameter("@isValid", ObjMasterSkill.IsValid),
-                    new MySqlParameter("@createdBy", ObjMasterSkill.CreatedBy),
-                    new MySqlParameter("@createdOn", ObjMasterSkill.CreatedOn)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Insert;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@skill", masterSkill.Skill),
+                    new MySqlParameter("@isValid", masterSkill.IsValid),
+                    new MySqlParameter("@createdBy", masterSkill.CreatedBy),
+                    new MySqlParameter("@createdOn", masterSkill.CreatedOn)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
-        public void MarkMasterSkillInvalid(int MasterSkillId)
+        public void MarkMasterSkillInvalid(int masterSkillId)
         {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_MarkInvalid;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterSkillId", MasterSkillId)
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_MarkInvalid;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@MasterSkillId", masterSkillId)
                 };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
-                 sqlparam.StoreProcedureParam);
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
+                 sqlParam.StoreProcedureParam);
         }
 
-        public void UpdateMasterSkill(MasterSkill ObjMasterSkill)
+        public void UpdateMasterSkill(MasterSkill masterSkill)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Update;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@masterSkillId", ObjMasterSkill.Id),
-                    new MySqlParameter("@skill", ObjMasterSkill.Skill),
-                    new MySqlParameter("@isValid", ObjMasterSkill.IsValid),
-                    new MySqlParameter("@updatedby", ObjMasterSkill.UpdatedBy),
-                    new MySqlParameter("@updatedon", ObjMasterSkill.UpdatedOn)
+                    new MySqlParameter("@masterSkillId", masterSkill.Id),
+                    new MySqlParameter("@skill", masterSkill.Skill),
+                    new MySqlParameter("@isValid", masterSkill.IsValid),
+                    new MySqlParameter("@updatedby", masterSkill.UpdatedBy),
+                    new MySqlParameter("@updatedon", masterSkill.UpdatedOn)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);

@@ -19,9 +19,9 @@ namespace Cuelogic.Clrm.Service.Common
         {
             _commonRepository = new CommonRepository();
         }
-        public Employee GetEmployeeDetails(string EmailId)
+        public Employee GetEmployeeDetails(string emailId)
         {
-            var data = _commonRepository.GetEmployeeDetails(EmailId);
+            var data = _commonRepository.GetEmployeeDetails(emailId);
             return data;
         }
     }

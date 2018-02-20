@@ -11,13 +11,13 @@ namespace Cuelogic.Clrm.Service.Group
 {
     public interface IMasterGroup
     {
-        string GetList(SearchParam objSearchParam);
+        string GetList(SearchParam searchParam);
 
-        IdentityGroup GetItem(int GroupId);
+        IdentityGroup GetItem(int groupId);
 
-        void Save(IdentityGroup ObjIdentityGroup, UserContext userCtx);
+        void Save(IdentityGroup identityGroup, UserContext userCtx);
 
-        void Delete(int GroupId);
+        void Delete(int groupId);
 
     }
 }

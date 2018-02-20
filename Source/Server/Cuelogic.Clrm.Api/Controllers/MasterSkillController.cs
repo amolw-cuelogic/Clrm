@@ -21,34 +21,36 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(int Show, int Page, string FilterText)
+        public IHttpActionResult Get(int show, int page, string filterText)
         {
-            var objSearchParam = new SearchParam();
-            objSearchParam.FilterText = FilterText ?? "";
-            objSearchParam.Page = Page;
-            objSearchParam.Show = Show;
-            var identityGroupJsonString = _masterSkillService.GetList(objSearchParam);
+            var searchParam = new SearchParam();
+            searchParam.FilterText = filterText ?? "";
+            searchParam.Page = page;
+            searchParam.Show = show;
+            var identityGroupJsonString = _masterSkillService.GetList(searchParam);
             return Ok(identityGroupJsonString);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var ObjMasterSkill = _masterSkillService.GetItem(id);
-            return Ok(ObjMasterSkill);
+            var masterSkill = _masterSkillService.GetItem(id);
+            return Ok(masterSkill);
         }
 
         [Route("")]
-        public void Post([FromBody]MasterSkill ObjMasterSkill)
+        public IHttpActionResult Post([FromBody]MasterSkill masterSkill)
         {
             var userCtx = base.GetUserContext();
-            _masterSkillService.Save(ObjMasterSkill, userCtx);
+            _masterSkillService.Save(masterSkill, userCtx);
+            return Ok();
         }
 
         [Route("{id}")]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _masterSkillService.Delete(id);
+            return Ok();
         }
     }
 }

@@ -13,11 +13,11 @@ namespace Cuelogic.Clrm.DataAccessLayer.Group
     {
         #region GET FUNCTIONS
 
-        DataSet GetIdentityGroupList(SearchParam objSearchParam);
+        DataSet GetIdentityGroupList(SearchParam searchParam);
 
-        DataSet GetIdentityGroup(int GroupId);
+        DataSet GetIdentityGroup(int groupId);
 
-        DataSet GetIdentityGroupRights(int GroupId);
+        DataSet GetIdentityGroupRights(int groupId);
 
         DataSet GetIdentityRightList();
 
@@ -25,23 +25,23 @@ namespace Cuelogic.Clrm.DataAccessLayer.Group
 
         #region UPDATE FUNCTIONS
 
-        void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup);
+        void UpdateIdentityGroup(IdentityGroup identityGroup);
 
-        void UpdateIdentityGroupRight(string XmlString);
+        void UpdateIdentityGroupRight(string xmlString);
 
         #endregion
 
         #region INSERT FUNCTIONS
 
-        DataSet InsertIdentityGroup(IdentityGroup ObjIdentityGroup);
+        DataSet InsertIdentityGroup(IdentityGroup objIdentityGroup);
 
-        void InsertIdentityGroupRight(string XmlString);
+        void InsertIdentityGroupRight(string xmlString);
 
         #endregion
 
         #region OTHER FUNCTIONS
 
-        void MarkGroupInvalid(int GroupId);
+        void MarkGroupInvalid(int groupId);
 
         #endregion
     }

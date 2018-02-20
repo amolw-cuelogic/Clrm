@@ -25,27 +25,27 @@ namespace Cuelogic.Clrm.Service.Department
 
         }
 
-        public MasterDepartment GetItem(int DepartmentId)
+        public MasterDepartment GetItem(int departmentId)
         {
-            var masterDepartment = _masterDepartmentRepository.GetMasterDepartment(DepartmentId);
+            var masterDepartment = _masterDepartmentRepository.GetMasterDepartment(departmentId);
             return masterDepartment;
 
         }
 
-        public string GetList(SearchParam objSearchParam)
+        public string GetList(SearchParam searchParam)
         {
-            DataSet ds = _masterDepartmentRepository.GetMasterDepartmentList(objSearchParam);
+            DataSet ds = _masterDepartmentRepository.GetMasterDepartmentList(searchParam);
             var masterDepartmentJson = ds.Tables[0].ToJsonString();
             return masterDepartmentJson;
 
         }
 
-        public void Save(MasterDepartment ObjMasterDepartment, UserContext userCtx)
+        public void Save(MasterDepartment masterDepartment, UserContext userCtx)
         {
-            if (ObjMasterDepartment.Id == 0)
-                _masterDepartmentRepository.SaveMasterDepartment(ObjMasterDepartment, userCtx);
+            if (masterDepartment.Id == 0)
+                _masterDepartmentRepository.SaveMasterDepartment(masterDepartment, userCtx);
             else
-                _masterDepartmentRepository.UpdateMasterDepartment(ObjMasterDepartment, userCtx);
+                _masterDepartmentRepository.UpdateMasterDepartment(masterDepartment, userCtx);
 
         }
     }

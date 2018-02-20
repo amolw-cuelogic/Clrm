@@ -11,14 +11,14 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
 {
     public interface IMasterOrganizationRoleDataAccess
     {
-        DataSet GetMasterOrganizationRoleList(SearchParam objSearchParam);
+        DataSet GetMasterOrganizationRoleList(SearchParam SearchParam);
 
-        DataSet GetMasterOrganizationRole(int MasterOrganizationRoleId);
+        DataSet GetMasterOrganizationRole(int masterOrganizationRoleId);
 
-        void UpdateMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole);
+        void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole);
 
-        void InsertMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole);
+        void InsertMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole);
 
-        void MarkMasterOrganizationRoleInvalid(int MasterOrganizationRoleId);
+        void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId);
     }
 }

@@ -21,13 +21,13 @@ namespace Cuelogic.Clrm.Repository.OrganizationRole
             _masterOrganizationRoleDataAccess = new MasterOrganizationRoleDataAccess();
         }
 
-        public MasterOrganizationRole GetMasterOrganizationRole(int MasterOrganizationRoleId)
+        public MasterOrganizationRole GetMasterOrganizationRole(int masterOrganizationRoleId)
         {
-            if (MasterOrganizationRoleId != 0)
+            if (masterOrganizationRoleId != 0)
             {
-                var MasterOrganizationRoleDs = _masterOrganizationRoleDataAccess.GetMasterOrganizationRole(MasterOrganizationRoleId);
-                var MasterDepartmentObj = MasterOrganizationRoleDs.Tables[0].ToModel<MasterOrganizationRole>();
-                return MasterDepartmentObj;
+                var masterOrganizationRoleDs = _masterOrganizationRoleDataAccess.GetMasterOrganizationRole(masterOrganizationRoleId);
+                var masterDepartment = masterOrganizationRoleDs.Tables[0].ToModel<MasterOrganizationRole>();
+                return masterDepartment;
             }
             else
             {
@@ -35,29 +35,29 @@ namespace Cuelogic.Clrm.Repository.OrganizationRole
             }
         }
 
-        public DataSet GetMasterOrganizationRoleList(SearchParam objSearchParam)
+        public DataSet GetMasterOrganizationRoleList(SearchParam searchParam)
         {
-            var ds = _masterOrganizationRoleDataAccess.GetMasterOrganizationRoleList(objSearchParam);
+            var ds = _masterOrganizationRoleDataAccess.GetMasterOrganizationRoleList(searchParam);
             return ds;
         }
 
-        public void MarkMasterOrganizationRoleInvalid(int MasterOrganizationRoleId)
+        public void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId)
         {
-            _masterOrganizationRoleDataAccess.MarkMasterOrganizationRoleInvalid(MasterOrganizationRoleId);
+            _masterOrganizationRoleDataAccess.MarkMasterOrganizationRoleInvalid(masterOrganizationRoleId);
         }
 
-        public void SaveMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole, UserContext userCtx)
+        public void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)
         {
-            ObjMasterOrganizationRole.CreatedBy = userCtx.UserId;
-            ObjMasterOrganizationRole.CreatedOn = DateTime.Now.ToMySqlDateString();
-            _masterOrganizationRoleDataAccess.InsertMasterOrganizationRole(ObjMasterOrganizationRole);
+            masterOrganizationRole.CreatedBy = userCtx.UserId;
+            masterOrganizationRole.CreatedOn = DateTime.Now.ToMySqlDateString();
+            _masterOrganizationRoleDataAccess.InsertMasterOrganizationRole(masterOrganizationRole);
         }
 
-        public void UpdateMasterOrganizationRole(MasterOrganizationRole ObjMasterOrganizationRole, UserContext userCtx)
+        public void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)
         {
-            ObjMasterOrganizationRole.UpdatedBy = userCtx.UserId;
-            ObjMasterOrganizationRole.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterOrganizationRoleDataAccess.UpdateMasterOrganizationRole(ObjMasterOrganizationRole);
+            masterOrganizationRole.UpdatedBy = userCtx.UserId;
+            masterOrganizationRole.UpdatedOn = DateTime.Now.ToMySqlDateString();
+            _masterOrganizationRoleDataAccess.UpdateMasterOrganizationRole(masterOrganizationRole);
         }
     }
 }

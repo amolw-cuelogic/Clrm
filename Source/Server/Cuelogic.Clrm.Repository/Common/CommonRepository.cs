@@ -19,11 +19,11 @@ namespace Cuelogic.Clrm.Repository.Common
         {
             _commonDataAccess = new CommonDataAccess();
         }
-        public Employee GetEmployeeDetails(string EmailId)
+        public Employee GetEmployeeDetails(string emailId)
         {
-            var UserContextDs = _commonDataAccess.GetEmployeeDetails(EmailId);
-            var Obj = UserContextDs.Tables[0].ToModel<Employee>();
-            return Obj;
+            var userContextDs = _commonDataAccess.GetEmployeeDetails(emailId);
+            var employee = userContextDs.Tables[0].ToModel<Employee>();
+            return employee;
         }
     }
 }

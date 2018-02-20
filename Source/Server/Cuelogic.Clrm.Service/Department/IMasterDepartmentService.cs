@@ -11,12 +11,12 @@ namespace Cuelogic.Clrm.Service.Department
 {
     public interface IMasterDepartmentService
     {
-        string GetList(SearchParam objSearchParam);
+        string GetList(SearchParam searchParam);
 
-        MasterDepartment GetItem(int DepartmentId);
+        MasterDepartment GetItem(int departmentId);
 
-        void Save(MasterDepartment ObjMasterDepartment, UserContext userCtx);
+        void Save(MasterDepartment masterDepartment, UserContext userCtx);
 
-        void Delete(int DepartmentId);
+        void Delete(int departmentId);
     }
 }

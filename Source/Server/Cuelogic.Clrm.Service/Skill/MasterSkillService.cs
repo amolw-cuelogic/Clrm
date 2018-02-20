@@ -19,30 +19,30 @@ namespace Cuelogic.Clrm.Service.Skill
         {
             _IMasterSkillRepository = new MasterSkillRepository();
         }
-        public void Delete(int MasterSkillId)
+        public void Delete(int masterSkillId)
         {
-            _IMasterSkillRepository.MarkMasterSkillInvalid(MasterSkillId);
+            _IMasterSkillRepository.MarkMasterSkillInvalid(masterSkillId);
         }
 
-        public MasterSkill GetItem(int MasterSkillId)
+        public MasterSkill GetItem(int masterSkillId)
         {
-            var masterSkill = _IMasterSkillRepository.GetMasterSkill(MasterSkillId);
+            var masterSkill = _IMasterSkillRepository.GetMasterSkill(masterSkillId);
             return masterSkill;
         }
 
-        public string GetList(SearchParam objSearchParam)
+        public string GetList(SearchParam searchParam)
         {
-            DataSet ds = _IMasterSkillRepository.GetMasterSkillList(objSearchParam);
+            DataSet ds = _IMasterSkillRepository.GetMasterSkillList(searchParam);
             var masterSkillJson = ds.Tables[0].ToJsonString();
             return masterSkillJson;
         }
 
-        public void Save(MasterSkill ObjMasterSkill, UserContext userCtx)
+        public void Save(MasterSkill masterSkill, UserContext userCtx)
         {
-            if (ObjMasterSkill.Id == 0)
-                _IMasterSkillRepository.SaveMasterSkill(ObjMasterSkill, userCtx);
+            if (masterSkill.Id == 0)
+                _IMasterSkillRepository.SaveMasterSkill(masterSkill, userCtx);
             else
-                _IMasterSkillRepository.UpdateMasterSkill(ObjMasterSkill, userCtx);
+                _IMasterSkillRepository.UpdateMasterSkill(masterSkill, userCtx);
         }
     }
 }

@@ -18,13 +18,13 @@ namespace Cuelogic.Clrm.Repository.Skill
         {
             _masterSkillDataAccess = new MasterSkillDataAccess();
         }
-        public MasterSkill GetMasterSkill(int MasterSkillId)
+        public MasterSkill GetMasterSkill(int masterSkillId)
         {
-            if (MasterSkillId != 0)
+            if (masterSkillId != 0)
             {
-                var MasterSkillDs = _masterSkillDataAccess.GetMasterSkill(MasterSkillId);
-                var MasterSkillObj = MasterSkillDs.Tables[0].ToModel<MasterSkill>();
-                return MasterSkillObj;
+                var masterSkillDs = _masterSkillDataAccess.GetMasterSkill(masterSkillId);
+                var masterSkill = masterSkillDs.Tables[0].ToModel<MasterSkill>();
+                return masterSkill;
             }
             else
             {
@@ -32,29 +32,29 @@ namespace Cuelogic.Clrm.Repository.Skill
             }
         }
 
-        public DataSet GetMasterSkillList(SearchParam objSearchParam)
+        public DataSet GetMasterSkillList(SearchParam searchParam)
         {
-            var ds = _masterSkillDataAccess.GetMasterSkillList(objSearchParam);
+            var ds = _masterSkillDataAccess.GetMasterSkillList(searchParam);
             return ds;
         }
 
-        public void MarkMasterSkillInvalid(int MasterSkillId)
+        public void MarkMasterSkillInvalid(int masterSkillId)
         {
-            _masterSkillDataAccess.MarkMasterSkillInvalid(MasterSkillId);
+            _masterSkillDataAccess.MarkMasterSkillInvalid(masterSkillId);
         }
 
-        public void SaveMasterSkill(MasterSkill ObjMasterSkill, UserContext userCtx)
+        public void SaveMasterSkill(MasterSkill masterSkill, UserContext userCtx)
         {
-            ObjMasterSkill.CreatedBy = userCtx.UserId;
-            ObjMasterSkill.CreatedOn = DateTime.Now.ToMySqlDateString();
-            _masterSkillDataAccess.InsertMasterSkill(ObjMasterSkill);
+            masterSkill.CreatedBy = userCtx.UserId;
+            masterSkill.CreatedOn = DateTime.Now.ToMySqlDateString();
+            _masterSkillDataAccess.InsertMasterSkill(masterSkill);
         }
 
-        public void UpdateMasterSkill(MasterSkill ObjMasterSkill, UserContext userCtx)
+        public void UpdateMasterSkill(MasterSkill masterSkill, UserContext userCtx)
         {
-            ObjMasterSkill.UpdatedBy = userCtx.UserId;
-            ObjMasterSkill.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterSkillDataAccess.UpdateMasterSkill(ObjMasterSkill);
+            masterSkill.UpdatedBy = userCtx.UserId;
+            masterSkill.UpdatedOn = DateTime.Now.ToMySqlDateString();
+            _masterSkillDataAccess.UpdateMasterSkill(masterSkill);
         }
     }
 }

@@ -12,14 +12,14 @@ namespace Cuelogic.Clrm.Repository.Skill
 {
     public interface IMasterSkillRepository 
     {
-        DataSet GetMasterSkillList(SearchParam objSearchParam);
+        DataSet GetMasterSkillList(SearchParam searchParam);
 
-        MasterSkill GetMasterSkill(int MasterSkillId);
+        MasterSkill GetMasterSkill(int masterSkillId);
 
-        void SaveMasterSkill(MasterSkill ObjMasterSkill, UserContext userCtx);
+        void SaveMasterSkill(MasterSkill masterSkill, UserContext userCtx);
 
-        void UpdateMasterSkill(MasterSkill ObjMasterSkill, UserContext userCtx);
+        void UpdateMasterSkill(MasterSkill masterSkill, UserContext userCtx);
 
-        void MarkMasterSkillInvalid(int MasterSkillId);
+        void MarkMasterSkillInvalid(int masterSkillId);
     }
 }

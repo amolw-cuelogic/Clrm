@@ -11,14 +11,14 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
 {
     public interface IMasterSkillDataAccess
     {
-        DataSet GetMasterSkillList(SearchParam objSearchParam);
+        DataSet GetMasterSkillList(SearchParam searchParam);
 
-        DataSet GetMasterSkill(int MasterSkillId);
+        DataSet GetMasterSkill(int masterSkillId);
 
-        void UpdateMasterSkill(MasterSkill ObjMasterSkill);
+        void UpdateMasterSkill(MasterSkill masterSkill);
 
-        void InsertMasterSkill(MasterSkill ObjMasterSkill);
+        void InsertMasterSkill(MasterSkill masterSkill);
 
-        void MarkMasterSkillInvalid(int MasterSkillId);
+        void MarkMasterSkillInvalid(int masterSkillId);
     }
 }

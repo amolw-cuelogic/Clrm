@@ -19,30 +19,30 @@ namespace Cuelogic.Clrm.Service.OrganizationRole
         {
             _masterOrganizationRoleRepository = new MasterOrganizationRoleRepository();
         }
-        public void Delete(int MasterOrganizationRoleId)
+        public void Delete(int masterOrganizationRoleId)
         {
-            _masterOrganizationRoleRepository.MarkMasterOrganizationRoleInvalid(MasterOrganizationRoleId);
+            _masterOrganizationRoleRepository.MarkMasterOrganizationRoleInvalid(masterOrganizationRoleId);
         }
 
-        public MasterOrganizationRole GetItem(int MasterOrganizationRoleId)
+        public MasterOrganizationRole GetItem(int masterOrganizationRoleId)
         {
-            var masterOrganizationRole = _masterOrganizationRoleRepository.GetMasterOrganizationRole(MasterOrganizationRoleId);
+            var masterOrganizationRole = _masterOrganizationRoleRepository.GetMasterOrganizationRole(masterOrganizationRoleId);
             return masterOrganizationRole;
         }
 
-        public string GetList(SearchParam objSearchParam)
+        public string GetList(SearchParam searchParam)
         {
-            DataSet ds = _masterOrganizationRoleRepository.GetMasterOrganizationRoleList(objSearchParam);
+            DataSet ds = _masterOrganizationRoleRepository.GetMasterOrganizationRoleList(searchParam);
             var masterOrganizationRoleJson = ds.Tables[0].ToJsonString();
             return masterOrganizationRoleJson;
         }
 
-        public void Save(MasterOrganizationRole ObjMasterOrganizationRole, UserContext userCtx)
+        public void Save(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)
         {
-            if (ObjMasterOrganizationRole.Id == 0)
-                _masterOrganizationRoleRepository.SaveMasterOrganizationRole(ObjMasterOrganizationRole, userCtx);
+            if (masterOrganizationRole.Id == 0)
+                _masterOrganizationRoleRepository.SaveMasterOrganizationRole(masterOrganizationRole, userCtx);
             else
-                _masterOrganizationRoleRepository.UpdateMasterOrganizationRole(ObjMasterOrganizationRole, userCtx);
+                _masterOrganizationRoleRepository.UpdateMasterOrganizationRole(masterOrganizationRole, userCtx);
         }
     }
 }

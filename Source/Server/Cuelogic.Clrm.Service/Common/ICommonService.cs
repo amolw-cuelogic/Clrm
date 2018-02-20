@@ -9,6 +9,6 @@ namespace Cuelogic.Clrm.Service.Common
 {
     public interface ICommonService
     {
-        Employee GetEmployeeDetails(string EmailId);
+        Employee GetEmployeeDetails(string emailId);
     }
 }

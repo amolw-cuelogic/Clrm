@@ -12,14 +12,14 @@ namespace Cuelogic.Clrm.Repository.Department
 {
     public interface IMasterDepartmentRepository
     {
-        DataSet GetMasterDepartmentList(SearchParam objSearchParam);
+        DataSet GetMasterDepartmentList(SearchParam searchParam);
 
-        MasterDepartment GetMasterDepartment(int MasterDepartmentId);
+        MasterDepartment GetMasterDepartment(int masterDepartmentId);
 
-        void SaveMasterDepartment(MasterDepartment ObjMasterDepartment, UserContext userCtx);
+        void SaveMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx);
 
-        void UpdateMasterDepartment(MasterDepartment ObjMasterDepartment, UserContext userCtx);
+        void UpdateMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx);
 
-        void MarkMasterDepartmentInvalid(int MasterDepartmentId);
+        void MarkMasterDepartmentInvalid(int masterDepartmentId);
     }
 }

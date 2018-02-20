@@ -12,14 +12,14 @@ namespace Cuelogic.Clrm.Repository.Group
 {
     public interface IMasterGroupRepository
     {
-        DataSet GetIdentityGroupList(SearchParam objSearchParam);
+        DataSet GetIdentityGroupList(SearchParam searchParam);
 
-        IdentityGroup GetGroup(int GroupId);
+        IdentityGroup GetGroup(int groupId);
 
-        void SaveIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx);
+        void SaveIdentityGroup(IdentityGroup identityGroup, UserContext userCtx);
 
-        void UpdateIdentityGroup(IdentityGroup ObjIdentityGroup, UserContext userCtx);
+        void UpdateIdentityGroup(IdentityGroup identityGroup, UserContext userCtx);
 
-        void MarkGroupInvalid(int GroupId);
+        void MarkGroupInvalid(int groupId);
     }
 }

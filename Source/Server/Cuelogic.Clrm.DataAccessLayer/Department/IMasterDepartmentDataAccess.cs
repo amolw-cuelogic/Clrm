@@ -11,15 +11,15 @@ namespace Cuelogic.Clrm.DataAccessLayer.Department
 {
     public interface IMasterDepartmentDataAccess
     {
-        DataSet GetMasterDepartmentList(SearchParam objSearchParam);
+        DataSet GetMasterDepartmentList(SearchParam searchParam);
 
-        DataSet GetMasterDepartment(int MasterDepartmentId);
+        DataSet GetMasterDepartment(int masterDepartmentId);
         
-        void UpdateMasterDepartment(MasterDepartment ObjMasterDepartment);
+        void UpdateMasterDepartment(MasterDepartment masterDepartment);
         
-        void InsertMasterDepartment(MasterDepartment ObjMasterDepartment);
+        void InsertMasterDepartment(MasterDepartment masterDepartment);
         
-        void MarkMasterDepartmentInvalid(int MasterDepartmentId);
+        void MarkMasterDepartmentInvalid(int masterDepartmentId);
         
     }
 }

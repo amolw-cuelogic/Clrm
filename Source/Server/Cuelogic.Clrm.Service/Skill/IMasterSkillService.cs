@@ -11,12 +11,12 @@ namespace Cuelogic.Clrm.Service.Skill
 {
     public interface IMasterSkillService
     {
-        string GetList(SearchParam objSearchParam);
+        string GetList(SearchParam searchParam);
 
-        MasterSkill GetItem(int MasterSkillId);
+        MasterSkill GetItem(int masterSkillId);
 
-        void Save(MasterSkill ObjMasterSkill, UserContext userCtx);
+        void Save(MasterSkill masterSkill, UserContext userCtx);
 
-        void Delete(int MasterSkillId);
+        void Delete(int masterSkillId);
     }
 }

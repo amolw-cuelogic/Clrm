@@ -21,34 +21,36 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(int Show, int Page, string FilterText)
+        public IHttpActionResult Get(int show, int page, string filterText)
         {
-            var objSearchParam = new SearchParam();
-            objSearchParam.FilterText = FilterText ?? "";
-            objSearchParam.Page = Page;
-            objSearchParam.Show = Show;
-            var masterDepartmentJsonString = _masterDepartmentService.GetList(objSearchParam);
+            var searchParam = new SearchParam();
+            searchParam.FilterText = filterText ?? "";
+            searchParam.Page = page;
+            searchParam.Show = show;
+            var masterDepartmentJsonString = _masterDepartmentService.GetList(searchParam);
             return Ok(masterDepartmentJsonString);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var masterDepartmentObj = _masterDepartmentService.GetItem(id);
-            return Ok(masterDepartmentObj);
+            var masterDepartment = _masterDepartmentService.GetItem(id);
+            return Ok(masterDepartment);
         }
 
         [Route("")]
-        public void Post([FromBody]MasterDepartment objMasterDepartment)
+        public IHttpActionResult Post([FromBody]MasterDepartment masterDepartment)
         {
             var userCtx = base.GetUserContext();
-            _masterDepartmentService.Save(objMasterDepartment, userCtx);
+            _masterDepartmentService.Save(masterDepartment, userCtx);
+            return Ok();
         }
 
         [Route("{id}")]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _masterDepartmentService.Delete(id);
+            return Ok();
         }
     }
 }
