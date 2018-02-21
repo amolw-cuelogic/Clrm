@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppconfigService } from '../../service/appconfig.service'
 import * as $ from 'jquery'
@@ -12,17 +12,27 @@ import { Router } from '@angular/router'
     templateUrl: 'editemployee.component.html'
 })
 export class EditEmployeeComponent {
+    //public departmentModal;
+    //public organizationRoleModal;
+    //public groupModal;
+    //public skillModal;
 
     id: number;
     mode: string;
     baseUrl: string;
-    pageObject: any = new Object();
+    pageObject: any = new Object({
+        Employee: new Object(),
+        IdentityGroupList: new Object(),
+        MasterDepartmentList: new Object(),
+        MasterOrganizationRoleList: new Object(),
+        MasterSkillList: new Object()
+    });
     loaded: boolean = false;
     apiController: string = "api/Employee";
 
     disabled = false;
 
-    ngOnInit() {
+    ngAfterContentInit() {
         this.actroute.params.subscribe(params => {
             this.id = +params['id'];
             this.mode = params['mode'];
@@ -49,8 +59,7 @@ export class EditEmployeeComponent {
                     model.Message = "Saved Successfully";
                     this.compSubSrv.OpenBootstrapModal(model);
                 }
-                else
-                {
+                else {
                     this.router.navigate(["/employee"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
@@ -64,7 +73,7 @@ export class EditEmployeeComponent {
 
 
     LoadEditPage(id: any) {
-        this.httpClient.get(this.baseUrl + this.apiController + "/"+id
+        this.httpClient.get(this.baseUrl + this.apiController + "/" + id
         ).subscribe(
             m => {
                 this.pageObject = m;
@@ -76,7 +85,7 @@ export class EditEmployeeComponent {
             }
             );
     }
-    
+
 
     constructor(private httpClient: HttpClient, private serviceAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,

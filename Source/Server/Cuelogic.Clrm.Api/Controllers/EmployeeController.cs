@@ -30,10 +30,10 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            _employeeService.GetEmployee(id);
-            return "value";
+            var employeeVm = _employeeService.GetEmployee(id);
+            return Ok(employeeVm);
         }
 
         [Route("")]

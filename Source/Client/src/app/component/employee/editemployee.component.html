@@ -2,44 +2,177 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="Disabled" type="button" class="btn btn-primary" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
-        <button routerLink="/employee" type="button" class="btn btn-primary">Back</button>
+        <button [hidden]="Disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button routerLink="/employee" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
         <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
             <div class="col-sm-12 col-md-9 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Department </strong>
+                        <strong>Employee </strong>
                         <small>Details</small>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-
-                            <div class="col-sm-12 col-md-6 col-xs-12">
-                                <form form #formCtrl="ngForm">
+                        <form form #formCtrl="ngForm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
-                                        <ngx-label value="Department Name"></ngx-label>
-                                        <input type="text" #Skill="ngModel" [(ngModel)]="PageObject.Skill" class="form-control" required name="PageObject.Skill" placeholder="Enter Skill">
-                                        <div *ngIf="Skill.errors && (Skill.dirty || Skill.touched)" class="error">
-                                            Skill is required
+                                        <ngx-label value="First Name"></ngx-label>
+                                        <input type="text" #FirstName="ngModel" [(ngModel)]="pageObject.Employee.FirstName" class="form-control" required name="FirstName" placeholder="Enter First Name" />
+                                        <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)" class="error">
+                                            First Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MiddleName</label>
+                                        <input type="text" [(ngModel)]="pageObject.Employee.MiddleName" class="form-control" name="MiddleName" placeholder="Enter Middle Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Last Name"></ngx-label>
+                                        <input type="text" #LastName="ngModel" [(ngModel)]="pageObject.Employee.LastName" class="form-control" required name="LastName" placeholder="Enter Last Name" />
+                                        <div *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="error">
+                                            Last Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Employee Id"></ngx-label>
+                                        <input type="text" #OrgEmpId="ngModel" [(ngModel)]="pageObject.Employee.OrgEmpId" class="form-control" required name="OrgEmpId" placeholder="Enter Employee Id" />
+                                        <div *ngIf="OrgEmpId.errors && (OrgEmpId.dirty || OrgEmpId.touched)" class="error">
+                                            Employee Id is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Is Valid Skill</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
-                                            <input type="checkbox" class="switch-input" [(ngModel)]="PageObject.IsValid" name="PageObject.IsValid">
+                                            <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.Employee.IsValid" name="IsValid">
                                             <span class="switch-label"></span>
                                             <span class="switch-handle"></span>
                                         </label>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Joining Date"></ngx-label>
+                                        <input type="date" #JoiningDate="ngModel" [(ngModel)]="pageObject.Employee.JoiningDate" class="form-control" required name="JoiningDate" placeholder="Enter Joining Date" />
+                                        <div *ngIf="JoiningDate.errors && (JoiningDate.dirty || JoiningDate.touched)" class="error">
+                                            Joining Date is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Leaving Date</label>
+                                        <input type="date" [(ngModel)]="pageObject.Employee.LeavingDate" class="form-control" name="LeavingDate" placeholder="Enter Leaving Date" />
 
-                            <div class="col-sm-12 col-md-6 col-xs-12">
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Contact Number"></ngx-label>
+                                        <input type="text" #ContactNum="ngModel" [(ngModel)]="pageObject.Employee.ContactNum" class="form-control" required name="ContactNum" placeholder="Enter Contact Number" />
+                                        <div *ngIf="ContactNum.errors && (ContactNum.dirty || ContactNum.touched)" class="error">
+                                            Contact Number is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Email Id"></ngx-label>
+                                        <input type="text" #Email="ngModel" [(ngModel)]="pageObject.Employee.Email" class="form-control" required name="Email" placeholder="Enter Email Id" />
+                                        <div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
+                                            Email Id is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <ngx-label value="Skills"></ngx-label>
+                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                            <option value="4">Option #4</option>
+                                            <option value="5">Option #5</option>
+                                            <option value="6">Option #6</option>
+                                            <option value="7">Option #7</option>
+                                            <option value="8">Option #8</option>
+                                            <option value="9">Option #9</option>
+                                            <option value="10">Option #10</option>
+                                        </select>
+                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
+                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
+                                            <button style="width:50%"  data-toggle="modal" (click)="skillModal.show()" type="button" class="btn btn-outline-success">Add</button>
+                                        </div>
+                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
+                                            Email Id is required
+                                        </div>-->
+                                    </div>
 
+                                    <div class="form-group">
+                                        <ngx-label value="Group"></ngx-label>
+                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                            <option value="4">Option #4</option>
+                                            <option value="5">Option #5</option>
+                                            <option value="6">Option #6</option>
+                                            <option value="7">Option #7</option>
+                                            <option value="8">Option #8</option>
+                                            <option value="9">Option #9</option>
+                                            <option value="10">Option #10</option>
+                                        </select>
+                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
+                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
+                                            <button data-toggle="modal" (click)="groupModal.show()" style="width:50%" type="button" class="btn btn-outline-success">Add</button>
+                                        </div>
+                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
+                                            Email Id is required
+                                        </div>-->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Organization Role"></ngx-label>
+                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                            <option value="4">Option #4</option>
+                                            <option value="5">Option #5</option>
+                                            <option value="6">Option #6</option>
+                                            <option value="7">Option #7</option>
+                                            <option value="8">Option #8</option>
+                                            <option value="9">Option #9</option>
+                                            <option value="10">Option #10</option>
+                                        </select>
+                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
+                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
+                                            <button data-toggle="modal" (click)="organizationRoleModal.show()" style="width:50%" type="button" class="btn btn-outline-success">Add</button>
+                                        </div>
+                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
+                                            Email Id is required
+                                        </div>-->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Department"></ngx-label>
+                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                            <option value="4">Option #4</option>
+                                            <option value="5">Option #5</option>
+                                            <option value="6">Option #6</option>
+                                            <option value="7">Option #7</option>
+                                            <option value="8">Option #8</option>
+                                            <option value="9">Option #9</option>
+                                            <option value="10">Option #10</option>
+                                        </select>
+                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
+                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
+                                            <button data-toggle="modal" (click)="departmentModal.show()" style="width:50%" type="button" class="btn btn-outline-success">Add</button>
+                                        </div>
+                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
+            Email Id is required
+        </div>-->
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -56,7 +189,7 @@
                                     Created By
                                 </td>
                                 <td>
-                                    {{pageObject.CreatedByName}}
+                                    {{pageObject.Employee.CreatedByName}}
                                 </td>
                             </tr>
                             <tr>
@@ -64,7 +197,7 @@
                                     Created On
                                 </td>
                                 <td>
-                                    {{pageObject.CreatedOn | date :  "y/MM/dd"}}
+                                    {{pageObject.Employee.CreatedOn | date :  "y/MM/dd"}}
                                 </td>
                             </tr>
                             <tr>
@@ -72,7 +205,7 @@
                                     Updated By
                                 </td>
                                 <td>
-                                    {{pageObject.UpdatedByName}}
+                                    {{pageObject.Employee.UpdatedByName}}
                                 </td>
                             </tr>
                             <tr>
@@ -80,7 +213,7 @@
                                     Updated On
                                 </td>
                                 <td>
-                                    {{pageObject.UpdatedOn | date :  "y/MM/dd"}}
+                                    {{pageObject.Employee.UpdatedOn | date :  "y/MM/dd"}}
                                 </td>
                             </tr>
                         </table>
@@ -91,3 +224,83 @@
     </div>
 </div>
 
+<!-- MASTER SKILLS -->
+<div bsModal #skillModal="bs-modal" class="modal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Master Skills</h4>
+                <button type="button" class="close" (click)="skillModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="skillModal.hide()">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MASTER GROUP -->
+<div bsModal #groupModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Master Group</h4>
+                <button type="button" class="close" (click)="groupModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="groupModal.hide()">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ORGANIZATION ROLE -->
+<div bsModal #organizationRoleModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Master Organization Role</h4>
+                <button type="button" class="close" (click)="organizationRoleModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="organizationRoleModal.hide()">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DEPARTMENT -->
+<div bsModal #departmentModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Master Department</h4>
+                <button type="button" class="close" (click)="departmentModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="departmentModal.hide()">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
