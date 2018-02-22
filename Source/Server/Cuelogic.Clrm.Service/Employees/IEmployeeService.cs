@@ -1,4 +1,5 @@
-﻿using Cuelogic.Clrm.Model.CommonModel;
+﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,10 @@ namespace Cuelogic.Clrm.Service.Employees
     public interface IEmployeeService
     {
         string GetList(SearchParam searchParam);
-        EmployeeVm GetEmployee(int employeeId);
+        EmployeeVm GetItem(int employeeId);
+
+        void Save(EmployeeVm masterDepartment, UserContext userCtx);
+
+        void Delete(int departmentId);
     }
 }

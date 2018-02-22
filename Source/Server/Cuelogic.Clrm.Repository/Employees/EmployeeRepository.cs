@@ -43,5 +43,12 @@ namespace Cuelogic.Clrm.Repository.Employees
             employeeVm.MasterOrganizationRoleList = ds.Tables[3].ToList<MasterOrganizationRole>();
             return employeeVm;
         }
+
+        public void UpdateEmployee(EmployeeVm employeeVm, UserContext userContext)
+        {
+            employeeVm.Employee.UpdatedBy = userContext.UserId;
+            employeeVm.Employee.UpdatedOn = DateTime.Now.ToMySqlDateString();
+            _employeeDataAccess.UpdateEmployee(employeeVm.Employee);
+        }
     }
 }

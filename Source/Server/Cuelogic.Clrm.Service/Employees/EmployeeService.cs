@@ -19,7 +19,12 @@ namespace Cuelogic.Clrm.Service.Employees
             _employeeRepository = new EmployeeRepository();
         }
 
-        public EmployeeVm GetEmployee(int employeeId)
+        public void Delete(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EmployeeVm GetItem(int employeeId)
         {
             var employeeVm = new EmployeeVm();
             var virtualModel = _employeeRepository.GetMasterListForEmployees();
@@ -35,12 +40,18 @@ namespace Cuelogic.Clrm.Service.Employees
 
             return employeeVm;
         }
-
+        
         public string GetList(SearchParam searchParam)
         {
             DataSet ds = _employeeRepository.GetEmployeeList(searchParam);
             var employeeJson = ds.Tables[0].ToJsonString();
             return employeeJson;
+        }
+
+        public void Save(EmployeeVm employeeVm, UserContext userCtx)
+        {
+            if (employeeVm.Employee.Id != 0)
+                _employeeRepository.UpdateEmployee(employeeVm, userCtx);
         }
     }
 }

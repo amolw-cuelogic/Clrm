@@ -65,6 +65,7 @@ namespace Cuelogic.Clrm.Common
             public const string spEmployee_GetList = "spEmployee_GetList";
             public const string spEmployeeVm_GetValidList = "spEmployeeVm_GetValidList";
             public const string spEmployee_GetById = "spEmployee_GetById";
+            public const string spEmployee_Update = "spEmployee_Update";
 
             #endregion
         }

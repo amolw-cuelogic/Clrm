@@ -1,4 +1,5 @@
-﻿using Cuelogic.Clrm.Model.CommonModel;
+﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace Cuelogic.Clrm.Repository.Employees
         DataSet GetEmployeeList(SearchParam searchParam);
         EmployeeVm GetMasterListForEmployees();
         Employee GetEmployee(int employeeId);
+        void UpdateEmployee(EmployeeVm employeeVm, UserContext userContext);
     }
 }

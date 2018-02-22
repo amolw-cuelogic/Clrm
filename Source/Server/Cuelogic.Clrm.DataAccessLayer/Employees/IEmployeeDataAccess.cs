@@ -1,4 +1,5 @@
 ﻿using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,5 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Employees
         DataSet GetMasterListForEmployees();
 
         DataSet GetEmployee(int employeeId);
+
+        void UpdateEmployee(Employee employee);
     }
 }

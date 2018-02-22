@@ -1,22 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cuelogic.Clrm.Api.Controllers;
-using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Net;
-using System.Web;
-using System.Net.Http;
-using System.Web.Http.Hosting;
-using System.Web.Http;
-using System.Security.Claims;
-using Moq;
-using System.Collections.Generic;
-using System.Threading;
-using NSubstitute;
-using System.Security.Principal;
 using Cuelogic.Clrm.Service.Group;
 
 namespace Cuelogic.Clrm.Api.Tests.Controllers

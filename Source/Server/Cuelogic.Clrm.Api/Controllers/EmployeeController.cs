@@ -33,13 +33,15 @@ namespace Cuelogic.Clrm.Api.Controllers
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var employeeVm = _employeeService.GetEmployee(id);
+            var employeeVm = _employeeService.GetItem(id);
             return Ok(employeeVm);
         }
 
         [Route("")]
         public void Post([FromBody]EmployeeVm employeeVm)
         {
+            var userContext = base.GetUserContext();
+            _employeeService.Save(employeeVm, userContext);
         }
         
         [Route("{id}")]
