@@ -97,7 +97,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','0000-00-00','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-02',NULL,NULL),(2,'Vivek','-','Phadke','CUE355','0000-00-00',NULL,'9595519028','Vivek.Phadke@cuelogic.com','',1,'2018-02-03',NULL,NULL);
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-01-02','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-02-22'),(2,'Amol h','Maruti','Wabale','CUE355','2018-02-01','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-03',1,'2018-02-22');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -762,6 +762,54 @@ BEGIN
 		a.CreatedOn like concat('%', filterText,'%')
 	limit 
 		recordFrom, recordTill;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_Update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_Update`(
+	IN employeeId int(11),
+	IN firstName varchar(150),
+    IN middleName varchar(150),
+    IN lastName varchar(150),
+    IN orgEmpId varchar(150),
+    IN joiningDate date,
+    IN leavingDate date,
+    IN contactNum varchar(50),
+    IN email varchar(50),
+    IN isValid bit,
+    IN updatedBy int(11),
+    IN updatedOn date
+)
+BEGIN
+	UPDATE 
+		Employee 
+    SET
+		FirstName = firstName,
+		MiddleName = middleName,
+		LastName=lastName,
+		OrgEmpId =orgEmpId,
+		JoiningDate=joiningDate,
+		LeavingDate = leavingDate,
+		ContactNum = contactNum,
+		Email =email,
+		IsValid = isValid,
+		UpdatedBy =updatedBy,
+		UpdatedOn = updatedOn
+	where
+		Id = employeeId;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1544,4 +1592,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-22 17:18:00
+-- Dump completed on 2018-02-22 18:55:54
