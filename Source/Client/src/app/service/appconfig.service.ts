@@ -56,8 +56,6 @@ export class AppconfigService {
 
     AdjustBottomHeight() {
         var topTableOffSet = $('.dynamicBottomDiv').offset().top;
-        //var topFooterOffSet = $('.app-footer').offset().top;
-
         var winHt = $(window).height();
         var footerHeight = 50;
         var topFooterOffSet = winHt - footerHeight;

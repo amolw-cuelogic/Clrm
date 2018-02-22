@@ -79,22 +79,38 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
-                                        <ngx-label value="Skills"></ngx-label>
-                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                            <option value="4">Option #4</option>
-                                            <option value="5">Option #5</option>
-                                            <option value="6">Option #6</option>
-                                            <option value="7">Option #7</option>
-                                            <option value="8">Option #8</option>
-                                            <option value="9">Option #9</option>
-                                            <option value="10">Option #10</option>
-                                        </select>
-                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
-                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
-                                            <button style="width:50%"  data-toggle="modal" (click)="skillModal.show()" type="button" class="btn btn-outline-success">Add</button>
+                                        <ngx-label value="Skills"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenSkillModal('skillModal')">Add Skills</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="">
+                                                <tr *ngIf="pageObject.Employee.EmployeeSkillList.length != 0">
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Skill Title
+                                                    </th>
+                                                    <th>Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeSkillList;let i=index">
+                                                        <td>
+                                                            <i (click)="RemoveSkill(i)" class="icon-close"></i>
+                                                        </td>
+                                                        <td>
+                                                            {{item.SkillName}}
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="item.IsValid" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeSkillList.length == 0">
+                                                        <td>
+                                                            No Skills Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
                                             Email Id is required
@@ -102,22 +118,38 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <ngx-label value="Group"></ngx-label>
-                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                            <option value="4">Option #4</option>
-                                            <option value="5">Option #5</option>
-                                            <option value="6">Option #6</option>
-                                            <option value="7">Option #7</option>
-                                            <option value="8">Option #8</option>
-                                            <option value="9">Option #9</option>
-                                            <option value="10">Option #10</option>
-                                        </select>
-                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
-                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
-                                            <button data-toggle="modal" (click)="groupModal.show()" style="width:50%" type="button" class="btn btn-outline-success">Add</button>
+                                        <ngx-label value="Group"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenGroupModal('groupModal')">Add Group</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="">
+                                                <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length != 0">
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Group Title
+                                                    </th>
+                                                    <th>Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
+                                                        <td>
+                                                            <i (click)="RemoveGroup(i)" class="icon-close"></i>
+                                                        </td>
+                                                        <td>
+                                                            {{item.GroupName}}
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="item.IsValid" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0">
+                                                        <td>
+                                                            No Groups Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
                                             Email Id is required
@@ -125,22 +157,38 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <ngx-label value="Organization Role"></ngx-label>
-                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                            <option value="4">Option #4</option>
-                                            <option value="5">Option #5</option>
-                                            <option value="6">Option #6</option>
-                                            <option value="7">Option #7</option>
-                                            <option value="8">Option #8</option>
-                                            <option value="9">Option #9</option>
-                                            <option value="10">Option #10</option>
-                                        </select>
-                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
-                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
-                                            <button data-toggle="modal" (click)="organizationRoleModal.show()" style="width:50%" type="button" class="btn btn-outline-success">Add</button>
+                                        <ngx-label value="Organization Role"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenOganizationRoleModal('organizationRoleModal')">Add Role</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="">
+                                                <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length != 0">
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Role
+                                                    </th>
+                                                    <th>Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
+                                                        <td>
+                                                            <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
+                                                        </td>
+                                                        <td>
+                                                            {{item.RoleName}}
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="item.IsValid" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0">
+                                                        <td>
+                                                            No Oganization Role Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
                                             Email Id is required
@@ -148,22 +196,38 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <ngx-label value="Department"></ngx-label>
-                                        <select id="multiple-select" name="multiple-select" class="form-control" size="4" multiple="">
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                            <option value="4">Option #4</option>
-                                            <option value="5">Option #5</option>
-                                            <option value="6">Option #6</option>
-                                            <option value="7">Option #7</option>
-                                            <option value="8">Option #8</option>
-                                            <option value="9">Option #9</option>
-                                            <option value="10">Option #10</option>
-                                        </select>
-                                        <div style="width:100%" class="btn-group btn-group-sm com-md-12" role="group" aria-label="Small button group">
-                                            <button style="width:50%" type="button" class="btn btn-outline-danger">Remove</button>
-                                            <button data-toggle="modal" (click)="departmentModal.show()" style="width:50%" type="button" class="btn btn-outline-success">Add</button>
+                                        <ngx-label value="Department"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenDepartmentModal('departmentModal')">Add Department</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="">
+                                                <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length != 0">
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Role
+                                                    </th>
+                                                    <th>Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
+                                                        <td>
+                                                            <i (click)="RemoveDepartment(i)" class="icon-close"></i>
+                                                        </td>
+                                                        <td>
+                                                            {{item.DepartmentName}}
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="item.IsValid" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0">
+                                                        <td>
+                                                            No Department Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
             Email Id is required
@@ -176,8 +240,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-sm-12 col-md-3 col-xs-12">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-xs-12">
@@ -223,83 +285,152 @@
         </div>
     </div>
 </div>
-
-<!-- MASTER SKILLS -->
-<div bsModal #skillModal="bs-modal" class="modal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Master Skills</h4>
-                <button type="button" class="close" (click)="skillModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="skillModal.hide()">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- MASTER GROUP -->
-<div bsModal #groupModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Master Group</h4>
-                <button type="button" class="close" (click)="groupModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="groupModal.hide()">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<div id="idDivModalCollection">
+    <!-- MASTER SKILLS -->
+    <div id="skillModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Skills</h4>
+                    <button type="button" class="close" (click)="CloseModal('skillModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Skill</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.MasterSkillList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.Skill}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('skillModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddSkills('skillModal')">Add</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- ORGANIZATION ROLE -->
-<div bsModal #organizationRoleModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Master Organization Role</h4>
-                <button type="button" class="close" (click)="organizationRoleModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="organizationRoleModal.hide()">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+    <!-- MASTER GROUP -->
+    <div id="groupModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Group</h4>
+                    <button type="button" class="close" (click)="CloseModal('groupModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Group</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.IdentityGroupList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.GroupName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('groupModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddGroups('groupModal')">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- DEPARTMENT -->
-<div bsModal #departmentModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Master Department</h4>
-                <button type="button" class="close" (click)="departmentModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <!-- ORGANIZATION ROLE -->
+    <div id="organizationRoleModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Organization Role</h4>
+                    <button type="button" class="close" (click)="CloseModal('organizationRoleModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Group</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.MasterOrganizationRoleList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.Role}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('organizationRoleModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddOganizationRoles('organizationRoleModal')">Save changes</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="departmentModal.hide()">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+    <!-- DEPARTMENT -->
+    <div id="departmentModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Department</h4>
+                    <button type="button" class="close" (click)="CloseModal('departmentModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Department</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.MasterDepartmentList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.DepartmentName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('departmentModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddDepartments('departmentModal')">Save changes</button>
+                </div>
             </div>
         </div>
     </div>

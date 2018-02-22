@@ -1,4 +1,5 @@
 ﻿using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service.Employees;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]EmployeeVm employeeVm)
         {
         }
         

@@ -33,6 +33,7 @@ import { InterceptorService } from './service/interceptor.service';
 import { AuthGuardService } from './service/authguard.service';
 import { ErrorhandlerService } from './service/errorhandler.service'
 import { ComponentSubscriptionService } from './service/componentsubscription.service'
+import { CommonService } from './service/common.service'
 
 //Social login
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
@@ -84,6 +85,7 @@ export function provideConfig() {
         AppconfigService,
         FormMode,
         ComponentSubscriptionService,
+        CommonService,
         {
             provide: AuthServiceConfig,
             useFactory: provideConfig

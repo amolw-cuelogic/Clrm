@@ -12,6 +12,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         {
             Id = 0;
             DepartmentId = 0;
+            DepartmentName = "";
             EmployeeId = 0;
             IsValid = false;
             CreatedBy = 0;
@@ -23,6 +24,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         }
         public int Id { get; set; }
         public int DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
         public int EmployeeId { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }
