@@ -62,3 +62,18 @@ input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
     background-color:#ddd;
     border-bottom:1px solid grey;
 }
+
+.CustomeTable, .CustomeTable td, .CustomeTable tr, .CustomeTable th{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+    padding:2px;
+    padding-left:5px;
+}
+
+.CustomeTable th{
+    background-color:#ddd;
+}
+
+.AlignCenter{
+    text-align:center;
+}
