@@ -14,7 +14,9 @@ namespace Cuelogic.Clrm.Repository.Employees
     {
         DataSet GetEmployeeList(SearchParam searchParam);
         EmployeeVm GetMasterListForEmployees();
+        Employee GetChildListForEmployees(int employeeId);
         Employee GetEmployee(int employeeId);
-        void UpdateEmployee(EmployeeVm employeeVm, UserContext userContext);
+        void AddOrUpdateEmployee(EmployeeVm employeeVm, UserContext userContext);
+        void MarkEmployeeInvalid(int employeeId);
     }
 }

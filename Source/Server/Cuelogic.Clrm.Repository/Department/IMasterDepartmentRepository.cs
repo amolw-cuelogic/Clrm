@@ -13,13 +13,9 @@ namespace Cuelogic.Clrm.Repository.Department
     public interface IMasterDepartmentRepository
     {
         DataSet GetMasterDepartmentList(SearchParam searchParam);
-
         MasterDepartment GetMasterDepartment(int masterDepartmentId);
-
         void SaveMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx);
-
         void UpdateMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx);
-
         void MarkMasterDepartmentInvalid(int masterDepartmentId);
     }
 }

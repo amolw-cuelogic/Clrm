@@ -13,9 +13,7 @@ namespace Cuelogic.Clrm.Service.Employees
     {
         string GetList(SearchParam searchParam);
         EmployeeVm GetItem(int employeeId);
-
-        void Save(EmployeeVm masterDepartment, UserContext userCtx);
-
-        void Delete(int departmentId);
+        void Save(EmployeeVm employeeVm, UserContext userCtx);
+        void Delete(int employeeId);
     }
 }

@@ -47,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
+            _employeeService.Delete(id);
         }
     }
 }

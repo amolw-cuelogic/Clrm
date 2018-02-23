@@ -62,10 +62,17 @@ namespace Cuelogic.Clrm.Common
 
             #region EMPLOYEE
 
-            public const string spEmployee_GetList = "spEmployee_GetList";
-            public const string spEmployeeVm_GetValidList = "spEmployeeVm_GetValidList";
             public const string spEmployee_GetById = "spEmployee_GetById";
-            public const string spEmployee_Update = "spEmployee_Update";
+            public const string spEmployee_GetList = "spEmployee_GetList";
+            public const string spEmployee_GetMasterValidList = "spEmployee_GetMasterValidList";
+            public const string spEmployee_GetChildValidList = "spEmployee_GetChildValidList";
+            public const string spEmployee_AddOrUpdate = "spEmployee_AddOrUpdate";
+            public const string spEmployeeSkill_BulkAddOrUpdate = "spEmployeeSkill_BulkAddOrUpdate";
+            public const string spEmployeeDepartment_BulkAddOrUpdate = "spEmployeeDepartment_BulkAddOrUpdate";
+            public const string spEmployeeOrganizationRole_BulkAddOrUpdate = "spEmployeeOrganizationRole_BulkAddOrUpdate";
+            public const string spEmployeeGroup_BulkAddOrUpdate = "spEmployeeGroup_BulkAddOrUpdate";
+            public const string spEmployee_GetLatestId = "spEmployee_GetLatestId";
+            public const string spEmployee_MarkInvalid = "spEmployee_MarkInvalid";
 
             #endregion
         }

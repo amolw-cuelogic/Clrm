@@ -2,7 +2,7 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="Disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
         <button routerLink="/employee" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
@@ -93,9 +93,9 @@
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.EmployeeSkillList.length != 0">
-                                                    <th class="AlignCenter">
+                                                    <!--<th class="AlignCenter">
                                                         Action
-                                                    </th>
+                                                    </th>-->
                                                     <th style="width:60%">
                                                         Skill Title
                                                     </th>
@@ -103,9 +103,9 @@
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index">
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <i (click)="RemoveSkill(i)" class="icon-close"></i>
-                                                        </td>
+                                                        </td>-->
                                                         <td>
                                                             {{skillItem.SkillName}}
                                                         </td>
@@ -132,9 +132,9 @@
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length != 0">
-                                                    <th class="AlignCenter">
+                                                    <!--<th class="AlignCenter">
                                                         Action
-                                                    </th>
+                                                    </th>-->
                                                     <th style="width:60%">
                                                         Group Title
                                                     </th>
@@ -142,9 +142,9 @@
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <i (click)="RemoveGroup(i)" class="icon-close"></i>
-                                                        </td>
+                                                        </td>-->
                                                         <td>
                                                             {{item.GroupName}}
                                                         </td>
@@ -171,9 +171,9 @@
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length != 0">
-                                                    <th class="AlignCenter">
+                                                    <!--<th class="AlignCenter">
                                                         Action
-                                                    </th>
+                                                    </th>-->
                                                     <th style="width:60%">
                                                         Role
                                                     </th>
@@ -181,9 +181,9 @@
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
-                                                        </td>
+                                                        </td>-->
                                                         <td>
                                                             {{item.RoleName}}
                                                         </td>
@@ -210,9 +210,9 @@
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length != 0">
-                                                    <th class="AlignCenter">
+                                                    <!--<th class="AlignCenter">
                                                         Action
-                                                    </th>
+                                                    </th>-->
                                                     <th style="width:60%">
                                                         Role
                                                     </th>
@@ -220,9 +220,9 @@
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <i (click)="RemoveDepartment(i)" class="icon-close"></i>
-                                                        </td>
+                                                        </td>-->
                                                         <td>
                                                             {{item.DepartmentName}}
                                                         </td>

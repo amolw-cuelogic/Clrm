@@ -19,9 +19,9 @@ namespace Cuelogic.Clrm.Service.Employees
             _employeeRepository = new EmployeeRepository();
         }
 
-        public void Delete(int departmentId)
+        public void Delete(int employeeId)
         {
-            throw new NotImplementedException();
+            _employeeRepository.MarkEmployeeInvalid(employeeId);
         }
 
         public EmployeeVm GetItem(int employeeId)
@@ -33,14 +33,19 @@ namespace Cuelogic.Clrm.Service.Employees
             employeeVm.MasterSkillList = virtualModel.MasterSkillList;
             employeeVm.MasterOrganizationRoleList = virtualModel.MasterOrganizationRoleList;
 
-            if(employeeId !=0)
+            if (employeeId != 0)
             {
                 employeeVm.Employee = _employeeRepository.GetEmployee(employeeId);
+                var childList = _employeeRepository.GetChildListForEmployees(employeeId);
+                employeeVm.Employee.EmployeeSkillList = childList.EmployeeSkillList;
+                employeeVm.Employee.EmployeeDepartmentList = childList.EmployeeDepartmentList;
+                employeeVm.Employee.EmployeeOrganizationRoleList = childList.EmployeeOrganizationRoleList;
+                employeeVm.Employee.IdentityEmployeeGroupList = childList.IdentityEmployeeGroupList;
             }
 
             return employeeVm;
         }
-        
+
         public string GetList(SearchParam searchParam)
         {
             DataSet ds = _employeeRepository.GetEmployeeList(searchParam);
@@ -50,8 +55,7 @@ namespace Cuelogic.Clrm.Service.Employees
 
         public void Save(EmployeeVm employeeVm, UserContext userCtx)
         {
-            if (employeeVm.Employee.Id != 0)
-                _employeeRepository.UpdateEmployee(employeeVm, userCtx);
+            _employeeRepository.AddOrUpdateEmployee(employeeVm, userCtx);
         }
     }
 }

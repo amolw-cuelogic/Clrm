@@ -20,6 +20,17 @@ namespace Cuelogic.Clrm.Repository.Employees
             _employeeDataAccess = new EmployeeDataAccess();
         }
 
+        public Employee GetChildListForEmployees(int employeeId)
+        {
+            var employee = new Employee();
+            var ds = _employeeDataAccess.GetChildListForEmployees(employeeId);
+            employee.IdentityEmployeeGroupList = ds.Tables[0].ToList<IdentityEmployeeGroup>();
+            employee.EmployeeDepartmentList = ds.Tables[1].ToList<EmployeeDepartment>();
+            employee.EmployeeSkillList = ds.Tables[2].ToList<EmployeeSkill>();
+            employee.EmployeeOrganizationRoleList = ds.Tables[3].ToList<EmployeeOrganizationRole>();
+            return employee;
+        }
+
         public Employee GetEmployee(int employeeId)
         {
             var ds = _employeeDataAccess.GetEmployee(employeeId);
@@ -44,11 +55,43 @@ namespace Cuelogic.Clrm.Repository.Employees
             return employeeVm;
         }
 
-        public void UpdateEmployee(EmployeeVm employeeVm, UserContext userContext)
+        public void AddOrUpdateEmployee(EmployeeVm employeeVm, UserContext userContext)
         {
             employeeVm.Employee.UpdatedBy = userContext.UserId;
             employeeVm.Employee.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _employeeDataAccess.UpdateEmployee(employeeVm.Employee);
+            employeeVm.Employee.CreatedBy = userContext.UserId;
+            employeeVm.Employee.CreatedOn = DateTime.Now.ToMySqlDateString();
+            _employeeDataAccess.AddOrUpdateEmployee(employeeVm.Employee);
+
+            if(employeeVm.Employee.Id ==0)
+            {
+                var Id = _employeeDataAccess.GetLatestId().Tables[0].ToId();
+                foreach (var item in employeeVm.Employee.EmployeeSkillList)
+                    item.EmployeeId = Id;
+                foreach (var item in employeeVm.Employee.EmployeeDepartmentList)
+                    item.EmployeeId = Id;
+                foreach (var item in employeeVm.Employee.EmployeeOrganizationRoleList)
+                    item.EmployeeId = Id;
+                foreach (var item in employeeVm.Employee.IdentityEmployeeGroupList)
+                    item.EmployeeId = Id;
+            }
+
+            var skillListXml = Helper.ObjectToXml(employeeVm.Employee.EmployeeSkillList);
+            _employeeDataAccess.AddOrUpdateEmployeeSkill(skillListXml, userContext.UserId);
+
+            var departmentListXml = Helper.ObjectToXml(employeeVm.Employee.EmployeeDepartmentList);
+            _employeeDataAccess.AddOrUpdateEmployeeDepartment(departmentListXml, userContext.UserId);
+
+            var organizationRoleListXml = Helper.ObjectToXml(employeeVm.Employee.EmployeeOrganizationRoleList);
+            _employeeDataAccess.AddOrUpdateEmployeeOrganizationRole(organizationRoleListXml, userContext.UserId);
+
+            var groupListXml = Helper.ObjectToXml(employeeVm.Employee.IdentityEmployeeGroupList);
+            _employeeDataAccess.AddOrUpdateEmployeeGroup(groupListXml, userContext.UserId);
+        }
+
+        public void MarkEmployeeInvalid(int employeeId)
+        {
+            _employeeDataAccess.MarkEmployeeInvalid(employeeId);
         }
     }
 }
