@@ -84,6 +84,15 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterProjectRole_MarkInvalid = "spMasterProjectRole_MarkInvalid";
 
             #endregion
+
+            #region MASTER PROJECT TYPE
+
+            public const string spMasterProjectType_AddOrUpdate = "spMasterProjectType_AddOrUpdate";
+            public const string spMasterProjectType_Get = "spMasterProjectType_Get";
+            public const string spMasterProjectType_GetList = "spMasterProjectType_GetList";
+            public const string spMasterProjectType_MarkInvalid = "spMasterProjectType_MarkInvalid";
+
+            #endregion
         }
     }
 }

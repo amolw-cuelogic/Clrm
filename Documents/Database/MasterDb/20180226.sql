@@ -97,7 +97,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'John','','doe','cue123','2018-02-02',NULL,'123','john@cuelogic.com','',1,'2018-02-02',1,'2018-02-26'),(2,'Vivek','','Phadke','CUE001','2018-02-02','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-03',1,'2018-02-23'),(3,'John','','doe','cue123','2018-02-01',NULL,'123','john@cuelogic.com','',1,'2018-02-02',1,'2018-02-23'),(4,'John f','','Doe','Cue123','2018-02-01',NULL,'12345678','john@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(5,'tnhjfg','fghj','fghj','fghjfg','2018-02-23',NULL,'3476345','asdnkjas@wed.wed','',1,'2018-02-23',1,'2018-02-23'),(6,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(7,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',NULL,NULL),(8,'Dummy','Dummy','Dummy','Dummy','2018-02-16',NULL,'995454','amol.wabale@cuelogic.com','\0',1,'2018-02-23',1,'2018-02-23'),(9,'fgh','','fg','fgh','2018-02-01',NULL,'4545','gh@edgrf.er','\0',1,'2018-02-26',NULL,NULL);
+INSERT INTO `Employee` VALUES (1,'John','','doe','cue123','2018-02-02',NULL,'123','john@cuelogic.com','',1,'2018-02-02',2,'2018-02-26'),(2,'Vivek','','Phadke','CUE001','2018-02-02','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-03',2,'2018-02-26'),(3,'John','','doe','cue123','2018-02-01',NULL,'123','john@cuelogic.com','',1,'2018-02-02',1,'2018-02-23'),(4,'John f','','Doe','Cue123','2018-02-01',NULL,'12345678','john@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(5,'tnhjfg','fghj','fghj','fghjfg','2018-02-23',NULL,'3476345','asdnkjas@wed.wed','',1,'2018-02-23',1,'2018-02-23'),(6,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(7,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',NULL,NULL),(8,'Dummy','Dummy','Dummy','Dummy','2018-02-16',NULL,'995454','amol.wabale@cuelogic.com','\0',1,'2018-02-23',1,'2018-02-23'),(9,'fgh','','fg','fgh','2018-02-01',NULL,'4545','gh@edgrf.er','\0',1,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -423,7 +423,7 @@ CREATE TABLE `MasterDepartment` (
 
 LOCK TABLES `MasterDepartment` WRITE;
 /*!40000 ALTER TABLE `MasterDepartment` DISABLE KEYS */;
-INSERT INTO `MasterDepartment` VALUES (1,'Delivery','Vivek Pandhre','',1,'2010-01-01',1,'2018-02-20'),(2,'HR','Uma Ramani','',1,'2018-02-16',1,'2018-02-23'),(3,'Sales','Neel Vartikar','',1,'2018-02-16',1,'2018-02-23'),(4,'Research & Development','Vikrant Labde','',1,'2018-02-19',1,'2018-02-23'),(5,'Accounts','Ganesh','\0',1,'2018-02-19',1,'2018-02-19'),(6,'SAa','aSa','\0',1,'2018-02-19',1,'2018-02-19'),(7,'78','78','\0',1,'2018-02-19',1,'2018-02-19');
+INSERT INTO `MasterDepartment` VALUES (1,'Delivery','Vivek Pandhre','',1,'2010-01-01',1,'2018-02-26'),(2,'HR','Uma Ramani','',1,'2018-02-16',1,'2018-02-23'),(3,'Sales','Neel Vartikar','',1,'2018-02-16',1,'2018-02-23'),(4,'Research & Development','Vikrant Labde','',1,'2018-02-19',1,'2018-02-23'),(5,'Accounts','Ganesh','\0',1,'2018-02-19',1,'2018-02-19'),(6,'SAa','aSa','\0',1,'2018-02-19',1,'2018-02-19'),(7,'78','78','\0',1,'2018-02-19',1,'2018-02-19');
 /*!40000 ALTER TABLE `MasterDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,7 +447,7 @@ CREATE TABLE `MasterOrganizationRole` (
   KEY `MasterOrganizationRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterOrganizationRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterOrganizationRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -456,7 +456,7 @@ CREATE TABLE `MasterOrganizationRole` (
 
 LOCK TABLES `MasterOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `MasterOrganizationRole` DISABLE KEYS */;
-INSERT INTO `MasterOrganizationRole` VALUES (1,'Sr. Rails Developer','',1,'2018-02-19',1,'2018-02-19'),(2,'Sr Principle Developer','',1,'2018-02-19',1,'2018-02-19'),(3,'Devops','',1,'2018-02-19',1,'2018-02-19'),(4,'Sr Software engineer','',1,'2018-02-19',1,'2018-02-19'),(5,'R&D Engineer','',1,'2018-02-19',1,'2018-02-19'),(6,'asa','',1,'2018-02-19',1,'2018-02-19');
+INSERT INTO `MasterOrganizationRole` VALUES (1,'Sr. Rails Developer','',1,'2018-02-19',1,'2018-02-19'),(2,'Sr Principle Developer','',1,'2018-02-19',1,'2018-02-19'),(3,'Devops','',1,'2018-02-19',1,'2018-02-19'),(4,'Sr Software engineer','',1,'2018-02-19',1,'2018-02-19'),(5,'R&D Engineer','',1,'2018-02-19',1,'2018-02-19'),(6,'asa','',1,'2018-02-19',1,'2018-02-19'),(7,'Principle developer','',1,'2018-02-26',NULL,NULL),(8,'sd','',1,'2018-02-26',NULL,NULL),(9,'SDSD','',1,'2018-02-26',1,'2018-02-26');
 /*!40000 ALTER TABLE `MasterOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +481,7 @@ CREATE TABLE `MasterProjectRole` (
   KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -490,6 +490,7 @@ CREATE TABLE `MasterProjectRole` (
 
 LOCK TABLES `MasterProjectRole` WRITE;
 /*!40000 ALTER TABLE `MasterProjectRole` DISABLE KEYS */;
+INSERT INTO `MasterProjectRole` VALUES (1,'developer',12,'',1,'2018-02-26',2,'2018-02-26'),(2,'tyryry',123,'\0',2,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `MasterProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +555,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
-INSERT INTO `MasterSkill` VALUES (1,'MVC Asp.Net','',1,'2018-02-19',1,'2018-02-20'),(2,'c#','',1,'2018-02-19',1,'2018-02-20'),(3,'Html','',1,'2018-02-19',1,'2018-02-19'),(4,'Jquery','',1,'2018-02-21',NULL,NULL),(5,'LINQ','',1,'2018-02-21',NULL,NULL),(6,'SQL','',1,'2018-02-21',NULL,NULL),(7,'AngularJS','',1,'2018-02-21',NULL,NULL),(8,'Angular 2','',1,'2018-02-21',NULL,NULL),(9,'Angular 4','',1,'2018-02-21',NULL,NULL),(10,'Entity Framework','',1,'2018-02-21',NULL,NULL),(11,'PHP','',1,'2018-02-21',NULL,NULL),(12,'Ruby On Rails','',1,'2018-02-21',NULL,NULL),(13,'Web Api','',1,'2018-02-21',NULL,NULL),(14,'Scala','',1,'2018-02-21',NULL,NULL);
+INSERT INTO `MasterSkill` VALUES (1,'MVC Asp.Net','',1,'2018-02-19',1,'2018-02-20'),(2,'c#','',1,'2018-02-19',1,'2018-02-20'),(3,'Html','',1,'2018-02-19',1,'2018-02-19'),(4,'Jquery','',1,'2018-02-21',NULL,NULL),(5,'LINQ','',1,'2018-02-21',NULL,NULL),(6,'SQL','',1,'2018-02-21',NULL,NULL),(7,'AngularJS','',1,'2018-02-21',NULL,NULL),(8,'Angular 2','',1,'2018-02-21',1,'2018-02-26'),(9,'Angular 4','',1,'2018-02-21',NULL,NULL),(10,'Entity Framework','',1,'2018-02-21',NULL,NULL),(11,'PHP','',1,'2018-02-21',NULL,NULL),(12,'Ruby On Rails','',1,'2018-02-21',NULL,NULL),(13,'Web Api','',1,'2018-02-21',NULL,NULL),(14,'Scala','',1,'2018-02-21',NULL,NULL);
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1899,14 +1900,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectRole_AddOrUpdate`(
     IN mpCreatedOn varchar(50)
 )
 BEGIN
-INSERT INTO Employee 
+INSERT INTO MasterProjectRole 
     (
 		`Id`,
 		`Role`,
 		`Costing`,
 		`IsValid`,
 		`CreatedBy`,
-        `CreatedOn`
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
 	)
     VALUES
     (
@@ -1915,6 +1918,8 @@ INSERT INTO Employee
 		mpCosting,
 		mpIsValid,
 		mpCreatedBy,
+        mpCreatedOn,
+		mpCreatedBy, 
         mpCreatedOn
     )
     ON DUPLICATE KEY UPDATE
@@ -2028,6 +2033,163 @@ BEGIN
 	UPDATE MasterProjectRole SET
 	IsValid = false
 	WHERE Id = masterProjectRoleId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_AddOrUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_AddOrUpdate`(
+	IN mptId int(11),
+	IN mptType varchar(150),
+    IN mptIsValid bit,
+    IN mptUpdatedBy int(11),
+    IN mptCreatedBy int(11),
+    IN mptUpdatedOn varchar(50),
+    IN mptCreatedOn varchar(50)
+)
+BEGIN
+INSERT INTO MasterProjectType 
+    (
+		`Id`,
+		`Type`,
+		`IsValid`,
+		`CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
+    VALUES
+    (
+		mptId,
+		mptType,
+		mptIsValid,
+		mptCreatedBy,
+        mptCreatedOn,
+		mptCreatedBy, 
+        mptCreatedOn
+    )
+    ON DUPLICATE KEY UPDATE
+		Type = mptType,
+		IsValid = mptIsValid,
+		UpdatedBy = mptUpdatedBy,
+		UpdatedOn = mptUpdatedOn;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_Get` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_Get`(
+	IN mptId int(11)
+)
+BEGIN
+	SELECT 
+		a.Id, 
+		a.Type,
+		a.IsValid, 
+		a.CreatedOn, 
+		a.UpdatedOn, 
+		a.CreatedBy, 
+		a.UpdatedBy,
+		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+	FROM 
+		MasterProjectType a 
+	LEFT JOIN 
+		Employee b on a.CreatedBy = b.Id 
+	LEFT JOIN 
+		Employee c on a.UpdatedBy = c.Id 
+	WHERE 
+		a.Id = mptId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_GetList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_GetList`(
+	IN filterText varchar(200), 
+	IN recordFrom int(4), 
+	IN recordTill int(4)
+)
+BEGIN
+	SELECT 
+		a.Id, 
+		a.Type,
+		if(a.IsValid,'Yes','No') as IsValid,
+		a.CreatedBy,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		a.UpdatedBy,
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
+		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+	FROM 
+		CuelogicResourceManagement.MasterProjectType a
+	INNER JOIN 
+		Employee b on a.CreatedBy = b.Id
+	WHERE 
+		a.IsValid = if(filterText = 'yes',true,false) or
+		a.Type like concat('%', filterText,'%') or
+		b.FirstName like concat('%', filterText,'%') or
+		b.LastName like concat('%', filterText,'%') or
+		a.CreatedOn like concat('%', filterText,'%')
+	limit 
+		recordFrom, recordTill;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_MarkInvalid` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_MarkInvalid`(
+	IN mptId int(11)
+)
+BEGIN
+	
+	UPDATE MasterProjectType SET
+	IsValid = false
+	WHERE Id = mptId;
     
 END ;;
 DELIMITER ;
@@ -2210,4 +2372,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-26 12:14:26
+-- Dump completed on 2018-02-26 14:14:47

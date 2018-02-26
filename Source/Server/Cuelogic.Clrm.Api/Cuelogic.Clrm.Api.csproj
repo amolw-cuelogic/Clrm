@@ -313,6 +313,7 @@
     <Compile Include="Controllers\MasterDepartmentController.cs" />
     <Compile Include="Controllers\MasterGroupController.cs" />
     <Compile Include="Controllers\MasterOrganizationRoleController.cs" />
+    <Compile Include="Controllers\MasterProjectTypeController.cs" />
     <Compile Include="Controllers\MasterSkillController.cs" />
     <Compile Include="Controllers\MasterProjectRoleController.cs" />
     <Compile Include="Filter\CustomFilter.cs" />
