@@ -29,9 +29,14 @@
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Role Cost"></ngx-label>
-                                        <input type="text" #Costing="ngModel" [(ngModel)]="pageObject.Costing" class="form-control" required name="pageObject.Costing" placeholder="Enter Role Cost">
-                                        <div *ngIf="Costing.errors && (Costing.dirty || Costing.touched)" class="error">
-                                            Cost is required
+                                        <input pattern="[0-9]+" type="text" #Costing="ngModel" [(ngModel)]="pageObject.Costing" class="form-control" required name="pageObject.Costing" placeholder="Enter Role Cost">
+                                        <div *ngIf="Costing.errors">
+                                            <div *ngIf="Costing.errors.required && (Costing.dirty || Costing.touched)" class="error">
+                                                Cost is required
+                                            </div>
+                                            <div *ngIf="Costing.errors.pattern && (Costing.dirty || Costing.touched)" class="error">
+                                                Please enter numerical value.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
