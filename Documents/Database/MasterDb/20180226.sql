@@ -490,7 +490,7 @@ CREATE TABLE `MasterProjectRole` (
 
 LOCK TABLES `MasterProjectRole` WRITE;
 /*!40000 ALTER TABLE `MasterProjectRole` DISABLE KEYS */;
-INSERT INTO `MasterProjectRole` VALUES (1,'developer',12,'',1,'2018-02-26',2,'2018-02-26'),(2,'tyryry',123,'\0',2,'2018-02-26',2,'2018-02-26');
+INSERT INTO `MasterProjectRole` VALUES (1,'developer',12,'',1,'2018-02-26',2,'2018-02-26'),(2,'tyryry',123,'',2,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `MasterProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,7 +514,7 @@ CREATE TABLE `MasterProjectType` (
   KEY `MasterProjectTypeUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectTypeCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectTypeUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,6 +523,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
+INSERT INTO `MasterProjectType` VALUES (1,'asasas','\0',2,'2018-02-26',2,'2018-02-26'),(2,'gjgkh','\0',2,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2372,4 +2373,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-26 14:14:47
+-- Dump completed on 2018-02-26 14:43:37
