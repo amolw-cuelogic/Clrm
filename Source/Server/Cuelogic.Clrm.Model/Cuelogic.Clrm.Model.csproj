@@ -55,6 +55,7 @@
     <Compile Include="DatabaseModel\IdentityGroup.cs" />
     <Compile Include="DatabaseModel\IdentityGroupRight.cs" />
     <Compile Include="DatabaseModel\IdentityRight.cs" />
+    <Compile Include="DatabaseModel\MasterClient.cs" />
     <Compile Include="DatabaseModel\MasterDepartment.cs" />
     <Compile Include="DatabaseModel\MasterOrganizationRole.cs" />
     <Compile Include="DatabaseModel\MasterProjectRole.cs" />

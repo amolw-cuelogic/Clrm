@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\IMasterClientService.cs" />
+    <Compile Include="Client\MasterClientService.cs" />
     <Compile Include="Common\ICommonService.cs" />
     <Compile Include="Department\IMasterDepartmentService.cs" />
     <Compile Include="Employees\EmployeeService.cs" />

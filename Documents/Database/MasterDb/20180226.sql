@@ -212,7 +212,7 @@ CREATE TABLE `EmployeeSkill` (
 
 LOCK TABLES `EmployeeSkill` WRITE;
 /*!40000 ALTER TABLE `EmployeeSkill` DISABLE KEYS */;
-INSERT INTO `EmployeeSkill` VALUES (1,1,1,'\0',1,'2018-02-23',1,'2018-02-23'),(2,1,2,'',1,'2018-02-23',NULL,NULL),(3,1,3,'',1,'2018-02-23',NULL,NULL),(4,1,9,'\0',1,'2018-02-23',1,'2018-02-23'),(7,8,1,'',1,'2018-02-23',NULL,NULL),(8,8,2,'',1,'2018-02-23',NULL,NULL),(9,8,3,'',1,'2018-02-23',NULL,NULL),(10,8,4,'',1,'2018-02-23',NULL,NULL),(11,8,5,'',1,'2018-02-23',NULL,NULL),(12,8,6,'\0',1,'2018-02-23',1,'2018-02-23'),(13,8,7,'',1,'2018-02-23',NULL,NULL),(14,8,8,'',1,'2018-02-23',NULL,NULL),(15,6,6,'',1,'2018-02-23',NULL,NULL),(16,4,1,'',1,'2018-02-23',NULL,NULL),(17,4,2,'',1,'2018-02-23',NULL,NULL),(18,4,3,'',1,'2018-02-23',NULL,NULL),(19,4,4,'',1,'2018-02-23',NULL,NULL),(20,4,5,'',1,'2018-02-23',NULL,NULL);
+INSERT INTO `EmployeeSkill` VALUES (1,1,1,'',1,'2018-02-23',2,'2018-02-26'),(2,1,2,'',1,'2018-02-23',NULL,NULL),(3,1,3,'',1,'2018-02-23',NULL,NULL),(4,1,9,'\0',1,'2018-02-23',1,'2018-02-23'),(7,8,1,'',1,'2018-02-23',NULL,NULL),(8,8,2,'',1,'2018-02-23',NULL,NULL),(9,8,3,'',1,'2018-02-23',NULL,NULL),(10,8,4,'',1,'2018-02-23',NULL,NULL),(11,8,5,'',1,'2018-02-23',NULL,NULL),(12,8,6,'\0',1,'2018-02-23',1,'2018-02-23'),(13,8,7,'',1,'2018-02-23',NULL,NULL),(14,8,8,'',1,'2018-02-23',NULL,NULL),(15,6,6,'',1,'2018-02-23',NULL,NULL),(16,4,1,'',1,'2018-02-23',NULL,NULL),(17,4,2,'',1,'2018-02-23',NULL,NULL),(18,4,3,'',1,'2018-02-23',NULL,NULL),(19,4,4,'',1,'2018-02-23',NULL,NULL),(20,4,5,'',1,'2018-02-23',NULL,NULL);
 /*!40000 ALTER TABLE `EmployeeSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +481,7 @@ CREATE TABLE `MasterProjectRole` (
   KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -490,7 +490,7 @@ CREATE TABLE `MasterProjectRole` (
 
 LOCK TABLES `MasterProjectRole` WRITE;
 /*!40000 ALTER TABLE `MasterProjectRole` DISABLE KEYS */;
-INSERT INTO `MasterProjectRole` VALUES (1,'developer',12,'',1,'2018-02-26',2,'2018-02-26'),(2,'tyryry',123,'',2,'2018-02-26',2,'2018-02-26');
+INSERT INTO `MasterProjectRole` VALUES (1,'developer',12,'',1,'2018-02-26',2,'2018-02-26'),(2,'tyryry',56565656,'',2,'2018-02-26',2,'2018-02-26'),(3,'jk,k,',67,'',2,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `MasterProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -523,7 +523,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
-INSERT INTO `MasterProjectType` VALUES (1,'asasas','\0',2,'2018-02-26',2,'2018-02-26'),(2,'gjgkh','\0',2,'2018-02-26',2,'2018-02-26');
+INSERT INTO `MasterProjectType` VALUES (1,'asasas','',2,'2018-02-26',2,'2018-02-26'),(2,'gjgkh','',2,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1546,6 +1546,171 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_AddOrUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_AddOrUpdate`(
+	IN mcId int(11),
+	IN mcClientName varchar(150),
+    IN mcClientLocation varchar(150),
+    IN mcIsValid bit,
+    IN mcUpdatedBy int(11),
+    IN mcCreatedBy int(11),
+    IN mcUpdatedOn varchar(50),
+    IN mcCreatedOn varchar(50)
+)
+BEGIN
+INSERT INTO MasterClient
+    (
+		`Id`,
+		`ClientName`,
+        `ClientLocation`,
+		`IsValid`,
+		`CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
+    VALUES
+    (
+		mptId,
+		mcClientName,
+        mcClientLocation,
+		mcIsValid,
+		mcCreatedBy,
+        mcCreatedOn,
+		mcCreatedBy, 
+        mcCreatedOn
+    )
+    ON DUPLICATE KEY UPDATE
+		ClientName = mcClientName,
+        ClientLocation = mcClientLocation,
+		IsValid = mcIsValid,
+		UpdatedBy = mcUpdatedBy,
+		UpdatedOn = mcUpdatedOn;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_Get` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_Get`(
+	IN mcId int(11)
+)
+BEGIN
+	SELECT 
+		a.Id, 
+		a.ClientName,
+        a.ClientLocation,
+		a.IsValid, 
+		a.CreatedOn, 
+		a.UpdatedOn, 
+		a.CreatedBy, 
+		a.UpdatedBy,
+		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+	FROM 
+		MasterClient a 
+	LEFT JOIN 
+		Employee b on a.CreatedBy = b.Id 
+	LEFT JOIN 
+		Employee c on a.UpdatedBy = c.Id 
+	WHERE 
+		a.Id = mcId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_GetList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_GetList`(
+	IN filterText varchar(200), 
+	IN recordFrom int(4), 
+	IN recordTill int(4)
+)
+BEGIN
+	SELECT 
+		a.Id, 
+		a.ClientName,
+        a.ClientLocation,
+		if(a.IsValid,'Yes','No') as IsValid,
+		a.CreatedBy,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		a.UpdatedBy,
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
+		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+	FROM 
+		CuelogicResourceManagement.MasterClient a
+	INNER JOIN 
+		Employee b on a.CreatedBy = b.Id
+	WHERE 
+		a.IsValid = if(filterText = 'yes',true,false) or
+		a.ClientName like concat('%', filterText,'%') or
+        a.ClientLocation like concat('%', filterText,'%') or
+        a.IsValid like concat('%', filterText,'%') or
+		b.FirstName like concat('%', filterText,'%') or
+		b.LastName like concat('%', filterText,'%') or
+		a.CreatedOn like concat('%', filterText,'%')
+	limit 
+		recordFrom, recordTill;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_MarkInvalid` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_MarkInvalid`(
+	IN mcId int(11)
+)
+BEGIN
+	
+	UPDATE MasterClient SET
+	IsValid = false
+	WHERE Id = mcId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spMasterDepartment_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2373,4 +2538,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-26 14:43:37
+-- Dump completed on 2018-02-26 15:56:24

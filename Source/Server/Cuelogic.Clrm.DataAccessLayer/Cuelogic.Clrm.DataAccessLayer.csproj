@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\IMasterClientDataAccess.cs" />
+    <Compile Include="Client\MasterClientDataAccess.cs" />
     <Compile Include="Common\CommonDataAccess.cs" />
     <Compile Include="Department\MasterDepartmentDataAccess.cs" />
     <Compile Include="Employees\EmployeeDataAccess.cs" />

@@ -93,6 +93,15 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterProjectType_MarkInvalid = "spMasterProjectType_MarkInvalid";
 
             #endregion
+
+            #region MASTER CLIENT
+
+            public const string spMasterClient_AddOrUpdate = "spMasterClient_AddOrUpdate";
+            public const string spMasterClient_Get = "spMasterClient_Get";
+            public const string spMasterClient_GetList = "spMasterClient_GetList";
+            public const string spMasterClient_MarkInvalid = "spMasterClient_MarkInvalid";
+
+            #endregion
         }
     }
 }
