@@ -91,6 +91,25 @@ export const routes: Routes = [
                 canActivate: [AuthGuardService]
             },
             {
+                path: 'projectrole',
+                loadChildren: './component/master/projectRole/projectRole.module#ProjectRoleModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'projectrole/:mode/:id',
+                loadChildren: './component/master/projectRole/editprojectRole.module#EditProjectRoleModule',
+                canActivate: [AuthGuardService]
+            }
+        ]
+    },
+    {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Home'
+        },
+        children: [
+            {
                 path: 'employee',
                 loadChildren: './component/employee/employee.module#EmployeeModule',
                 canActivate: [AuthGuardService]
@@ -100,7 +119,6 @@ export const routes: Routes = [
                 loadChildren: './component/employee/editemployee.module#EditEmployeeModule',
                 canActivate: [AuthGuardService]
             }
-
         ]
     },
     {

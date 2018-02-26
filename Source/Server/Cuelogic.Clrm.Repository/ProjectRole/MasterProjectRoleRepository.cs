@@ -29,9 +29,16 @@ namespace Cuelogic.Clrm.Repository.ProjectRole
 
         public MasterProjectRole GetMasterProjectRole(int masterProjectRoleId)
         {
-            var ds = _masterProjectRoleDataAccess.GetMasterProjectRole(masterProjectRoleId);
-            var masterProjectRole = ds.Tables[0].ToModel<MasterProjectRole>();
-            return masterProjectRole;
+            if (masterProjectRoleId != 0)
+            {
+                var ds = _masterProjectRoleDataAccess.GetMasterProjectRole(masterProjectRoleId);
+                var masterProjectRole = ds.Tables[0].ToModel<MasterProjectRole>();
+                return masterProjectRole;
+            }
+            else
+            {
+                return new MasterProjectRole();
+            }
         }
 
         public DataSet GetMasterProjectRoleList(SearchParam searchParam)
