@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
 {
-    public class ProjectRoleDataAccess : IProjectRoleDataAccess
+    public class MasterProjectRoleDataAccess : IMasterProjectRoleDataAccess
     {
         public void AddOrUpdateMasterProjectRole(MasterProjectRole masterProjectRole)
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
 {
-    public interface IProjectRoleDataAccess
+    public interface IMasterProjectRoleDataAccess
     {
         DataSet GetMasterProjectRoleList(SearchParam searchParam);
 

@@ -54,6 +54,8 @@
     <Compile Include="Group\MasterGroupService.cs" />
     <Compile Include="OrganizationRole\IMasterOrganizationRoleService.cs" />
     <Compile Include="OrganizationRole\MasterOrganizationRoleService.cs" />
+    <Compile Include="ProjectRole\IMasterProjectRoleService.cs" />
+    <Compile Include="ProjectRole\MasterProjectRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillService.cs" />
     <Compile Include="Skill\MasterSkillService.cs" />

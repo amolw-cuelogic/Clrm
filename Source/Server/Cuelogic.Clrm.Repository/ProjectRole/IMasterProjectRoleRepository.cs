@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.Repository.ProjectRole
 {
-    public interface IProjectRoleRepository
+    public interface IMasterProjectRoleRepository
     {
         DataSet GetMasterProjectRoleList(SearchParam searchParam);
-        MasterProjectRole GetMasterDepartment(int masterDepartmentId);
-        void AddOrUpdateMasterProjectRole(MasterProjectRole masterDepartment, UserContext userCtx);
-        void MarkMasterDepartmentInvalid(int masterDepartmentId);
+        MasterProjectRole GetMasterProjectRole(int masterProjectRoleId);
+        void AddOrUpdateMasterProjectRole(MasterProjectRole masterProjectRole, UserContext userCtx);
+        void MarkMasterProjectRoleInvalid(int masterProjectRoleId);
     }
 }
