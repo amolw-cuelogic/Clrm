@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
+    [RoutePrefix("api/Client")]
     public class MasterClientController : ApiBaseController
     {
         private readonly IMasterClientService _masterClientService;

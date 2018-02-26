@@ -31,7 +31,7 @@
         <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard </a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-home"></i> Dashboard </a>
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                     <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-user"></i> Admin</a>
@@ -42,7 +42,7 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-                    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-user"></i> Master</a>
+                    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-list"></i> Master</a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item Child-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/skill']"><i class="icon-arrow-right"></i> Skill</a>
@@ -59,10 +59,13 @@
                         <li class="nav-item Child-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/projecttype']"><i class="icon-arrow-right"></i> Project Type</a>
                         </li>
+                        <li class="nav-item Child-item">
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/client']"><i class="icon-arrow-right"></i> Client</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/employee']"><i class="icon-user"></i> Employee </a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/employee']"><i class="icon-people"></i> Employee </a>
                 </li>
             </ul>
         </nav>
@@ -80,7 +83,7 @@
     <global-bootstrapmodal></global-bootstrapmodal>
 </div>
 <footer class="app-footer">
-    <span><a href="#">Cuelogic Resource Management</a></span>
-    <span class="float-right"> <a href="http://www.cuelogic.com/">Cuelogic Technologies Pvt. Ltd. </a>  &copy; 2018</span>
+    <span><a href="javascript:void(0);">Cuelogic Resource Management</a></span>
+    <span class="float-right"> <a target="_blank" href="http://www.cuelogic.com/">Cuelogic Technologies Pvt. Ltd. </a>  &copy; 2018</span>
     <!--<span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a></span>-->
 </footer>

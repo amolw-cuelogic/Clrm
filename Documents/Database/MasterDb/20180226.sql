@@ -381,7 +381,7 @@ CREATE TABLE `MasterClient` (
   KEY `MasterClientUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,6 +390,7 @@ CREATE TABLE `MasterClient` (
 
 LOCK TABLES `MasterClient` WRITE;
 /*!40000 ALTER TABLE `MasterClient` DISABLE KEYS */;
+INSERT INTO `MasterClient` VALUES (1,'Microsoft','USA','',2,'2018-02-26',2,'2018-02-26'),(2,'Oracle','','',2,'2018-02-26',2,'2018-02-26'),(3,'Hadoop','','',2,'2018-02-26',2,'2018-02-26');
 /*!40000 ALTER TABLE `MasterClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1580,7 +1581,7 @@ INSERT INTO MasterClient
 	)
     VALUES
     (
-		mptId,
+		mcId,
 		mcClientName,
         mcClientLocation,
 		mcIsValid,
@@ -2538,4 +2539,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-26 15:56:24
+-- Dump completed on 2018-02-26 16:23:35

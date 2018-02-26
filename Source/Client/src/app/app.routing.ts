@@ -109,6 +109,16 @@ export const routes: Routes = [
                 path: 'projecttype/:mode/:id',
                 loadChildren: './component/master/projectType/editProjectType.module#EditProjectTypeModule',
                 canActivate: [AuthGuardService]
+            },
+            {
+                path: 'client',
+                loadChildren: './component/master/client/client.module#ClientModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'client/:mode/:id',
+                loadChildren: './component/master/client/editclient.module#EditClientModule',
+                canActivate: [AuthGuardService]
             }
         ]
     },
