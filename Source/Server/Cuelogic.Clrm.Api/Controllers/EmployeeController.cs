@@ -38,16 +38,18 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        public void Post([FromBody]EmployeeVm employeeVm)
+        public IHttpActionResult Post([FromBody]EmployeeVm employeeVm)
         {
             var userContext = base.GetUserContext();
             _employeeService.Save(employeeVm, userContext);
+            return Ok();
         }
         
         [Route("{id}")]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _employeeService.Delete(id);
+            return Ok();
         }
     }
 }

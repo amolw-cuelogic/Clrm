@@ -46,9 +46,10 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _masterProjectRoleService.Delete(id);
+            return Ok();
         }
     }
 }
