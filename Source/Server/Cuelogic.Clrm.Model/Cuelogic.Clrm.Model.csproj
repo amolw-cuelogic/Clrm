@@ -57,6 +57,7 @@
     <Compile Include="DatabaseModel\IdentityRight.cs" />
     <Compile Include="DatabaseModel\MasterDepartment.cs" />
     <Compile Include="DatabaseModel\MasterOrganizationRole.cs" />
+    <Compile Include="DatabaseModel\MasterProjectRole.cs" />
     <Compile Include="DatabaseModel\MasterSkill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommonModel\SearchParam.cs" />

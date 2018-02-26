@@ -58,6 +58,8 @@
     <Compile Include="Department\IMasterDepartmentDataAccess.cs" />
     <Compile Include="Group\IMasterGroupDataAccess.cs" />
     <Compile Include="OrganizationRole\IMasterOrganizationRoleDataAccess.cs" />
+    <Compile Include="ProjectRole\IProjectRoleDataAccess.cs" />
+    <Compile Include="ProjectRole\ProjectRoleDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillDataAccess.cs" />
     <Compile Include="Skill\MasterSkillDataAccess.cs" />
