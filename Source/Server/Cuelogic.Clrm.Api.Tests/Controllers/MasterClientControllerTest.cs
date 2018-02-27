@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
     public class MasterClientControllerTest
     {
         [TestMethod]
-        public void TestGetMasterProjectRoleList()
+        public void TestGetMasterClientList()
         {
             MasterClientController obj = new MasterClientController(new MasterClientService());
             var response = obj.Get(10, 0, "") as OkNegotiatedContentResult<string>;
@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestGetProjectRolePerId()
+        public void TestGetMasterClientPerId()
         {
             MasterClientController obj = new MasterClientController(new MasterClientService());
             var response = obj.Get(1) as OkNegotiatedContentResult<MasterClient>;
@@ -30,7 +30,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestUpdateProjectRole()
+        public void TestUpdateMasterClient()
         {
             var TestData = new MasterClient();
             TestData.Id = 1;
@@ -61,7 +61,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestAddProjectRole()
+        public void TestAddMasterClient()
         {
             var TestData = new MasterClient();
             TestData.Id = 0;
@@ -92,7 +92,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestMarkProjectRoleInvalid()
+        public void TestMarkMasterClientInvalid()
         {
             MasterClientController obj = new MasterClientController(new MasterClientService());
             IHttpActionResult response = obj.Delete(1);

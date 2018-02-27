@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
     public class MasterProjectTypeControllerTest
     {
         [TestMethod]
-        public void TestGetMasterProjectRoleList()
+        public void TestGetMasterProjectTypeList()
         {
             MasterProjectTypeController obj = new MasterProjectTypeController(new MasterProjectTypeService());
             var response = obj.Get(10, 0, "") as OkNegotiatedContentResult<string>;
@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestGetProjectRolePerId()
+        public void TestGetProjectTypePerId()
         {
             MasterProjectTypeController obj = new MasterProjectTypeController(new MasterProjectTypeService());
             var response = obj.Get(1) as OkNegotiatedContentResult<MasterProjectType>;
@@ -30,7 +30,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestUpdateProjectRole()
+        public void TestUpdateProjectType()
         {
             var TestData = new MasterProjectType();
             TestData.Id = 1;
@@ -60,7 +60,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestAddProjectRole()
+        public void TestAddProjectType()
         {
             var TestData = new MasterProjectType();
             TestData.Id = 0;
@@ -90,7 +90,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestMarkProjectRoleInvalid()
+        public void TestMarkProjectTypeInvalid()
         {
             MasterProjectTypeController obj = new MasterProjectTypeController(new MasterProjectTypeService());
             IHttpActionResult response = obj.Delete(1);
