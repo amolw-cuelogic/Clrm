@@ -24,11 +24,15 @@
     }
   }
 
+  //CUSTOM HEIGHT OF SIDEBAR
   .sidebar-nav {
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
+    flex-grow:1;
+    flex-shrink:1;
     -ms-overflow-style: -ms-autohiding-scrollbar;
+    max-height:(100vh-17vh);
     @include sidebar-width($sidebar-borders, $sidebar-width);
 
     &::-webkit-scrollbar {

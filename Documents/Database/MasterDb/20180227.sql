@@ -597,7 +597,7 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (6,'Cuelogic Resource Management',1,'2018-02-15',NULL,'','','',2,'2018-02-27',2,NULL),(7,'Kantar',2,'2017-01-01','2018-02-27','','','',2,'2018-02-27',2,NULL),(8,'Big Data',3,'2017-08-31',NULL,'','','\0',2,'2018-02-27',2,NULL),(9,'Android App',2,'2018-02-27',NULL,'','\0','\0',2,'2018-02-27',2,NULL);
+INSERT INTO `Project` VALUES (6,'Cuelogic Resource Management',2,'2018-02-15',NULL,'','','',2,'2018-02-27',2,NULL),(7,'Kantar',2,'2017-01-01','2018-02-27','','','',2,'2018-02-27',2,NULL),(8,'Big Data',3,'2017-08-31',NULL,'','','\0',2,'2018-02-27',2,NULL),(9,'Android App',2,'2018-02-27',NULL,'','\0','\0',2,'2018-02-27',2,NULL);
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -626,7 +626,7 @@ CREATE TABLE `ProjectClient` (
   CONSTRAINT `ClientProject_Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
   CONSTRAINT `ProjectClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `ProjectClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,7 +635,7 @@ CREATE TABLE `ProjectClient` (
 
 LOCK TABLES `ProjectClient` WRITE;
 /*!40000 ALTER TABLE `ProjectClient` DISABLE KEYS */;
-INSERT INTO `ProjectClient` VALUES (1,2,8,'',2,'2018-02-27',NULL,NULL),(2,3,8,'',2,'2018-02-27',NULL,NULL),(3,7,8,'',2,'2018-02-27',NULL,NULL),(4,3,9,'\0',2,'2018-02-27',2,'2018-02-27'),(5,2,9,'',2,'2018-02-27',NULL,NULL),(6,4,9,'\0',2,'2018-02-27',NULL,NULL),(7,5,9,'',2,'2018-02-27',NULL,NULL),(8,6,9,'',2,'2018-02-27',NULL,NULL),(9,7,9,'',2,'2018-02-27',NULL,NULL),(10,2,7,'',2,'2018-02-27',NULL,NULL),(11,3,7,'',2,'2018-02-27',NULL,NULL);
+INSERT INTO `ProjectClient` VALUES (1,2,8,'',2,'2018-02-27',NULL,NULL),(2,3,8,'',2,'2018-02-27',NULL,NULL),(3,7,8,'',2,'2018-02-27',NULL,NULL),(4,3,9,'\0',2,'2018-02-27',2,'2018-02-27'),(5,2,9,'',2,'2018-02-27',NULL,NULL),(6,4,9,'\0',2,'2018-02-27',NULL,NULL),(7,5,9,'',2,'2018-02-27',NULL,NULL),(8,6,9,'',2,'2018-02-27',NULL,NULL),(9,7,9,'',2,'2018-02-27',NULL,NULL),(10,2,7,'',2,'2018-02-27',NULL,NULL),(11,3,7,'',2,'2018-02-27',NULL,NULL),(12,2,6,'',2,'2018-02-27',NULL,NULL),(13,3,6,'',2,'2018-02-27',NULL,NULL);
 /*!40000 ALTER TABLE `ProjectClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2888,4 +2888,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-27 17:07:51
+-- Dump completed on 2018-02-27 18:32:45

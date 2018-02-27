@@ -38,50 +38,51 @@
 }*/
 
 .dynamicBottomDiv {
-    overflow:auto;
-  }
-
-.loader{
-    background-image:url(../img/loader3.gif) ;
-    background-repeat:no-repeat;
-    background-position:center;
+    overflow: auto;
 }
 
-input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
-    border:1px solid red;
+.loader {
+    background-image: url(../img/loader3.gif);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.error{
-    color:red;
-    background-color:#f3dede;
-    padding:4px;
-    padding-left:5px;
+input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid {
+    border: 1px solid red;
 }
 
-.warning{
-    color:#856404;
-    background-color:#fff3d0;
-    padding:4px;
-    padding-left:5px;
-    
+.error {
+    color: red;
+    background-color: #f3dede;
+    padding: 4px;
+    padding-left: 5px;
 }
 
-.trActive{
-    background-color:#ddd;
-    border-bottom:1px solid grey;
+.warning {
+    color: #856404;
+    background-color: #fff3d0;
+    padding: 4px;
+    padding-left: 5px;
 }
 
-.CustomeTable, .CustomeTable td, .CustomeTable tr, .CustomeTable th{
-    border:1px solid #cccccc;
-    border-collapse:collapse;
-    padding:2px;
-    padding-left:5px;
+.trActive {
+    background-color: #ddd;
+    border-bottom: 1px solid grey;
 }
 
-.CustomeTable th{
-    background-color:#ddd;
+.CustomeTable, .CustomeTable td, .CustomeTable tr, .CustomeTable th {
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+    padding: 2px;
+    padding-left: 5px;
 }
 
-.AlignCenter{
-    text-align:center;
+.CustomeTable th {
+    background-color: #ddd;
 }
+
+.AlignCenter {
+    text-align: center;
+}
+
+
