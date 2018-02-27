@@ -20,6 +20,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             UpdatedOn = "";
             CreatedByName = "";
             UpdatedByName = "";
+            ClientName = "";
         }
         public int Id { get; set; }
         public int ProjectId { get; set; }
@@ -33,6 +34,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         #region METADATA
         public string CreatedByName { get; set; }
         public string UpdatedByName { get; set; }
+        public string ClientName { get; set; }
         #endregion
     }
 }

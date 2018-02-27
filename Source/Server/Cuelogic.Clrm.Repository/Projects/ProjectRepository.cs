@@ -8,6 +8,7 @@ using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.DataAccessLayer.Projects;
 using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Repository.ProjectType;
 
 namespace Cuelogic.Clrm.Repository.Projects
 {
@@ -49,11 +50,18 @@ namespace Cuelogic.Clrm.Repository.Projects
             {
                 var projectDs = _projectDataAccess.GetProject(projectId);
                 project = projectDs.Tables[0].ToModel<Project>();
+                var projectClientDs = _projectDataAccess.GetProjectChildList(projectId);
+                project.ProjectClientChildList = projectClientDs.Tables[0].ToList<ProjectClient>();
+
             }
 
             var masterClientDs = _projectDataAccess.GetProjectMasterList();
             var masterClientList = masterClientDs.Tables[0].ToList<MasterClient>();
             project.ProjectMasterClientList = masterClientList;
+
+            IMasterProjectTypeRepository _masterProjectTypeRepository = new MasterProjectTypeRepository();
+            var masterProjectTypeDs = _masterProjectTypeRepository.GetMasterProjectTypeValidList();
+            project.ProjectTypeList = masterProjectTypeDs.Tables[0].ToList<MasterProjectType>();
 
             return project;
         }

@@ -25,9 +25,9 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             UpdatedOn = "";
             CreatedByName = "";
             UpdatedByName = "";
-            ClientName = "";
             ProjectClientChildList = new List<ProjectClient>();
             ProjectMasterClientList = new List<MasterClient>();
+            ProjectTypeList = new List<MasterProjectType>();
         }
         public int Id { get; set; }
         public string ProjectName { get; set; }
@@ -46,9 +46,9 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public string Type { get; set; }
         public string CreatedByName { get; set; }
         public string UpdatedByName { get; set; }
-        public string ClientName { get; set; }
         public List<ProjectClient> ProjectClientChildList { get; set; }
         public List<MasterClient> ProjectMasterClientList { get; set; }
+        public List<MasterProjectType> ProjectTypeList { get; set; }
         #endregion
     }
 }

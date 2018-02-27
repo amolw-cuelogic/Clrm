@@ -524,7 +524,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
-INSERT INTO `MasterProjectType` VALUES (1,'Unit Test Billable Project','\0',2,'2018-02-26',1,'2018-02-27'),(2,'gjgkh','',2,'2018-02-26',2,'2018-02-26'),(3,'Unit Test Billable Project','',1,'2018-02-26',1,'2018-02-26'),(4,'Unit Test Billable Project','',1,'2018-02-26',1,'2018-02-26'),(5,'Unit Test Billable Project','',1,'2018-02-27',1,'2018-02-27'),(6,'Unit Test Billable Project','',1,'2018-02-27',1,'2018-02-27'),(7,'Unit Test Billable Project','',1,'2018-02-27',1,'2018-02-27');
+INSERT INTO `MasterProjectType` VALUES (1,'Non Billable','',2,'2018-02-26',2,'2018-02-27'),(2,'Billable','',2,'2018-02-26',2,'2018-02-27'),(3,'R&D','',1,'2018-02-26',2,'2018-02-27'),(4,'Unit Test Billable Project','\0',1,'2018-02-26',1,'2018-02-26'),(5,'Unit Test Billable Project','\0',1,'2018-02-27',1,'2018-02-27'),(6,'Unit Test Billable Project','\0',1,'2018-02-27',1,'2018-02-27'),(7,'Unit Test Billable Project','\0',1,'2018-02-27',1,'2018-02-27');
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -588,7 +588,7 @@ CREATE TABLE `Project` (
   CONSTRAINT `ProjectCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `ProjectUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Project_MasterProjectType` FOREIGN KEY (`ProjectTypeId`) REFERENCES `MasterProjectType` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -597,7 +597,7 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (1,'Test Project',1,'2018-02-27',NULL,'Test Project Description','\0','\0',1,'2018-02-27',1,'2018-02-27'),(2,'Test Project',1,'2018-02-27',NULL,'Test Project Description','\0','',1,'2018-02-27',NULL,NULL),(3,'Test Project',1,'2018-02-27',NULL,'Test Project Description','\0','',1,'2018-02-27',NULL,NULL),(4,'Test Project',1,'2018-02-27',NULL,'Test Project Description','\0','',1,'2018-02-27',NULL,NULL),(5,'Test Project',1,'2018-02-27',NULL,'Test Project Description','\0','',1,'2018-02-27',NULL,NULL);
+INSERT INTO `Project` VALUES (6,'Cuelogic Resource Management',1,'2018-02-15',NULL,'','','',2,'2018-02-27',2,NULL),(7,'Kantar',2,'2017-01-01','2018-02-27','','','',2,'2018-02-27',2,NULL),(8,'Big Data',3,'2017-08-31',NULL,'','','\0',2,'2018-02-27',2,NULL),(9,'Android App',2,'2018-02-27',NULL,'','\0','\0',2,'2018-02-27',2,NULL);
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -626,7 +626,7 @@ CREATE TABLE `ProjectClient` (
   CONSTRAINT `ClientProject_Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
   CONSTRAINT `ProjectClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `ProjectClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,7 +635,7 @@ CREATE TABLE `ProjectClient` (
 
 LOCK TABLES `ProjectClient` WRITE;
 /*!40000 ALTER TABLE `ProjectClient` DISABLE KEYS */;
-INSERT INTO `ProjectClient` VALUES (1,1,1,'',1,'2018-02-27',1,'2018-02-27'),(2,1,5,'',1,'2018-02-27',NULL,NULL);
+INSERT INTO `ProjectClient` VALUES (1,2,8,'',2,'2018-02-27',NULL,NULL),(2,3,8,'',2,'2018-02-27',NULL,NULL),(3,7,8,'',2,'2018-02-27',NULL,NULL),(4,3,9,'\0',2,'2018-02-27',2,'2018-02-27'),(5,2,9,'',2,'2018-02-27',NULL,NULL),(6,4,9,'\0',2,'2018-02-27',NULL,NULL),(7,5,9,'',2,'2018-02-27',NULL,NULL),(8,6,9,'',2,'2018-02-27',NULL,NULL),(9,7,9,'',2,'2018-02-27',NULL,NULL),(10,2,7,'',2,'2018-02-27',NULL,NULL),(11,3,7,'',2,'2018-02-27',NULL,NULL);
 /*!40000 ALTER TABLE `ProjectClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2341,6 +2341,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_GetValidList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_GetValidList`()
+BEGIN
+	SELECT * FROM MasterProjectType WHERE IsValid = true;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2716,7 +2735,9 @@ BEGIN
 	LEFT JOIN 
 		Employee b ON a.CreatedBy = b.Id
 	LEFT JOIN 
-		Employee c ON a.UpdatedBy = c.Id;
+		Employee c ON a.UpdatedBy = c.Id
+	WHERE
+		a.Id = pId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2744,7 +2765,7 @@ BEGIN
     INNER JOIN
 		MasterClient b ON a.ClientId = b.Id
 	WHERE 
-		a.ProjectId = pProjectIdId;
+		a.ProjectId = pId;
 		
 END ;;
 DELIMITER ;
@@ -2788,14 +2809,26 @@ IN recordTill int(4)
 )
 BEGIN
 	SELECT
-		a.Id, a.ProjectName, b.Type, d.ClientName, a.StartDate, a.EndDate,
+		a.Id, 
+        a.ProjectName, 
+        b.Type, 
+        DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate, 
+        DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
         if(a.IsComplete,'Yes','No') as IsComplete,
         if(a.IsValid,'Yes','No') as IsValid
 	FROM
 		Project a
-	INNER JOIN MasterProjectType b ON  a.ProjectTypeId = b.Id
-    INNER JOIN ProjectClient c ON  a.Id = c.ProjectId
-    INNER JOIN MasterClient d ON c.ClientId = d.Id;
+	INNER JOIN 
+		MasterProjectType b ON  a.ProjectTypeId = b.Id
+    WHERE
+		a.ProjectName like concat('%', filterText,'%') or
+		b.Type like concat('%', filterText,'%') or
+		a.StartDate like concat('%', filterText,'%') or
+		a.EndDate like concat('%', filterText,'%') or
+		a.IsComplete = if(filterText = 'yes',true,false)or
+		a.IsValid = if(filterText = 'yes',true,false)
+	limit 
+		recordFrom, recordTill;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2855,4 +2888,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-27 14:21:19
+-- Dump completed on 2018-02-27 17:07:51

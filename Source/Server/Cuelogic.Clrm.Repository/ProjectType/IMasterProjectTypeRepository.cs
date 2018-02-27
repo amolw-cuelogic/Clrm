@@ -14,6 +14,7 @@ namespace Cuelogic.Clrm.Repository.ProjectType
     {
         DataSet GetMasterProjectTypeList(SearchParam searchParam);
         MasterProjectType GetMasterProjectType(int masterProjectTypeId);
+        DataSet GetMasterProjectTypeValidList();
         void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType, UserContext userCtx);
         void MarkMasterProjectTypeInvalid(int masterProjectTypeId);
     }

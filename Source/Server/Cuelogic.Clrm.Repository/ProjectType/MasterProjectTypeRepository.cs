@@ -48,6 +48,12 @@ namespace Cuelogic.Clrm.Repository.ProjectType
             return ds;
         }
 
+        public DataSet GetMasterProjectTypeValidList()
+        {
+            var ds = _masterProjectTypeDataAccess.GetMasterProjectTypeValidList();
+            return ds;
+        }
+
         public void MarkMasterProjectTypeInvalid(int masterProjectTypeId)
         {
             _masterProjectTypeDataAccess.MarkMasterProjectTypeInvalid(masterProjectTypeId);

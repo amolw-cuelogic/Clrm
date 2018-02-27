@@ -142,6 +142,25 @@ export const routes: Routes = [
         ]
     },
     {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Home'
+        },
+        children: [
+            {
+                path: 'project',
+                loadChildren: './component/project/project.module#ProjectModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'project/:mode/:id',
+                loadChildren: './component/project/editproject.module#EditProjectModule',
+                canActivate: [AuthGuardService]
+            }
+        ]
+    },
+    {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full',

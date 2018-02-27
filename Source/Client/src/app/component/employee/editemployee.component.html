@@ -2,7 +2,7 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid || pageObject.Employee.EmployeeDepartmentList.length == 0 || pageObject.Employee.EmployeeOrganizationRoleList.length == 0 || pageObject.Employee.IdentityEmployeeGroupList.length == 0 || pageObject.Employee.EmployeeSkillList.length == 0">Save</button>
         <button routerLink="/employee" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
@@ -123,9 +123,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
-                                            Email Id is required
-                                        </div>-->
+                                        <div *ngIf="pageObject.Employee.EmployeeSkillList.length == 0" class="warning">
+                                            Select at least one skill.
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -162,9 +162,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
-                                            Email Id is required
-                                        </div>-->
+                                        <div *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0" class="warning">
+                                            Select at least one Group.
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -201,9 +201,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
-                                            Email Id is required
-                                        </div>-->
+                                        <div *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0" class="warning">
+                                            Select at least one Role.
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -240,9 +240,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!--<div *ngIf="Email.errors && (Email.dirty || Email.touched)" class="error">
-                                            Email Id is required
-                                        </div>-->
+                                        <div *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0" class="warning">
+                                            Select at least one Department.
+                                        </div>
                                     </div>
 
                                 </div>

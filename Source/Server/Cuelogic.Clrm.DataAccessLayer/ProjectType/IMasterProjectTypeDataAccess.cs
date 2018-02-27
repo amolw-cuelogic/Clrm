@@ -13,6 +13,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
     {
         DataSet GetMasterProjectTypeList(SearchParam searchParam);
         DataSet GetMasterProjectType(int masterProjectTypeId);
+        DataSet GetMasterProjectTypeValidList();
         void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType);
         void MarkMasterProjectTypeInvalid(int masterProjectTypeId);
     }

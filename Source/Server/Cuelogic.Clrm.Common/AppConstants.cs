@@ -91,6 +91,7 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterProjectType_Get = "spMasterProjectType_Get";
             public const string spMasterProjectType_GetList = "spMasterProjectType_GetList";
             public const string spMasterProjectType_MarkInvalid = "spMasterProjectType_MarkInvalid";
+            public const string spMasterProjectType_GetValidList = "spMasterProjectType_GetValidList";
 
             #endregion
 

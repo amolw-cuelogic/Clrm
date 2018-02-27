@@ -55,6 +55,14 @@ input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
     color:red;
     background-color:#f3dede;
     padding:4px;
+    padding-left:5px;
+}
+
+.warning{
+    color:#856404;
+    background-color:#fff3d0;
+    padding:4px;
+    padding-left:5px;
     
 }
 

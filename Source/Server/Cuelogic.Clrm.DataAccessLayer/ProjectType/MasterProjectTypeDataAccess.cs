@@ -57,6 +57,14 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
             return ds;
         }
 
+        public DataSet GetMasterProjectTypeValidList()
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectType_GetValidList;
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
+            return ds;
+        }
+
         public void MarkMasterProjectTypeInvalid(int masterProjectTypeId)
         {
             var sqlParam = new MySqlSpParam();
