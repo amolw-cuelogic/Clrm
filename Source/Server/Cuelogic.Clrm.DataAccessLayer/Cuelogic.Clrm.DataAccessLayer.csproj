@@ -64,6 +64,8 @@
     <Compile Include="ProjectRole\MasterProjectRoleDataAccess.cs" />
     <Compile Include="ProjectType\IMasterProjectTypeDataAccess.cs" />
     <Compile Include="ProjectType\MasterProjectTypeDataAccess.cs" />
+    <Compile Include="Projects\IProjectDataAccess.cs" />
+    <Compile Include="Projects\ProjectDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillDataAccess.cs" />
     <Compile Include="Skill\MasterSkillDataAccess.cs" />
