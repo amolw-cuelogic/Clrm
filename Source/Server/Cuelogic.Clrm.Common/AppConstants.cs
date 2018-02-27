@@ -116,6 +116,13 @@ namespace Cuelogic.Clrm.Common
             public const string spProject_GetLatestId = "spProject_GetLatestId";
 
             #endregion
+
+            #region ALLOCATION
+
+            public const string spAllocation_AddOrUpdate = "spAllocation_AddOrUpdate";
+            public const string spAllocation_GetList = "spAllocation_GetList";
+
+            #endregion
         }
     }
 }

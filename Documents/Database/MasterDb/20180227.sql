@@ -646,6 +646,125 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'CuelogicResourceManagement'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_AddOrUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_AddOrUpdate`(
+	IN aId INT(11),
+    IN aEmployeeId INT(11),
+    IN aProjectRoleId INT(11), 
+    IN aProjectId INT(11), 
+    IN aIsBillable BIT, 
+    IN aPercentageAllocation INT(11), 
+    IN aStartDate VARCHAR(50),
+    IN aEndDate VARCHAR(50),
+	IN aIsValid bit,
+    IN aUpdatedBy int(11),
+    IN aCreatedBy int(11),
+    IN aUpdatedOn varchar(50),
+    IN aCreatedOn varchar(50)
+)
+BEGIN
+INSERT INTO Allocation
+    (
+		`Id`,
+		`EmployeeId`,
+        `ProjectRoleId`,
+		`ProjectId`,
+		`IsBillable`,
+        `PercentageAllocation`,
+        `StartDate`,
+        `EndDate`,
+        `IsValid`,
+        `CreatedBy`,
+        `CreatedOn`
+	)
+    VALUES
+    (
+		aId,
+		aEmployeeId,
+        aProjectRoleId,
+		aProjectId,
+		aIsBillable,
+        aPercentageAllocation,
+		IF((aStartDate = ''), NULL,aStartDate), 
+        IF((aEndDate = ''), NULL,aEndDate),
+        aIsValid,
+        aCreatedBy,
+        aCreatedOn
+    )
+    ON DUPLICATE KEY UPDATE
+		EmployeeId = aEmployeeId,
+        ProjectRoleId = aProjectRoleId,
+		ProjectId = aProjectId,
+		IsBillable = aIsBillable,
+        PercentageAllocation= aPercentageAllocation,
+        StartDate= IF((aStartDate = ''), NULL,aStartDate), 
+        EndDate = IF((aEndDate = ''), NULL,aEndDate),
+        IsValid = aIsValid,
+		UpdatedBy= aUpdatedBy,
+        UpdatedOn = aUpdatedOn;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_GetList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetList`(
+IN filterText varchar(200), 
+IN recordFrom int(4), 
+IN recordTill int(4)
+)
+BEGIN
+	SELECT
+		a.Id,
+        CONCAT(b.FirstName,' ', b.MiddleName ,' ',b.LastName) as FullName,
+        c.Role,
+        d.ProjectName,
+        a.IsBillable,
+        a.PercentageAllocation,
+        a.StartDate,
+        a.EndDate,
+        a.IsValid
+	FROM 
+		Allocation a
+	INNER JOIN Employee b ON a.EmployeeId = b.Id
+    INNER JOIN MasterProjectRole c ON a.ProjectRoleId = c.Id
+    INNER JOIN Project d ON a.ProjectId = d.Id
+    WHERE
+		c.Role like concat('%', filterText,'%') or
+		d.ProjectName like concat('%', filterText,'%') or
+		a.StartDate like concat('%', filterText,'%') or
+		a.EndDate like concat('%', filterText,'%') or
+		a.PercentageAllocation like concat('%', filterText,'%') or
+		a.IsBillable = if(filterText = 'yes',true,false) or
+        a.IsValid = if(filterText = 'yes',true,false)
+	limit 
+		recordFrom, recordTill;
+        
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spEmployeeDepartment_BulkAddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2888,4 +3007,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-27 18:32:45
+-- Dump completed on 2018-02-27 19:03:16
