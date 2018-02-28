@@ -49,7 +49,7 @@ CREATE TABLE `Allocation` (
   CONSTRAINT `Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `ProjectRole` FOREIGN KEY (`ProjectRoleId`) REFERENCES `MasterProjectRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (1,2,4,10,'',70,'2018-02-28',NULL,'',1,'2018-02-28',2,'2018-02-28'),(2,1,1,6,'',60,'2018-02-28','2018-02-28','',1,'2018-02-28',NULL,NULL),(3,3,1,6,'',60,'2018-02-28','2018-02-28','',1,'2018-02-28',NULL,NULL),(4,4,1,6,'',60,'2018-02-28','2018-02-28','',1,'2018-02-28',NULL,NULL),(5,5,1,6,'',60,'2018-02-28','2018-02-28','\0',1,'2018-02-28',NULL,NULL),(6,6,1,6,'',60,'2018-02-28','2018-02-28','\0',1,'2018-02-28',NULL,NULL),(7,2,3,7,'',30,'2018-02-28',NULL,'',2,'2018-02-28',2,'2018-02-28'),(9,1,5,10,'\0',5,'2018-02-28',NULL,'\0',2,'2018-02-28',NULL,NULL);
+INSERT INTO `Allocation` VALUES (1,2,4,10,'',70,'2018-02-28',NULL,'',1,'2018-02-28',2,'2018-02-28'),(2,1,1,6,'',60,'2018-02-28','2018-02-28','',1,'2018-02-28',NULL,NULL),(3,3,1,6,'',60,'2018-02-28','2018-02-28','',1,'2018-02-28',NULL,NULL),(4,4,1,6,'',60,'2018-02-28','2018-02-28','',1,'2018-02-28',NULL,NULL),(5,5,1,6,'',60,'2018-02-28','2018-02-28','\0',1,'2018-02-28',NULL,NULL),(6,6,1,6,'',60,'2018-02-28','2018-02-28','\0',1,'2018-02-28',NULL,NULL),(7,2,3,7,'',30,'2018-02-28',NULL,'',2,'2018-02-28',2,'2018-02-28'),(9,1,5,10,'\0',5,'2018-02-28',NULL,'\0',2,'2018-02-28',NULL,NULL),(10,4,7,11,'',0,'2018-02-02',NULL,'',2,'2018-02-28',NULL,NULL);
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-02',1,'2018-02-28'),(2,'Vivek','','Phadke','CUE001','2018-02-02','2018-02-02','9595519028','amol.wabale@cuelogic.com','',1,'2018-02-03',2,'2018-02-26'),(3,'John','','doe','cue123','2018-02-01',NULL,'123','john@cuelogic.com','',1,'2018-02-02',1,'2018-02-23'),(4,'John f','','Doe','Cue123','2018-02-01',NULL,'12345678','john@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(5,'tnhjfg','fghj','fghj','fghjfg','2018-02-23',NULL,'3476345','asdnkjas@wed.wed','',1,'2018-02-23',1,'2018-02-23'),(6,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(7,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',NULL,NULL),(8,'Dummy','Dummy','Dummy','Dummy','2018-02-16',NULL,'995454','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(9,'fgh','','fg','fgh','2018-02-01',NULL,'4545','gh@edgrf.er','',1,'2018-02-26',2,'2018-02-26'),(10,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(11,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(12,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(13,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(14,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(15,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL);
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE555','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',2,'2018-02-28'),(2,'Vivek','','Phadke','CUE001','2018-02-02','2018-02-02','9595519028','vivek.phadke@cuelogic.com','',1,'2018-02-03',2,'2018-02-26'),(3,'John','','doe','cue123','2018-02-01',NULL,'123','john@cuelogic.com','',1,'2018-02-02',1,'2018-02-23'),(4,'John f','','Doe','Cue123','2018-02-01',NULL,'12345678','john@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(5,'tnhjfg','fghj','fghj','fghjfg','2018-02-23',NULL,'3476345','asdnkjas@wed.wed','',1,'2018-02-23',1,'2018-02-23'),(6,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(7,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',NULL,NULL),(8,'Dummy','Dummy','Dummy','Dummy','2018-02-16',NULL,'995454','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(9,'fgh','','fg','fgh','2018-02-01',NULL,'4545','gh@edgrf.er','',1,'2018-02-26',2,'2018-02-26'),(10,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(11,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(12,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(13,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(14,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(15,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3123,4 +3123,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-28 17:58:34
+-- Dump completed on 2018-02-28 19:48:12
