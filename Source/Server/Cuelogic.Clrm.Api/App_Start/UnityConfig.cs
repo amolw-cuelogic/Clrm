@@ -17,6 +17,7 @@ using Cuelogic.Clrm.Service.ProjectRole;
 using Cuelogic.Clrm.Service.ProjectType;
 using Cuelogic.Clrm.Service.Client;
 using Cuelogic.Clrm.Service.Projects;
+using Cuelogic.Clrm.Service.Allocations;
 
 namespace Cuelogic.Clrm.Api
 {
@@ -35,6 +36,7 @@ namespace Cuelogic.Clrm.Api
             container.RegisterType<IMasterProjectTypeService, MasterProjectTypeService>();
             container.RegisterType<IMasterClientService, MasterClientService>();
             container.RegisterType<IProjectService, ProjectService>();
+            container.RegisterType<IAllocationService, AllocationService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

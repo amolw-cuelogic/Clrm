@@ -1,6 +1,6 @@
 ﻿using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Service.Projects;
+using Cuelogic.Clrm.Service.Allocations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +10,15 @@ using System.Web.Http;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
-    [RoutePrefix("api/Project")]
-    public class ProjectController : ApiBaseController
+    [RoutePrefix("api/EmployeeAllocation")]
+    public class AllocationController : ApiBaseController
     {
-        private readonly IProjectService _projectService;
-        public ProjectController(IProjectService projectService)
+        private readonly IAllocationService _allocationService;
+        public AllocationController(IAllocationService allocationService)
         {
-            _projectService = projectService;
+            _allocationService = allocationService;
         }
-
+        
         [Route("")]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
@@ -26,29 +26,29 @@ namespace Cuelogic.Clrm.Api.Controllers
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
             searchParam.Show = show;
-            var jsonString = _projectService.GetList(searchParam);
+            var jsonString = _allocationService.GetList(searchParam);
             return Ok(jsonString);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
-            var project = _projectService.GetItem(id);
-            return Ok(project);
+            var allocation = _allocationService.GetItem(id);
+            return Ok(allocation);
         }
 
         [Route("")]
-        public IHttpActionResult Post([FromBody]Project project)
+        public IHttpActionResult Post([FromBody]Allocation allocation)
         {
-            var userCtx = base.GetUserContext();
-            _projectService.Save(project, userCtx);
+            var userContext = base.GetUserContext();
+            _allocationService.Save(allocation, userContext);
             return Ok();
         }
 
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
         {
-            _projectService.Delete(id);
+            _allocationService.Delete(id);
             return Ok();
         }
     }

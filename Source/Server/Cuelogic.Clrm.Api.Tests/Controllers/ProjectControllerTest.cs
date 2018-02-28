@@ -25,7 +25,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         public void TestGetProjectPerId()
         {
             ProjectController obj = new ProjectController(new ProjectService());
-            var response = obj.Get(1) as OkNegotiatedContentResult<Project>;
+            var response = obj.Get(6) as OkNegotiatedContentResult<Project>;
             Assert.IsNotNull(response.Content);
         }
 

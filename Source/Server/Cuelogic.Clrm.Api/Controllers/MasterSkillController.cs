@@ -27,8 +27,8 @@ namespace Cuelogic.Clrm.Api.Controllers
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
             searchParam.Show = show;
-            var identityGroupJsonString = _masterSkillService.GetList(searchParam);
-            return Ok(identityGroupJsonString);
+            var jsonString = _masterSkillService.GetList(searchParam);
+            return Ok(jsonString);
         }
 
         [Route("{id}")]

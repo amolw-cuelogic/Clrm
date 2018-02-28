@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Allocations\AllocationService.cs" />
+    <Compile Include="Allocations\IAllocationService.cs" />
     <Compile Include="Client\IMasterClientService.cs" />
     <Compile Include="Client\MasterClientService.cs" />
     <Compile Include="Common\ICommonService.cs" />

@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Allocations\AllocationDataAccess.cs" />
+    <Compile Include="Allocations\IAllocationDataAccess.cs" />
     <Compile Include="Client\IMasterClientDataAccess.cs" />
     <Compile Include="Client\MasterClientDataAccess.cs" />
     <Compile Include="Common\CommonDataAccess.cs" />

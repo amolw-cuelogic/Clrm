@@ -93,7 +93,7 @@ namespace Cuelogic.Clrm.Common
                         }
                         else
                         {
-                            property.SetValue(item, row[property.Name], null);
+                                property.SetValue(item, row[property.Name]);
                         }
                     }
                 }

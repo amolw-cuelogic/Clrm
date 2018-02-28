@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CommonModel\BooleanRights.cs" />
     <Compile Include="CommonModel\MySqlSpParam.cs" />
+    <Compile Include="DatabaseModel\Allocation.cs" />
     <Compile Include="DatabaseModel\Employee.cs" />
     <Compile Include="DatabaseModel\EmployeeDepartment.cs" />
     <Compile Include="DatabaseModel\EmployeeOrganizationRole.cs" />
