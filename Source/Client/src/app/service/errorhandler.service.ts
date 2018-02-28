@@ -20,10 +20,33 @@ export class ErrorhandlerService implements ErrorHandler {
         else {
             model.Message = "Something went wrong";
         }
+
+        if (StringifiedError.indexOf("<clrm>") > -1)
+        {
+            var errorString = StringifiedError.split('<clrm>').pop().split('</clrm>').shift();
+            var message = errorString.split('|');
+            var key = message[0].trim();
+            if (key == "Error") {
+                model.MessageType = model.ModelType.Danger;
+                model.Title = "Error";
+            }
+            if (key == "Success") {
+                model.MessageType = model.ModelType.Success;
+                model.Title = "Success";
+            }
+            if (key == "Warning") {
+                model.MessageType = model.ModelType.Warning;
+                model.Title = "Warning";
+            }
+            if (key == "Information") {
+                model.MessageType = model.ModelType.Info;
+                model.Title = "Information";
+            }
+            model.Message = message[1].trim();
+        }
+
         this.srvCompSub.OpenBootstrapModal(model);
         console.log(error)
-        // IMPORTANT: Rethrow the error otherwise it gets swallowed
-        //throw error;
     }
 
 }

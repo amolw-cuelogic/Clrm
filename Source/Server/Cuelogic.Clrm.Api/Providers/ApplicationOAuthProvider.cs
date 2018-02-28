@@ -12,6 +12,8 @@ using Microsoft.Owin.Security.OAuth;
 using Cuelogic.Clrm.Api.Models;
 using System.Text.RegularExpressions;
 using Cuelogic.Clrm.Service.Common;
+using Cuelogic.Clrm.Common;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
@@ -33,39 +35,42 @@ namespace Cuelogic.Clrm.Api.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            /*** Replace below user authentication code as per your Entity Framework Model ***
-         using (var obj = new UserDBEntities())
-         {
-
-             tblUserMaster entry = obj.tblUserMasters.Where
-             <tblUserMaster>(record => 
-             record.User_ID == context.UserName && 
-             record.User_Password == context.Password).FirstOrDefault();
-
-             if (entry == null)
-             {
-                 context.SetError("invalid_grant", 
-                 "The user name or password is incorrect.");
-                 return;
-             }                
-         }
-         */
+            var employeeDetails = _commonService.GetEmployeeDetails(context.UserName);
 
             var domain = Regex.Match(context.UserName, @"@(.+?).co").Groups[1].Value.ToLower();
             if (domain != "cuelogic")
             {
-                context.SetError("invalid_domain",
-                 "Please login from cuelogic Id, Signout from your Gmail account : " + context.UserName);
+                context.SetError("custom_error",
+                Helper.ComposeClientMessage(MessageType.Error, 
+                "Please login from cuelogic Id, Signout from your Gmail account : " + 
+                context.UserName));
                 context.Response.StatusCode = 500;
                 return;
             }
-            
-            var EmployeeDetails = _commonService.GetEmployeeDetails(context.UserName);
+
+            if (employeeDetails.IsValid == false)
+            {
+                context.SetError("custom_error", Helper.ComposeClientMessage(MessageType.Error, "User not valid"));
+                context.Response.StatusCode = 500;
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(employeeDetails.LeavingDate))
+            {
+                var date = DateTime.Parse(employeeDetails.LeavingDate);
+                if (DateTime.Now > date)
+                {
+                    context.SetError("custom_error", Helper.ComposeClientMessage(MessageType.Error, "User not part of Organization"));
+                    context.Response.StatusCode = 500;
+                    return;
+                }
+            }
+
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("Email", EmployeeDetails.Email));
-            identity.AddClaim(new Claim("Id", EmployeeDetails.Id.ToString()));
-            identity.AddClaim(new Claim("UserName", EmployeeDetails.FirstName + " " + EmployeeDetails.LastName));
+            identity.AddClaim(new Claim("Email", employeeDetails.Email));
+            identity.AddClaim(new Claim("Id", employeeDetails.Id.ToString()));
+            identity.AddClaim(new Claim("UserName", employeeDetails.FirstName + " " + employeeDetails.LastName));
 
             ClaimsIdentity oAuthIdentity = identity;
             ClaimsIdentity cookiesIdentity =

@@ -26,8 +26,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <ngx-label value="ProjectTypeId"></ngx-label>
-                                        <select #ProjectTypeId="ngModel" [(ngModel)]="pageObject.ProjectTypeId" name="ProjectTypeId" class="form-control" id="" style="width:100%;">
+                                        <ngx-label value="Project Type"></ngx-label>
+                                        <select required #ProjectTypeId="ngModel" [(ngModel)]="pageObject.ProjectTypeId" name="ProjectTypeId" class="form-control" id="" style="width:100%;">
                                             <option *ngFor="let item of pageObject.ProjectTypeList" value="{{item.Id}}">{{item.Type}}</option>
                                         </select>
                                         <div *ngIf="ProjectTypeId.errors && (ProjectTypeId.dirty || ProjectTypeId.touched)" class="error">

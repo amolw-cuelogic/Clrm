@@ -19,5 +19,11 @@ namespace Cuelogic.Clrm.Common
             serializer.Serialize(stringwriter, t);
             return stringwriter.ToString();
         }
+
+        public static string ComposeClientMessage(string messageType, string message)
+        {
+            message = "<clrm>" + messageType + "|" + message + "</clrm>";
+            return message;
+        }
     }
 }

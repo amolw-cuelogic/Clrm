@@ -74,12 +74,12 @@ export class EditAllocationComponent {
         ).subscribe(
             m => {
                
-                if (m.EmployeeId == 0)
-                    m.EmployeeId = null;
-                if (m.ProjectRoleId == 0)
-                    m.ProjectRoleId = null;
-                if (m.ProjectId == 0)
-                    m.ProjectId = null;
+                if (m["EmployeeId"] == 0)
+                    m["EmployeeId"] = null;
+                if (m["ProjectRoleId"] == 0)
+                    m["ProjectRoleId"] = null;
+                if (m["ProjectId"] == 0)
+                    m["ProjectId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
 

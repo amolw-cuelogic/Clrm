@@ -71,6 +71,8 @@ export class EditProjectComponent {
         this.httpClient.get(this.baseUrl + this.apiController + "/" + id
         ).subscribe(
             m => {
+                if (m["ProjectTypeId"] == 0)
+                    m["ProjectTypeId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
 

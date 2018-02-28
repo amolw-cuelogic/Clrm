@@ -128,5 +128,13 @@ namespace Cuelogic.Clrm.Common
 
             #endregion
         }
+
+        public class MessageType
+        {
+            public static string Error = "Error";
+            public static string Success = "Success";
+            public static string Warning = "Warning";
+            public static string Information = "Information";
+        }
     }
 }

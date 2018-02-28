@@ -27,14 +27,13 @@ namespace Cuelogic.Clrm.Api.Filter
                 {
                     exceptionMessage = actionExecutedContext.Exception.InnerException.Message;
                 }
-                //We can log this exception message to the file or database.  
                 var response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
                 {
                     Content = new StringContent("An unhandled exception was thrown by service."),  
                     ReasonPhrase = exceptionMessage
                 };
                 actionExecutedContext.ActionContext.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "InternalException", actionExecutedContext.Exception);
-                //actionExecutedContext.Response = response;
+                
             }
         }
     }
