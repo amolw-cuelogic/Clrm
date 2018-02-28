@@ -23,6 +23,12 @@ namespace Cuelogic.Clrm.Service.Allocations
             _allocationRepository.MarkAllocationInvalid(allocationId);
         }
 
+        public int GetAllocationSum(int employeeId)
+        {
+            var id = _allocationRepository.GetAllocationSum(employeeId);
+            return id;
+        }
+
         public Allocation GetItem(int allocationId)
         {
             var allocation = _allocationRepository.GetAllocation(allocationId);

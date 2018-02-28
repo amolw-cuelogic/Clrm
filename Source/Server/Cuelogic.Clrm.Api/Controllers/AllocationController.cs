@@ -37,6 +37,13 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(allocation);
         }
 
+        [Route("GetAllocation/{id}")]
+        public IHttpActionResult GetAllocation(int id)
+        {
+            var allocation = _allocationService.GetAllocationSum(id);
+            return Ok(allocation);
+        }
+
         [Route("")]
         public IHttpActionResult Post([FromBody]Allocation allocation)
         {

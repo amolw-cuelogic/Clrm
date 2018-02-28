@@ -70,6 +70,17 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
             return ds;
         }
 
+        public DataSet GetAllocationSum(int employeeId)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetAllocationSum;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@employeeId", employeeId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            return ds;
+        }
+
         public void MarkAllocationInvalid(int allocationId)
         {
             var sqlParam = new MySqlSpParam();

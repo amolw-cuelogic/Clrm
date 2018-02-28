@@ -18,5 +18,6 @@ namespace Cuelogic.Clrm.Service.Allocations
         void Save(Allocation allocation, UserContext userCtx);
 
         void Delete(int allocationId);
+        int GetAllocationSum(int employeeId);
     }
 }

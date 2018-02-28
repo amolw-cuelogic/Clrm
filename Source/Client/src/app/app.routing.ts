@@ -149,6 +149,25 @@ export const routes: Routes = [
         },
         children: [
             {
+                path: 'allocation',
+                loadChildren: './component/allocation/allocation.module#AllocationModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'allocation/:mode/:id',
+                loadChildren: './component/allocation/editallocation.module#EditAllocationModule',
+                canActivate: [AuthGuardService]
+            }
+        ]
+    },
+    {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Home'
+        },
+        children: [
+            {
                 path: 'project',
                 loadChildren: './component/project/project.module#ProjectModule',
                 canActivate: [AuthGuardService]

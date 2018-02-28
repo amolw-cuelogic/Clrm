@@ -124,6 +124,7 @@ namespace Cuelogic.Clrm.Common
             public const string spAllocation_Get = "spAllocation_Get";
             public const string spAllocation_GetSelectList = "spAllocation_GetSelectList";
             public const string spAllocation_MarkInvalid = "spAllocation_MarkInvalid";
+            public const string spAllocation_GetAllocationSum = "spAllocation_GetAllocationSum";
 
             #endregion
         }

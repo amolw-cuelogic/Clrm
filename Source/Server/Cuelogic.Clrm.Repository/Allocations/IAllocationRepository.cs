@@ -16,5 +16,6 @@ namespace Cuelogic.Clrm.Repository.Allocations
         DataSet GetAllocationList(SearchParam searchParam);
         Allocation GetAllocation(int allocationId);
         void MarkAllocationInvalid(int allocationId);
+        int GetAllocationSum(int employeeId);
     }
 }

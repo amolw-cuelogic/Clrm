@@ -34,12 +34,13 @@ namespace Cuelogic.Clrm.Repository.Allocations
             {
                 var allocationDs = _allocationDataAccess.GetAllocation(allocationId);
                 allocation = allocationDs.Tables[0].ToModel<Allocation>();
+                allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId);
             }
 
             var ds = _allocationDataAccess.GetAllocationSelectList();
             allocation.SelectListEmployee = ds.Tables[0].ToList<Employee>();
             allocation.SelectListMasterProjectRole = ds.Tables[1].ToList<MasterProjectRole>();
-            allocation.SelectListProject = ds.Tables[0].ToList<Project>();
+            allocation.SelectListProject = ds.Tables[2].ToList<Project>();
 
             return allocation;
         }
@@ -48,6 +49,13 @@ namespace Cuelogic.Clrm.Repository.Allocations
         {
             var ds = _allocationDataAccess.GetAllocationList(searchParam);
             return ds;
+        }
+
+        public int GetAllocationSum(int employeeId)
+        {
+            var ds = _allocationDataAccess.GetAllocationSum(employeeId);
+            var id = ds.Tables[0].ToId();
+            return id;
         }
 
         public void MarkAllocationInvalid(int allocationId)
