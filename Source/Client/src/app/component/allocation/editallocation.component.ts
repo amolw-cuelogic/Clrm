@@ -39,7 +39,7 @@ export class EditAllocationComponent {
 
     SetFormModeView() {
         this.disabled = true;
-        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"]').attr("disabled", "true");
+        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"], select').attr("disabled", "true");
     }
 
     SaveGroup() {
@@ -73,6 +73,13 @@ export class EditAllocationComponent {
         this.httpClient.get(this.baseUrl + this.apiController + "/" + id
         ).subscribe(
             m => {
+               
+                if (m.EmployeeId == 0)
+                    m.EmployeeId = null;
+                if (m.ProjectRoleId == 0)
+                    m.ProjectRoleId = null;
+                if (m.ProjectId == 0)
+                    m.ProjectId = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
 

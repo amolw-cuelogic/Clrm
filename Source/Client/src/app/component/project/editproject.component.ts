@@ -37,7 +37,7 @@ export class EditProjectComponent {
 
     SetFormModeView() {
         this.disabled = true;
-        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"]').attr("disabled", "true");
+        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"], select').attr("disabled", "true");
     }
 
     SaveGroup() {
