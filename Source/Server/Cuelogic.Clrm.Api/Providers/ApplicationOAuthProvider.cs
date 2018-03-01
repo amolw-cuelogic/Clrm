@@ -35,7 +35,7 @@ namespace Cuelogic.Clrm.Api.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var employeeDetails = _commonService.GetEmployeeDetails(context.UserName);
+            var employeeDetails = _commonService.GetEmployeeByEmail(context.UserName);
 
             var domain = Regex.Match(context.UserName, @"@(.+?).co").Groups[1].Value.ToLower();
             if (domain != "cuelogic")

@@ -10,5 +10,6 @@ namespace Cuelogic.Clrm.Repository.Common
     public interface ICommonRepository
     {
         Employee GetEmployeeDetails(string emailId);
+        string GetEmployeeAllocationList(int employeeId);
     }
 }

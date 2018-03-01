@@ -13,6 +13,17 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
 {
     public class CommonDataAccess : ICommonDataAccess
     {
+        public DataSet GetEmployeeAllocationList(int employeeId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployeeAllocation_GetList;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@employeeId", employeeId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+            return ds;
+        }
+
         public DataSet GetEmployeeDetails(string emailId)
         {
             var sqlParam = new MySqlSpParam();

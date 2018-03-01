@@ -13,11 +13,7 @@ import { Router } from '@angular/router'
     templateUrl: 'editemployee.component.html'
 })
 export class EditEmployeeComponent {
-    //public departmentModal;
-    //public organizationRoleModal;
-    //public groupModal;
-    public skillModal;
-
+   
     id: number;
     mode: string;
     baseUrl: string;

@@ -27,6 +27,7 @@ namespace Cuelogic.Clrm.Common
             #region COMMON 
 
             public const string spEmployee_GetByEmailId = "spEmployee_GetByEmailId";
+            public const string spEmployeeAllocation_GetList = "spEmployeeAllocation_GetList";
 
             #endregion
 

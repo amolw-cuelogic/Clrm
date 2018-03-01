@@ -19,6 +19,14 @@ namespace Cuelogic.Clrm.Repository.Common
         {
             _commonDataAccess = new CommonDataAccess();
         }
+
+        public string GetEmployeeAllocationList(int employeeId)
+        {
+            var ds = _commonDataAccess.GetEmployeeAllocationList(employeeId);
+            var jsonString = ds.Tables[0].ToJsonString();
+            return jsonString;
+        }
+
         public Employee GetEmployeeDetails(string emailId)
         {
             var userContextDs = _commonDataAccess.GetEmployeeDetails(emailId);

@@ -1,4 +1,5 @@
-﻿using Cuelogic.Clrm.Model.DatabaseModel;
+﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace Cuelogic.Clrm.Service.Common
 {
     public interface ICommonService
     {
-        Employee GetEmployeeDetails(string emailId);
+        Employee GetEmployeeByEmail(string emailId);
+
+        EmployeeVm GetEmployeeById(int employeeId);
+
+        void Save(EmployeeVm employeeVm, UserContext userContext);
+        string GetEmployeeAllocationList(int employeeId);
     }
 }

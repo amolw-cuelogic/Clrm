@@ -10,5 +10,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
     public interface ICommonDataAccess
     {
         DataSet GetEmployeeDetails(string emailId);
+        DataSet GetEmployeeAllocationList(int employeeId);
     }
 }

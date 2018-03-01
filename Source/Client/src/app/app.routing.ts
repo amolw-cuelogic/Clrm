@@ -180,6 +180,20 @@ export const routes: Routes = [
         ]
     },
     {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Home'
+        },
+        children: [
+            {
+                path: 'myprofile',
+                loadChildren: './component/myprofile/editmyprofile.module#EditMyProfileModule',
+                canActivate: [AuthGuardService]
+            }
+        ]
+    },
+    {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full',

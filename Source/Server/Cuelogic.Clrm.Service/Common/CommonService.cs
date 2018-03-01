@@ -3,6 +3,8 @@ using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Repository.Common;
+using Cuelogic.Clrm.Repository.Employees;
+using Cuelogic.Clrm.Service.Employees;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -19,10 +21,29 @@ namespace Cuelogic.Clrm.Service.Common
         {
             _commonRepository = new CommonRepository();
         }
-        public Employee GetEmployeeDetails(string emailId)
+
+        public string GetEmployeeAllocationList(int employeeId)
+        {
+            return _commonRepository.GetEmployeeAllocationList(employeeId);
+        }
+
+        public Employee GetEmployeeByEmail(string emailId)
         {
             var data = _commonRepository.GetEmployeeDetails(emailId);
             return data;
+        }
+
+        public EmployeeVm GetEmployeeById(int employeeId)
+        {
+            IEmployeeService _employeeService = new EmployeeService();
+            var employee = _employeeService.GetItem(employeeId);
+            return employee;
+        }
+
+        public void Save(EmployeeVm employeeVm, UserContext userContext)
+        {
+            IEmployeeService _employeeService = new EmployeeService();
+            _employeeService.Save(employeeVm, userContext);
         }
     }
 }

@@ -51,10 +51,10 @@
                 <th><button (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
                 <th>Employee Name</th>
                 <th>
-                    Project Role
+                    Project Name
                 </th>
                 <th>
-                    Project Name
+                    Project Role
                 </th>
                 <th>
                     Is Billable
@@ -83,11 +83,12 @@
                 <td>
                     {{item.FullName}}
                 </td>
-                <td>
-                    {{item.Role}}
-                </td>
+
                 <td>
                     {{item.ProjectName}}
+                </td>
+                <td>
+                    {{item.Role}}
                 </td>
                 <td>
                     {{item.IsBillable}}
