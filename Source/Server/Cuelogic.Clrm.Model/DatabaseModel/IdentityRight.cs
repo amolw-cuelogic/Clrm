@@ -10,6 +10,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
     {
         public int Id { get; set; }
         public string RightTitle { get; set; }
+        public int RightId { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }
         public string CreatedOn { get; set; }

@@ -11,5 +11,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
     {
         DataSet GetEmployeeDetails(string emailId);
         DataSet GetEmployeeAllocationList(int employeeId);
+        DataSet GetEmployeeRightList(int employeeId);
     }
 }

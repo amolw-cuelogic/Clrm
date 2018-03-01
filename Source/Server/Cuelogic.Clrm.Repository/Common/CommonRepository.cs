@@ -33,5 +33,12 @@ namespace Cuelogic.Clrm.Repository.Common
             var employee = userContextDs.Tables[0].ToModel<Employee>();
             return employee;
         }
+
+        public List<IdentityGroupRight> GetGroupRights(int employeeId)
+        {
+            var ds = _commonDataAccess.GetEmployeeRightList(employeeId);
+            var list = ds.Tables[0].ToList<IdentityGroupRight>();
+            return list;
+        }
     }
 }

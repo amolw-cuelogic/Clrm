@@ -28,6 +28,7 @@ namespace Cuelogic.Clrm.Common
 
             public const string spEmployee_GetByEmailId = "spEmployee_GetByEmailId";
             public const string spEmployeeAllocation_GetList = "spEmployeeAllocation_GetList";
+            public const string spEmployeeRights_Get = "spEmployeeRights_Get";
 
             #endregion
 
@@ -136,6 +137,34 @@ namespace Cuelogic.Clrm.Common
             public static string Success = "Success";
             public static string Warning = "Warning";
             public static string Information = "Information";
+        }
+
+        //IdentityRights Class should be compulsarily in sync with IdentityRights table in database
+        public static class IdentityRights
+        {
+            //200 Series for Admin level sections 
+            public const int Group = 200;
+
+            //300 Series for Master level sections
+            public const int MasterSkill = 300;
+            public const int MasterDepartment = 301;
+            public const int MasterOrganizationRole = 302;
+            public const int MasterProjectRole = 303;
+            public const int MasterProjectType = 304;
+            public const int MasterClient = 305;
+
+            //400 Series for root level sections
+            public const int MyProfile = 400;
+            public const int Employee = 401;
+            public const int Project = 402;
+            public const int Allocation = 403;
+        }
+
+        public static class AuthorizeFlag
+        {
+            public const int Read = 1;
+            public const int Write = 2;
+            public const int Delete = 3;
         }
     }
 }

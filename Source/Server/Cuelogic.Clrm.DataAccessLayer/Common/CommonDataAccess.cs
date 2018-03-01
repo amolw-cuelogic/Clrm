@@ -34,5 +34,16 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
+
+        public DataSet GetEmployeeRightList(int employeeId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployeeRights_Get;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@employeeId", employeeId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+            return ds;
+        }
     }
 }

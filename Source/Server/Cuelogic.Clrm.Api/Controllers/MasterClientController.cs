@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static Cuelogic.Clrm.Api.Filter.CustomFilter;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
@@ -19,6 +21,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             _masterClientService = masterClientService;
         }
 
+        [AuthorizeUserRights(IdentityRights.MasterClient, AuthorizeFlag.Read)]
         [Route("")]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
@@ -30,6 +33,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(jsonString);
         }
 
+        [AuthorizeUserRights(IdentityRights.MasterClient, AuthorizeFlag.Read)]
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
@@ -37,6 +41,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(masterClient);
         }
 
+        [AuthorizeUserRights(IdentityRights.MasterClient, AuthorizeFlag.Write)]
         [Route("")]
         public IHttpActionResult Post([FromBody]MasterClient masterClient)
         {
@@ -45,6 +50,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok();
         }
 
+        [AuthorizeUserRights(IdentityRights.MasterClient, AuthorizeFlag.Delete)]
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
         {

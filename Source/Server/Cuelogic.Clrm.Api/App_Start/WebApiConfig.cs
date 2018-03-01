@@ -18,6 +18,7 @@ namespace Cuelogic.Clrm.Api
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Filters.Add(new CustomExceptionFilter());
+            config.Filters.Add(new AuthorizeUserRightsAttribute());
             // Web API routes
             config.MapHttpAttributeRoutes();
 

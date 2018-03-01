@@ -16,5 +16,7 @@ namespace Cuelogic.Clrm.Service.Common
 
         void Save(EmployeeVm employeeVm, UserContext userContext);
         string GetEmployeeAllocationList(int employeeId);
+
+        List<IdentityGroupRight> GetEmployeeRights(int employeeId);
     }
 }

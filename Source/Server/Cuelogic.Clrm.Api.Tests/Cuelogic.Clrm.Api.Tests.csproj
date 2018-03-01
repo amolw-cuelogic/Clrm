@@ -127,6 +127,7 @@
     <Compile Include="Controllers\EmployeeControllerTest.cs" />
     <Compile Include="Controllers\ProjectControllerTest.cs" />
     <Compile Include="Controllers\AllocationControllerTest.cs" />
+    <Compile Include="Controllers\MyProfileControllerTest.cs" />
     <Compile Include="DataAccess\CommonDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

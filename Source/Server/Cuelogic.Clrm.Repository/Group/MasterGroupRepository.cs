@@ -51,7 +51,7 @@ namespace Cuelogic.Clrm.Repository.Group
                     var temp = new IdentityGroupRight();
                     temp.Action = 4; //Set read right by default
                     temp.IsValid = true;
-                    temp.RightId = item.Id;
+                    temp.RightId = item.RightId;
                     temp.RightTitle = item.RightTitle;
                     temp.SetBooleanRights(temp.Action);
                     identityGroup.GroupRight.Add(temp);

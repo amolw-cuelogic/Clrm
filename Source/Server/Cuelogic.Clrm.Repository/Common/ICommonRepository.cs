@@ -11,5 +11,6 @@ namespace Cuelogic.Clrm.Repository.Common
     {
         Employee GetEmployeeDetails(string emailId);
         string GetEmployeeAllocationList(int employeeId);
+        List<IdentityGroupRight> GetGroupRights(int employeeId);
     }
 }

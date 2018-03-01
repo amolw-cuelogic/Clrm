@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static Cuelogic.Clrm.Api.Filter.CustomFilter;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
@@ -21,6 +23,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
+        [AuthorizeUserRights(IdentityRights.MasterOrganizationRole, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
             var searchParam = new SearchParam();
@@ -32,6 +35,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
+        [AuthorizeUserRights(IdentityRights.MasterOrganizationRole, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int id)
         {
             var masterOrganizationRole = _masterOrganizationRoleService.GetItem(id);
@@ -39,6 +43,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
+        [AuthorizeUserRights(IdentityRights.MasterOrganizationRole, AuthorizeFlag.Write)]
         public IHttpActionResult Post([FromBody]MasterOrganizationRole masterOrganizationRole)
         {
             var userCtx = base.GetUserContext();
@@ -47,6 +52,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
+        [AuthorizeUserRights(IdentityRights.MasterOrganizationRole, AuthorizeFlag.Delete)]
         public IHttpActionResult Delete(int id)
         {
             _masterOrganizationRoleService.Delete(id);

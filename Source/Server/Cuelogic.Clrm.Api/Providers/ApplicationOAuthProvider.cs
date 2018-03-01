@@ -72,6 +72,12 @@ namespace Cuelogic.Clrm.Api.Providers
             identity.AddClaim(new Claim("Id", employeeDetails.Id.ToString()));
             identity.AddClaim(new Claim("UserName", employeeDetails.FirstName + " " + employeeDetails.LastName));
 
+            ICommonService commonService = new CommonService();
+            var employeeRights = commonService.GetEmployeeRights(employeeDetails.Id);
+            var employeeRightsXml = Helper.ObjectToXml(employeeRights);
+
+            identity.AddClaim(new Claim("RightsXml", employeeRightsXml));
+
             ClaimsIdentity oAuthIdentity = identity;
             ClaimsIdentity cookiesIdentity =
             new ClaimsIdentity(context.Options.AuthenticationType);

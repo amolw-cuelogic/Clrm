@@ -40,6 +40,29 @@ namespace Cuelogic.Clrm.Service.Common
             return employee;
         }
 
+        public List<IdentityGroupRight> GetEmployeeRights(int employeeId)
+        {
+            var duplicateList = _commonRepository.GetGroupRights(employeeId);
+
+            var distinctList = new List<IdentityGroupRight>();
+            foreach (var item in duplicateList)
+            {
+                var addedItem = distinctList.Where(m => m.RightId == item.RightId).FirstOrDefault();
+                if (addedItem != null)
+                {
+                    addedItem.Action = addedItem.Action | item.Action;
+                    addedItem.SetBooleanRights(addedItem.Action);
+                }
+                else
+                {
+                    item.SetBooleanRights(item.Action);
+                    distinctList.Add(item);
+                }
+
+            }
+            return distinctList;
+        }
+
         public void Save(EmployeeVm employeeVm, UserContext userContext)
         {
             IEmployeeService _employeeService = new EmployeeService();

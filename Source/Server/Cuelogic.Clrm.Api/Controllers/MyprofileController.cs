@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using System.Web.Http;
+using static Cuelogic.Clrm.Api.Filter.CustomFilter;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
@@ -20,6 +22,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
+        [AuthorizeUserRights(IdentityRights.MyProfile, AuthorizeFlag.Read)]
         public IHttpActionResult Get()
         {
             var userContext = base.GetUserContext();
@@ -29,6 +32,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
+        [AuthorizeUserRights(IdentityRights.MyProfile, AuthorizeFlag.Write)]
         public IHttpActionResult Post([FromBody]EmployeeVm employeeVm)
         {
             var userContext = base.GetUserContext();
