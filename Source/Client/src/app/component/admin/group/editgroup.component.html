@@ -48,16 +48,16 @@
                                 <table class="table table-sm">
                                     <tr>
                                         <th>
-                                            Right
+                                           Right
                                         </th>
                                         <th>
-                                            Read
+                                            <input type="checkbox" (change)="MarkAllRead()" [(ngModel)]="ActionRead" style="margin-right:5px;" />Read
+                                        </th>
+                                        <th >
+                                            <input type="checkbox" (change)="MarkAllWrite()" [(ngModel)]="ActionWrite" style="margin-right:5px;" />Write
                                         </th>
                                         <th>
-                                            Write
-                                        </th>
-                                        <th>
-                                            Delete
+                                            <input type="checkbox" (change)="MarkAllInvalid()" [(ngModel)]="ActionInValid" style="margin-right:5px;" />InValid
                                         </th>
                                     </tr>
                                     <tbody>
@@ -65,7 +65,7 @@
                                             <td>
                                                 {{item.RightTitle}}
                                             </td>
-                                            <td>
+                                            <td >
                                                 <input [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
                                             </td>
                                             <td>
