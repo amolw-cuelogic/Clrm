@@ -5,3 +5,6 @@ Source/Server/**/obj/**/*
 Source/Server/.vs/Clrm.VS.2015/v14/.suo
 
 Source/Client/node_modules/
+
+Source/Server/packages/repositories.config
+Source/Server/Clrm.VS.2015.v12.suo
