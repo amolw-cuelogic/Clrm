@@ -20,6 +20,10 @@ export class EditGroupComponent {
     loaded: boolean = false;
     ApiController: string = "api/Group";
 
+    ActionWrite: boolean;
+    ActionRead: boolean;
+    ActionInValid: boolean;
+
     Disabled = false;
 
     ngOnInit() {
@@ -27,7 +31,9 @@ export class EditGroupComponent {
             this.id = +params['id'];
             this.mode = params['mode'];
             this.LoadGroup(this.id);
-
+            this.ActionWrite = false;
+            this.ActionRead = false;
+            this.ActionInValid = false;
         });
     }
 
@@ -83,6 +89,28 @@ export class EditGroupComponent {
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,
         private router: Router) {
         this.baseUrl = this.SrvAppConfig.GetBaseUrl();
+    }
+
+    MarkAllInvalid() {
+        var val = this.ActionInValid;
+        for (var i = 0; i < this.IdentityGroup.GroupRight.length; i++)
+        {
+            this.IdentityGroup.GroupRight[i].BooleanRight.Delete = val;
+        }
+    }
+
+    MarkAllWrite() {
+        var val = this.ActionWrite;
+        for (var i = 0; i < this.IdentityGroup.GroupRight.length; i++) {
+            this.IdentityGroup.GroupRight[i].BooleanRight.Write = val;
+        }
+    }
+
+    MarkAllRead() {
+        var val = this.ActionRead;
+        for (var i = 0; i < this.IdentityGroup.GroupRight.length; i++) {
+            this.IdentityGroup.GroupRight[i].BooleanRight.Read = val;
+        }
     }
 
 }

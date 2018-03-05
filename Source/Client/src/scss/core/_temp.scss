@@ -27,10 +27,10 @@
   }
 }
 
-//
-.modal-open .modal {
+//Commented to solve modal closing issue by ngs-bootstrap
+/*.modal-open .modal {
   display: block;
-}
+}*/
 
 // navbar dropdown fix
 .navbar .dropdown-toggle {

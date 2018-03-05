@@ -34,15 +34,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>C:\Users\Amol Wable\Downloads\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.8.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.8.2\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,6 +60,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
@@ -113,6 +118,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\MasterGroupControllerTest.cs" />
+    <Compile Include="Controllers\MasterSkillControllerTest.cs" />
+    <Compile Include="Controllers\MasterDepartmentControllerTest.cs" />
+    <Compile Include="Controllers\MasterOrganizationRoleControllerTest.cs" />
+    <Compile Include="Controllers\MasterProjectRoleControllerTest.cs" />
+    <Compile Include="Controllers\MasterProjectTypeControllerTest.cs" />
+    <Compile Include="Controllers\MasterClientControllerTest.cs" />
+    <Compile Include="Controllers\EmployeeControllerTest.cs" />
+    <Compile Include="Controllers\ProjectControllerTest.cs" />
+    <Compile Include="Controllers\AllocationControllerTest.cs" />
+    <Compile Include="Controllers\MyProfileControllerTest.cs" />
+    <Compile Include="DataAccess\CommonDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

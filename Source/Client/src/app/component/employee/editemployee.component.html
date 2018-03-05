@@ -1,0 +1,406 @@
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
+        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid || pageObject.Employee.EmployeeDepartmentList.length == 0 || pageObject.Employee.EmployeeOrganizationRoleList.length == 0 || pageObject.Employee.IdentityEmployeeGroupList.length == 0 || pageObject.Employee.EmployeeSkillList.length == 0">Save</button>
+        <button routerLink="/employee" type="button" class="btn btn-primary btn-sm">Back</button>
+    </div>
+    <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
+        <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
+            <div class="col-sm-12 col-md-12 col-xs-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Employee </strong>
+                        <small>Details</small>
+                        <small *ngIf="pageObject.Employee.UpdatedOn" style="float:right">Last updated on <u>{{pageObject.Employee.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{pageObject.Employee.UpdatedByName}}</u> </small>
+                    </div>
+                    <div class="card-body">
+                        <form form #formCtrl="ngForm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <ngx-label value="First Name"></ngx-label>
+                                        <input type="text" #FirstName="ngModel" [(ngModel)]="pageObject.Employee.FirstName" class="form-control" required name="FirstName" placeholder="Enter First Name" />
+                                        <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)" class="error">
+                                            First Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MiddleName</label>
+                                        <input type="text" [(ngModel)]="pageObject.Employee.MiddleName" class="form-control" name="MiddleName" placeholder="Enter Middle Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Last Name"></ngx-label>
+                                        <input type="text" #LastName="ngModel" [(ngModel)]="pageObject.Employee.LastName" class="form-control" required name="LastName" placeholder="Enter Last Name" />
+                                        <div *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="error">
+                                            Last Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Employee Id"></ngx-label>
+                                        <input type="text" #OrgEmpId="ngModel" [(ngModel)]="pageObject.Employee.OrgEmpId" class="form-control" required name="OrgEmpId" placeholder="Enter Employee Id" />
+                                        <div *ngIf="OrgEmpId.errors && (OrgEmpId.dirty || OrgEmpId.touched)" class="error">
+                                            Employee Id is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Is Valid Skill</label><br />
+                                        <label class="switch switch-3d switch-success switch-sm">
+                                            <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.Employee.IsValid" name="IsValid">
+                                            <span class="switch-label"></span>
+                                            <span class="switch-handle"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Joining Date"></ngx-label>
+                                        <input type="date" #JoiningDate="ngModel" [ngModel]="pageObject.Employee.JoiningDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.Employee.JoiningDate = $event" class="form-control" required name="JoiningDate" placeholder="Enter Joining Date" />
+                                        <div *ngIf="JoiningDate.errors && (JoiningDate.dirty || JoiningDate.touched)" class="error">
+                                            Joining Date is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Leaving Date</label>
+                                        <input type="date" [ngModel]="pageObject.Employee.LeavingDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.Employee.LeavingDate = $event" class="form-control" name="LeavingDate" placeholder="Enter Leaving Date" />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Contact Number"></ngx-label>
+                                        <input pattern="[0-9]+" type="text" #ContactNum="ngModel" [(ngModel)]="pageObject.Employee.ContactNum" class="form-control" required name="ContactNum" placeholder="Enter Contact Number" />
+                                        <div *ngIf="ContactNum.errors">
+                                            <div *ngIf="ContactNum.errors.required && (ContactNum.dirty || ContactNum.touched)" class="error">
+                                                Contact Number is required
+                                            </div>
+                                            <div *ngIf="ContactNum.errors.pattern && (ContactNum.dirty || ContactNum.touched)" class="error">
+                                                Please enter valid Contact Number
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Email Id"></ngx-label>
+                                        <input type="text" #Email="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="pageObject.Employee.Email" class="form-control" required name="Email" placeholder="Enter Email Id" />
+                                        <div *ngIf="Email.errors">
+                                            <div *ngIf="Email.errors.required && (Email.dirty || Email.touched)" class="error">
+                                                Email Id is required
+                                            </div>
+                                            <div *ngIf="Email.errors.pattern && (Email.dirty || Email.touched)" class="error">
+                                                Please enter valid email Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <ngx-label value="Skills"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenSkillModal('skillModal')">Add Skills</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.EmployeeSkillList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Skill Title
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveSkill(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{skillItem.SkillName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <input type="checkbox" [(ngModel)]="skillItem.IsValid" name="SkillName-{{i}}" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeSkillList.length == 0">
+                                                        <td>
+                                                            No Skills Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.EmployeeSkillList.length == 0" class="warning">
+                                            Select at least one skill.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Group"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenGroupModal('groupModal')">Add Group</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Group Title
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveGroup(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{item.GroupName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="GroupName-{{i}}" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0">
+                                                        <td>
+                                                            No Groups Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0" class="warning">
+                                            Select at least one Group.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Organization Role"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenOganizationRoleModal('organizationRoleModal')">Add Role</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Role
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{item.RoleName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="RoleName-{{i}}" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0">
+                                                        <td>
+                                                            No Oganization Role Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0" class="warning">
+                                            Select at least one Role.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Department"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenDepartmentModal('departmentModal')">Add Department</a>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Role
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveDepartment(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{item.DepartmentName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="DepartmentName-{{i}}" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0">
+                                                        <td>
+                                                            No Department Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0" class="warning">
+                                            Select at least one Department.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="idDivModalCollection">
+    <!-- MASTER SKILLS -->
+    <div id="skillModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Skills</h4>
+                    <button type="button" class="close" (click)="CloseModal('skillModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="CustomeTable" style="width:100%">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Skill</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.MasterSkillList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.Skill}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('skillModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddSkills('skillModal')">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MASTER GROUP -->
+    <div id="groupModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Group</h4>
+                    <button type="button" class="close" (click)="CloseModal('groupModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="CustomeTable" style="width:100%">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Group</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.IdentityGroupList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.GroupName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('groupModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddGroups('groupModal')">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ORGANIZATION ROLE -->
+    <div id="organizationRoleModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Organization Role</h4>
+                    <button type="button" class="close" (click)="CloseModal('organizationRoleModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="CustomeTable" style="width:100%">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Organization Role</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.MasterOrganizationRoleList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.Role}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('organizationRoleModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddOganizationRoles('organizationRoleModal')">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DEPARTMENT -->
+    <div id="departmentModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Master Department</h4>
+                    <button type="button" class="close" (click)="CloseModal('departmentModal')" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="max-height:350px; overflow:auto;">
+                    <table class="CustomeTable" style="width:100%">
+                        <tr>
+                            <th style="width:20%;text-align:center">
+                                Add
+                            </th>
+                            <th>Department</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of pageObject.MasterDepartmentList;let i=index">
+                                <td style="text-align:center">
+                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
+                                </td>
+                                <td>
+                                    {{item.DepartmentName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModal('departmentModal')">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="AddDepartments('departmentModal')">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

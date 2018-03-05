@@ -2,5 +2,20 @@ Source/Server/**/bin/**/*
 Source/Server/**/obj/*
 Source/Server/**/Logs/*
 Source/Server/**/obj/**/*
+Source/Server/.vs/Clrm.VS.2015/v14/.suo
+
+Source/Client/src/assets/fonts/*.ttf binary
+Source/Client/src/assets/fonts/*.eot binary
+Source/Client/src/assets/fonts/*.woff binary
+Source/Client/src/assets/fonts/*.woff2 binary
+
+*.eot binary
+*.otf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
 
 Source/Client/node_modules/
+
+Source/Server/packages/repositories.config
+Source/Server/Clrm.VS.2015.v12.suo

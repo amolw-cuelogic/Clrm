@@ -1,0 +1,292 @@
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
+        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid || pageObject.Employee.EmployeeDepartmentList.length == 0 || pageObject.Employee.EmployeeOrganizationRoleList.length == 0 || pageObject.Employee.IdentityEmployeeGroupList.length == 0 || pageObject.Employee.EmployeeSkillList.length == 0">Save</button>
+    </div>
+    <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
+        <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
+            <div class="col-sm-12 col-md-12 col-xs-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Employee </strong>
+                        <small>Details</small>
+                        <small *ngIf="pageObject.Employee.UpdatedOn" style="float:right">Last updated on <u>{{pageObject.Employee.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{pageObject.Employee.UpdatedByName}}</u> </small>
+                    </div>
+                    <div class="card-body">
+                        <form form #formCtrl="ngForm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <ngx-label value="First Name"></ngx-label>
+                                        <input type="text" #FirstName="ngModel" [(ngModel)]="pageObject.Employee.FirstName" class="form-control" required name="FirstName" placeholder="Enter First Name" />
+                                        <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)" class="error">
+                                            First Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MiddleName</label>
+                                        <input type="text" [(ngModel)]="pageObject.Employee.MiddleName" class="form-control" name="MiddleName" placeholder="Enter Middle Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Last Name"></ngx-label>
+                                        <input type="text" #LastName="ngModel" [(ngModel)]="pageObject.Employee.LastName" class="form-control" required name="LastName" placeholder="Enter Last Name" />
+                                        <div *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="error">
+                                            Last Name is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Employee Id"></ngx-label><br />
+                                        <span>{{pageObject.Employee.OrgEmpId}}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Is Valid Skill</label><br />
+                                        <span>{{pageObject.Employee.IsValid }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Joining Date"></ngx-label><br />
+                                        <span>{{pageObject.Employee.JoiningDate | date:'yyyy-MM-dd'}}</span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Leaving Date</label><br />
+                                        <span>{{pageObject.Employee.LeavingDate | date:'yyyy-MM-dd'}}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Contact Number"></ngx-label>
+                                        <input pattern="[0-9]+" type="text" #ContactNum="ngModel" [(ngModel)]="pageObject.Employee.ContactNum" class="form-control" required name="ContactNum" placeholder="Enter Contact Number" />
+                                        <div *ngIf="ContactNum.errors">
+                                            <div *ngIf="ContactNum.errors.required && (ContactNum.dirty || ContactNum.touched)" class="error">
+                                                Contact Number is required
+                                            </div>
+                                            <div *ngIf="ContactNum.errors.pattern && (ContactNum.dirty || ContactNum.touched)" class="error">
+                                                Please enter valid Contact Number
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ngx-label value="Email Id"></ngx-label><br />
+                                        <span>{{pageObject.Employee.Email }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <ngx-label value="Skills"></ngx-label>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.EmployeeSkillList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Skill Title
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveSkill(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{skillItem.SkillName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <span>{{skillItem.IsValid}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeSkillList.length == 0">
+                                                        <td>
+                                                            No Skills Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.EmployeeSkillList.length == 0" class="warning">
+                                            Select at least one skill.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Group"></ngx-label>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Group Title
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveGroup(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{item.GroupName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <span>{{item.IsValid}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0">
+                                                        <td>
+                                                            No Groups Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0" class="warning">
+                                            Select at least one Group.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Organization Role"></ngx-label>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Role
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{item.RoleName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <span>{{item.IsValid}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0">
+                                                        <td>
+                                                            No Oganization Role Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0" class="warning">
+                                            Select at least one Role.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <ngx-label value="Department"></ngx-label>
+                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
+                                            <table style="width:100%" class="CustomeTable">
+                                                <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length != 0">
+                                                    <!--<th class="AlignCenter">
+                                                        Action
+                                                    </th>-->
+                                                    <th style="width:60%">
+                                                        Role
+                                                    </th>
+                                                    <th class="AlignCenter">Is Valid</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
+                                                        <!--<td class="AlignCenter">
+                                                            <i (click)="RemoveDepartment(i)" class="icon-close"></i>
+                                                        </td>-->
+                                                        <td>
+                                                            {{item.DepartmentName}}
+                                                        </td>
+                                                        <td class="AlignCenter">
+                                                            <span>{{item.IsValid}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0">
+                                                        <td>
+                                                            No Department Added
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0" class="warning">
+                                            Select at least one Department.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                        <hr />
+                        <label>My Allocations</label>
+                        <table class="table table-sm table-hover  ">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>
+                                        Project Name
+                                    </th>
+                                    <th>
+                                        Project Role
+                                    </th>
+                                    <th>
+                                        Is Billable
+                                    </th>
+                                    <th>
+                                        Allocation %
+                                    </th>
+                                    <th>
+                                        Start Date
+                                    </th>
+                                    <th>
+                                        End Date
+                                    </th>
+                                    <th>
+                                        Is Valid
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pageList">
+
+                                    <td>
+                                        {{item.ProjectName}}
+                                    </td>
+                                    <td>
+                                        {{item.Role}}
+                                    </td>
+                                    <td>
+                                        {{item.IsBillable}}
+                                    </td>
+                                    <td>
+                                        {{item.PercentageAllocation}}&nbsp;%
+                                    </td>
+                                    <td>
+                                        {{item.StartDate}}
+                                    </td>
+                                    <td>
+                                        {{item.EndDate}}
+                                    </td>
+                                    <td>
+                                        {{item.IsValid}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

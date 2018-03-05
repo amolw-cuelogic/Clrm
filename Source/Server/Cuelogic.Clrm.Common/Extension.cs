@@ -55,7 +55,13 @@ namespace Cuelogic.Clrm.Common
             try
             {
                 var data = table.Rows[0][0];
-                id = int.Parse(data.ToString());
+                string stringNumeric = "";
+                if (data != null)
+                    stringNumeric = data.ToString();
+                if (stringNumeric != "")
+                    id = int.Parse(stringNumeric);
+                else
+                    id = 0;
                 return id;
             }
             catch (Exception)
@@ -93,7 +99,7 @@ namespace Cuelogic.Clrm.Common
                         }
                         else
                         {
-                            property.SetValue(item, row[property.Name], null);
+                            property.SetValue(item, row[property.Name]);
                         }
                     }
                 }

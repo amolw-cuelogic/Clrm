@@ -308,11 +308,18 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AllocationController.cs" />
     <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\MasterClientController.cs" />
     <Compile Include="Controllers\MasterDepartmentController.cs" />
     <Compile Include="Controllers\MasterGroupController.cs" />
     <Compile Include="Controllers\MasterOrganizationRoleController.cs" />
+    <Compile Include="Controllers\MasterProjectTypeController.cs" />
     <Compile Include="Controllers\MasterSkillController.cs" />
+    <Compile Include="Controllers\MasterProjectRoleController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\MyprofileController.cs" />
     <Compile Include="Filter\CustomFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

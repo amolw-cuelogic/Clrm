@@ -46,13 +46,24 @@
   <ItemGroup>
     <Compile Include="CommonModel\BooleanRights.cs" />
     <Compile Include="CommonModel\MySqlSpParam.cs" />
+    <Compile Include="DatabaseModel\Allocation.cs" />
     <Compile Include="DatabaseModel\Employee.cs" />
+    <Compile Include="DatabaseModel\EmployeeDepartment.cs" />
+    <Compile Include="DatabaseModel\EmployeeOrganizationRole.cs" />
+    <Compile Include="DatabaseModel\EmployeeSkill.cs" />
+    <Compile Include="DatabaseModel\EmployeeVm.cs" />
+    <Compile Include="DatabaseModel\IdentityEmployeeGroup.cs" />
     <Compile Include="DatabaseModel\IdentityGroup.cs" />
     <Compile Include="DatabaseModel\IdentityGroupRight.cs" />
     <Compile Include="DatabaseModel\IdentityRight.cs" />
+    <Compile Include="DatabaseModel\MasterClient.cs" />
     <Compile Include="DatabaseModel\MasterDepartment.cs" />
     <Compile Include="DatabaseModel\MasterOrganizationRole.cs" />
+    <Compile Include="DatabaseModel\MasterProjectRole.cs" />
+    <Compile Include="DatabaseModel\MasterProjectType.cs" />
     <Compile Include="DatabaseModel\MasterSkill.cs" />
+    <Compile Include="DatabaseModel\Project.cs" />
+    <Compile Include="DatabaseModel\ProjectClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommonModel\SearchParam.cs" />
   </ItemGroup>

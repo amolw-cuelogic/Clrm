@@ -52,7 +52,8 @@ export class FullLayoutComponent implements OnInit {
             m => {
                 this.authService.signOut();
                 this.srvAppconfig.ClearToken();
-                location.href = gmailLogoutUrl;
+                this.router.navigate(["/login"]);
+                //location.href = gmailLogoutUrl;
             }
         );
     }

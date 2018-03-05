@@ -44,14 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Allocations\AllocationService.cs" />
+    <Compile Include="Allocations\IAllocationService.cs" />
+    <Compile Include="Client\IMasterClientService.cs" />
+    <Compile Include="Client\MasterClientService.cs" />
     <Compile Include="Common\ICommonService.cs" />
     <Compile Include="Department\IMasterDepartmentService.cs" />
+    <Compile Include="Employees\EmployeeService.cs" />
+    <Compile Include="Employees\IEmployeeService.cs" />
     <Compile Include="Group\IMasterGroup.cs" />
     <Compile Include="Common\CommonService.cs" />
     <Compile Include="Department\MasterDepartmentService.cs" />
     <Compile Include="Group\MasterGroupService.cs" />
     <Compile Include="OrganizationRole\IMasterOrganizationRoleService.cs" />
     <Compile Include="OrganizationRole\MasterOrganizationRoleService.cs" />
+    <Compile Include="ProjectRole\IMasterProjectRoleService.cs" />
+    <Compile Include="ProjectRole\MasterProjectRoleService.cs" />
+    <Compile Include="Projects\IProjectService.cs" />
+    <Compile Include="Projects\ProjectService.cs" />
+    <Compile Include="ProjectType\IMasterProjectTypeService.cs" />
+    <Compile Include="ProjectType\MasterProjectTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillService.cs" />
     <Compile Include="Skill\MasterSkillService.cs" />

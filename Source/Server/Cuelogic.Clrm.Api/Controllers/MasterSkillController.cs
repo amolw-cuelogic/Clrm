@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static Cuelogic.Clrm.Api.Filter.CustomFilter;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
@@ -21,17 +23,19 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
+        [AuthorizeUserRights(IdentityRights.MasterSkill, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
             var searchParam = new SearchParam();
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
             searchParam.Show = show;
-            var identityGroupJsonString = _masterSkillService.GetList(searchParam);
-            return Ok(identityGroupJsonString);
+            var jsonString = _masterSkillService.GetList(searchParam);
+            return Ok(jsonString);
         }
 
         [Route("{id}")]
+        [AuthorizeUserRights(IdentityRights.MasterSkill, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int id)
         {
             var masterSkill = _masterSkillService.GetItem(id);
@@ -39,6 +43,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
+        [AuthorizeUserRights(IdentityRights.MasterSkill, AuthorizeFlag.Write)]
         public IHttpActionResult Post([FromBody]MasterSkill masterSkill)
         {
             var userCtx = base.GetUserContext();
@@ -47,6 +52,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
+        [AuthorizeUserRights(IdentityRights.MasterSkill, AuthorizeFlag.Delete)]
         public IHttpActionResult Delete(int id)
         {
             _masterSkillService.Delete(id);
