@@ -46,7 +46,12 @@ namespace Cuelogic.Clrm.DataAccessLayer.Employees
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetMasterValidList;
-            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(),null,new List<string> {
+                AppConstants.StoreProcedure.spEmployee_GetMasterValidList_Tables.IdentityGroup,
+                AppConstants.StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterDepartment,
+                AppConstants.StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterSkill,
+                AppConstants.StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterOrganizationRole
+            });
             return ds;
         }
 

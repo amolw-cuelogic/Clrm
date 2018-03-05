@@ -54,7 +54,11 @@ namespace Cuelogic.Clrm.Common
             }
         }
 
-        public static DataSet ExecuteQuery(string commandText, MySqlParameter[] commandParameters = null, CommandType commandType = CommandType.Text)
+        public static DataSet ExecuteQuery(
+            string commandText, 
+            MySqlParameter[] commandParameters = null,
+            List<string> tableNames = null, 
+            CommandType commandType = CommandType.Text)
         {
             try
             {
@@ -69,6 +73,16 @@ namespace Cuelogic.Clrm.Common
                     using (var da = new MySqlDataAdapter(command))
                     {
                         da.Fill(ds);
+                    }
+                    if(ds.Tables.Count > 0 && tableNames != null)
+                    {
+                        if(tableNames.Count >0)
+                        {
+                            for(var i=0;i< ds.Tables.Count; i++)
+                            {
+                                ds.Tables[i].TableName = tableNames[i];
+                            }
+                        }
                     }
                     connection.Close();
                     return ds;

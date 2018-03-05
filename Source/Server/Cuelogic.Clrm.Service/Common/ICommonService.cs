@@ -18,5 +18,6 @@ namespace Cuelogic.Clrm.Service.Common
         string GetEmployeeAllocationList(int employeeId);
 
         List<IdentityGroupRight> GetEmployeeRights(int employeeId);
+        string GetEmployeeRightsJson(int employeeId);
     }
 }

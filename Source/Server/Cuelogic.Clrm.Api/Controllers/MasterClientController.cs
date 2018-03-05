@@ -25,6 +25,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         [Route("")]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
+            if (show < 0 || page < 0)
+                throw new Exception("Negative values not allowed");
             var searchParam = new SearchParam();
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
@@ -37,6 +39,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
             var masterClient = _masterClientService.GetItem(id);
             return Ok(masterClient);
         }
@@ -54,6 +58,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
         {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
             _masterClientService.Delete(id);
             return Ok();
         }

@@ -66,7 +66,11 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetSelectList;
-            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), null, new List<string> {
+                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Employee,
+                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.MasterProjectRole,
+                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Project
+            });
             return ds;
         }
 

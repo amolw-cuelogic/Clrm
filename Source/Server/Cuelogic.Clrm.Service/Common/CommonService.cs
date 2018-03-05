@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Cuelogic.Clrm.Service.Common
 {
@@ -61,6 +62,13 @@ namespace Cuelogic.Clrm.Service.Common
 
             }
             return distinctList;
+        }
+
+        public string GetEmployeeRightsJson(int employeeId)
+        {
+            var data = GetEmployeeRights(employeeId);
+            var json = new JavaScriptSerializer().Serialize(data);
+            return json;
         }
 
         public void Save(EmployeeVm employeeVm, UserContext userContext)

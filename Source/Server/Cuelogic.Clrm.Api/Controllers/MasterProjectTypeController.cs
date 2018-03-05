@@ -26,6 +26,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         [AuthorizeUserRights(IdentityRights.MasterProjectType, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
+            if (show < 0 || page < 0)
+                throw new Exception("Negative values not allowed");
             var searchParam = new SearchParam();
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
@@ -38,6 +40,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         [AuthorizeUserRights(IdentityRights.MasterProjectType, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int id)
         {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
             var masterProjectType = _masterProjectTypeService.GetItem(id);
             return Ok(masterProjectType);
         }
@@ -55,6 +59,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         [AuthorizeUserRights(IdentityRights.MasterProjectType, AuthorizeFlag.Delete)]
         public IHttpActionResult Delete(int id)
         {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
             _masterProjectTypeService.Delete(id);
             return Ok();
         }

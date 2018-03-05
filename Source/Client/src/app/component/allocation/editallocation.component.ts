@@ -73,7 +73,7 @@ export class EditAllocationComponent {
         this.httpClient.get(this.baseUrl + this.apiController + "/" + id
         ).subscribe(
             m => {
-               
+
                 if (m["EmployeeId"] == 0)
                     m["EmployeeId"] = null;
                 if (m["ProjectRoleId"] == 0)
@@ -108,34 +108,29 @@ export class EditAllocationComponent {
     }
 
     ValidateAllocation() {
-        try {
-            var CurrentAllocation = this.pageObject.PercentageAllocation;
-            var ExistingAllocation = this.pageObject.ExistingAllocation;
-            var RemainingAllocation = 100 - ExistingAllocation;
-            var TotalValidation = ExistingAllocation + CurrentAllocation;
-            if (ExistingAllocation > 0) {
-                if (CurrentAllocation > RemainingAllocation) {
-                    this.allocationPercentageError = "User already allotted " + ExistingAllocation + "%. Can only utilize " + RemainingAllocation + "%";
-                    this.validForm = true;
-                }
-                else {
-                    this.allocationPercentageError = "";
-                    this.validForm = false;
-                }
+        var CurrentAllocation = this.pageObject.PercentageAllocation;
+        var ExistingAllocation = this.pageObject.ExistingAllocation;
+        var RemainingAllocation = 100 - ExistingAllocation;
+        var TotalValidation = ExistingAllocation + CurrentAllocation;
+        if (ExistingAllocation > 0) {
+            if (CurrentAllocation > RemainingAllocation) {
+                this.allocationPercentageError = "User already allotted " + ExistingAllocation + "%. Can only utilize " + RemainingAllocation + "%";
+                this.validForm = true;
             }
             else {
-                if (TotalValidation > 100) {
-                    this.allocationPercentageError = "Allocation should not be more than 100%";
-                    this.validForm = true;
-                }
-                else {
-                    this.allocationPercentageError = "";
-                    this.validForm = false;
-                }
+                this.allocationPercentageError = "";
+                this.validForm = false;
             }
         }
-        catch (ex) {
-
+        else {
+            if (TotalValidation > 100) {
+                this.allocationPercentageError = "Allocation should not be more than 100%";
+                this.validForm = true;
+            }
+            else {
+                this.allocationPercentageError = "";
+                this.validForm = false;
+            }
         }
     }
 

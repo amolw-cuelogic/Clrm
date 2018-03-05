@@ -8,6 +8,7 @@ using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.DataAccessLayer.Employees;
 using Cuelogic.Clrm.Model.DatabaseModel;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Repository.Employees
 {
@@ -48,10 +49,10 @@ namespace Cuelogic.Clrm.Repository.Employees
         {
             var employeeVm = new EmployeeVm();
             var ds = _employeeDataAccess.GetMasterListForEmployees();
-            employeeVm.IdentityGroupList = ds.Tables[0].ToList<IdentityGroup>();
-            employeeVm.MasterDepartmentList = ds.Tables[1].ToList<MasterDepartment>();
-            employeeVm.MasterSkillList = ds.Tables[2].ToList<MasterSkill>();
-            employeeVm.MasterOrganizationRoleList = ds.Tables[3].ToList<MasterOrganizationRole>();
+            employeeVm.IdentityGroupList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.IdentityGroup].ToList<IdentityGroup>();
+            employeeVm.MasterDepartmentList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterDepartment].ToList<MasterDepartment>();
+            employeeVm.MasterSkillList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterSkill].ToList<MasterSkill>();
+            employeeVm.MasterOrganizationRoleList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterOrganizationRole].ToList<MasterOrganizationRole>();
             return employeeVm;
         }
 

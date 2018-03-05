@@ -27,7 +27,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         {
             AllocationController obj = new AllocationController(new AllocationService());
             var id = CommonDataAccess.GetAllocationFirstRowId();
-            var response = obj.Get(id) as OkNegotiatedContentResult<Allocation>;
+            var response = obj.Get(1000) as OkNegotiatedContentResult<Allocation>;
             Assert.IsNotNull(response.Content);
         }
 

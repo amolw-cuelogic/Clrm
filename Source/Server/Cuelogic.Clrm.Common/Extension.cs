@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Common
 {
@@ -29,6 +30,8 @@ namespace Cuelogic.Clrm.Common
         public static T ToModel<T>(this DataTable table) where T : new()
         {
             IList<PropertyInfo> properties = typeof(T).GetProperties().ToList();
+            if (table.Rows.Count == 0)
+                throw new Exception(Helper.ComposeClientMessage(MessageType.Warning,"No record found"));
             var item = CreateItemFromRow<T>((DataRow)table.Rows[0], properties);
             return item;
         }

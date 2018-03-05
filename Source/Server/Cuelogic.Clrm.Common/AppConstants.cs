@@ -76,6 +76,14 @@ namespace Cuelogic.Clrm.Common
             public const string spEmployee_GetLatestId = "spEmployee_GetLatestId";
             public const string spEmployee_MarkInvalid = "spEmployee_MarkInvalid";
 
+            public static class spEmployee_GetMasterValidList_Tables
+            {
+                public const string IdentityGroup = "IdentityGroup";
+                public const string MasterDepartment = "MasterDepartment";
+                public const string MasterSkill = "MasterSkill";
+                public const string MasterOrganizationRole = "MasterOrganizationRole";
+            }
+
             #endregion
 
             #region MASTER PROJECT ROLE
@@ -127,6 +135,13 @@ namespace Cuelogic.Clrm.Common
             public const string spAllocation_GetSelectList = "spAllocation_GetSelectList";
             public const string spAllocation_MarkInvalid = "spAllocation_MarkInvalid";
             public const string spAllocation_GetAllocationSum = "spAllocation_GetAllocationSum";
+
+            public class spAllocation_GetSelectList_Tables
+            {
+                public const string Employee = "Employee";
+                public const string MasterProjectRole = "MasterProjectRole";
+                public const string Project = "Project";
+            }
 
             #endregion
         }
