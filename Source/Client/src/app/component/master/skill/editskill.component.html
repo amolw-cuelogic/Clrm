@@ -10,7 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Department </strong>
+                        <strong>Skill </strong>
                         <small>Details</small>
                         <small *ngIf="PageObject.UpdatedOn" style="float:right">Last updated on <u>{{PageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{PageObject.UpdatedByName}}</u> </small>
                     </div>
@@ -20,13 +20,13 @@
                             <div class="col-sm-12 col-md-6 col-xs-12">
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
-                                        <ngx-label value="Department Name"></ngx-label>
+                                        <ngx-label value="Skill Title"></ngx-label>
                                         <input type="text" #Skill="ngModel" [(ngModel)]="PageObject.Skill" class="form-control" required name="PageObject.Skill" placeholder="Enter Skill">
                                         <div *ngIf="Skill.errors && (Skill.dirty || Skill.touched)" class="error">
                                             Skill is required
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="300|Delete" class="form-group">
                                         <label for="name">Is Valid Skill</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="PageObject.IsValid" name="PageObject.IsValid">

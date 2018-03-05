@@ -43,8 +43,8 @@
                                             Employee Id is required
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="name">Is Valid Skill</label><br />
+                                    <div ngx-rights="401|Delete" class="form-group">
+                                        <label for="name">Is Valid Employee</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.Employee.IsValid" name="IsValid">
                                             <span class="switch-label"></span>
@@ -100,7 +100,7 @@
                                                     <th style="width:60%">
                                                         Skill Title
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <th ngx-rights="401|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index">
@@ -110,7 +110,7 @@
                                                         <td>
                                                             {{skillItem.SkillName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <td ngx-rights="401|Delete" class="AlignCenter">
                                                             <input type="checkbox" [(ngModel)]="skillItem.IsValid" name="SkillName-{{i}}" />
                                                         </td>
                                                     </tr>
@@ -139,7 +139,7 @@
                                                     <th style="width:60%">
                                                         Group Title
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <th ngx-rights="401|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
@@ -149,7 +149,7 @@
                                                         <td>
                                                             {{item.GroupName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <td ngx-rights="401|Delete" class="AlignCenter">
                                                             <input type="checkbox" [(ngModel)]="item.IsValid" name="GroupName-{{i}}" />
                                                         </td>
                                                     </tr>
@@ -178,7 +178,7 @@
                                                     <th style="width:60%">
                                                         Role
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <th ngx-rights="401|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
@@ -188,7 +188,7 @@
                                                         <td>
                                                             {{item.RoleName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <td ngx-rights="401|Delete" class="AlignCenter">
                                                             <input type="checkbox" [(ngModel)]="item.IsValid" name="RoleName-{{i}}" />
                                                         </td>
                                                     </tr>
@@ -217,7 +217,7 @@
                                                     <th style="width:60%">
                                                         Role
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <th ngx-rights="401|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
@@ -227,7 +227,7 @@
                                                         <td>
                                                             {{item.DepartmentName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <td ngx-rights="401|Delete" class="AlignCenter">
                                                             <input type="checkbox" [(ngModel)]="item.IsValid" name="DepartmentName-{{i}}" />
                                                         </td>
                                                     </tr>

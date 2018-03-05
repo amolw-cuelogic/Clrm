@@ -20,21 +20,18 @@ export class AppconfigService {
             return this.baseUrlProd;
     }
 
-    GetRights(RightId: number)
-    {
+    GetRights(RightId: number) {
         var rightObject = null;
         var rightJsonString = localStorage.getItem("Rights");
-        if (rightJsonString != undefined && rightJsonString != null && rightJsonString != "")
-        {
-            var obj = JSON.parse(rightJsonString);
-            rightObject = obj;
-            obj.filter(function (item) {
-                if (item.RightId == "403")
-                {
-                    rightObject = item.BooleanRight;
-                    return false;
+        if (rightJsonString != undefined && rightJsonString != null && rightJsonString != "") {
+            var rightsList = JSON.parse(rightJsonString);
+            for (var i = 0; i < rightsList.length; i++) {
+                if (rightsList[i].RightId == RightId) {
+                    rightObject = rightsList[i].BooleanRight;
+                    break;
                 }
-            })
+            }
+
         }
         return rightObject;
     }

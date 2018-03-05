@@ -173,6 +173,7 @@ namespace Cuelogic.Clrm.Common
             public const int Employee = 401;
             public const int Project = 402;
             public const int Allocation = 403;
+            public const int Dashboard = 404;
         }
 
         public static class AuthorizeFlag

@@ -31,7 +31,7 @@
                                         <input class="form-control" [(ngModel)]="PageObject.DepartmentHead" rows="5" name="PageObject.DepartmentHead" placeholder="Enter Department Head" />
 
                                     </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="301|Delete" class="form-group">
                                         <label for="name">Is Valid Department</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="PageObject.IsValid" name="PageObject.IsValid">

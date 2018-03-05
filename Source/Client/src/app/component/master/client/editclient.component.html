@@ -31,7 +31,7 @@
                                         <label>Client Location</label>
                                         <input type="text" [(ngModel)]="pageObject.ClientLocation" class="form-control" name="pageObject.ClientLocation" placeholder="Enter Client Location">
                                     </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="305|Delete" class="form-group">
                                         <label for="name">Is Valid Client</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsValid" name="pageObject.IsValid">

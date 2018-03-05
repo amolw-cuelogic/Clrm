@@ -48,7 +48,7 @@
     <table class="table table-sm table-hover  ">
         <thead class="thead-light">
             <tr>
-                <th><button (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
+                <th><button ngx-rights="200|Write" (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
                 <th>Group Name</th>
                 <th>Group Description</th>
                 <th>
@@ -65,9 +65,9 @@
         <tbody>
             <tr *ngFor="let item of GroupList">
                 <td>
-                    <button (click)="EditRecord(item.Id)" type="button" title="Edit Record" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
-                    <button (click)="ViewRecord(item.Id)" type="button" title="View Record" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
-                    <button (click)="DeleteRecord(item.Id)" type="button" title="Mark Record InValid" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    <button ngx-rights="200|Write" (click)="EditRecord(item.Id)" type="button" title="Edit Record" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
+                    <button ngx-rights="200|Read" (click)="ViewRecord(item.Id)" type="button" title="View Record" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
+                    <button ngx-rights="200|Delete" (click)="DeleteRecord(item.Id)" type="button" title="Mark Record InValid" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                 </td>
                 <td>
                     {{item.GroupName}}

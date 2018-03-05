@@ -42,9 +42,8 @@ import { GoogleLoginProvider } from "angular4-social-login";
 //Model
 import { FormMode } from './model/FormMode'
 
-//Directive
-import { LabelDirective } from "./directive/label-directive"
 
+import { CommonAppModule } from "./common.module"
 
 let config = new AuthServiceConfig([
     {
@@ -68,7 +67,8 @@ export function provideConfig() {
         ChartsModule,
         HttpModule,
         HttpClientModule,
-        SocialLoginModule
+        SocialLoginModule,
+        CommonAppModule
     ],
     declarations: [
         AppComponent,
