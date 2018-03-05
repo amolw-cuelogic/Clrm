@@ -4,6 +4,11 @@
 /dist
 /tmp
 
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+
 # dependencies
 /node_modules
 /bower_components

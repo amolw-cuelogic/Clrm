@@ -2,16 +2,17 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="Disabled" type="button" class="btn btn-primary" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
-        <button routerLink="/skill" type="button" class="btn btn-primary">Back</button>
+        <button [hidden]="Disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button routerLink="/skill" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
         <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
-            <div class="col-sm-12 col-md-9 col-xs-12 ">
+            <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
                         <strong>Department </strong>
                         <small>Details</small>
+                        <small *ngIf="PageObject.UpdatedOn" style="float:right">Last updated on <u>{{PageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{PageObject.UpdatedByName}}</u> </small>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -44,49 +45,6 @@
                 </div>
             </div>
 
-
-            <div class="col-sm-12 col-md-3 col-xs-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-xs-12">
-
-                        <table style="width:100%">
-                            <tr><th colspan="2">User Actions</th></tr>
-                            <tr>
-                                <td style="width:50%">
-                                    Created By
-                                </td>
-                                <td>
-                                    {{PageObject.CreatedByName}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Created On
-                                </td>
-                                <td>
-                                    {{PageObject.CreatedOn | date :  "y/MM/dd"}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Updated By
-                                </td>
-                                <td>
-                                    {{PageObject.UpdatedByName}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Updated On
-                                </td>
-                                <td>
-                                    {{PageObject.UpdatedOn | date :  "y/MM/dd"}}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

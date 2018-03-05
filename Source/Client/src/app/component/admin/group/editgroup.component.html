@@ -2,16 +2,17 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="Disabled" type="button" class="btn btn-primary" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
-        <button routerLink="/group" type="button" class="btn btn-primary">Back</button>
+        <button [hidden]="Disabled" type="button" class="btn btn-primary btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
+        <button routerLink="/group" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
         <div class="row " style="border-top:1px solid #ddd; padding-top:7px">
-            <div class="col-sm-12 col-md-9 col-xs-12 ">
+            <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
                         <strong>Group </strong>
                         <small>Details</small>
+                        <small *ngIf="IdentityGroup.UpdatedOn" style="float:right">Last updated on <u>{{IdentityGroup.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{IdentityGroup.UpdatedByName}}</u> </small>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -47,16 +48,16 @@
                                 <table class="table table-sm">
                                     <tr>
                                         <th>
-                                            Right
+                                           Right
                                         </th>
                                         <th>
-                                            Read
+                                            <input type="checkbox" (change)="MarkAllRead()" [(ngModel)]="ActionRead" style="margin-right:5px;" />Read
+                                        </th>
+                                        <th >
+                                            <input type="checkbox" (change)="MarkAllWrite()" [(ngModel)]="ActionWrite" style="margin-right:5px;" />Write
                                         </th>
                                         <th>
-                                            Write
-                                        </th>
-                                        <th>
-                                            Delete
+                                            <input type="checkbox" (change)="MarkAllInvalid()" [(ngModel)]="ActionInValid" style="margin-right:5px;" />InValid
                                         </th>
                                     </tr>
                                     <tbody>
@@ -64,7 +65,7 @@
                                             <td>
                                                 {{item.RightTitle}}
                                             </td>
-                                            <td>
+                                            <td >
                                                 <input [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
                                             </td>
                                             <td>
@@ -78,85 +79,6 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-12 col-md-3 col-xs-12">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-xs-12">
-
-                        <table style="width:100%">
-                            <tr><th colspan="2">User Actions</th></tr>
-                            <tr><th colspan="2">Group</th></tr>
-                            <tr>
-                                <td style="width:50%">
-                                    Created By
-                                </td>
-                                <td>
-                                    {{IdentityGroup.CreatedByName}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Created On
-                                </td>
-                                <td>
-                                    {{IdentityGroup.CreatedOn | date :  "dd/MM/y"}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Updated By
-                                </td>
-                                <td>
-                                    {{IdentityGroup.UpdatedByName}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Updated On
-                                </td>
-                                <td>
-                                    {{IdentityGroup.UpdatedOn | date :  "dd/MM/y"}}
-                                </td>
-                            </tr>
-                            <tr><th colspan="2">Group Rights</th></tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Created By
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].CreatedByName}}
-                                </td>
-                            </tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Created On
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].CreatedOn | date :  "dd/MM/y"}}
-                                </td>
-                            </tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Updated By
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].UpdatedByName}}
-                                </td>
-                            </tr>
-                            <tr *ngIf="IdentityGroup.GroupRight?.length > 0">
-                                <td>
-                                    Updated On
-                                </td>
-                                <td>
-                                    {{IdentityGroup.GroupRight[0].UpdatedOn | date :  "dd/MM/y"}}
-                                </td>
-                            </tr>
-
-                        </table>
                     </div>
                 </div>
             </div>
