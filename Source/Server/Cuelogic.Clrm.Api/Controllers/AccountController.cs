@@ -265,7 +265,7 @@ namespace Cuelogic.Clrm.Api.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName,"For Temporary Purpose");
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else

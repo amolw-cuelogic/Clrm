@@ -73,14 +73,16 @@ namespace Cuelogic.Clrm.Api.Providers
             identity.AddClaim(new Claim("UserName", employeeDetails.FirstName + " " + employeeDetails.LastName));
 
             ICommonService commonService = new CommonService();
-            var employeeRights = commonService.GetEmployeeRightsJson(employeeDetails.Id);
+            var employeeRights =  commonService.GetEmployeeRights(employeeDetails.Id);
+            var employeeRightsXml = Helper.ObjectToXml(employeeRights);
+            var employeeRightsJson = Helper.ObjectToJson(employeeRights);
 
-            identity.AddClaim(new Claim("Rights", employeeRights));
+            identity.AddClaim(new Claim("Rights", employeeRightsXml));
 
             ClaimsIdentity oAuthIdentity = identity;
             ClaimsIdentity cookiesIdentity =
             new ClaimsIdentity(context.Options.AuthenticationType);
-            AuthenticationProperties properties = CreateProperties(context.UserName);
+            AuthenticationProperties properties = CreateProperties(context.UserName, employeeRightsJson);
             AuthenticationTicket ticket =
             new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
@@ -123,11 +125,12 @@ namespace Cuelogic.Clrm.Api.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, string rights)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                { "rights", rights }
             };
             return new AuthenticationProperties(data);
         }

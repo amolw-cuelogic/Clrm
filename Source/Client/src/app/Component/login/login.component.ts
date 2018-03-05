@@ -67,7 +67,9 @@ export class LoginComponent implements OnInit {
                 this.user.DisplayName = authData.name;
                 this.user.Email = authData.email;
                 this.user.PhotoUrl = authData.photoUrl;
+                this.user.Rights = credentials.rights;
                 this.srvAppConfig.SetToken(this.user);
+                this.srvAppConfig.GetRights(1);
                 window.location.href = '/';
 
             }

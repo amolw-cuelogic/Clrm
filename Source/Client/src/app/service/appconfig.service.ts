@@ -20,12 +20,32 @@ export class AppconfigService {
             return this.baseUrlProd;
     }
 
+    GetRights(RightId: number)
+    {
+        var rightObject = null;
+        var rightJsonString = localStorage.getItem("Rights");
+        if (rightJsonString != undefined && rightJsonString != null && rightJsonString != "")
+        {
+            var obj = JSON.parse(rightJsonString);
+            rightObject = obj;
+            obj.filter(function (item) {
+                if (item.RightId == "403")
+                {
+                    rightObject = item.BooleanRight;
+                    return false;
+                }
+            })
+        }
+        return rightObject;
+    }
+
     SetToken(user: User) {
         this.user = user;
         localStorage.setItem("AccessToken", this.user.AccessToken);
         localStorage.setItem("DisplayName", this.user.DisplayName);
         localStorage.setItem("Email", this.user.Email);
         localStorage.setItem("PhotoUrl", this.user.PhotoUrl);
+        localStorage.setItem("Rights", this.user.Rights);
     }
 
     GetToken() {
@@ -33,8 +53,9 @@ export class AppconfigService {
         if (token != null && token != undefined && token != "") {
             this.user.AccessToken = token;
             this.user.DisplayName = localStorage.getItem("DisplayName");
-            this.user.Email = localStorage.getItem("Email")
-            this.user.PhotoUrl = localStorage.getItem("PhotoUrl")
+            this.user.Email = localStorage.getItem("Email");
+            this.user.PhotoUrl = localStorage.getItem("PhotoUrl");
+            this.user.Rights = localStorage.getItem("Rights");
             return this.user;
         }
         else

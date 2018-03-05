@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -28,6 +29,12 @@ namespace Cuelogic.Clrm.Common
             var data = serializer.Deserialize(new StringReader(xml));
             return data;
 
+        }
+
+        public static string ObjectToJson(object obj)
+        {
+            var json = new JavaScriptSerializer().Serialize(obj);
+            return json;
         }
 
         public static string ComposeClientMessage(string messageType, string message)
