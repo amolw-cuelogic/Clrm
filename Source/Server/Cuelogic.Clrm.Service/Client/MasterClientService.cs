@@ -28,6 +28,12 @@ namespace Cuelogic.Clrm.Service.Client
             return masterClient;
         }
 
+        public List<MasterCity> GetCityList(int countryId)
+        {
+            var cityList = _masterClientRepository.GetCityList(countryId);
+            return cityList;
+        }
+
         public string GetList(SearchParam searchParam)
         {
             var ds = _masterClientRepository.GetMasterClientList(searchParam);

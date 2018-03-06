@@ -28,8 +28,22 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Client Location</label>
-                                        <input type="text" [(ngModel)]="pageObject.ClientLocation" class="form-control" name="pageObject.ClientLocation" placeholder="Enter Client Location">
+                                        <ngx-label value="Client Country"></ngx-label>
+                                        <select required #CountryId="ngModel" (ngModelChange)="GetCities($event)" [(ngModel)]="pageObject.CountryId" name="CountryId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.MasterCountryList" value="{{item.Id}}">{{item.CountryName}}</option>
+                                        </select>
+                                        <div *ngIf="CountryId.errors && (CountryId.dirty || CountryId.touched)" class="error">
+                                            Country is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group" *ngIf="pageObject.CityId != null || pageObject.MasterCityList?.length > 0">
+                                        <ngx-label value="Client City"></ngx-label>
+                                        <select required #CityId="ngModel" [(ngModel)]="pageObject.CityId" name="CityId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.MasterCityList" value="{{item.Id}}">{{item.CityName}}</option>
+                                        </select>
+                                        <div *ngIf="CityId.errors && (CityId.dirty || CityId.touched)" class="error">
+                                            City is required
+                                        </div>
                                     </div>
                                     <div ngx-rights="305|Delete" class="form-group">
                                         <label for="name">Is Valid Client</label><br />

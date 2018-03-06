@@ -45,6 +45,17 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(masterClient);
         }
 
+        [AuthorizeUserRights(IdentityRights.MasterClient, AuthorizeFlag.Read)]
+        [Route("GetCities/{id}")]
+        public IHttpActionResult GetCities(int id)
+        {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
+            
+            var cityList = _masterClientService.GetCityList(id);
+            return Ok(cityList);
+        }
+
         [AuthorizeUserRights(IdentityRights.MasterClient, AuthorizeFlag.Write)]
         [Route("")]
         public IHttpActionResult Post([FromBody]MasterClient masterClient)

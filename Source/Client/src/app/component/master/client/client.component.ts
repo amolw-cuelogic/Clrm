@@ -99,6 +99,7 @@ export class ClientComponent{
                 this.SrvAppConfig.AdjustBottomHeight();
             });
     }
+    
 }
 
 

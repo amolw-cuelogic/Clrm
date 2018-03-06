@@ -16,5 +16,6 @@ namespace Cuelogic.Clrm.Repository.Client
         MasterClient GetMasterClient(int masterClientId);
         void AddOrUpdateMasterClient(MasterClient masterClient, UserContext userCtx);
         void MarkMasterClientInvalid(int masterClientId);
+        List<MasterCity> GetCityList(int countryId);
     }
 }

@@ -20,7 +20,8 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClient.Id),
                     new MySqlParameter("@mcClientName", masterClient.ClientName),
-                    new MySqlParameter("@mcClientLocation", masterClient.ClientLocation),
+                    new MySqlParameter("@mcCountryId", masterClient.CountryId),
+                    new MySqlParameter("@mcCityId", masterClient.CityId),
                     new MySqlParameter("@mcIsValid", masterClient.IsValid),
                     new MySqlParameter("@mcUpdatedBy", masterClient.UpdatedBy),
                     new MySqlParameter("@mcCreatedBy", masterClient.CreatedBy),
@@ -28,6 +29,25 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
                     new MySqlParameter("@mcCreatedOn", masterClient.CreatedOn),
                 };
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+        }
+
+        public DataSet GetCityList(int countryId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_GetCityList;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@mcCountryId", countryId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+            return ds;
+        }
+
+        public DataSet GetCountryList()
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_GetCountryList;
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
+            return ds;
         }
 
         public DataSet GetMasterClient(int masterClientId)

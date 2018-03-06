@@ -67,6 +67,10 @@ export class EditClientComponent {
         this.httpClient.get(this.baseUrl + this.ApiController + "/" + id
         ).subscribe(
             m => {
+                if (m["CountryId"] == 0)
+                    m["CountryId"] = null;
+                if (m["CityId"] == 0)
+                    m["CityId"] = null;
                 this.pageObject = m;
                 this.SrvAppConfig.AdjustBottomHeight();
 
@@ -76,7 +80,17 @@ export class EditClientComponent {
             }
             );
     }
-    
+
+    GetCities(id: any) {
+        this.httpClient.get(this.baseUrl + this.ApiController + "/GetCities/" + id
+        ).subscribe(
+            m => {
+                this.pageObject.MasterCityList = m;
+                this.SrvAppConfig.AdjustBottomHeight();
+                
+            }
+            );
+    }
 
     constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,

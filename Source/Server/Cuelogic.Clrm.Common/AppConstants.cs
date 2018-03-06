@@ -111,6 +111,8 @@ namespace Cuelogic.Clrm.Common
             public const string spMasterClient_Get = "spMasterClient_Get";
             public const string spMasterClient_GetList = "spMasterClient_GetList";
             public const string spMasterClient_MarkInvalid = "spMasterClient_MarkInvalid";
+            public const string spMasterClient_GetCountryList = "spMasterClient_GetCountryList";
+            public const string spMasterClient_GetCityList = "spMasterClient_GetCityList";
 
             #endregion
 
