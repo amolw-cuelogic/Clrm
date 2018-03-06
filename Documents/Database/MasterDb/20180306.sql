@@ -49,7 +49,7 @@ CREATE TABLE `Allocation` (
   CONSTRAINT `Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `ProjectRole` FOREIGN KEY (`ProjectRoleId`) REFERENCES `MasterProjectRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,6 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
+INSERT INTO `Allocation` VALUES (1,1,14,15,'\0',50,'2018-03-06',NULL,'',1,'2018-03-06',NULL,NULL),(2,17,14,16,'\0',100,'2017-11-10',NULL,'',1,'2018-03-06',NULL,NULL),(3,1,15,16,'\0',50,'2018-03-06',NULL,'',1,'2018-03-06',NULL,NULL),(4,18,13,15,'\0',90,'2017-12-01',NULL,'',1,'2018-03-06',1,'2018-03-06'),(5,18,16,16,'\0',5,'2017-12-08',NULL,'',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +89,7 @@ CREATE TABLE `Employee` (
   KEY `EmployeeCreatedByBy_Employee` (`CreatedBy`),
   CONSTRAINT `EmployeeCreatedByBy_Employee` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `EmployeeUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +98,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE555','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-05'),(2,'Vivek','','Phadke','CUE001','2018-02-02','2018-02-02','9595519028','vivek.phadke@cuelogic.com','',1,'2018-02-03',2,'2018-02-26'),(3,'John','','doe','cue123','2018-02-01',NULL,'123','john@cuelogic.com','',1,'2018-02-02',1,'2018-02-23'),(4,'John f','','Doe','Cue123','2018-02-01',NULL,'12345678','john@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(5,'tnhjfg','fghj','fghj','fghjfg','2018-02-23',NULL,'3476345','asdnkjas@wed.wed','',1,'2018-02-23',1,'2018-02-23'),(6,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(7,'Amol','Maruti','Wabale','CUE335','2018-01-02',NULL,'9595519028','amol.wabale@cuelogic.com','',1,'2018-02-23',NULL,NULL),(8,'Dummy','Dummy','Dummy','Dummy','2018-02-16',NULL,'995454','amol.wabale@cuelogic.com','',1,'2018-02-23',1,'2018-02-23'),(9,'fgh','','fg','fgh','2018-02-01',NULL,'4545','gh@edgrf.er','',1,'2018-02-26',2,'2018-02-26'),(10,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(11,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(12,'John','H','Doe','CUE555','2018-02-27','2018-02-27','9876543210','john.doe@cuelogic.com','',1,'2018-02-27',NULL,NULL),(13,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(14,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(15,'John','H','Doe','CUE555','2018-02-28','2018-02-28','9876543210','john.doe@cuelogic.com','',1,'2018-02-28',NULL,NULL),(16,'asdf','sadf','asdf','asdf','2018-03-05',NULL,'234123','amol.wabale@cuelogic.com','',1,'2018-03-05',NULL,NULL);
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE555','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-06'),(17,'Abhijeet ','Jivan','Sawant','CUE238','2018-03-15',NULL,'9563215748','abhijeet.sawant@cuelogic.co.in','',1,'2018-03-06',NULL,NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-06'),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-06'),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +128,7 @@ CREATE TABLE `EmployeeDepartment` (
   CONSTRAINT `EmployeeDepartmentUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Id_DepartmentId_` FOREIGN KEY (`DepartmentId`) REFERENCES `MasterDepartment` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_EmployeeId1` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +137,7 @@ CREATE TABLE `EmployeeDepartment` (
 
 LOCK TABLES `EmployeeDepartment` WRITE;
 /*!40000 ALTER TABLE `EmployeeDepartment` DISABLE KEYS */;
-INSERT INTO `EmployeeDepartment` VALUES (1,1,1,'',1,'2018-02-23',1,'2018-02-27'),(2,3,1,'',1,'2018-02-23',1,'2018-02-23'),(3,1,1,'',1,'2018-02-23',1,'2018-02-23'),(4,1,1,'',1,'2018-02-23',NULL,NULL),(5,2,1,'',1,'2018-02-23',1,'2018-02-23'),(6,3,1,'\0',1,'2018-02-23',1,'2018-02-23'),(7,4,1,'',1,'2018-02-23',NULL,NULL),(8,1,8,'',1,'2018-02-23',NULL,NULL),(9,2,8,'',1,'2018-02-23',NULL,NULL),(10,3,8,'',1,'2018-02-23',NULL,NULL),(11,1,10,'',1,'2018-02-27',NULL,NULL),(12,1,11,'',1,'2018-02-27',NULL,NULL),(13,1,12,'',1,'2018-02-27',NULL,NULL),(14,1,13,'',1,'2018-02-28',NULL,NULL),(15,1,14,'',1,'2018-02-28',NULL,NULL),(16,1,15,'',1,'2018-02-28',NULL,NULL),(17,8,16,'',1,'2018-03-05',NULL,NULL),(18,9,16,'',1,'2018-03-05',NULL,NULL);
+INSERT INTO `EmployeeDepartment` VALUES (1,20,17,'',1,'2018-03-06',NULL,NULL),(2,20,18,'',1,'2018-03-06',NULL,NULL),(3,20,19,'',1,'2018-03-06',NULL,NULL),(4,22,1,'',1,'2018-03-06',NULL,NULL),(5,23,1,'',1,'2018-03-06',NULL,NULL),(6,20,20,'',1,'2018-03-06',1,'2018-03-06'),(7,21,20,'',1,'2018-03-06',1,'2018-03-06'),(8,22,20,'',1,'2018-03-06',1,'2018-03-06'),(9,23,20,'',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `EmployeeDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +166,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
   CONSTRAINT `Id_EmployeeId` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `MasterOrganizationRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `UpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +175,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
 
 LOCK TABLES `EmployeeOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` DISABLE KEYS */;
-INSERT INTO `EmployeeOrganizationRole` VALUES (1,1,1,'',1,'2018-02-23',1,'2018-02-27'),(2,1,2,'',1,'2018-02-23',1,'2018-02-23'),(3,1,3,'\0',1,'2018-02-23',1,'2018-02-23'),(4,1,5,'\0',1,'2018-02-23',1,'2018-03-01'),(5,8,3,'',1,'2018-02-23',NULL,NULL),(6,8,4,'',1,'2018-02-23',NULL,NULL),(7,10,1,'',1,'2018-02-27',NULL,NULL),(8,11,1,'',1,'2018-02-27',NULL,NULL),(9,12,1,'',1,'2018-02-27',NULL,NULL),(10,13,1,'',1,'2018-02-28',NULL,NULL),(11,14,1,'',1,'2018-02-28',NULL,NULL),(12,15,1,'',1,'2018-02-28',NULL,NULL),(13,16,2,'',1,'2018-03-05',NULL,NULL),(14,16,3,'',1,'2018-03-05',NULL,NULL),(15,16,4,'',1,'2018-03-05',NULL,NULL);
+INSERT INTO `EmployeeOrganizationRole` VALUES (1,17,21,'',1,'2018-03-06',NULL,NULL),(2,18,20,'',1,'2018-03-06',NULL,NULL),(3,19,25,'',1,'2018-03-06',NULL,NULL),(4,1,22,'',1,'2018-03-06',NULL,NULL),(5,1,23,'',1,'2018-03-06',NULL,NULL),(6,20,23,'',1,'2018-03-06',1,'2018-03-06'),(7,20,24,'',1,'2018-03-06',1,'2018-03-06'),(8,20,25,'',1,'2018-03-06',1,'2018-03-06'),(9,20,26,'',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +204,7 @@ CREATE TABLE `EmployeeSkill` (
   CONSTRAINT `EmployeeSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Employee_EmployeeSkill` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkill_EmployeeSkill` FOREIGN KEY (`SkillId`) REFERENCES `MasterSkill` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +213,7 @@ CREATE TABLE `EmployeeSkill` (
 
 LOCK TABLES `EmployeeSkill` WRITE;
 /*!40000 ALTER TABLE `EmployeeSkill` DISABLE KEYS */;
-INSERT INTO `EmployeeSkill` VALUES (1,1,1,'',1,'2018-02-23',2,'2018-02-26'),(2,1,2,'',1,'2018-02-23',NULL,NULL),(3,1,3,'',1,'2018-02-23',NULL,NULL),(4,1,9,'\0',1,'2018-02-23',1,'2018-02-23'),(7,8,1,'',1,'2018-02-23',NULL,NULL),(8,8,2,'',1,'2018-02-23',NULL,NULL),(9,8,3,'',1,'2018-02-23',NULL,NULL),(10,8,4,'',1,'2018-02-23',NULL,NULL),(11,8,5,'',1,'2018-02-23',NULL,NULL),(12,8,6,'\0',1,'2018-02-23',1,'2018-02-23'),(13,8,7,'',1,'2018-02-23',NULL,NULL),(14,8,8,'',1,'2018-02-23',NULL,NULL),(15,6,6,'',1,'2018-02-23',NULL,NULL),(16,4,1,'',1,'2018-02-23',NULL,NULL),(17,4,2,'',1,'2018-02-23',NULL,NULL),(18,4,3,'',1,'2018-02-23',NULL,NULL),(19,4,4,'',1,'2018-02-23',NULL,NULL),(20,4,5,'',1,'2018-02-23',NULL,NULL),(21,1,5,'',2,'2018-02-26',NULL,NULL),(22,1,6,'\0',2,'2018-02-26',2,'2018-02-26'),(23,10,1,'',1,'2018-02-27',NULL,NULL),(24,11,1,'',1,'2018-02-27',NULL,NULL),(25,12,1,'',1,'2018-02-27',NULL,NULL),(26,13,1,'',1,'2018-02-28',NULL,NULL),(27,14,1,'',1,'2018-02-28',NULL,NULL),(28,15,1,'',1,'2018-02-28',NULL,NULL),(29,16,2,'',1,'2018-03-05',NULL,NULL),(30,16,3,'',1,'2018-03-05',NULL,NULL),(31,16,4,'',1,'2018-03-05',NULL,NULL),(32,16,5,'',1,'2018-03-05',NULL,NULL);
+INSERT INTO `EmployeeSkill` VALUES (1,17,28,'',1,'2018-03-06',NULL,NULL),(2,17,29,'',1,'2018-03-06',NULL,NULL),(3,17,31,'',1,'2018-03-06',NULL,NULL),(4,17,33,'',1,'2018-03-06',NULL,NULL),(5,17,35,'',1,'2018-03-06',NULL,NULL),(6,17,37,'',1,'2018-03-06',NULL,NULL),(7,17,38,'',1,'2018-03-06',NULL,NULL),(8,18,32,'',1,'2018-03-06',NULL,NULL),(9,18,33,'',1,'2018-03-06',NULL,NULL),(10,18,34,'',1,'2018-03-06',NULL,NULL),(11,18,35,'',1,'2018-03-06',NULL,NULL),(12,18,36,'',1,'2018-03-06',NULL,NULL),(13,18,37,'',1,'2018-03-06',NULL,NULL),(14,18,38,'',1,'2018-03-06',NULL,NULL),(15,19,28,'',1,'2018-03-06',NULL,NULL),(16,19,29,'',1,'2018-03-06',NULL,NULL),(17,19,30,'',1,'2018-03-06',NULL,NULL),(18,19,31,'',1,'2018-03-06',NULL,NULL),(19,19,32,'',1,'2018-03-06',NULL,NULL),(20,19,33,'',1,'2018-03-06',NULL,NULL),(21,19,34,'',1,'2018-03-06',NULL,NULL),(22,1,28,'',1,'2018-03-06',NULL,NULL),(23,1,29,'',1,'2018-03-06',NULL,NULL),(24,1,30,'',1,'2018-03-06',NULL,NULL),(25,1,31,'',1,'2018-03-06',NULL,NULL),(26,1,32,'',1,'2018-03-06',NULL,NULL),(27,1,33,'',1,'2018-03-06',NULL,NULL),(28,1,34,'',1,'2018-03-06',NULL,NULL),(29,20,30,'',1,'2018-03-06',1,'2018-03-06'),(30,20,31,'',1,'2018-03-06',1,'2018-03-06'),(31,20,32,'',1,'2018-03-06',1,'2018-03-06'),(32,20,33,'',1,'2018-03-06',1,'2018-03-06'),(33,20,34,'',1,'2018-03-06',1,'2018-03-06'),(34,20,35,'',1,'2018-03-06',1,'2018-03-06'),(35,20,36,'',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `EmployeeSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +242,7 @@ CREATE TABLE `IdentityEmployeeGroup` (
   CONSTRAINT `IdentityEmployeeGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityEmployeeGroup_Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityEmployeeGroup_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +251,7 @@ CREATE TABLE `IdentityEmployeeGroup` (
 
 LOCK TABLES `IdentityEmployeeGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityEmployeeGroup` DISABLE KEYS */;
-INSERT INTO `IdentityEmployeeGroup` VALUES (1,1,109,'',1,'2018-03-01',NULL,NULL),(2,1,110,'\0',1,'2018-03-01',1,'2018-03-01'),(3,16,109,'',1,'2018-03-05',NULL,NULL),(4,16,110,'',1,'2018-03-05',NULL,NULL);
+INSERT INTO `IdentityEmployeeGroup` VALUES (1,17,109,'',1,'2018-03-06',NULL,NULL),(2,18,109,'',1,'2018-03-06',NULL,NULL),(3,19,109,'',1,'2018-03-06',NULL,NULL),(4,1,109,'',1,'2018-03-06',NULL,NULL),(5,20,109,'',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `IdentityEmployeeGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +276,7 @@ CREATE TABLE `IdentityGroup` (
   KEY `IdentityGroupCreatedBy_Employee_Id` (`CreatedBy`),
   CONSTRAINT `IdentityGroupCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +285,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
-INSERT INTO `IdentityGroup` VALUES (109,'Super Admin','Super Admin','',1,'2018-03-01',1,'2018-03-06'),(110,'Admin','Admin','',1,'2018-03-01',1,'2018-03-01');
+INSERT INTO `IdentityGroup` VALUES (109,'Super Admin','Super Admin','',1,'2018-03-01',1,'2018-03-06'),(111,'User','User','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +313,7 @@ CREATE TABLE `IdentityGroupRight` (
   CONSTRAINT `IdentityGroupRightCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRightUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRight_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +322,7 @@ CREATE TABLE `IdentityGroupRight` (
 
 LOCK TABLES `IdentityGroupRight` WRITE;
 /*!40000 ALTER TABLE `IdentityGroupRight` DISABLE KEYS */;
-INSERT INTO `IdentityGroupRight` VALUES (36,109,403,7,'',1,'2018-03-01',1,'2018-03-05'),(37,109,401,7,'',1,'2018-03-01',1,'2018-03-05'),(38,109,200,7,'',1,'2018-03-01',1,'2018-03-01'),(39,109,305,7,'',1,'2018-03-01',1,'2018-03-06'),(40,109,301,7,'',1,'2018-03-01',1,'2018-03-06'),(41,109,302,7,'',1,'2018-03-01',1,'2018-03-06'),(42,109,303,7,'',1,'2018-03-01',1,'2018-03-05'),(43,109,304,7,'',1,'2018-03-01',1,'2018-03-06'),(44,109,300,7,'',1,'2018-03-01',1,'2018-03-05'),(45,109,400,7,'',1,'2018-03-01',1,'2018-03-05'),(46,109,402,7,'',1,'2018-03-01',1,'2018-03-05'),(47,110,403,2,'',1,'2018-03-01',1,'2018-03-01'),(48,110,401,2,'',1,'2018-03-01',1,'2018-03-01'),(49,110,200,2,'',1,'2018-03-01',1,'2018-03-01'),(50,110,305,2,'',1,'2018-03-01',1,'2018-03-01'),(51,110,301,2,'',1,'2018-03-01',1,'2018-03-01'),(52,110,302,2,'',1,'2018-03-01',1,'2018-03-01'),(53,110,303,2,'',1,'2018-03-01',1,'2018-03-01'),(54,110,304,2,'',1,'2018-03-01',1,'2018-03-01'),(55,110,300,2,'',1,'2018-03-01',1,'2018-03-01'),(56,110,400,2,'',1,'2018-03-01',1,'2018-03-01'),(57,110,402,2,'',1,'2018-03-01',1,'2018-03-01'),(58,109,404,7,'',1,'2018-03-01',1,'2018-03-05');
+INSERT INTO `IdentityGroupRight` VALUES (36,109,403,7,'',1,'2018-03-01',1,'2018-03-06'),(37,109,401,7,'',1,'2018-03-01',1,'2018-03-05'),(38,109,200,7,'',1,'2018-03-01',1,'2018-03-01'),(39,109,305,7,'',1,'2018-03-01',1,'2018-03-06'),(40,109,301,7,'',1,'2018-03-01',1,'2018-03-06'),(41,109,302,7,'',1,'2018-03-01',1,'2018-03-06'),(42,109,303,7,'',1,'2018-03-01',1,'2018-03-06'),(43,109,304,7,'',1,'2018-03-01',1,'2018-03-06'),(44,109,300,7,'',1,'2018-03-01',1,'2018-03-06'),(45,109,400,7,'',1,'2018-03-01',1,'2018-03-06'),(46,109,402,7,'',1,'2018-03-01',1,'2018-03-06'),(58,109,404,7,'',1,'2018-03-01',1,'2018-03-06'),(59,111,403,4,'',1,'2018-03-06',1,'2018-03-06'),(60,111,404,4,'',1,'2018-03-06',1,'2018-03-06'),(61,111,401,4,'',1,'2018-03-06',1,'2018-03-06'),(62,111,200,4,'',1,'2018-03-06',1,'2018-03-06'),(63,111,305,4,'',1,'2018-03-06',1,'2018-03-06'),(64,111,301,4,'',1,'2018-03-06',1,'2018-03-06'),(65,111,302,4,'',1,'2018-03-06',1,'2018-03-06'),(66,111,303,4,'',1,'2018-03-06',1,'2018-03-06'),(67,111,304,4,'',1,'2018-03-06',1,'2018-03-06'),(68,111,300,4,'',1,'2018-03-06',1,'2018-03-06'),(69,111,400,4,'',1,'2018-03-06',1,'2018-03-06'),(70,111,402,4,'',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `IdentityGroupRight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,7 +409,7 @@ CREATE TABLE `MasterClient` (
   KEY `MasterClientUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -417,7 +418,7 @@ CREATE TABLE `MasterClient` (
 
 LOCK TABLES `MasterClient` WRITE;
 /*!40000 ALTER TABLE `MasterClient` DISABLE KEYS */;
-INSERT INTO `MasterClient` VALUES (12,'uiu',2,7,'',1,'2018-03-06',1,'2018-03-06'),(13,'hjj',1,2,'\0',1,'2018-03-06',1,'2018-03-06'),(14,'Abu',3,10,'\0',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `MasterClient` VALUES (15,'Abbott Laboratories',2,6,'',1,'2018-01-01',NULL,NULL),(16,'Aarons, Inc',2,6,'',1,'2018-01-01',NULL,NULL),(17,'Walmart',2,6,'',1,'2018-01-01',NULL,NULL),(18,'ExxonMobil',2,6,'',1,'2018-01-01',NULL,NULL);
 /*!40000 ALTER TABLE `MasterClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -493,7 +494,7 @@ CREATE TABLE `MasterDepartment` (
   KEY `MasterDepartmentUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterDepartmentCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterDepartmentUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -502,7 +503,7 @@ CREATE TABLE `MasterDepartment` (
 
 LOCK TABLES `MasterDepartment` WRITE;
 /*!40000 ALTER TABLE `MasterDepartment` DISABLE KEYS */;
-INSERT INTO `MasterDepartment` VALUES (1,'Unit Test Department','Unit Test Department Head','\0',1,'2010-01-01',1,'2018-02-28'),(2,'HR','Uma Ramani','',1,'2018-02-16',1,'2018-02-23'),(3,'Sales','Neel Vartikar','',1,'2018-02-16',1,'2018-02-23'),(4,'Research & Development','Vikrant Labde','',1,'2018-02-19',1,'2018-02-23'),(5,'Accounts','Ganesh','\0',1,'2018-02-19',1,'2018-02-19'),(6,'SAa','aSa','\0',1,'2018-02-19',1,'2018-02-19'),(7,'78','78','\0',1,'2018-02-19',1,'2018-02-19'),(8,'Unit Test Department','Unit Test Department Head','',1,'2018-02-26',NULL,NULL),(9,'Unit Test Department','Unit Test Department Head','',1,'2018-02-26',NULL,NULL),(10,'Unit Test Department','Unit Test Department Head','',1,'2018-02-26',NULL,NULL),(11,'Unit Test Department','Unit Test Department Head','',1,'2018-02-26',NULL,NULL),(12,'Unit Test Department','Unit Test Department Head','',1,'2018-02-26',NULL,NULL),(13,'Unit Test Department','Unit Test Department Head','',1,'2018-02-27',NULL,NULL),(14,'Unit Test Department','Unit Test Department Head','',1,'2018-02-27',NULL,NULL),(15,'Unit Test Department','Unit Test Department Head','',1,'2018-02-27',NULL,NULL),(16,'Unit Test Department','Unit Test Department Head','',1,'2018-02-28',NULL,NULL),(17,'Unit Test Department','Unit Test Department Head','',1,'2018-02-28',NULL,NULL),(18,'Unit Test Department','Unit Test Department Head','',1,'2018-02-28',NULL,NULL),(19,'iop','oipiop','',1,'2018-03-01',1,'2018-03-01');
+INSERT INTO `MasterDepartment` VALUES (20,'Delivery','Vivek Phadke','',1,'2018-01-01',NULL,NULL),(21,'HR','Uma Ramani','',1,'2018-01-01',NULL,NULL),(22,'Sales','Neel Vartikar','',1,'2018-01-01',NULL,NULL),(23,'Management','Nikhil Ambekar','',1,'2018-01-01',NULL,NULL),(24,'Technical','Vikrant Labde','',1,'2018-01-01',NULL,NULL),(25,'Admin','Admin','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `MasterDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +527,7 @@ CREATE TABLE `MasterOrganizationRole` (
   KEY `MasterOrganizationRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterOrganizationRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterOrganizationRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -535,7 +536,7 @@ CREATE TABLE `MasterOrganizationRole` (
 
 LOCK TABLES `MasterOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `MasterOrganizationRole` DISABLE KEYS */;
-INSERT INTO `MasterOrganizationRole` VALUES (1,'Unit Test Engineer','\0',1,'2018-02-19',1,'2018-02-28'),(2,'Sr Principle Developer','',1,'2018-02-19',1,'2018-02-19'),(3,'Devops','',1,'2018-02-19',1,'2018-02-19'),(4,'Sr Software engineer','',1,'2018-02-19',1,'2018-02-19'),(5,'R&D Engineer','',1,'2018-02-19',1,'2018-02-19'),(6,'asa','',1,'2018-02-19',1,'2018-02-19'),(7,'Principle developer','',1,'2018-02-26',NULL,NULL),(8,'sd','',1,'2018-02-26',NULL,NULL),(9,'SDSD','',1,'2018-02-26',1,'2018-02-26'),(10,'Unit Test Engineer','',1,'2018-02-26',NULL,NULL),(11,'Unit Test Engineer','',1,'2018-02-26',NULL,NULL),(12,'Unit Test Engineer','',1,'2018-02-26',NULL,NULL),(13,'Unit Test Engineer','',1,'2018-02-26',NULL,NULL),(14,'Unit Test Engineer','',1,'2018-02-27',NULL,NULL),(15,'Unit Test Engineer','',1,'2018-02-27',NULL,NULL),(16,'Unit Test Engineer','',1,'2018-02-27',NULL,NULL),(17,'Unit Test Engineer','',1,'2018-02-28',NULL,NULL),(18,'Unit Test Engineer','',1,'2018-02-28',NULL,NULL),(19,'Unit Test Engineer','',1,'2018-02-28',NULL,NULL);
+INSERT INTO `MasterOrganizationRole` VALUES (20,'Software Engineer','',1,'2018-01-01',NULL,NULL),(21,'Sr. Software Engineer','',1,'2018-01-01',NULL,NULL),(22,'Devops','',1,'2018-01-01',NULL,NULL),(23,'Trainee Software Engineer','',1,'2018-01-01',NULL,NULL),(24,'Principle Engineer','',1,'2018-01-01',NULL,NULL),(25,'Project Manager','',1,'2018-01-01',NULL,NULL),(26,'Sr. Project Manager','',1,'2018-01-01',NULL,NULL),(27,'Rails Developer','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `MasterOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -560,7 +561,7 @@ CREATE TABLE `MasterProjectRole` (
   KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -569,7 +570,7 @@ CREATE TABLE `MasterProjectRole` (
 
 LOCK TABLES `MasterProjectRole` WRITE;
 /*!40000 ALTER TABLE `MasterProjectRole` DISABLE KEYS */;
-INSERT INTO `MasterProjectRole` VALUES (1,'Unit Test Engineer',0,'\0',1,'2018-02-26',1,'2018-02-28'),(2,'tyryry',56565656,'',2,'2018-02-26',2,'2018-02-26'),(3,'jk,k,',67,'',2,'2018-02-26',2,'2018-02-26'),(4,'Unit Test Engineer',0,'',1,'2018-02-26',1,'2018-02-26'),(5,'Unit Test Engineer',0,'',1,'2018-02-26',1,'2018-02-26'),(6,'Unit Test Engineer',0,'',1,'2018-02-26',1,'2018-02-26'),(7,'Unit Test Engineer',0,'',1,'2018-02-27',1,'2018-02-27'),(8,'Unit Test Engineer',0,'',1,'2018-02-27',1,'2018-02-27'),(9,'Unit Test Engineer',0,'',1,'2018-02-27',1,'2018-02-27'),(10,'Unit Test Engineer',0,'',1,'2018-02-28',1,'2018-02-28'),(11,'Unit Test Engineer',0,'',1,'2018-02-28',1,'2018-02-28'),(12,'Unit Test Engineer',0,'',1,'2018-02-28',1,'2018-02-28');
+INSERT INTO `MasterProjectRole` VALUES (13,'Developer',20000,'',1,'2018-01-01',NULL,NULL),(14,'Product Developer',30000,'',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst',25000,'',1,'2018-01-01',NULL,NULL),(16,'Ui Engineer',35000,'',1,'2018-01-01',NULL,NULL),(17,'Backend Developer',50000,'',1,'2018-01-01',NULL,NULL);
 /*!40000 ALTER TABLE `MasterProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -593,7 +594,7 @@ CREATE TABLE `MasterProjectType` (
   KEY `MasterProjectTypeUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectTypeCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectTypeUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -602,7 +603,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
-INSERT INTO `MasterProjectType` VALUES (1,'Unit Test Billable Project','\0',2,'2018-02-26',1,'2018-02-28'),(2,'Billable','',2,'2018-02-26',2,'2018-02-27'),(3,'R&D','',1,'2018-02-26',2,'2018-02-27'),(4,'Unit Test Billable Project','\0',1,'2018-02-26',1,'2018-02-26'),(5,'Unit Test Billable Project','\0',1,'2018-02-27',1,'2018-02-27'),(6,'Unit Test Billable Project','\0',1,'2018-02-27',1,'2018-02-27'),(7,'Unit Test Billable Project','\0',1,'2018-02-27',1,'2018-02-27'),(8,'Unit Test Billable Project','',1,'2018-02-28',1,'2018-02-28'),(9,'Unit Test Billable Project','',1,'2018-02-28',1,'2018-02-28'),(10,'Unit Test Billable Project','',1,'2018-02-28',1,'2018-02-28');
+INSERT INTO `MasterProjectType` VALUES (11,'Billable','',1,'2018-01-01',NULL,NULL),(12,'Non Billable','',1,'2018-01-01',NULL,NULL),(13,'In House','',1,'2018-01-01',NULL,NULL),(14,'R & D','',1,'2018-01-01',NULL,NULL);
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -626,7 +627,7 @@ CREATE TABLE `MasterSkill` (
   KEY `MasterSkillUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterSkillCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,7 +636,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
-INSERT INTO `MasterSkill` VALUES (1,'Unit Test','\0',1,'2018-02-19',1,'2018-02-28'),(2,'c#','',1,'2018-02-19',1,'2018-02-20'),(3,'Html','',1,'2018-02-19',1,'2018-02-19'),(4,'Jquery','',1,'2018-02-21',NULL,NULL),(5,'LINQ','',1,'2018-02-21',NULL,NULL),(6,'SQL','',1,'2018-02-21',NULL,NULL),(7,'AngularJS','',1,'2018-02-21',NULL,NULL),(8,'Angular 2','',1,'2018-02-21',1,'2018-02-26'),(9,'Angular 4','',1,'2018-02-21',NULL,NULL),(10,'Entity Framework','',1,'2018-02-21',NULL,NULL),(11,'PHP','',1,'2018-02-21',NULL,NULL),(12,'Ruby On Rails','',1,'2018-02-21',NULL,NULL),(13,'Web Api','',1,'2018-02-21',NULL,NULL),(14,'Scala','',1,'2018-02-21',NULL,NULL),(15,'Unit Test','',1,'2018-02-26',NULL,NULL),(16,'Unit Test','',1,'2018-02-26',NULL,NULL),(17,'Unit Test','',1,'2018-02-26',NULL,NULL),(18,'Unit Test','',1,'2018-02-26',NULL,NULL),(19,'Unit Test','',1,'2018-02-26',NULL,NULL),(20,'Unit Test','',1,'2018-02-26',NULL,NULL),(21,'Unit Test','',1,'2018-02-26',NULL,NULL),(22,'Unit Test','',1,'2018-02-27',NULL,NULL),(23,'Unit Test','',1,'2018-02-27',NULL,NULL),(24,'Unit Test','',1,'2018-02-27',NULL,NULL),(25,'Unit Test','',1,'2018-02-28',NULL,NULL),(26,'Unit Test','',1,'2018-02-28',NULL,NULL),(27,'Unit Test','',1,'2018-02-28',NULL,NULL);
+INSERT INTO `MasterSkill` VALUES (28,'C#','',1,'2018-01-01',NULL,NULL),(29,'Html','',1,'2018-01-01',NULL,NULL),(30,'Jquery','',1,'2018-01-01',NULL,NULL),(31,'Javascript','',1,'2018-01-01',NULL,NULL),(32,'SQL','',1,'2018-01-01',NULL,NULL),(33,'AngularJS 1','',1,'2018-01-01',NULL,NULL),(34,'Angular 4','',1,'2018-01-01',NULL,NULL),(35,'LINQ','',1,'2018-01-01',NULL,NULL),(36,'Entity Framework','',1,'2018-01-01',NULL,NULL),(37,'Ionic Cordova','',1,'2018-01-01',NULL,NULL),(38,'Scala','',1,'2018-01-01',NULL,NULL),(39,'Swift','',1,'2018-01-01',NULL,NULL),(40,'Python','',1,'2018-01-01',NULL,NULL),(41,'NodeJS','',1,'2018-01-01',NULL,NULL),(42,'Ruby On Rails','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -653,6 +654,8 @@ CREATE TABLE `Project` (
   `StartDate` date NOT NULL,
   `EndDate` date DEFAULT NULL,
   `Description` varchar(500) DEFAULT NULL,
+  `CurrencyId` int(11) NOT NULL,
+  `ClientId` int(11) NOT NULL,
   `IsComplete` bit(1) DEFAULT NULL,
   `IsValid` bit(1) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
@@ -666,7 +669,7 @@ CREATE TABLE `Project` (
   CONSTRAINT `ProjectCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `ProjectUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Project_MasterProjectType` FOREIGN KEY (`ProjectTypeId`) REFERENCES `MasterProjectType` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -675,44 +678,8 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
+INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01',NULL,'Kantar',2,16,'\0','',1,'2018-03-06',NULL,NULL),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',3,15,'\0','',1,'2018-03-06',NULL,NULL),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',1,15,'\0','',1,'2018-03-06',NULL,NULL),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',2,18,'\0','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ProjectClient`
---
-
-DROP TABLE IF EXISTS `ProjectClient`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ProjectClient` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `ClientId` int(11) NOT NULL,
-  `ProjectId` int(11) NOT NULL,
-  `IsValid` bit(1) NOT NULL,
-  `CreatedBy` int(11) NOT NULL,
-  `CreatedOn` date NOT NULL,
-  `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedOn` date DEFAULT NULL,
-  PRIMARY KEY (`Id`),
-  KEY `ClientProject_Project` (`ProjectId`),
-  KEY `ClientProject_MasterClient` (`ClientId`),
-  KEY `ProjectClientCreatedBy_Employee_Id` (`CreatedBy`),
-  KEY `ProjectClientUpdatedBy_Employee_Id` (`UpdatedBy`),
-  CONSTRAINT `ClientProject_MasterClient` FOREIGN KEY (`ClientId`) REFERENCES `MasterClient` (`Id`),
-  CONSTRAINT `ClientProject_Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
-  CONSTRAINT `ProjectClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
-  CONSTRAINT `ProjectClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ProjectClient`
---
-
-LOCK TABLES `ProjectClient` WRITE;
-/*!40000 ALTER TABLE `ProjectClient` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ProjectClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -760,7 +727,9 @@ INSERT INTO Allocation
         `EndDate`,
         `IsValid`,
         `CreatedBy`,
-        `CreatedOn`
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
 	)
     VALUES
     (
@@ -773,6 +742,8 @@ INSERT INTO Allocation
 		IF((aStartDate = ''), NULL,aStartDate), 
         IF((aEndDate = ''), NULL,aEndDate),
         aIsValid,
+        aCreatedBy,
+        aCreatedOn,
         aCreatedBy,
         aCreatedOn
     )
@@ -902,6 +873,7 @@ BEGIN
 		a.PercentageAllocation like concat('%', filterText,'%') or
 		a.IsBillable = if(filterText = 'yes',true,false) or
         a.IsValid = if(filterText = 'yes',true,false)
+	ORDER BY a. EmployeeId Asc
 	limit 
 		recordFrom, recordTill;
         
@@ -1034,7 +1006,9 @@ BEGIN
                 `DepartmentId`,
                 `IsValid`,
                 `CreatedBy`,
-                `CreatedOn`
+                `CreatedOn`,
+                `UpdatedBy`,
+                `UpdatedOn`
             )
             VALUES
             (
@@ -1042,6 +1016,8 @@ BEGIN
                 masterEmployeeId,
                 masterDepartmentId,
                 isDepartmentValid,
+                userId,
+                DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
                 userId,
                 DATE_FORMAT(CURDATE(),'%Y-%m-%d')
             )
@@ -1113,7 +1089,9 @@ DECLARE i INT DEFAULT 1;
                 `GroupId`,
                 `IsValid`,
                 `CreatedBy`,
-                `CreatedOn`
+                `CreatedOn`,
+                `UpdatedBy`,
+                `UpdatedOn`
             )
             VALUES
             (
@@ -1121,6 +1099,8 @@ DECLARE i INT DEFAULT 1;
                 masterEmployeeId,
                 masterGroupId,
                 isGroupValid,
+                userId,
+                DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
                 userId,
                 DATE_FORMAT(CURDATE(),'%Y-%m-%d')
             )
@@ -1191,7 +1171,9 @@ BEGIN
 			`RoleId`,
 			`IsValid`,
 			`CreatedBy`,
-			`CreatedOn`
+			`CreatedOn`,
+            `UpdatedBy`,
+            `UpdatedOn`
 		)
 		VALUES
 		(
@@ -1199,6 +1181,8 @@ BEGIN
 			masterEmployeeId,
 			masterOrgRoleId,
 			isOrgRoleValid,
+			userId,
+			DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
 			userId,
 			DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 		)
@@ -1302,7 +1286,9 @@ BEGIN
                 `SkillId`,
                 `IsValid`,
                 `CreatedBy`,
-                `CreatedOn`
+                `CreatedOn`,
+                `UpdatedBy`,
+                `UpdatedOn`
             )
             VALUES
             (
@@ -1310,6 +1296,8 @@ BEGIN
                 masterEmployeeId,
                 masterSkillId,
                 isSkillValid,
+                userId,
+                DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
                 userId,
                 DATE_FORMAT(CURDATE(),'%Y-%m-%d')
             )
@@ -1383,7 +1371,9 @@ BEGIN
 		`Email`,
 		`IsValid`,
 		`CreatedBy`,
-        `CreatedOn`
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
 	)
     VALUES
     (
@@ -1397,6 +1387,8 @@ BEGIN
 		contactNum,
 		email,
 		isValid,
+        createdBy,
+        createdOn,
         createdBy,
         createdOn
     )
@@ -1662,13 +1654,15 @@ BEGIN
 	SET nodeCount = ExtractValue(xmltext, 'count(/ArrayOfIdentityGroupRight/IdentityGroupRight)');
 	WHILE i <= nodeCount DO
 		INSERT INTO IdentityGroupRight 
-        (`GroupId`,`RightId`,`Action`,`IsValid`,`CreatedBy`,`CreatedOn`)
+        (`GroupId`,`RightId`,`Action`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
         VALUES
         (
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/GroupId'),
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/RightId'),
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/Action'),
 			IF(ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/IsValid') = 'true',1,0),
+			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/CreatedBy'),
+			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/CreatedOn'),
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/CreatedBy'),
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/CreatedOn')
 		);
@@ -1846,9 +1840,9 @@ IN createdOn VARCHAR(150)
 )
 BEGIN
 	INSERT INTO IdentityGroup
-    (`GroupName`,`GroupDescription`,`IsValid`,`CreatedBy`,`CreatedOn`)
+    (`GroupName`,`GroupDescription`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
     VALUES
-    (groupName,groupDesc,isValid,createdBy,createdOn);
+    (groupName,groupDesc,isValid,createdBy,createdOn,createdBy,createdOn);
     select MAX(Id) as Id from IdentityGroup;
 END ;;
 DELIMITER ;
@@ -2250,9 +2244,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_Insert`(
 )
 BEGIN
 	INSERT INTO MasterDepartment
-		(`DepartmentName`,`DepartmentHead`,`IsValid`,`CreatedBy`,`CreatedOn`)
+		(`DepartmentName`,`DepartmentHead`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
     VALUES
-		(departmentName,departmentHead,isValid,createdBy,createdOn);
+		(departmentName,departmentHead,isValid,createdBy,createdOn,createdBy,createdOn);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2415,9 +2409,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterOrganizationRole_Insert`(
 )
 BEGIN
 	INSERT INTO MasterOrganizationRole
-		(`Role`,`IsValid`,`CreatedBy`,`CreatedOn`)
+		(`Role`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
     VALUES
-		(role,isValid,createdBy,createdOn);
+		(role,isValid,createdBy,createdOn,createdBy,createdOn);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2917,9 +2911,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_Insert`(
 )
 BEGIN
 	INSERT INTO MasterSkill
-		(`Skill`,`IsValid`,`CreatedBy`,`CreatedOn`)
+		(`Skill`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
     VALUES
-		(skill,isValid,createdBy,createdOn);
+		(skill,isValid,createdBy,createdOn,createdBy,createdOn);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2985,90 +2979,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProjectClient_BulkAddOrUpdate` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProjectClient_BulkAddOrUpdate`(
-	IN xmlText text,
-    IN userId int(11)
-)
-BEGIN
-	DECLARE i INT DEFAULT 1;
-	DECLARE nodeCount INT(11);
-    
-    DECLARE pcId INT(11);
-    DECLARE pcProjectId INT(11);
-    DECLARE pcClientId INT(11);
-    DECLARE pcIsValid BIT;
-    
-    DECLARE nodePath VARCHAR(500);
-    
-    SET nodePath = '/ArrayOfProjectClient/ProjectClient';
-    
-	SET nodeCount = ExtractValue(xmlText, CONCAT('count(', nodePath ,')'));
-		WHILE i <= nodeCount DO
-		
-			SET pcId = ExtractValue(xmlText, CONCAT(nodePath, '[$i]/Id'));
-			SET pcProjectId = ExtractValue(xmlText, CONCAT(nodePath, '[$i]/ProjectId'));
-			SET pcClientId = ExtractValue(xmlText, CONCAT(nodePath, '[$i]/ClientId'));
-			SET pcIsValid = CASE WHEN (ExtractValue(xmlText, CONCAT(nodePath, '[$i]/IsValid')) = 'true') THEN 1 ELSE 0 END;
-			
-            INSERT INTO
-				ProjectClient
-			(
-				`Id`,
-                `ProjectId`,
-                `ClientId`,
-                `IsValid`,
-                `CreatedBy`,
-                `CreatedOn`
-            )
-            VALUES
-            (
-				pcId,
-                pcProjectId,
-                pcClientId,
-                pcIsValid,
-                userId,
-                DATE_FORMAT(CURDATE(),'%Y-%m-%d')
-            )
-            ON DUPLICATE KEY UPDATE
-				
-                UpdatedBy = CASE WHEN 
-							(ProjectId <> pcProjectId OR
-							ClientId <> pcClientId OR
-							IsValid <> pcIsValid  )
-							THEN userId 
-							ELSE UpdatedBy 
-							END,
-                UpdatedOn = CASE WHEN 
-							(ProjectId <> pcProjectId OR
-							ClientId <> pcClientId OR
-							IsValid <> pcIsValid  )
-								
-							THEN DATE_FORMAT(CURDATE(),'%Y-%m-%d') 
-							ELSE UpdatedOn 
-							END,
-				ProjectId = pcProjectId,
-                ClientId = pcClientId,
-                IsValid = pcIsValid;
-                                      
-		
-		SET i = i+1;
-		END WHILE;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spProject_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3086,6 +2996,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_AddOrUpdate`(
     IN pStartDate VARCHAR(50),
     IN pEndDate VARCHAR(50),
     IN pDescription VARCHAR(500),
+    IN pCurrencyId INT(11),
+    IN pClientId INT(11),
     IN pIsComplete BIT,
     IN pIsValid BIT,
     IN pCreatedBy INT(11),
@@ -3102,10 +3014,14 @@ INSERT INTO Project
 		`StartDate`,
         `EndDate`,
         `Description`,
+        `CurrencyId`,
+        `ClientId`,
         `IsComplete`,
         `IsValid`,
         `CreatedBy`,
-        `CreatedOn`
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
 	)
     VALUES
     (
@@ -3115,8 +3031,12 @@ INSERT INTO Project
 		pStartDate,
         IF((pEndDate = ''), NULL,pEndDate),
 		pDescription, 
+        pCurrencyId,
+        pClientId,
         pIsComplete,
         pIsValid,
+        pCreatedBy,
+        pCreatedOn,
         pCreatedBy,
         pCreatedOn
     )
@@ -3126,6 +3046,8 @@ INSERT INTO Project
 		StartDate = IF((pStartDate = ''), NULL,pStartDate),
         EndDate = IF((pEndDate = ''), NULL,pEndDate),
         Description = pDescription,
+        CurrencyId = pCurrencyId,
+        ClientId = pClientId,
         IsComplete = pIsComplete,
         IsValid = pIsValid,
         UpdatedBy = pUpdatedBy,
@@ -3157,6 +3079,8 @@ BEGIN
         DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate,
         DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
         a.Description,
+        a.CurrencyId,
+        a.ClientId,
         a.IsComplete,
         a.IsValid,
         a.CreatedBy,
@@ -3173,35 +3097,6 @@ BEGIN
 		Employee c ON a.UpdatedBy = c.Id
 	WHERE
 		a.Id = pId;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_GetChildList` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetChildList`(
-	IN pId INT(11)
-)
-BEGIN
-	SELECT a.Id, a.ClientId, a.ProjectId, a.IsValid, a. CreatedBy,
-		a.CreatedOn, a.UpdatedBy, a.UpdatedOn, b.ClientName
-	FROM 
-		ProjectClient a
-    INNER JOIN
-		MasterClient b ON a.ClientId = b.Id
-	WHERE 
-		a.ProjectId = pId;
-		
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3270,7 +3165,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_GetMasterList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `spProject_GetSelectList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3280,9 +3175,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetMasterList`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetSelectList`()
 BEGIN
-	SELECT * FROM MasterClient WHERE IsValid = true;
+	SELECT *  FROM MasterClient WHERE IsValid = true;
+    SELECT *  FROM MasterCurrency;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3323,4 +3219,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-06 11:42:45
+-- Dump completed on 2018-03-06 16:46:22

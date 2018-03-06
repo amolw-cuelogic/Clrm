@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         {
             var TestData = new MasterClient();
             TestData.Id = 1;
-            TestData.ClientLocation = "USA";
+            //TestData.ClientLocation = "USA";
             TestData.ClientName = "Microsoft";
             TestData.IsValid = true;
             TestData.CreatedBy = 1;
@@ -65,7 +65,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         {
             var TestData = new MasterClient();
             TestData.Id = 0;
-            TestData.ClientLocation = "USA";
+            //TestData.ClientLocation = "USA";
             TestData.ClientName = "Microsoft";
             TestData.IsValid = true;
             TestData.CreatedBy = 1;

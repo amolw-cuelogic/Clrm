@@ -21,7 +21,6 @@
                                     <div class="form-group">
                                         <ngx-label value="Employee"></ngx-label>
                                         <select (ngModelChange)="EmployeeDownChange($event)" #EmployeeId="ngModel" [(ngModel)]="pageObject.EmployeeId" name="EmployeeId" class="form-control form-control-sm" style="width:100%;" required placeholder="Enter Employee Name">
-                                            <option value="?" selected="selected">None</option>
                                             <option *ngFor="let item of pageObject.SelectListEmployee" [selected]="item.Id == pageObject.EmployeeId" [value]="item.Id">{{item.FullName}}</option>
                                         </select>
                                         <div *ngIf="EmployeeId.errors && (EmployeeId.dirty || EmployeeId.touched)" class="error">

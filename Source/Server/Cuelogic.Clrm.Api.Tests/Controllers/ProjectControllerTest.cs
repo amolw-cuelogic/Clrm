@@ -45,19 +45,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             TestData.CreatedOn = DateTime.Now.ToMySqlDateString();
             TestData.UpdatedOn = DateTime.Now.ToMySqlDateString();
             TestData.UpdatedBy = 1;
-
-            var TestProjectClientData = new ProjectClient();
-            TestProjectClientData.Id = 1;
-            TestProjectClientData.ProjectId = 1;
-            TestProjectClientData.ClientId = 1;
-            TestProjectClientData.IsValid = true;
-            TestProjectClientData.CreatedBy = 1;
-            TestProjectClientData.CreatedOn = DateTime.Now.ToMySqlDateString();
-            TestProjectClientData.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            TestProjectClientData.UpdatedBy = 1;
-
-            TestData.ProjectMasterCurrencyList.Add(TestProjectClientData);
-
+            
             var customIdentity = new ClaimsIdentity("");
             customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
             customIdentity.AddClaim(new Claim("Id", "1"));
@@ -92,18 +80,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             TestData.CreatedOn = DateTime.Now.ToMySqlDateString();
             TestData.UpdatedOn = DateTime.Now.ToMySqlDateString();
             TestData.UpdatedBy = 1;
-
-            var TestProjectClientData = new ProjectClient();
-            TestProjectClientData.Id = 0;
-            TestProjectClientData.ProjectId = 0;
-            TestProjectClientData.ClientId = 1;
-            TestProjectClientData.IsValid = true;
-            TestProjectClientData.CreatedBy = 1;
-            TestProjectClientData.CreatedOn = DateTime.Now.ToMySqlDateString();
-            TestProjectClientData.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            TestProjectClientData.UpdatedBy = 1;
-
-            TestData.ProjectMasterCurrencyList.Add(TestProjectClientData);
+            
 
             var customIdentity = new ClaimsIdentity("");
             customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
