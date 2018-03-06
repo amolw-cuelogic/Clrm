@@ -21,14 +21,14 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Department Name"></ngx-label>
-                                        <input type="text" #DepartmentName="ngModel" [(ngModel)]="PageObject.DepartmentName" class="form-control" required name="PageObject.DepartmentName" placeholder="Enter Department Name">
+                                        <input maxlength="150" type="text" #DepartmentName="ngModel" [(ngModel)]="PageObject.DepartmentName" class="form-control" required name="PageObject.DepartmentName" placeholder="Enter Department Name">
                                         <div *ngIf="DepartmentName.errors && (DepartmentName.dirty || DepartmentName.touched)" class="error">
                                             Department Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Department Head</label>
-                                        <input class="form-control" [(ngModel)]="PageObject.DepartmentHead" rows="5" name="PageObject.DepartmentHead" placeholder="Enter Department Head" />
+                                        <input maxlength="150" class="form-control" [(ngModel)]="PageObject.DepartmentHead" rows="5" name="PageObject.DepartmentHead" placeholder="Enter Department Head" />
 
                                     </div>
                                     <div ngx-rights="301|Delete" class="form-group">

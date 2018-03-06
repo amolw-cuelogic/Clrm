@@ -19,19 +19,19 @@
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <ngx-label value="First Name"></ngx-label>
-                                        <input type="text" #FirstName="ngModel" [(ngModel)]="pageObject.Employee.FirstName" class="form-control" required name="FirstName" placeholder="Enter First Name" />
+                                        <input maxlength="150" type="text" #FirstName="ngModel" [(ngModel)]="pageObject.Employee.FirstName" class="form-control" required name="FirstName" placeholder="Enter First Name" />
                                         <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)" class="error">
                                             First Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>MiddleName</label>
-                                        <input type="text" [(ngModel)]="pageObject.Employee.MiddleName" class="form-control" name="MiddleName" placeholder="Enter Middle Name" />
+                                        <input maxlength="150" type="text" [(ngModel)]="pageObject.Employee.MiddleName" class="form-control" name="MiddleName" placeholder="Enter Middle Name" />
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Last Name"></ngx-label>
                                         <input type="text" #LastName="ngModel" [(ngModel)]="pageObject.Employee.LastName" class="form-control" required name="LastName" placeholder="Enter Last Name" />
-                                        <div *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="error">
+                                        <div maxlength="150" *ngIf="LastName.errors && (LastName.dirty || LastName.touched)" class="error">
                                             Last Name is required
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Contact Number"></ngx-label>
-                                        <input pattern="[0-9]+" type="text" #ContactNum="ngModel" [(ngModel)]="pageObject.Employee.ContactNum" class="form-control" required name="ContactNum" placeholder="Enter Contact Number" />
+                                        <input maxlength="50" pattern="[0-9]+" type="text" #ContactNum="ngModel" [(ngModel)]="pageObject.Employee.ContactNum" class="form-control" required name="ContactNum" placeholder="Enter Contact Number" />
                                         <div *ngIf="ContactNum.errors">
                                             <div *ngIf="ContactNum.errors.required && (ContactNum.dirty || ContactNum.touched)" class="error">
                                                 Contact Number is required

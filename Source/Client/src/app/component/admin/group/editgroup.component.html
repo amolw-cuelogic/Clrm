@@ -21,14 +21,14 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Group Name"></ngx-label>
-                                        <input type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
+                                        <input maxlength="150" type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
                                         <div *ngIf="GroupName.errors && (GroupName.dirty || GroupName.touched)" class="error">
                                             Group Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Group Description"></ngx-label>
-                                        <textarea #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
+                                        <textarea maxlength="500" #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
                                         <div *ngIf="GroupDescription.errors && (GroupDescription.dirty || GroupDescription.touched)" class="error">
                                             Group Description is required
                                         </div>
@@ -61,18 +61,18 @@
                                         </th>
                                     </tr>
                                     <tbody>
-                                        <tr *ngFor="let item of IdentityGroup.GroupRight">
+                                        <tr *ngFor="let item of IdentityGroup.GroupRight; let i = index">
                                             <td>
                                                 {{item.RightTitle}}
                                             </td>
                                             <td >
-                                                <input [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
+                                                <input (ngModelChange)="ReadClick($event,i)" [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
                                             </td>
                                             <td>
-                                                <input [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
+                                                <input (ngModelChange)="WriteClick($event,i)" [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
                                             </td>
                                             <td>
-                                                <input [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
+                                                <input (ngModelChange)="DeleteClick($event,i)" [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
                                             </td>
                                         </tr>
                                     </tbody>

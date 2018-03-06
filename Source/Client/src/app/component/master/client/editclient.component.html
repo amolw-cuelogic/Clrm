@@ -22,7 +22,7 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Client Name"></ngx-label>
-                                        <input type="text" #ClientName="ngModel" [(ngModel)]="pageObject.ClientName" class="form-control" required name="pageObject.ClientName" placeholder="Enter Client Name">
+                                        <input maxlength="200" type="text" #ClientName="ngModel" [(ngModel)]="pageObject.ClientName" class="form-control" required name="pageObject.ClientName" placeholder="Enter Client Name">
                                         <div *ngIf="ClientName.errors && (ClientName.dirty || ClientName.touched)" class="error">
                                             Client Name is required
                                         </div>

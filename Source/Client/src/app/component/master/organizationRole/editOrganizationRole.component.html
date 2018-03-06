@@ -21,7 +21,7 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Role"></ngx-label>
-                                        <input type="text" #OrganizationRole="ngModel" [(ngModel)]="PageObject.Role" class="form-control" required name="PageObject.Role" placeholder="Enter Organization Role">
+                                        <input maxlength="150" type="text" #OrganizationRole="ngModel" [(ngModel)]="PageObject.Role" class="form-control" required name="PageObject.Role" placeholder="Enter Organization Role">
                                         <div *ngIf="OrganizationRole.errors && (OrganizationRole.dirty || OrganizationRole.touched)" class="error">
                                             Organization Role is required
                                         </div>

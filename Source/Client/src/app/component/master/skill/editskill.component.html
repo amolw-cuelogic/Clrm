@@ -21,7 +21,7 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Skill Title"></ngx-label>
-                                        <input type="text" #Skill="ngModel" [(ngModel)]="PageObject.Skill" class="form-control" required name="PageObject.Skill" placeholder="Enter Skill">
+                                        <input maxlength="100" type="text" #Skill="ngModel" [(ngModel)]="PageObject.Skill" class="form-control" required name="PageObject.Skill" placeholder="Enter Skill">
                                         <div *ngIf="Skill.errors && (Skill.dirty || Skill.touched)" class="error">
                                             Skill is required
                                         </div>

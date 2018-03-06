@@ -22,7 +22,7 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Project Type"></ngx-label>
-                                        <input type="text" #ProjectType="ngModel" [(ngModel)]="pageObject.Type" class="form-control" required name="pageObject.Type" placeholder="Enter Project Type">
+                                        <input maxlength="150" type="text" #ProjectType="ngModel" [(ngModel)]="pageObject.Type" class="form-control" required name="pageObject.Type" placeholder="Enter Project Type">
                                         <div *ngIf="ProjectType.errors && (ProjectType.dirty || ProjectType.touched)" class="error">
                                             Project Role is required
                                         </div>

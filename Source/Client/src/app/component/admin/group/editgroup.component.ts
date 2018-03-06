@@ -56,8 +56,7 @@ export class EditGroupComponent {
                     model.Message = "Saved Successfully";
                     this.compSubSrv.OpenBootstrapModal(model);
                 }
-                else
-                {
+                else {
                     this.router.navigate(["/group"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
@@ -83,7 +82,7 @@ export class EditGroupComponent {
             }
             );
     }
-    
+
 
     constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,
@@ -93,8 +92,7 @@ export class EditGroupComponent {
 
     MarkAllInvalid() {
         var val = this.ActionInValid;
-        for (var i = 0; i < this.IdentityGroup.GroupRight.length; i++)
-        {
+        for (var i = 0; i < this.IdentityGroup.GroupRight.length; i++) {
             this.IdentityGroup.GroupRight[i].BooleanRight.Delete = val;
         }
     }
@@ -110,6 +108,30 @@ export class EditGroupComponent {
         var val = this.ActionRead;
         for (var i = 0; i < this.IdentityGroup.GroupRight.length; i++) {
             this.IdentityGroup.GroupRight[i].BooleanRight.Read = val;
+        }
+    }
+
+    ReadClick(value: boolean, index: number) {
+        if (!value) {
+            this.IdentityGroup.GroupRight[index].BooleanRight.Write = false;
+            this.IdentityGroup.GroupRight[index].BooleanRight.Delete = false;
+        }
+    }
+
+    WriteClick(value: boolean, index: number) {
+        if (value) {
+            this.IdentityGroup.GroupRight[index].BooleanRight.Read = true;
+
+        }
+        else {
+            this.IdentityGroup.GroupRight[index].BooleanRight.Delete = false;
+        }
+    }
+
+    DeleteClick(value: boolean, index: number) {
+        if (value) {
+            this.IdentityGroup.GroupRight[index].BooleanRight.Read = true;
+            this.IdentityGroup.GroupRight[index].BooleanRight.Write = true;
         }
     }
 

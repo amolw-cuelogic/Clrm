@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Allocation Percentage"></ngx-label><span style="float:right">[ Total Allocation : {{pageObject.ExistingAllocation}}% ]</span>
-                                        <input (keyup)="ValidateAllocation()" type="number" Maxlength="3" #PercentageAllocation="ngModel" [(ngModel)]="pageObject.PercentageAllocation" class="form-control" required name="PercentageAllocation" placeholder="Enter Allocation Percentage" />
+                                        <input maxlength="3" pattern="[0-9]+" (keyup)="ValidateAllocation()" type="text"  #PercentageAllocation="ngModel" [(ngModel)]="pageObject.PercentageAllocation" class="form-control" required name="PercentageAllocation" placeholder="Enter Allocation Percentage" />
                                         <div *ngIf="PercentageAllocation.errors">
                                             <div *ngIf="PercentageAllocation.errors.required && (PercentageAllocation.dirty || PercentageAllocation.touched)" class="error">
                                                 Allocation Percentage is required

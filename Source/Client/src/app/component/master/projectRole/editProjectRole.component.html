@@ -22,14 +22,14 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Role"></ngx-label>
-                                        <input type="text" #ProjectRole="ngModel" [(ngModel)]="pageObject.Role" class="form-control" required name="pageObject.Role" placeholder="Enter Project Role">
+                                        <input maxlength="50" type="text" #ProjectRole="ngModel" [(ngModel)]="pageObject.Role" class="form-control" required name="pageObject.Role" placeholder="Enter Project Role">
                                         <div *ngIf="ProjectRole.errors && (ProjectRole.dirty || ProjectRole.touched)" class="error">
                                             Project Role is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Role Cost"></ngx-label>
-                                        <input pattern="[0-9]+" type="text" #Costing="ngModel" [(ngModel)]="pageObject.Costing" class="form-control" required name="pageObject.Costing" placeholder="Enter Role Cost">
+                                        <input maxlength="11" pattern="[0-9]+" type="text" #Costing="ngModel" [(ngModel)]="pageObject.Costing" class="form-control" required name="pageObject.Costing" placeholder="Enter Role Cost">
                                         <div *ngIf="Costing.errors">
                                             <div *ngIf="Costing.errors.required && (Costing.dirty || Costing.touched)" class="error">
                                                 Cost is required

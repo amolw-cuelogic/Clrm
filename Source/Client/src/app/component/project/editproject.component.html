@@ -20,7 +20,7 @@
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <ngx-label value="Project Name"></ngx-label>
-                                        <input type="text" #ProjectName="ngModel" [(ngModel)]="pageObject.ProjectName" class="form-control" required name="ProjectName" placeholder="Enter Project Name" />
+                                        <input maxlength="500" type="text" #ProjectName="ngModel" [(ngModel)]="pageObject.ProjectName" class="form-control" required name="ProjectName" placeholder="Enter Project Name" />
                                         <div *ngIf="ProjectName.errors && (ProjectName.dirty || ProjectName.touched)" class="error">
                                             Project Name is required
                                         </div>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Project Description</label>
-                                        <textarea rows="5" type="text" [(ngModel)]="pageObject.Description" class="form-control" name="Description" placeholder="Enter Project Description"></textarea>
+                                        <textarea maxlength="500" rows="5" type="text" [(ngModel)]="pageObject.Description" class="form-control" name="Description" placeholder="Enter Project Description"></textarea>
                                     </div>
                                    
                                 </div>
