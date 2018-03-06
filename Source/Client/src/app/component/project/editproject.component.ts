@@ -73,6 +73,10 @@ export class EditProjectComponent {
             m => {
                 if (m["ProjectTypeId"] == 0)
                     m["ProjectTypeId"] = null;
+                if (m["ClientId"] == 0)
+                    m["ClientId"] = null;
+                if (m["CurrencyId"] == 0)
+                    m["CurrencyId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
 
@@ -89,55 +93,6 @@ export class EditProjectComponent {
         private router: Router, private commonService: CommonService) {
         this.baseUrl = this.serviceAppConfig.GetBaseUrl();
 
-    }
-
-
-    CloseModal(id: any) {
-        this.commonService.HideBootstrapModal(id);
-    }
-
-    //Client Modal
-
-    OpenModal(id: any) {
-        $('#idDivModalCollection input:checkbox').closest('tr').show();
-        $('#idDivModalCollection #' + id + ' input:checkbox').each(function () {
-            if ($(this).is(":checked"))
-                $(this).trigger('click');
-        });
-
-        for (var i = 0; i < this.pageObject.ProjectClientChildList.length; i++) {
-            var item = this.pageObject.ProjectClientChildList[i];
-            var ClientId = item.ClientId;
-            $('#idDivModalCollection input:checkbox[data-s-id="' + ClientId + '"]').closest('tr').hide();
-        }
-
-        this.commonService.ShowBootstrapModal(id);
-    }
-
-    AddClients(id: any) {
-        var indexArray = [];
-        $('#idDivModalCollection #' + id + ' input:checkbox').each(function () {
-            if ($(this).is(":checked")) {
-                var index = $(this).attr('data-s-index');
-                indexArray.push(index);
-            }
-        });
-
-        for (var i = 0; i < indexArray.length; i++) {
-            var masterClient = this.pageObject.ProjectMasterClientList[indexArray[i]];
-            var projectClient = new Object({
-                ProjectId: this.pageObject.Id,
-                ClientId: masterClient.Id,
-                IsValid: true,
-                ClientName: masterClient.ClientName
-            });
-            this.pageObject.ProjectClientChildList.push(projectClient);
-        }
-        this.commonService.HideBootstrapModal(id);
-    }
-
-    RemoveClient(id: any) {
-        this.pageObject.ProjectClientChildList.splice(id, 1);
     }
     
 }

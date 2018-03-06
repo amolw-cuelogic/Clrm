@@ -2,7 +2,7 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid || pageObject.ProjectClientChildList.length == 0">Save</button>
+        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid">Save</button>
         <button routerLink="/project" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
@@ -69,44 +69,23 @@
                                         </label>
                                     </div>
                                     <div class="form-group">
-                                        <ngx-label value="Client"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenModal('clientModal')">Add Client</a>
-                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
-                                            <table style="width:100%" class="CustomeTable">
-                                                <tr *ngIf="pageObject.ProjectClientChildList.length != 0">
-                                                    <!--<th class="AlignCenter">
-                                                        Action
-                                                    </th>-->
-                                                    <th style="width:60%">
-                                                        Client Name
-                                                    </th>
-                                                    <th class="AlignCenter">Is Valid</th>
-                                                </tr>
-                                                <tbody>
-                                                    <tr *ngFor="let item of pageObject.ProjectClientChildList; let i=index">
-                                                        <!--<td class="AlignCenter">
-                                                            <i (click)="RemoveClient(i)" class="icon-close"></i>
-                                                        </td>-->
-                                                        <td>
-                                                            {{item.ClientName}}
-                                                        </td>
-                                                        <td class="AlignCenter">
-                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="ClientName-{{i}}" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr *ngIf="pageObject.ProjectClientChildList.length == 0">
-                                                        <td>
-                                                            No Client Added
-                                                        </td>
-
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="warning" *ngIf="pageObject.ProjectClientChildList.length == 0">
-                                            Please Select atleast One Client
+                                        <ngx-label value="Client"></ngx-label>
+                                        <select required #ClientId="ngModel" [(ngModel)]="pageObject.ClientId" name="ClientId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.ProjectMasterClientList" value="{{item.Id}}">{{item.ClientName}}</option>
+                                        </select>
+                                        <div *ngIf="ClientId.errors && (ClientId.dirty || ClientId.touched)" class="error">
+                                            Client is required
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <ngx-label value="Billing Currency"></ngx-label>
+                                        <select required #CurrencyId="ngModel" [(ngModel)]="pageObject.CurrencyId" name="CurrencyId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.ProjectMasterCurrencyList" value="{{item.Id}}">{{item.Currency}}</option>
+                                        </select>
+                                        <div *ngIf="CurrencyId.errors && (CurrencyId.dirty || CurrencyId.touched)" class="error">
+                                            Currency is required
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -115,44 +94,4 @@
             </div>
         </div>
     </div>
-</div>
-<div id="idDivModalCollection">
-    <!-- MASTER SKILLS -->
-    <div id="clientModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-info" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Master Clients</h4>
-                    <button type="button" class="close" (click)="CloseModal('clientModal')" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="max-height:350px; overflow:auto;">
-                    <table class="CustomeTable" style="width:100%">
-                        <tr>
-                            <th style="width:20%;text-align:center">
-                                Add
-                            </th>
-                            <th>Clients</th>
-                        </tr>
-                        <tbody>
-                            <tr *ngFor="let item of pageObject.ProjectMasterClientList;let i=index">
-                                <td style="text-align:center">
-                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
-                                </td>
-                                <td>
-                                    {{item.ClientName}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="CloseModal('clientModal')">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="AddClients('clientModal')">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

@@ -120,12 +120,19 @@ namespace Cuelogic.Clrm.Common
 
             public const string spProject_AddOrUpdate = "spProject_AddOrUpdate";
             public const string spProject_Get = "spProject_Get";
-            public const string spProject_GetChildList = "spProject_GetChildList";
+            //public const string spProject_GetChildList = "spProject_GetChildList";
             public const string spProject_GetList = "spProject_GetList";
-            public const string spProject_GetMasterList = "spProject_GetMasterList";
-            public const string spProjectClient_BulkAddOrUpdate = "spProjectClient_BulkAddOrUpdate";
+            //public const string spProject_GetMasterList = "spProject_GetMasterList";
+            //public const string spProjectClient_BulkAddOrUpdate = "spProjectClient_BulkAddOrUpdate";
             public const string spProject_MarkInvalid = "spProject_MarkInvalid";
             public const string spProject_GetLatestId = "spProject_GetLatestId";
+            public const string spProject_GetSelectList = "spProject_GetSelectList";
+
+            public class spProject_GetSelectList_Tables
+            {
+                public const string MasterClient = "MasterClient";
+                public const string MasterCurrency = "MasterCurrency";
+            }
 
             #endregion
 

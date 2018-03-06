@@ -56,7 +56,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             TestProjectClientData.UpdatedOn = DateTime.Now.ToMySqlDateString();
             TestProjectClientData.UpdatedBy = 1;
 
-            TestData.ProjectClientChildList.Add(TestProjectClientData);
+            TestData.ProjectMasterCurrencyList.Add(TestProjectClientData);
 
             var customIdentity = new ClaimsIdentity("");
             customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
@@ -103,7 +103,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             TestProjectClientData.UpdatedOn = DateTime.Now.ToMySqlDateString();
             TestProjectClientData.UpdatedBy = 1;
 
-            TestData.ProjectClientChildList.Add(TestProjectClientData);
+            TestData.ProjectMasterCurrencyList.Add(TestProjectClientData);
 
             var customIdentity = new ClaimsIdentity("");
             customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));

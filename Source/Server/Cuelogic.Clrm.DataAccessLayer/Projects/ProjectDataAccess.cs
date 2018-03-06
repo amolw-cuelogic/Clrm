@@ -24,6 +24,8 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
                     new MySqlParameter("@pStartDate", project.StartDate),
                     new MySqlParameter("@pEndDate", project.EndDate),
                     new MySqlParameter("@pDescription", project.Description),
+                    new MySqlParameter("@pCurrencyId", project.CurrencyId),
+                    new MySqlParameter("@pClientId", project.ClientId),
                     new MySqlParameter("@pIsComplete", project.IsComplete),
                     new MySqlParameter("@pIsValid", project.IsValid),
                     new MySqlParameter("@pCreatedBy", project.CreatedBy),
@@ -33,17 +35,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
                 };
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
         }
-
-        public void AddOrUpdateProjectClient(string xmlString, int userId)
-        {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProjectClient_BulkAddOrUpdate;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@xmlText", xmlString),
-                    new MySqlParameter("@userId", userId)
-                };
-            DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
-        }
+        
 
         public DataSet GetLatestId()
         {
@@ -64,14 +56,15 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             return ds;
         }
 
-        public DataSet GetProjectChildList(int projectId)
+        public DataSet GetProjectSelectList()
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_GetChildList;
-            sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@pId", projectId)
-                };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_GetSelectList;
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), 
+                null, 
+                new List<string> {
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient,
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency });
             return ds;
         }
 
@@ -90,15 +83,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
-
-        public DataSet GetProjectMasterList()
-        {
-            var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_GetMasterList;
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
-            return ds;
-        }
-
+        
         public void MarkProjectInvalid(int projectId)
         {
             var sqlparam = new MySqlSpParam();

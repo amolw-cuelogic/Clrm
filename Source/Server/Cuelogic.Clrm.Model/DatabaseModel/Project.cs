@@ -17,6 +17,8 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             StartDate = "";
             EndDate = "";
             Description = "";
+            CurrencyId = 0;
+            ClientId = 0;
             IsComplete = false;
             IsValid = false;
             CreatedBy = 0;
@@ -25,7 +27,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             UpdatedOn = "";
             CreatedByName = "";
             UpdatedByName = "";
-            ProjectClientChildList = new List<ProjectClient>();
+            ProjectMasterCurrencyList = new List<MasterCurrency>();
             ProjectMasterClientList = new List<MasterClient>();
             ProjectTypeList = new List<MasterProjectType>();
         }
@@ -35,6 +37,8 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string Description { get; set; }
+        public int CurrencyId { get; set; }
+        public int ClientId { get; set; }
         public bool IsComplete { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }
@@ -46,7 +50,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public string Type { get; set; }
         public string CreatedByName { get; set; }
         public string UpdatedByName { get; set; }
-        public List<ProjectClient> ProjectClientChildList { get; set; }
+        public List<MasterCurrency> ProjectMasterCurrencyList { get; set; }
         public List<MasterClient> ProjectMasterClientList { get; set; }
         public List<MasterProjectType> ProjectTypeList { get; set; }
         #endregion

@@ -27,19 +27,7 @@ namespace Cuelogic.Clrm.Repository.Projects
             project.CreatedOn = DateTime.Now.ToMySqlDateString();
 
             _projectDataAccess.AddOrUpdateProject(project);
-
-            if(project.Id == 0)
-            {
-                var ds = _projectDataAccess.GetLatestId();
-                var id = ds.Tables[0].ToId();
-                foreach(var item in project.ProjectClientChildList)
-                {
-                    item.ProjectId = id;
-                }
-            }
-
-            var xmlString = Helper.ObjectToXml(project.ProjectClientChildList);
-            _projectDataAccess.AddOrUpdateProjectClient(xmlString, userContext.UserId);
+            
         }
 
         public Project GetProject(int projectId)
@@ -50,14 +38,14 @@ namespace Cuelogic.Clrm.Repository.Projects
             {
                 var projectDs = _projectDataAccess.GetProject(projectId);
                 project = projectDs.Tables[0].ToModel<Project>();
-                var projectClientDs = _projectDataAccess.GetProjectChildList(projectId);
-                project.ProjectClientChildList = projectClientDs.Tables[0].ToList<ProjectClient>();
 
             }
 
-            var masterClientDs = _projectDataAccess.GetProjectMasterList();
-            var masterClientList = masterClientDs.Tables[0].ToList<MasterClient>();
+            var masterClientDs = _projectDataAccess.GetProjectSelectList();
+
+            var masterClientList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient].ToList<MasterClient>();
             project.ProjectMasterClientList = masterClientList;
+            project.ProjectMasterCurrencyList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency].ToList<MasterCurrency>();
 
             IMasterProjectTypeRepository _masterProjectTypeRepository = new MasterProjectTypeRepository();
             var masterProjectTypeDs = _masterProjectTypeRepository.GetMasterProjectTypeValidList();

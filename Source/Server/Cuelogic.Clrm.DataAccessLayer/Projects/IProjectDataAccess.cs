@@ -13,16 +13,14 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
     {
         #region GET FUNCTIONS
         DataSet GetProject(int projectId);
-        DataSet GetProjectChildList(int projectId);
+        DataSet GetProjectSelectList();
         DataSet GetProjectList(SearchParam searchParam);
-        DataSet GetProjectMasterList();
 
         DataSet GetLatestId();
         #endregion
 
         #region ADD OR UPDATE
         void AddOrUpdateProject(Project project);
-        void AddOrUpdateProjectClient(string xmlString, int userId);
         #endregion
 
         #region OTHER FUNCTIONS

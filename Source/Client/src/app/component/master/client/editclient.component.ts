@@ -49,8 +49,7 @@ export class EditClientComponent {
                     model.Message = "Saved Successfully";
                     this.compSubSrv.OpenBootstrapModal(model);
                 }
-                else
-                {
+                else {
                     this.router.navigate(["/client"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
@@ -85,11 +84,27 @@ export class EditClientComponent {
         this.httpClient.get(this.baseUrl + this.ApiController + "/GetCities/" + id
         ).subscribe(
             m => {
-                this.pageObject.MasterCityList = m;
-                this.SrvAppConfig.AdjustBottomHeight();
-                
+                if (m != null && m != undefined) {
+                    this.pageObject.MasterCityList = m;
+                    this.pageObject.CityId = null;
+                    this.SrvAppConfig.AdjustBottomHeight();
+                }
+                else {
+                    this.ThrowCityNotPresentWarning();
+                }
+
+
+
             }
             );
+    }
+
+    ThrowCityNotPresentWarning() {
+        var model = new BootstrapModel();
+        model.Title = "Warning";
+        model.MessageType = model.ModelType.Warning;
+        model.Message = "City not entered for selected country.";
+        this.compSubSrv.OpenBootstrapModal(model);
     }
 
     constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
