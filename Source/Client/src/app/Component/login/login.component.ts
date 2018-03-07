@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
                 this.user.Rights = credentials.rights;
                 this.srvAppConfig.SetToken(this.user);
                 this.srvAppConfig.GetRights(1);
-                window.location.href = '/';
+                this.router.navigate(["/"]);
 
             }
         );

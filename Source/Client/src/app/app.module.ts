@@ -98,6 +98,10 @@ export function provideConfig() {
         {
             provide: ErrorHandler,
             useClass: ErrorhandlerService
+        },
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
         }
     ],
     bootstrap: [AppComponent]

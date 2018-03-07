@@ -40,3 +40,10 @@ open my.ini from above location and paster following line at the bottom
 
 lower_case_table_names = 2
 
+//===================================================================================================
+//Note 4
+//===================================================================================================
+
+Hashing strategy is used in app module, because if we dont use it than on refreshing the page gives error
+page not found.
+Implementing Hashing strategy takes to the same page on reload.
