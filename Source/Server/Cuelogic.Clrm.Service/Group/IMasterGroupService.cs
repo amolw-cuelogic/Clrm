@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.Service.Group
 {
-    public interface IMasterGroup
+    public interface IMasterGroupService
     {
         string GetList(SearchParam searchParam);
 

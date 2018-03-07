@@ -53,7 +53,7 @@
     <Compile Include="Department\IMasterDepartmentService.cs" />
     <Compile Include="Employees\EmployeeService.cs" />
     <Compile Include="Employees\IEmployeeService.cs" />
-    <Compile Include="Group\IMasterGroup.cs" />
+    <Compile Include="Group\IMasterGroupService.cs" />
     <Compile Include="Common\CommonService.cs" />
     <Compile Include="Department\MasterDepartmentService.cs" />
     <Compile Include="Group\MasterGroupService.cs" />

@@ -119,18 +119,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\MasterGroupControllerTest.cs" />
-    <Compile Include="Controllers\MasterSkillControllerTest.cs" />
-    <Compile Include="Controllers\MasterDepartmentControllerTest.cs" />
-    <Compile Include="Controllers\MasterOrganizationRoleControllerTest.cs" />
-    <Compile Include="Controllers\MasterProjectRoleControllerTest.cs" />
-    <Compile Include="Controllers\MasterProjectTypeControllerTest.cs" />
-    <Compile Include="Controllers\MasterClientControllerTest.cs" />
-    <Compile Include="Controllers\EmployeeControllerTest.cs" />
-    <Compile Include="Controllers\ProjectControllerTest.cs" />
-    <Compile Include="Controllers\AllocationControllerTest.cs" />
-    <Compile Include="Controllers\MyProfileControllerTest.cs" />
-    <Compile Include="MockData\AllocationControllerMockData.cs" />
+    <Compile Include="MasterGroupTest\MasterGroupControllerTest.cs" />
+    <Compile Include="MasterSkillTest\MasterSkillControllerTest.cs" />
+    <Compile Include="MasterDepartmentTest\MasterDepartmentControllerTest.cs" />
+    <Compile Include="MasterOrganizationRoleTest\MasterOrganizationRoleControllerTest.cs" />
+    <Compile Include="MasterProjectRoleTest\MasterProjectRoleControllerTest.cs" />
+    <Compile Include="MasterProjectTypeTest\MasterProjectTypeControllerTest.cs" />
+    <Compile Include="MasterClientTest\MasterClientControllerTest.cs" />
+    <Compile Include="EmployeeTest\EmployeeControllerTest.cs" />
+    <Compile Include="ProjectTest\ProjectControllerTest.cs" />
+    <Compile Include="AllocationTest\AllocationControllerTest.cs" />
+    <Compile Include="MyProfileTest\MyProfileControllerTest.cs" />
+    <Compile Include="AllocationTest\AllocationMockData.cs" />
+    <Compile Include="EmployeeTest\EmployeeMockData.cs" />
+    <Compile Include="MasterClientTest\MasterClientMockData.cs" />
+    <Compile Include="MasterDepartmentTest\MasterDepartmentMockData.cs" />
+    <Compile Include="MasterGroupTest\MasterGroupMockData.cs" />
+    <Compile Include="MasterOrganizationRoleTest\MasterOrganizationRoleMockData.cs" />
+    <Compile Include="MasterProjectRoleTest\MasterProjectRoleMockData.cs" />
+    <Compile Include="MasterProjectTypeTest\MasterProjectTypeMockData.cs" />
+    <Compile Include="MasterSkillTest\MasterSkillMockData.cs" />
+    <Compile Include="MyProfileTest\MyProfileMockData.cs" />
+    <Compile Include="ProjectTest\ProjectMockData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

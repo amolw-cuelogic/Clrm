@@ -28,7 +28,7 @@ namespace Cuelogic.Clrm.Api
         {
 			var container = new UnityContainer();
             
-            container.RegisterType<IMasterGroup, MasterGroupService>();
+            container.RegisterType<IMasterGroupService, MasterGroupService>();
             container.RegisterType<IMasterDepartmentService, MasterDepartmentService>();
             container.RegisterType<IMasterOrganizationRoleService, MasterOrganizationRoleService>();
             container.RegisterType<IMasterSkillService, MasterSkillService>();

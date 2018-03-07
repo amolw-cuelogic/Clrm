@@ -15,7 +15,7 @@ using Cuelogic.Clrm.Repository.Group;
 
 namespace Cuelogic.Clrm.Service.Group
 {
-    public class MasterGroupService : IMasterGroup
+    public class MasterGroupService : IMasterGroupService
     {
         private readonly IMasterGroupRepository _masterGroupRepository;
         public MasterGroupService()

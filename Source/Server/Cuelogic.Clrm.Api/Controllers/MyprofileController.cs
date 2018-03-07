@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Web.Helpers;
 using System.Web.Http;
 using static Cuelogic.Clrm.Api.Filter.CustomFilter;
 using static Cuelogic.Clrm.Common.AppConstants;
 
+[assembly: InternalsVisibleTo("Tests.Unit")]
 namespace Cuelogic.Clrm.Api.Controllers
 {
     [RoutePrefix("api/MyProfile")]

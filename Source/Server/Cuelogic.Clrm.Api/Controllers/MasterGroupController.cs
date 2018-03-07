@@ -19,8 +19,8 @@ namespace Cuelogic.Clrm.Api.Controllers
     [RoutePrefix("api/Group")]
     public class MasterGroupController : ApiBaseController
     {
-        private readonly IMasterGroup _masterGroup;
-        public MasterGroupController(IMasterGroup masterGroup)
+        private readonly IMasterGroupService _masterGroup;
+        public MasterGroupController(IMasterGroupService masterGroup)
         {
             
             _masterGroup = masterGroup;
