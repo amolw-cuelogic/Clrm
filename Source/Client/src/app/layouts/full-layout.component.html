@@ -20,7 +20,6 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
                 <div class="dropdown-header text-center"><strong>Account</strong></div>
-                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                 <a (click)="Logout()" class="dropdown-item" href="javascript:void(0);"><i class="fa fa-lock"></i> Logout</a>
             </div>
         </li>
@@ -36,15 +35,15 @@
                 <li ngx-rights="400|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/myprofile']"><i class="icon-user"></i> My Profile </a>
                 </li>
-                <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <li ngx-rights="200|Read" class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                     <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-settings"></i> Admin</a>
                     <ul class="nav-dropdown-items">
-                        <li class="nav-item Child-item">
+                        <li ngx-rights="200|Read" class="nav-item Child-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/group']"><i class="icon-arrow-right"></i> Group</a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <li ngx-rights="300,301,302,303,304,305|Read" class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                     <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-list"></i> Master</a>
                     <ul class="nav-dropdown-items">
                         <li ngx-rights="300|Read" class="nav-item Child-item">

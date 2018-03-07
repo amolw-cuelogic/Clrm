@@ -29,6 +29,7 @@ namespace Cuelogic.Clrm.Common
             public const string spEmployee_GetByEmailId = "spEmployee_GetByEmailId";
             public const string spEmployeeAllocation_GetList = "spEmployeeAllocation_GetList";
             public const string spEmployeeRights_Get = "spEmployeeRights_Get";
+            public const string spEmployee_GetByOrgEmpId = "spEmployee_GetByOrgEmpId";
 
             #endregion
 

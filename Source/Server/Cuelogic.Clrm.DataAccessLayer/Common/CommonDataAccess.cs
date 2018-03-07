@@ -24,12 +24,23 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
             return ds;
         }
 
-        public DataSet GetEmployeeDetails(string emailId)
+        public DataSet GetEmployeeDetailsByEmailId(string emailId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByEmailId;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@EmailId", emailId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+            return ds;
+        }
+
+        public DataSet GetEmployeeDetailsByOrgEmpId(string OrgEmpId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByOrgEmpId;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@eOrgEmpId", OrgEmpId)
                 };
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;

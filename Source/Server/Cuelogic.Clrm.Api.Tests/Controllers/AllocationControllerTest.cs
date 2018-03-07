@@ -23,29 +23,26 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         [TestMethod]
         public void TestGetAllocationList()
         {
+            //ARRANGE
             Mock<IAllocationService> mockAllocationService = new Mock<IAllocationService>();
-
             var mockData = AllocationControllerMockData.GetMockDataAllocationList();
             mockAllocationService.Setup(m => m.GetList(It.IsAny<SearchParam>())).Returns(mockData);
-
             AllocationController allocationController = new AllocationController(mockAllocationService.Object);
             allocationController.Request = new HttpRequestMessage();
             allocationController.Configuration = new HttpConfiguration();
 
+            //ACT
             IHttpActionResult response = allocationController.Get(10, 0, "");
             var contentResult = response as OkNegotiatedContentResult<string>;
-
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
+            //ASSERT
             //Check response is not null
             Assert.IsNotNull(contentResult);
-
             //Verify if its success status code
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
-
             //Check if response is OK
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
-
             //Check for the content type
             Assert.IsInstanceOfType(contentResult.Content,typeof(String));
         }

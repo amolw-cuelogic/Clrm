@@ -29,7 +29,7 @@ namespace Cuelogic.Clrm.Repository.Common
 
         public Employee GetEmployeeDetails(string emailId)
         {
-            var userContextDs = _commonDataAccess.GetEmployeeDetails(emailId);
+            var userContextDs = _commonDataAccess.GetEmployeeDetailsByEmailId(emailId);
             var employee = userContextDs.Tables[0].ToModel<Employee>();
             return employee;
         }

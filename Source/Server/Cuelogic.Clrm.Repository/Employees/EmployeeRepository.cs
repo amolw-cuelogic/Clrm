@@ -9,6 +9,7 @@ using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.DataAccessLayer.Employees;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using static Cuelogic.Clrm.Common.AppConstants;
+using Cuelogic.Clrm.DataAccessLayer.Common;
 
 namespace Cuelogic.Clrm.Repository.Employees
 {
@@ -58,13 +59,33 @@ namespace Cuelogic.Clrm.Repository.Employees
 
         public void AddOrUpdateEmployee(EmployeeVm employeeVm, UserContext userContext)
         {
+            ICommonDataAccess commonDataAccess = new CommonDataAccess();
+            if (employeeVm.Employee.Id == 0)
+            {
+                var detailsByEmailId = commonDataAccess.GetEmployeeDetailsByEmailId(employeeVm.Employee.Email);
+                if (detailsByEmailId.Tables[0].Rows.Count > 0)
+                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Email Id already exist, please enter different email."));
+                var detailsByOrgEmpId = commonDataAccess.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
+                if (detailsByOrgEmpId.Tables[0].Rows.Count > 0)
+                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee Id already exist, please enter different Employee Id."));
+            }
+            else
+            {
+                var detailsByEmailId = commonDataAccess.GetEmployeeDetailsByEmailId(employeeVm.Employee.Email);
+                if (detailsByEmailId.Tables[0].Rows.Count > 1)
+                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Email Id already exist, please enter different email."));
+                var detailsByOrgEmpId = commonDataAccess.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
+                if (detailsByOrgEmpId.Tables[0].Rows.Count > 1)
+                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee Id already exist, please enter different Employee Id."));
+            }
+
             employeeVm.Employee.UpdatedBy = userContext.UserId;
             employeeVm.Employee.UpdatedOn = DateTime.Now.ToMySqlDateString();
             employeeVm.Employee.CreatedBy = userContext.UserId;
             employeeVm.Employee.CreatedOn = DateTime.Now.ToMySqlDateString();
             _employeeDataAccess.AddOrUpdateEmployee(employeeVm.Employee);
 
-            if(employeeVm.Employee.Id ==0)
+            if (employeeVm.Employee.Id == 0)
             {
                 var Id = _employeeDataAccess.GetLatestId().Tables[0].ToId();
                 foreach (var item in employeeVm.Employee.EmployeeSkillList)
