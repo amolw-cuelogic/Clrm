@@ -111,7 +111,7 @@
                                                             {{skillItem.SkillName}}
                                                         </td>
                                                         <td ngx-rights="401|Delete" class="AlignCenter">
-                                                            <input type="checkbox" [(ngModel)]="skillItem.IsValid" name="SkillName-{{i}}" />
+                                                            <input [disabled]="disabled" type="checkbox" [(ngModel)]="skillItem.IsValid" name="SkillName-{{i}}" />
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeSkillList.length == 0">
@@ -150,7 +150,7 @@
                                                             {{item.GroupName}}
                                                         </td>
                                                         <td ngx-rights="401|Delete" class="AlignCenter">
-                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="GroupName-{{i}}" />
+                                                            <input [disabled]="disabled" type="checkbox" [(ngModel)]="item.IsValid" name="GroupName-{{i}}" />
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0">
@@ -189,7 +189,7 @@
                                                             {{item.RoleName}}
                                                         </td>
                                                         <td ngx-rights="401|Delete" class="AlignCenter">
-                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="RoleName-{{i}}" />
+                                                            <input [disabled]="disabled" type="checkbox" [(ngModel)]="item.IsValid" name="RoleName-{{i}}" />
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0">
@@ -228,7 +228,7 @@
                                                             {{item.DepartmentName}}
                                                         </td>
                                                         <td ngx-rights="401|Delete" class="AlignCenter">
-                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="DepartmentName-{{i}}" />
+                                                            <input [disabled]="disabled" type="checkbox" [(ngModel)]="item.IsValid" name="DepartmentName-{{i}}" />
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0">

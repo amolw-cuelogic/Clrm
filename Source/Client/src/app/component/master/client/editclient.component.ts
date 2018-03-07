@@ -32,7 +32,7 @@ export class EditClientComponent {
 
     SetFormModeView() {
         this.Disabled = true;
-        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"]').attr("disabled", "true");
+        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"], select').attr("disabled", "true");
     }
 
     Save() {
