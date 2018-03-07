@@ -12,6 +12,7 @@ using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using log4net;
 using Cuelogic.Clrm.Repository.Group;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Service.Group
 {
@@ -42,7 +43,14 @@ namespace Cuelogic.Clrm.Service.Group
             if (identityGroup.Id == 0)
                 _masterGroupRepository.SaveIdentityGroup(identityGroup, userCtx);
             else
+            {
+                if (userCtx.Rights.Count > 0 && identityGroup.GroupRight.Count > 0)
+                {
+                    if (userCtx.Rights[0].GroupId == identityGroup.GroupRight[0].GroupId)
+                        throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "You cannot edit your own rights, please contact Super Admin or database expert"));
+                }
                 _masterGroupRepository.UpdateIdentityGroup(identityGroup, userCtx);
+            }
 
         }
 
