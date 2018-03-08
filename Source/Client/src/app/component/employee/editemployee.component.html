@@ -77,13 +77,13 @@
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Email Id"></ngx-label>
-                                        <input maxlength="50" type="text" #Email="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="pageObject.Employee.Email" class="form-control" required name="Email" placeholder="Enter Email Id" />
+                                        <input maxlength="50" type="text" #Email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(cuelogic)\.(com|co.in)$" [(ngModel)]="pageObject.Employee.Email" class="form-control" required name="Email" placeholder="Enter Email Id" />
                                         <div *ngIf="Email.errors">
                                             <div *ngIf="Email.errors.required && (Email.dirty || Email.touched)" class="error">
                                                 Email Id is required
                                             </div>
                                             <div *ngIf="Email.errors.pattern && (Email.dirty || Email.touched)" class="error">
-                                                Please enter valid email Address
+                                                Please enter valid Cuelogic email Address
                                             </div>
                                         </div>
                                     </div>
