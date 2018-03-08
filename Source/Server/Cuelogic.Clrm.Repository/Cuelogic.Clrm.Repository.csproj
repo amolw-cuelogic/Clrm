@@ -67,6 +67,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillRepository.cs" />
     <Compile Include="Skill\MasterSkillRepository.cs" />
+    <Compile Include="UserGroup\IUserGroupRepository.cs" />
+    <Compile Include="UserGroup\UserGroupRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cuelogic.Clrm.Common\Cuelogic.Clrm.Common.csproj">

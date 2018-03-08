@@ -54,7 +54,9 @@ namespace Cuelogic.Clrm.Repository.Allocations
         public int GetAllocationSum(int employeeId)
         {
             var ds = _allocationDataAccess.GetAllocationSum(employeeId);
-            var id = ds.Tables[0].ToId();
+            int id = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+                id = ds.Tables[0].ToId();
             return id;
         }
 

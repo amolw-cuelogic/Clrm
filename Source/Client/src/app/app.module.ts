@@ -48,7 +48,7 @@ import { CommonAppModule } from "./common.module"
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("15147801980-uhliicuk0kpn72ukm45oobidk14afguc.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider("563336911403-8suchds8jd4b39r6f3chf52s918i64j4.apps.googleusercontent.com")
     }
 ]);
 

@@ -71,6 +71,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillDataAccess.cs" />
     <Compile Include="Skill\MasterSkillDataAccess.cs" />
+    <Compile Include="UserGroup\IUserGroupDataAccess.cs" />
+    <Compile Include="UserGroup\UserGroupDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cuelogic.Clrm.Common\Cuelogic.Clrm.Common.csproj">

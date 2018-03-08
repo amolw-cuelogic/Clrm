@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
         var gmailLogoutUrl = this.srvAppConfig.GetGmailLogoutUrl();
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
             m => {
-                var temp = m.email.replace(/.*@/, '').split('.');
-                var domain = temp[temp.length - 2];
-                if (domain.toUpperCase() == "CUELOGIC") {
+                var temp = m.email.split('@');
+                var domain = temp[1];
+                if (domain.toUpperCase().indexOf("CUELOGIC") > -1 ){
                     this.RegisterGmailToken(m);
                 }
                 else {

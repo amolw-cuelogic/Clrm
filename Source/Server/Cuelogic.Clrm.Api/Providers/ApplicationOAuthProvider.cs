@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using Cuelogic.Clrm.Service.Common;
 using Cuelogic.Clrm.Common;
 using static Cuelogic.Clrm.Common.AppConstants;
+using log4net;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
@@ -21,6 +22,7 @@ namespace Cuelogic.Clrm.Api.Providers
     {
         private ICommonService _commonService;
         private readonly string _publicClientId;
+        private ILog applogManager = AppLogManager.GetLogger();
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -36,18 +38,7 @@ namespace Cuelogic.Clrm.Api.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var employeeDetails = _commonService.GetEmployeeByEmail(context.UserName);
-
-            var domain = Regex.Match(context.UserName, @"@(.+?).co").Groups[1].Value.ToLower();
-            if (domain != "cuelogic")
-            {
-                context.SetError("custom_error",
-                Helper.ComposeClientMessage(MessageType.Error, 
-                "Please login from cuelogic Id, Signout from your Gmail account : " + 
-                context.UserName));
-                context.Response.StatusCode = 500;
-                return;
-            }
-
+            
             if (employeeDetails.IsValid == false)
             {
                 context.SetError("custom_error", Helper.ComposeClientMessage(MessageType.Error, "User not valid"));

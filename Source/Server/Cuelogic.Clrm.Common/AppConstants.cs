@@ -151,6 +151,14 @@ namespace Cuelogic.Clrm.Common
             }
 
             #endregion
+
+            #region USER GROUP 
+
+            public const string spUserGroup_GetEmployees = "spUserGroup_GetEmployees";
+            public const string spUserGroup_GetIdentityGroup = "spUserGroup_GetIdentityGroup";
+            public const string spUserGroup_GetIdentityGroupMembers = "spUserGroup_GetIdentityGroupMembers";
+
+            #endregion
         }
 
         public class MessageType

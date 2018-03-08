@@ -68,6 +68,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\IMasterSkillService.cs" />
     <Compile Include="Skill\MasterSkillService.cs" />
+    <Compile Include="UserGroup\IUserGroupService.cs" />
+    <Compile Include="UserGroup\UserGroupService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

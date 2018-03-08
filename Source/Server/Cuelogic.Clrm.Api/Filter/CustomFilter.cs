@@ -85,7 +85,6 @@ namespace Cuelogic.Clrm.Api.Filter
                             break;
                         default:
                             throw new Exception(Helper.ComposeClientMessage(MessageType.Error, "No rights defined"));
-                            break;
                     }
                 }
             }

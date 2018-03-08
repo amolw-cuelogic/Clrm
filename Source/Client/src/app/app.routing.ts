@@ -196,6 +196,20 @@ export const routes: Routes = [
         ]
     },
     {
+        path: '',
+        component: FullLayoutComponent,
+        data: {
+            title: 'Home'
+        },
+        children: [
+            {
+                path: 'usergroup',
+                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
+                canActivate: [AuthGuardService]
+            }
+        ]
+    },
+    {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full',

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Repository.Common
 {
@@ -23,14 +24,20 @@ namespace Cuelogic.Clrm.Repository.Common
         public string GetEmployeeAllocationList(int employeeId)
         {
             var ds = _commonDataAccess.GetEmployeeAllocationList(employeeId);
-            var jsonString = ds.Tables[0].ToJsonString();
+            string jsonString = "";
+            if (ds.Tables[0].Rows.Count == 0)
+                jsonString = "[]";
+            else
+                jsonString = ds.Tables[0].ToJsonString();
             return jsonString;
         }
 
         public Employee GetEmployeeDetails(string emailId)
         {
             var userContextDs = _commonDataAccess.GetEmployeeDetailsByEmailId(emailId);
-            var employee = userContextDs.Tables[0].ToModel<Employee>();
+            var employee = new Employee();
+            if (userContextDs.Tables[0].Rows.Count > 0)
+                employee = userContextDs.Tables[0].ToModel<Employee>();
             return employee;
         }
 

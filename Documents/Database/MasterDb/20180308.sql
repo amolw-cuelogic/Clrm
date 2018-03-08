@@ -49,7 +49,7 @@ CREATE TABLE `Allocation` (
   CONSTRAINT `Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `ProjectRole` FOREIGN KEY (`ProjectRoleId`) REFERENCES `MasterProjectRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (1,1,14,15,'\0',50,'2018-03-06',NULL,'',1,'2018-03-06',NULL,NULL),(2,17,14,16,'\0',100,'2017-11-10',NULL,'',1,'2018-03-06',NULL,NULL),(3,1,15,16,'\0',50,'2018-03-06',NULL,'',1,'2018-03-06',NULL,NULL),(4,18,13,15,'\0',90,'2017-12-01',NULL,'',1,'2018-03-06',1,'2018-03-06'),(5,18,16,16,'\0',5,'2017-12-08',NULL,'',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `Allocation` VALUES (6,18,16,18,'',0,'2017-01-01','2018-03-31','\0',17,'2018-03-08',17,'2018-03-08');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `Employee` (
   KEY `EmployeeCreatedByBy_Employee` (`CreatedBy`),
   CONSTRAINT `EmployeeCreatedByBy_Employee` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `EmployeeUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-08'),(17,'Abhijeet ','Jivan','Sawant','CUE238','2018-03-15',NULL,'9563215748','abhijeet.sawant@cuelogic.co.in','',1,'2018-03-06',NULL,NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-06'),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-06'),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-06'),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-07');
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-08'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',17,'2018-03-08'),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-08'),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-08'),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-08'),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-08'),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08'),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08'),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','\0',17,'2018-03-08',17,'2018-03-08');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ CREATE TABLE `EmployeeDepartment` (
   CONSTRAINT `EmployeeDepartmentUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Id_DepartmentId_` FOREIGN KEY (`DepartmentId`) REFERENCES `MasterDepartment` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_EmployeeId1` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +137,7 @@ CREATE TABLE `EmployeeDepartment` (
 
 LOCK TABLES `EmployeeDepartment` WRITE;
 /*!40000 ALTER TABLE `EmployeeDepartment` DISABLE KEYS */;
-INSERT INTO `EmployeeDepartment` VALUES (1,20,17,'',1,'2018-03-06',NULL,NULL),(2,20,18,'',1,'2018-03-06',NULL,NULL),(3,20,19,'',1,'2018-03-06',NULL,NULL),(4,22,1,'',1,'2018-03-06',NULL,NULL),(5,23,1,'',1,'2018-03-06',NULL,NULL),(6,20,20,'',1,'2018-03-06',1,'2018-03-06'),(7,21,20,'',1,'2018-03-06',1,'2018-03-06'),(8,22,20,'',1,'2018-03-06',1,'2018-03-06'),(9,23,20,'',1,'2018-03-06',1,'2018-03-06'),(10,20,21,'',1,'2018-03-07',1,'2018-03-07');
+INSERT INTO `EmployeeDepartment` VALUES (1,20,17,'',1,'2018-03-06',NULL,NULL),(2,20,18,'',1,'2018-03-06',NULL,NULL),(3,20,19,'',1,'2018-03-06',NULL,NULL),(4,22,1,'\0',1,'2018-03-06',1,'2018-03-08'),(5,23,1,'',1,'2018-03-06',NULL,NULL),(6,20,20,'',1,'2018-03-06',1,'2018-03-06'),(7,21,20,'',1,'2018-03-06',1,'2018-03-06'),(8,22,20,'',1,'2018-03-06',1,'2018-03-06'),(9,23,20,'',1,'2018-03-06',1,'2018-03-06'),(10,20,21,'',1,'2018-03-07',1,'2018-03-07'),(17,20,27,'',1,'2018-03-08',1,'2018-03-08'),(18,20,28,'',1,'2018-03-08',1,'2018-03-08'),(19,20,29,'',17,'2018-03-08',17,'2018-03-08');
 /*!40000 ALTER TABLE `EmployeeDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
   CONSTRAINT `Id_EmployeeId` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `MasterOrganizationRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `UpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
 
 LOCK TABLES `EmployeeOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` DISABLE KEYS */;
-INSERT INTO `EmployeeOrganizationRole` VALUES (1,17,21,'',1,'2018-03-06',NULL,NULL),(2,18,20,'',1,'2018-03-06',NULL,NULL),(3,19,25,'',1,'2018-03-06',NULL,NULL),(4,1,22,'',1,'2018-03-06',NULL,NULL),(5,1,23,'',1,'2018-03-06',NULL,NULL),(6,20,23,'',1,'2018-03-06',1,'2018-03-06'),(7,20,24,'',1,'2018-03-06',1,'2018-03-06'),(8,20,25,'',1,'2018-03-06',1,'2018-03-06'),(9,20,26,'',1,'2018-03-06',1,'2018-03-06'),(10,21,22,'',1,'2018-03-07',1,'2018-03-07'),(11,21,23,'',1,'2018-03-07',1,'2018-03-07');
+INSERT INTO `EmployeeOrganizationRole` VALUES (1,17,21,'',1,'2018-03-06',NULL,NULL),(2,18,20,'',1,'2018-03-06',NULL,NULL),(3,19,25,'',1,'2018-03-06',NULL,NULL),(4,1,22,'\0',1,'2018-03-06',1,'2018-03-08'),(5,1,23,'',1,'2018-03-06',NULL,NULL),(6,20,23,'',1,'2018-03-06',1,'2018-03-06'),(7,20,24,'',1,'2018-03-06',1,'2018-03-06'),(8,20,25,'',1,'2018-03-06',1,'2018-03-06'),(9,20,26,'',1,'2018-03-06',1,'2018-03-06'),(10,21,22,'',1,'2018-03-07',1,'2018-03-07'),(11,21,23,'',1,'2018-03-07',1,'2018-03-07'),(18,27,26,'',1,'2018-03-08',1,'2018-03-08'),(19,28,21,'',1,'2018-03-08',1,'2018-03-08'),(20,29,21,'',17,'2018-03-08',17,'2018-03-08');
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `EmployeeSkill` (
   CONSTRAINT `EmployeeSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Employee_EmployeeSkill` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkill_EmployeeSkill` FOREIGN KEY (`SkillId`) REFERENCES `MasterSkill` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +213,7 @@ CREATE TABLE `EmployeeSkill` (
 
 LOCK TABLES `EmployeeSkill` WRITE;
 /*!40000 ALTER TABLE `EmployeeSkill` DISABLE KEYS */;
-INSERT INTO `EmployeeSkill` VALUES (1,17,28,'',1,'2018-03-06',NULL,NULL),(2,17,29,'',1,'2018-03-06',NULL,NULL),(3,17,31,'',1,'2018-03-06',NULL,NULL),(4,17,33,'',1,'2018-03-06',NULL,NULL),(5,17,35,'',1,'2018-03-06',NULL,NULL),(6,17,37,'',1,'2018-03-06',NULL,NULL),(7,17,38,'',1,'2018-03-06',NULL,NULL),(8,18,32,'',1,'2018-03-06',NULL,NULL),(9,18,33,'',1,'2018-03-06',NULL,NULL),(10,18,34,'',1,'2018-03-06',NULL,NULL),(11,18,35,'',1,'2018-03-06',NULL,NULL),(12,18,36,'',1,'2018-03-06',NULL,NULL),(13,18,37,'',1,'2018-03-06',NULL,NULL),(14,18,38,'',1,'2018-03-06',NULL,NULL),(15,19,28,'',1,'2018-03-06',NULL,NULL),(16,19,29,'',1,'2018-03-06',NULL,NULL),(17,19,30,'',1,'2018-03-06',NULL,NULL),(18,19,31,'',1,'2018-03-06',NULL,NULL),(19,19,32,'',1,'2018-03-06',NULL,NULL),(20,19,33,'',1,'2018-03-06',NULL,NULL),(21,19,34,'',1,'2018-03-06',NULL,NULL),(22,1,28,'',1,'2018-03-06',NULL,NULL),(23,1,29,'',1,'2018-03-06',NULL,NULL),(24,1,30,'',1,'2018-03-06',NULL,NULL),(25,1,31,'',1,'2018-03-06',NULL,NULL),(26,1,32,'',1,'2018-03-06',NULL,NULL),(27,1,33,'',1,'2018-03-06',NULL,NULL),(28,1,34,'',1,'2018-03-06',NULL,NULL),(29,20,30,'',1,'2018-03-06',1,'2018-03-06'),(30,20,31,'',1,'2018-03-06',1,'2018-03-06'),(31,20,32,'',1,'2018-03-06',1,'2018-03-06'),(32,20,33,'',1,'2018-03-06',1,'2018-03-06'),(33,20,34,'',1,'2018-03-06',1,'2018-03-06'),(34,20,35,'',1,'2018-03-06',1,'2018-03-06'),(35,20,36,'',1,'2018-03-06',1,'2018-03-06'),(36,21,28,'',1,'2018-03-07',1,'2018-03-07'),(37,21,29,'',1,'2018-03-07',1,'2018-03-07'),(38,21,30,'',1,'2018-03-07',1,'2018-03-07'),(39,21,31,'',1,'2018-03-07',1,'2018-03-07'),(40,21,32,'',1,'2018-03-07',1,'2018-03-07'),(41,21,33,'',1,'2018-03-07',1,'2018-03-07'),(42,21,34,'',1,'2018-03-07',1,'2018-03-07'),(43,21,35,'',1,'2018-03-07',1,'2018-03-07');
+INSERT INTO `EmployeeSkill` VALUES (1,17,28,'',1,'2018-03-06',NULL,NULL),(2,17,29,'\0',1,'2018-03-06',17,'2018-03-08'),(3,17,31,'',1,'2018-03-06',NULL,NULL),(4,17,33,'',1,'2018-03-06',NULL,NULL),(5,17,35,'',1,'2018-03-06',NULL,NULL),(6,17,37,'',1,'2018-03-06',NULL,NULL),(7,17,38,'',1,'2018-03-06',NULL,NULL),(8,18,32,'',1,'2018-03-06',NULL,NULL),(9,18,33,'',1,'2018-03-06',NULL,NULL),(10,18,34,'',1,'2018-03-06',NULL,NULL),(11,18,35,'',1,'2018-03-06',NULL,NULL),(12,18,36,'',1,'2018-03-06',NULL,NULL),(13,18,37,'',1,'2018-03-06',NULL,NULL),(14,18,38,'',1,'2018-03-06',NULL,NULL),(15,19,28,'',1,'2018-03-06',NULL,NULL),(16,19,29,'',1,'2018-03-06',NULL,NULL),(17,19,30,'',1,'2018-03-06',NULL,NULL),(18,19,31,'',1,'2018-03-06',NULL,NULL),(19,19,32,'',1,'2018-03-06',NULL,NULL),(20,19,33,'',1,'2018-03-06',NULL,NULL),(21,19,34,'',1,'2018-03-06',NULL,NULL),(22,1,28,'',1,'2018-03-06',1,'2018-03-08'),(23,1,29,'\0',1,'2018-03-06',1,'2018-03-08'),(24,1,30,'',1,'2018-03-06',NULL,NULL),(25,1,31,'',1,'2018-03-06',NULL,NULL),(26,1,32,'',1,'2018-03-06',NULL,NULL),(27,1,33,'',1,'2018-03-06',NULL,NULL),(28,1,34,'',1,'2018-03-06',NULL,NULL),(29,20,30,'',1,'2018-03-06',1,'2018-03-06'),(30,20,31,'',1,'2018-03-06',1,'2018-03-06'),(31,20,32,'',1,'2018-03-06',1,'2018-03-06'),(32,20,33,'',1,'2018-03-06',1,'2018-03-06'),(33,20,34,'',1,'2018-03-06',1,'2018-03-06'),(34,20,35,'',1,'2018-03-06',1,'2018-03-06'),(35,20,36,'',1,'2018-03-06',1,'2018-03-06'),(36,21,28,'',1,'2018-03-07',1,'2018-03-07'),(37,21,29,'',1,'2018-03-07',1,'2018-03-07'),(38,21,30,'',1,'2018-03-07',1,'2018-03-07'),(39,21,31,'',1,'2018-03-07',1,'2018-03-07'),(40,21,32,'',1,'2018-03-07',1,'2018-03-07'),(41,21,33,'',1,'2018-03-07',1,'2018-03-07'),(42,21,34,'',1,'2018-03-07',1,'2018-03-07'),(43,21,35,'',1,'2018-03-07',1,'2018-03-07'),(50,27,32,'',1,'2018-03-08',1,'2018-03-08'),(51,28,28,'',1,'2018-03-08',1,'2018-03-08'),(52,28,29,'',1,'2018-03-08',1,'2018-03-08'),(53,28,30,'',1,'2018-03-08',1,'2018-03-08'),(54,28,31,'',1,'2018-03-08',1,'2018-03-08'),(55,28,32,'',1,'2018-03-08',1,'2018-03-08'),(56,29,42,'',17,'2018-03-08',17,'2018-03-08');
 /*!40000 ALTER TABLE `EmployeeSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +242,7 @@ CREATE TABLE `IdentityEmployeeGroup` (
   CONSTRAINT `IdentityEmployeeGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityEmployeeGroup_Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityEmployeeGroup_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +251,7 @@ CREATE TABLE `IdentityEmployeeGroup` (
 
 LOCK TABLES `IdentityEmployeeGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityEmployeeGroup` DISABLE KEYS */;
-INSERT INTO `IdentityEmployeeGroup` VALUES (1,17,109,'',1,'2018-03-06',NULL,NULL),(2,18,109,'',1,'2018-03-06',NULL,NULL),(3,19,109,'',1,'2018-03-06',NULL,NULL),(4,1,109,'',1,'2018-03-06',NULL,NULL),(5,20,109,'',1,'2018-03-06',1,'2018-03-06'),(6,21,111,'',1,'2018-03-07',1,'2018-03-07');
+INSERT INTO `IdentityEmployeeGroup` VALUES (1,17,109,'',1,'2018-03-06',1,'2018-03-08'),(2,18,109,'\0',1,'2018-03-06',1,'2018-03-08'),(3,19,109,'\0',1,'2018-03-06',1,'2018-03-08'),(4,1,109,'',1,'2018-03-06',NULL,NULL),(5,20,109,'\0',1,'2018-03-06',1,'2018-03-08'),(6,21,109,'\0',1,'2018-03-07',1,'2018-03-08'),(12,27,109,'\0',1,'2018-03-08',1,'2018-03-08'),(13,17,112,'\0',1,'2018-03-08',1,'2018-03-08'),(14,27,112,'',1,'2018-03-08',1,'2018-03-08'),(15,21,113,'',1,'2018-03-08',1,'2018-03-08'),(16,17,113,'\0',1,'2018-03-08',1,'2018-03-08'),(17,18,113,'',1,'2018-03-08',1,'2018-03-08'),(18,19,113,'',1,'2018-03-08',1,'2018-03-08'),(19,20,113,'',1,'2018-03-08',1,'2018-03-08'),(20,28,113,'',1,'2018-03-08',1,'2018-03-08'),(21,29,113,'',17,'2018-03-08',17,'2018-03-08');
 /*!40000 ALTER TABLE `IdentityEmployeeGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +276,7 @@ CREATE TABLE `IdentityGroup` (
   KEY `IdentityGroupCreatedBy_Employee_Id` (`CreatedBy`),
   CONSTRAINT `IdentityGroupCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +285,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
-INSERT INTO `IdentityGroup` VALUES (109,'Super Admin','Super Admin','',1,'2018-03-01',1,'2018-03-07'),(111,'User','User','',1,'2018-03-06',1,'2018-03-07');
+INSERT INTO `IdentityGroup` VALUES (109,'Super Admin','Super Admin','',1,'2018-03-01',1,'2018-03-07'),(112,'Manager','All managers , PE\'s and TL\'s','',1,'2018-03-08',1,'2018-03-08'),(113,'Employee','Employee','',1,'2018-03-08',1,'2018-03-08');
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +313,7 @@ CREATE TABLE `IdentityGroupRight` (
   CONSTRAINT `IdentityGroupRightCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRightUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRight_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,7 +322,7 @@ CREATE TABLE `IdentityGroupRight` (
 
 LOCK TABLES `IdentityGroupRight` WRITE;
 /*!40000 ALTER TABLE `IdentityGroupRight` DISABLE KEYS */;
-INSERT INTO `IdentityGroupRight` VALUES (36,109,403,7,'',1,'2018-03-01',1,'2018-03-06'),(37,109,401,7,'',1,'2018-03-01',1,'2018-03-05'),(38,109,200,7,'',1,'2018-03-01',1,'2018-03-07'),(39,109,305,7,'',1,'2018-03-01',1,'2018-03-07'),(40,109,301,7,'',1,'2018-03-01',1,'2018-03-07'),(41,109,302,7,'',1,'2018-03-01',1,'2018-03-07'),(42,109,303,7,'',1,'2018-03-01',1,'2018-03-07'),(43,109,304,7,'',1,'2018-03-01',1,'2018-03-07'),(44,109,300,7,'',1,'2018-03-01',1,'2018-03-07'),(45,109,400,7,'',1,'2018-03-01',1,'2018-03-07'),(46,109,402,7,'',1,'2018-03-01',1,'2018-03-06'),(58,109,404,7,'',1,'2018-03-01',1,'2018-03-07'),(59,111,403,0,'',1,'2018-03-06',1,'2018-03-07'),(60,111,404,0,'',1,'2018-03-06',1,'2018-03-07'),(61,111,401,0,'',1,'2018-03-06',1,'2018-03-07'),(62,111,200,0,'',1,'2018-03-06',1,'2018-03-07'),(63,111,305,0,'',1,'2018-03-06',1,'2018-03-07'),(64,111,301,0,'',1,'2018-03-06',1,'2018-03-07'),(65,111,302,0,'',1,'2018-03-06',1,'2018-03-07'),(66,111,303,0,'',1,'2018-03-06',1,'2018-03-07'),(67,111,304,0,'',1,'2018-03-06',1,'2018-03-07'),(68,111,300,0,'',1,'2018-03-06',1,'2018-03-07'),(69,111,400,4,'',1,'2018-03-06',1,'2018-03-07'),(70,111,402,0,'',1,'2018-03-06',1,'2018-03-07');
+INSERT INTO `IdentityGroupRight` VALUES (36,109,403,7,'',1,'2018-03-01',1,'2018-03-06'),(37,109,401,7,'',1,'2018-03-01',1,'2018-03-05'),(38,109,200,7,'',1,'2018-03-01',1,'2018-03-07'),(39,109,305,7,'',1,'2018-03-01',1,'2018-03-07'),(40,109,301,7,'',1,'2018-03-01',1,'2018-03-07'),(41,109,302,7,'',1,'2018-03-01',1,'2018-03-07'),(42,109,303,7,'',1,'2018-03-01',1,'2018-03-07'),(43,109,304,7,'',1,'2018-03-01',1,'2018-03-07'),(44,109,300,7,'',1,'2018-03-01',1,'2018-03-07'),(45,109,400,7,'',1,'2018-03-01',1,'2018-03-07'),(46,109,402,7,'',1,'2018-03-01',1,'2018-03-06'),(58,109,404,7,'',1,'2018-03-01',1,'2018-03-07'),(71,112,403,4,'',1,'2018-03-08',1,'2018-03-08'),(72,112,404,4,'',1,'2018-03-08',1,'2018-03-08'),(73,112,401,0,'',1,'2018-03-08',1,'2018-03-08'),(74,112,200,0,'',1,'2018-03-08',1,'2018-03-08'),(75,112,305,0,'',1,'2018-03-08',1,'2018-03-08'),(76,112,301,0,'',1,'2018-03-08',1,'2018-03-08'),(77,112,302,0,'',1,'2018-03-08',1,'2018-03-08'),(78,112,303,0,'',1,'2018-03-08',1,'2018-03-08'),(79,112,304,0,'',1,'2018-03-08',1,'2018-03-08'),(80,112,300,0,'',1,'2018-03-08',1,'2018-03-08'),(81,112,400,4,'',1,'2018-03-08',1,'2018-03-08'),(82,112,402,4,'',1,'2018-03-08',1,'2018-03-08'),(83,113,403,0,'',1,'2018-03-08',1,'2018-03-08'),(84,113,404,4,'',1,'2018-03-08',1,'2018-03-08'),(85,113,401,0,'',1,'2018-03-08',1,'2018-03-08'),(86,113,200,0,'',1,'2018-03-08',1,'2018-03-08'),(87,113,305,0,'',1,'2018-03-08',1,'2018-03-08'),(88,113,301,0,'',1,'2018-03-08',1,'2018-03-08'),(89,113,302,0,'',1,'2018-03-08',1,'2018-03-08'),(90,113,303,0,'',1,'2018-03-08',1,'2018-03-08'),(91,113,304,0,'',1,'2018-03-08',1,'2018-03-08'),(92,113,300,0,'',1,'2018-03-08',1,'2018-03-08'),(93,113,400,4,'',1,'2018-03-08',1,'2018-03-08'),(94,113,402,0,'',1,'2018-03-08',1,'2018-03-08');
 /*!40000 ALTER TABLE `IdentityGroupRight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3230,6 +3230,98 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_GetEmployees` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_GetEmployees`(
+	IN employeeName VARCHAR(150)
+)
+BEGIN
+
+	SELECT 
+		Id,
+        CONCAT(FirstName,' ',MiddleName,' ',LastName) as FullName
+    FROM 
+		Employee 
+    WHERE 
+		IsValid = true
+    AND
+		FirstName like concat('%', employeeName,'%') or
+        MiddleName like concat('%', employeeName,'%') or
+		LastName like concat('%', employeeName,'%'); 
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_GetIdentityGroup` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_GetIdentityGroup`()
+BEGIN
+
+	SELECT * FROM IdentityGroup WHERE IsValid = true;
+	
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_GetIdentityGroupMembers` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_GetIdentityGroupMembers`(
+	IN gId INT(11)
+)
+BEGIN
+	
+     SELECT 
+		a.Id,
+        CONCAT(a.FirstName,' ',a.MiddleName,' ',a.LastName) as FullName
+	FROM 
+		Employee a
+	INNER JOIN
+		IdentityEmployeeGroup b ON a.Id = b.EmployeeId
+	INNER JOIN
+		IdentityGroup c ON b.GroupId = c.Id
+	WHERE 
+		a.IsValid = true AND
+        b.IsValid = true AND
+        c.IsValid = true AND
+        c.Id = gId
+	ORDER BY 
+		a.FirstName ASC;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -3240,4 +3332,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-08 10:27:39
+-- Dump completed on 2018-03-08 19:31:29

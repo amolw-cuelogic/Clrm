@@ -37,21 +37,21 @@
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Employee Id"></ngx-label><br />
-                                        <span>{{pageObject.Employee.OrgEmpId}}</span>
+                                        <span class="marginLeft" >{{pageObject.Employee.OrgEmpId}}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Is Valid Skill</label><br />
-                                        <span>{{(pageObject.Employee.IsValid == true)?'Valid':'Invalid' }}</span>
+                                        <span class="marginLeft">{{(pageObject.Employee.IsValid == true)?'Valid':'Invalid' }}</span>
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Joining Date"></ngx-label><br />
-                                        <span>{{pageObject.Employee.JoiningDate | date:'yyyy-MM-dd'}}</span>
+                                        <span class="marginLeft">{{pageObject.Employee.JoiningDate | date:'yyyy-MM-dd'}}</span>
 
                                     </div>
                                     <div class="form-group">
                                         <label>Leaving Date</label><br />
-                                        <span *ngIf="pageObject.Employee.LeavingDate == null">-</span>
-                                        <span>{{pageObject.Employee.LeavingDate | date:'yyyy-MM-dd'}}</span>
+                                        <span class="marginLeft" *ngIf="pageObject.Employee.LeavingDate == null">-</span>
+                                        <span class="marginLeft" >{{pageObject.Employee.LeavingDate | date:'yyyy-MM-dd'}}</span>
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Contact Number"></ngx-label>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Email Id"></ngx-label><br />
-                                        <span>{{pageObject.Employee.Email }}</span>
+                                        <span class="marginLeft">{{pageObject.Employee.Email }}</span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
@@ -82,19 +82,19 @@
                                                     <th style="width:60%">
                                                         Skill Title
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <!--<th class="AlignCenter">Is Valid</th>-->
                                                 </tr>
                                                 <tbody>
-                                                    <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index">
+                                                    <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index" >
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveSkill(i)" class="icon-close"></i>
                                                         </td>-->
-                                                        <td>
+                                                        <td *ngIf="skillItem.IsValid == true">
                                                             {{skillItem.SkillName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <span>{{(skillItem.IsValid == true)?'Valid':'Invalid' }}</span>
-                                                        </td>
+                                                        </td>-->
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeSkillList.length == 0">
                                                         <td>
@@ -121,19 +121,19 @@
                                                     <th style="width:60%">
                                                         Group Title
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <!--<th class="AlignCenter">Is Valid</th>-->
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveGroup(i)" class="icon-close"></i>
                                                         </td>-->
-                                                        <td>
+                                                        <td *ngIf="item.IsValid == true">
                                                             {{item.GroupName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <span>{{(item.IsValid == true)?'Valid':'Invalid' }}</span>
-                                                        </td>
+                                                        </td>-->
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0">
                                                         <td>
@@ -160,19 +160,19 @@
                                                     <th style="width:60%">
                                                         Role
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <!--<th class="AlignCenter">Is Valid</th>-->
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
                                                         </td>-->
-                                                        <td>
+                                                        <td *ngIf="item.IsValid == true">
                                                             {{item.RoleName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <span>{{(item.IsValid == true)?'Valid':'Invalid' }}</span>
-                                                        </td>
+                                                        </td>-->
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0">
                                                         <td>
@@ -199,19 +199,19 @@
                                                     <th style="width:60%">
                                                         Role
                                                     </th>
-                                                    <th class="AlignCenter">Is Valid</th>
+                                                    <!--<th class="AlignCenter">Is Valid</th>-->
                                                 </tr>
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveDepartment(i)" class="icon-close"></i>
                                                         </td>-->
-                                                        <td>
+                                                        <td *ngIf="item.IsValid == true">
                                                             {{item.DepartmentName}}
                                                         </td>
-                                                        <td class="AlignCenter">
+                                                        <!--<td class="AlignCenter">
                                                             <span>{{(item.IsValid == true)?'Valid':'Invalid' }}</span>
-                                                        </td>
+                                                        </td>-->
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0">
                                                         <td>

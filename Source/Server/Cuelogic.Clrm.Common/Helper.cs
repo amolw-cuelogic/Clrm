@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Common
 {
@@ -42,5 +43,6 @@ namespace Cuelogic.Clrm.Common
             message = "<clrm>" + messageType + "|" + message + "</clrm>";
             return message;
         }
+        
     }
 }
