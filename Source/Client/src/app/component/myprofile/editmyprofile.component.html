@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Is Valid Skill</label><br />
-                                        <span>{{pageObject.Employee.IsValid }}</span>
+                                        <span>{{(pageObject.Employee.IsValid == true)?'Valid':'Invalid' }}</span>
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Joining Date"></ngx-label><br />
@@ -50,6 +50,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Leaving Date</label><br />
+                                        <span *ngIf="pageObject.Employee.LeavingDate == null">-</span>
                                         <span>{{pageObject.Employee.LeavingDate | date:'yyyy-MM-dd'}}</span>
                                     </div>
                                     <div class="form-group">
@@ -92,7 +93,7 @@
                                                             {{skillItem.SkillName}}
                                                         </td>
                                                         <td class="AlignCenter">
-                                                            <span>{{skillItem.IsValid}}</span>
+                                                            <span>{{(skillItem.IsValid == true)?'Valid':'Invalid' }}</span>
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeSkillList.length == 0">
@@ -131,7 +132,7 @@
                                                             {{item.GroupName}}
                                                         </td>
                                                         <td class="AlignCenter">
-                                                            <span>{{item.IsValid}}</span>
+                                                            <span>{{(item.IsValid == true)?'Valid':'Invalid' }}</span>
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length == 0">
@@ -170,7 +171,7 @@
                                                             {{item.RoleName}}
                                                         </td>
                                                         <td class="AlignCenter">
-                                                            <span>{{item.IsValid}}</span>
+                                                            <span>{{(item.IsValid == true)?'Valid':'Invalid' }}</span>
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length == 0">
@@ -209,7 +210,7 @@
                                                             {{item.DepartmentName}}
                                                         </td>
                                                         <td class="AlignCenter">
-                                                            <span>{{item.IsValid}}</span>
+                                                            <span>{{(item.IsValid == true)?'Valid':'Invalid' }}</span>
                                                         </td>
                                                     </tr>
                                                     <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length == 0">

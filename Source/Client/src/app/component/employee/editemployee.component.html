@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
-                                        <ngx-label value="Skills"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenSkillModal('skillModal')">Add Skills</a>
+                                        <ngx-label value="Skills"></ngx-label><a *ngIf="!disabled" style="float:right;" href="javascript:void(0);" (click)="OpenSkillModal('skillModal')">Add Skills</a>
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.EmployeeSkillList.length != 0">
@@ -129,7 +129,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <ngx-label value="Group"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenGroupModal('groupModal')">Add Group</a>
+                                        <ngx-label value="Group"></ngx-label><a *ngIf="!disabled" style="float:right;" href="javascript:void(0);" (click)="OpenGroupModal('groupModal')">Add Group</a>
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.IdentityEmployeeGroupList.length != 0">
@@ -168,7 +168,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <ngx-label value="Organization Role"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenOganizationRoleModal('organizationRoleModal')">Add Role</a>
+                                        <ngx-label value="Organization Role"></ngx-label><a *ngIf="!disabled" style="float:right;" href="javascript:void(0);" (click)="OpenOganizationRoleModal('organizationRoleModal')">Add Role</a>
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.EmployeeOrganizationRoleList.length != 0">
@@ -207,7 +207,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <ngx-label value="Department"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenDepartmentModal('departmentModal')">Add Department</a>
+                                        <ngx-label value="Department"></ngx-label><a *ngIf="!disabled" style="float:right;" href="javascript:void(0);" (click)="OpenDepartmentModal('departmentModal')">Add Department</a>
                                         <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
                                             <table style="width:100%" class="CustomeTable">
                                                 <tr *ngIf="pageObject.Employee.EmployeeDepartmentList.length != 0">
