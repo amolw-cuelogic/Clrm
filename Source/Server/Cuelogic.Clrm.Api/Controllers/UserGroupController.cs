@@ -50,12 +50,13 @@ namespace Cuelogic.Clrm.Api.Controllers
 
         [Route("")]
         [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Write)]
-        public void Post([FromBody]List<IdentityEmployeeGroup> identityEmployeeGroup)
+        public IHttpActionResult Post([FromBody]List<IdentityEmployeeGroup> identityEmployeeGroup)
         {
             if(identityEmployeeGroup == null)
                 throw new Exception("Null object not allowed");
             var userContext = base.GetUserContext();
             _userGroupService.InsertGroupUsers(identityEmployeeGroup, userContext);
+            return Ok();
         }
         
     }

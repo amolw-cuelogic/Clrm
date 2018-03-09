@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CommonMockData.cs" />
     <Compile Include="MasterGroupTest\MasterGroupControllerTest.cs" />
     <Compile Include="MasterSkillTest\MasterSkillControllerTest.cs" />
     <Compile Include="MasterDepartmentTest\MasterDepartmentControllerTest.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="MyProfileTest\MyProfileMockData.cs" />
     <Compile Include="ProjectTest\ProjectMockData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserGroup\UserGroupControllerTest.cs" />
+    <Compile Include="UserGroup\UserGroupMockData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

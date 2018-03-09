@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AppconfigService } from '../../service/appconfig.service'
+import { AppconfigService } from '../../../service/appconfig.service'
 import * as $ from 'jquery'
 import { ActivatedRoute } from '@angular/router'
-import { FormMode } from '../../model/FormMode';
-import { BootstrapModel } from '../../model/bootstrapmodel'
-import { ComponentSubscriptionService } from '../../service/componentsubscription.service'
-import { CommonService } from '../../service/common.service'
+import { FormMode } from '../../../model/FormMode';
+import { BootstrapModel } from '../../../model/bootstrapmodel'
+import { ComponentSubscriptionService } from '../../../service/componentsubscription.service'
+import { CommonService } from '../../../service/common.service'
 import { Router } from '@angular/router'
 
 @Component({

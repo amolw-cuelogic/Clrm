@@ -51,6 +51,21 @@ export const routes: Routes = [
                 loadChildren: './component/admin/group/editgroup.module#EditGroupModule',
                 canActivate: [AuthGuardService]
             },
+            {
+                path: 'usergroup',
+                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'employee',
+                loadChildren: './component/admin/employee/employee.module#EmployeeModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'employee/:mode/:id',
+                loadChildren: './component/admin/employee/editemployee.module#EditEmployeeModule',
+                canActivate: [AuthGuardService]
+            }
 
         ]
     },
@@ -131,25 +146,6 @@ export const routes: Routes = [
         },
         children: [
             {
-                path: 'employee',
-                loadChildren: './component/employee/employee.module#EmployeeModule',
-                canActivate: [AuthGuardService]
-            },
-            {
-                path: 'employee/:mode/:id',
-                loadChildren: './component/employee/editemployee.module#EditEmployeeModule',
-                canActivate: [AuthGuardService]
-            }
-        ]
-    },
-    {
-        path: '',
-        component: FullLayoutComponent,
-        data: {
-            title: 'Home'
-        },
-        children: [
-            {
                 path: 'allocation',
                 loadChildren: './component/allocation/allocation.module#AllocationModule',
                 canActivate: [AuthGuardService]
@@ -192,20 +188,6 @@ export const routes: Routes = [
                 loadChildren: './component/myprofile/editmyprofile.module#EditMyProfileModule',
                 canActivate: [AuthGuardService],
                 data: { RightId: 401 }
-            }
-        ]
-    },
-    {
-        path: '',
-        component: FullLayoutComponent,
-        data: {
-            title: 'Home'
-        },
-        children: [
-            {
-                path: 'usergroup',
-                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
-                canActivate: [AuthGuardService]
             }
         ]
     },

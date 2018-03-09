@@ -12,6 +12,7 @@ using Cuelogic.Clrm.Api.Tests.MasterClientTest;
 using Cuelogic.Clrm.Model.CommonModel;
 using System.Threading;
 using System.Net;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.Controllers
 {
@@ -76,10 +77,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             //ARRANGE
             var mockData = MasterClientMockData.GetMockDataMasterClient();
             mockService.Setup(m => m.Save(It.IsAny<MasterClient>(), It.IsAny<UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MasterClientController controller = new MasterClientController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),

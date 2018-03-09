@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AppconfigService } from '../../service/appconfig.service'
+import { AppconfigService } from '../../../service/appconfig.service'
 import * as $ from 'jquery'
 import { Router } from '@angular/router'
-import { FormMode } from '../../model/FormMode';
+import { FormMode } from '../../../model/FormMode';
 
 @Component({
     templateUrl: 'employee.component.html'

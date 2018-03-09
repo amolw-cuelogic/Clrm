@@ -15,6 +15,7 @@ using System.Web.Http.Results;
 using System.Net;
 using System.Threading;
 using System.Security.Claims;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.Controllers
 {
@@ -31,10 +32,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             mockService.Setup(m => m.GetEmployeeById(It.IsAny<int>())).Returns(mockData1);
             var mockData2 = MyProfileMockData.GetMockDataAllocationList();
             mockService.Setup(m => m.GetEmployeeAllocationList(It.IsAny<int>())).Returns(mockData2);
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MyprofileController employeeController = new MyprofileController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
@@ -55,10 +53,7 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
             //ARRANGE
             var mockData = MyProfileMockData.GetMockDataEmployee();
             mockService.Setup(m => m.Save(It.IsAny<EmployeeVm>(), It.IsAny<UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MyprofileController controller = new MyprofileController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),

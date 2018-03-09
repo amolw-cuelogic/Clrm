@@ -11,6 +11,7 @@ using System.Threading;
 using System.Net;
 using Moq;
 using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.MasterProjectTypeTest
 {
@@ -75,10 +76,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectTypeTest
             //ARRANGE
             var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectType();
             mockService.Setup(m => m.Save(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MasterProjectTypeController controller = new MasterProjectTypeController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),

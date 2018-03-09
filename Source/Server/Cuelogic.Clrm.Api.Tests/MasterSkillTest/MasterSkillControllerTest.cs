@@ -11,6 +11,7 @@ using Cuelogic.Clrm.Common;
 using Moq;
 using System.Threading;
 using System.Net;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.MasterSkillTest
 {
@@ -75,10 +76,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterSkillTest
             //ARRANGE
             var mockData = MasterSkillMockData.GetMockDataMasterSkill();
             mockService.Setup(m => m.Save(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MasterSkillController controller = new MasterSkillController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),

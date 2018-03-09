@@ -1,5 +1,6 @@
 ﻿using Cuelogic.Clrm.Model;
 using Cuelogic.Clrm.Model.CommonModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +37,13 @@ namespace Cuelogic.Clrm.Common
         {
             var json = new JavaScriptSerializer().Serialize(obj);
             return json;
+        }
+
+        public static T JsonToObject<T>(string jsonString)
+        {
+            JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+            var obj = JsonConvert.DeserializeObject<T>(jsonString);
+            return obj;
         }
 
         public static string ComposeClientMessage(string messageType, string message)

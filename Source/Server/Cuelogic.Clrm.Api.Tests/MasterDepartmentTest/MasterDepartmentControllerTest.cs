@@ -11,6 +11,7 @@ using Moq;
 using Cuelogic.Clrm.Model.CommonModel;
 using System.Threading;
 using System.Net;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.MasterDepartmentTest
 {
@@ -75,10 +76,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterDepartmentTest
             //ARRANGE
             var mockData = MasterDepartmentMockData.GetMockDataMasterDepartment();
             mockService.Setup(m => m.Save(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MasterDepartmentController controller = new MasterDepartmentController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),

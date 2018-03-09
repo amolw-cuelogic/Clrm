@@ -13,6 +13,7 @@ using System.Net.Http.Formatting;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.AllocationTest
 {
@@ -103,10 +104,7 @@ namespace Cuelogic.Clrm.Api.Tests.AllocationTest
             //ARRANGE
             var mockData = AllocationMockData.GetMockDataAllocation();
             mockService.Setup(m => m.Save(It.IsAny<Allocation>(), It.IsAny< UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             AllocationController allocationController = new AllocationController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),

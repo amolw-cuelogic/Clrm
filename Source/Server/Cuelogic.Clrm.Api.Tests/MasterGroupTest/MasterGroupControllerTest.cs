@@ -11,6 +11,7 @@ using Moq;
 using Cuelogic.Clrm.Common;
 using System.Security.Claims;
 using System;
+using Cuelogic.Clrm.Api.Tests.Common;
 
 namespace Cuelogic.Clrm.Api.Tests.MasterGroupTest
 {
@@ -75,10 +76,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterGroupTest
             //ARRANGE
             var mockData = MasterGroupMockData.GetMockDataMasterGroup();
             mockService.Setup(m => m.Save(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()));
-            var customIdentity = new ClaimsIdentity("");
-            customIdentity.AddClaim(new Claim("Email", "amol.wabale@gmail.com"));
-            customIdentity.AddClaim(new Claim("Id", "1"));
-            customIdentity.AddClaim(new Claim("UserName", "Amol Wabale"));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MasterGroupController controller = new MasterGroupController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
