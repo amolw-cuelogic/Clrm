@@ -34,7 +34,7 @@
     </div>
     <div class="col-sm-12 col-md-5 col-xs-12">
         <div class="input-group input-sm ">
-            <input [(ngModel)]="FilterText" type="email" id="input2-group2" name="" class="form-control" placeholder="Search Text">
+            <input (keyup.enter)="EnterkeyPress($event)" [(ngModel)]="FilterText" type="email" id="input2-group2" name="" class="form-control" placeholder="Search Text">
             <span class="input-group-append">
                 <button (click)="SearchFilter()" type="button" title="Search" class="btn btn-primary "><i class="fa fa-search"></i></button>
             </span>

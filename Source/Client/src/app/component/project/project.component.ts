@@ -26,6 +26,10 @@ export class ProjectComponent {
         this.page = 0;
     }
 
+    EnterkeyPress(event: any) {
+        this.SearchFilter();
+    }
+
     NextPage() {
         if (this.pageList.length == this.show) {
             this.page = this.page + 1;

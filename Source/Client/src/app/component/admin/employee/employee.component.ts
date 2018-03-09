@@ -40,6 +40,10 @@ export class EmployeeComponent {
         }
     }
 
+    EnterkeyPress(event: any) {
+        this.SearchFilter();
+    }
+
     SearchFilter() {
         this.GetList();
     }

@@ -33,6 +33,10 @@ export class ProjectRoleComponent{
         }
     }
 
+    EnterkeyPress(event: any) {
+        this.SearchFilter();
+    }
+
     PreviousPage() {
         if (this.Page > 0) {
             this.Page = this.Page - 1;

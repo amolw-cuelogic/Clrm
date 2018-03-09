@@ -36,6 +36,10 @@ export class UserGroupComponent {
         this.LoadEmployeeList();
     }
 
+    EnterkeyPress(event: any) {
+        this.SearchFilter();
+    }
+
     DropDownChange(id: any) {
         this.httpClient.get(this.baseUrl + this.apiController + "/groupmembers/" + id
         ).subscribe(
