@@ -1,4 +1,5 @@
-﻿using Cuelogic.Clrm.Model.DatabaseModel;
+﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Cuelogic.Clrm.Repository.UserGroup
         List<IdentityGroup> GetGroupList();
         List<Employee> GetEmployeeList(string employeeName);
         List<Employee> GetIdentityGroupMembers(int gId);
+        void InsertGroupUsers(List<IdentityEmployeeGroup> identityEmployeeGroup, UserContext userContext);
     }
 }

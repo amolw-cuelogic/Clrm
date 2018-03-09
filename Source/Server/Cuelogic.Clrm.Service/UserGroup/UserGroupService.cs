@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.UserGroup;
+using Cuelogic.Clrm.Common;
 
 namespace Cuelogic.Clrm.Service.UserGroup
 {
@@ -31,6 +32,11 @@ namespace Cuelogic.Clrm.Service.UserGroup
         {
             var data = _userGroupRepository.GetIdentityGroupMembers(gId);
             return data;
+        }
+
+        public void InsertGroupUsers(List<IdentityEmployeeGroup> identityEmployeeGroup, UserContext userContext)
+        {
+            _userGroupRepository.InsertGroupUsers(identityEmployeeGroup, userContext);
         }
     }
 }

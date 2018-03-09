@@ -21,7 +21,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             _employeeService = employeeService;
         }
 
-        [AuthorizeUserRights(IdentityRights.Employee, AuthorizeFlag.Read)]
+        [AuthorizeUserRights(IdentityRights.AdminEmployee, AuthorizeFlag.Read)]
         [Route("")]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
@@ -35,7 +35,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(jsonString);
         }
 
-        [AuthorizeUserRights(IdentityRights.Employee, AuthorizeFlag.Read)]
+        [AuthorizeUserRights(IdentityRights.AdminEmployee, AuthorizeFlag.Read)]
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
@@ -45,7 +45,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(employeeVm);
         }
 
-        [AuthorizeUserRights(IdentityRights.Employee, AuthorizeFlag.Write)]
+        [AuthorizeUserRights(IdentityRights.AdminEmployee, AuthorizeFlag.Write)]
         [Route("")]
         public IHttpActionResult Post([FromBody]EmployeeVm employeeVm)
         {
@@ -54,7 +54,7 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok();
         }
 
-        [AuthorizeUserRights(IdentityRights.Employee, AuthorizeFlag.Delete)]
+        [AuthorizeUserRights(IdentityRights.AdminEmployee, AuthorizeFlag.Delete)]
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
         {

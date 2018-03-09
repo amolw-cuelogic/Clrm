@@ -30,7 +30,7 @@ export const routes: Routes = [
                 path: 'dashboard',
                 loadChildren: './Component/dashboard/dashboard.module#DashboardModule',
                 canActivate: [AuthGuardService],
-                data: { RightId: 404 }
+                data: { RightId: 400 }
             }
         ]
     },
@@ -191,7 +191,7 @@ export const routes: Routes = [
                 path: 'myprofile',
                 loadChildren: './component/myprofile/editmyprofile.module#EditMyProfileModule',
                 canActivate: [AuthGuardService],
-                data: { RightId: 400 }
+                data: { RightId: 401 }
             }
         ]
     },

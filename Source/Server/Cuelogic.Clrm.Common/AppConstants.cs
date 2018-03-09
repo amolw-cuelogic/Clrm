@@ -157,6 +157,7 @@ namespace Cuelogic.Clrm.Common
             public const string spUserGroup_GetEmployees = "spUserGroup_GetEmployees";
             public const string spUserGroup_GetIdentityGroup = "spUserGroup_GetIdentityGroup";
             public const string spUserGroup_GetIdentityGroupMembers = "spUserGroup_GetIdentityGroupMembers";
+            public const string spUserGroup_InsertGroupUser = "spUserGroup_InsertGroupUser";
 
             #endregion
         }
@@ -173,7 +174,9 @@ namespace Cuelogic.Clrm.Common
         public static class IdentityRights
         {
             //200 Series for Admin level sections 
-            public const int Group = 200;
+            public const int AdminGroup = 200;
+            public const int AdminUserGroup = 201;
+            public const int AdminEmployee = 202;
 
             //300 Series for Master level sections
             public const int MasterSkill = 300;
@@ -184,11 +187,11 @@ namespace Cuelogic.Clrm.Common
             public const int MasterClient = 305;
 
             //400 Series for root level sections
-            public const int MyProfile = 400;
-            public const int Employee = 401;
+            public const int Dashboard = 400;
+            public const int MyProfile = 401;
             public const int Project = 402;
             public const int Allocation = 403;
-            public const int Dashboard = 404;
+            
         }
 
         public static class AuthorizeFlag

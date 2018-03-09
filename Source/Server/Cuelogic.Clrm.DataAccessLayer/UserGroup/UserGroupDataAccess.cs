@@ -41,5 +41,15 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
+
+        public void InsertGroupUsers(string xmlString)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spUserGroup_InsertGroupUser;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@xmlText", xmlString)
+                };
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+        }
     }
 }

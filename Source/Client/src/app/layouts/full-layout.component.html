@@ -29,20 +29,23 @@
     <div class="sidebar">
         <nav class="sidebar-nav">
             <ul class="nav">
-                <li ngx-rights="404|Read" class="nav-item">
+                <li ngx-rights="400|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-home"></i> Dashboard </a>
                 </li>
-                <li ngx-rights="400|Read" class="nav-item">
+                <li ngx-rights="401|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/myprofile']"><i class="icon-user"></i> My Profile </a>
                 </li>
-                <li ngx-rights="200|Read" class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <li ngx-rights="200,201,202|Read" class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                     <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-settings"></i> Admin</a>
                     <ul class="nav-dropdown-items">
                         <li ngx-rights="200|Read" class="nav-item Child-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/group']"><i class="icon-arrow-right"></i> Group</a>
                         </li>
-                        <li ngx-rights="200|Read" class="nav-item Child-item">
+                        <li ngx-rights="201|Read" class="nav-item Child-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/usergroup']"><i class="icon-arrow-right"></i>User Group</a>
+                        </li>
+                        <li ngx-rights="202|Read" class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/employee']"><i class="icon-arrow-right"></i> Employee </a>
                         </li>
                     </ul>
                 </li>
@@ -69,9 +72,7 @@
                         </li>
                     </ul>
                 </li>
-                <li ngx-rights="401|Read" class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/employee']"><i class="icon-people"></i> Employee </a>
-                </li>
+               
                 <li ngx-rights="402|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/project']"><i class="icon-control-play"></i> Project </a>
                 </li>

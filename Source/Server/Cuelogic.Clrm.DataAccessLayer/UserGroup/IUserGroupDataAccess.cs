@@ -12,5 +12,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
         DataSet GetGroupList();
         DataSet GetEmployeeList(string employeeName);
         DataSet GetIdentityGroupMembers(int gId);
+        void InsertGroupUsers(string xmlString);
+
     }
 }

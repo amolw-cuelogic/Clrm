@@ -25,7 +25,7 @@ export class UserGroupComponent {
     GroupId: any = 0;
     filterText: any;
 
-    tempList: any = [];
+    monitorList: any = [];
 
     apiController: string = "api/Usergroup";
 
@@ -53,7 +53,29 @@ export class UserGroupComponent {
     }
 
     SaveGroup() {
-        var da = JSON.stringify(this.pageObject);
+
+        if (this.pageObject.GroupMemberList.length == 0)
+        {
+            var model = new BootstrapModel();
+            model.Title = "Warning";
+            model.MessageType = model.ModelType.Warning;
+            model.Message = "Please add atleast one employee in group.";
+            this.compSubSrv.OpenBootstrapModal(model);
+            return false;
+        }
+
+        var identityGroupList = [];
+        var data = this.pageObject.GroupMemberList;
+        for (var i = 0; i < data.length; i++) {
+            var igObject = new Object({
+                GroupId: this.GroupId,
+                EmployeeId: data[i].Id,
+                IsValid:true
+            });
+            identityGroupList.push(igObject);
+        }
+
+        var da = JSON.stringify(identityGroupList);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
         this.httpClient.post(this.baseUrl + this.apiController, da, { headers: headers }).subscribe(
@@ -105,35 +127,89 @@ export class UserGroupComponent {
         this.filterText = "";
     }
 
+    RemoveEmployeeItem(employeeId: any) {
+        var id = 0;
+        var empLength = this.pageObject.EmployeeList.length;
+        for (var i = 0; i < empLength; i++) {
+            if (this.pageObject.EmployeeList[i].Id == employeeId) {
+                id = i;
+                break;
+            }
+        }
+        this.pageObject.EmployeeList.splice(i, 1);
+    }
+
+
     AddEmployeeToGroup() {
         var obj = [];
-        for (var i = 0; i < this.pageObject.EmployeeList.length; i++) {
+        var empLength = this.pageObject.EmployeeList.length;
+        for (var i = 0; i < empLength; i++) {
             if (this.pageObject.EmployeeList[i].IsValid == true) {
                 this.pageObject.EmployeeList[i].IsValid = false;
-                obj.push(i);
-                this.tempList.push(this.pageObject.EmployeeList[i]);
+                obj.push(this.pageObject.EmployeeList[i]);
+                this.monitorList.push(this.pageObject.EmployeeList[i]);
                 this.pageObject.GroupMemberList.push(this.pageObject.EmployeeList[i]);
             }
         }
-        //this.pageObject.GroupMemberList.push(obj);
+
         for (var i = 0; i < obj.length; i++) {
-            this.pageObject.EmployeeList.splice(obj[i],1);
+            this.RemoveEmployeeItem(obj[i].Id);
+        }
+    }
+
+    RemoveMonitorListItem(employeeId: any) {
+        var id = 0;
+        var length = this.monitorList.length;
+        for (var i = 0; i < length; i++) {
+            if (this.monitorList[i].Id == employeeId) {
+                id = i;
+                break;
+            }
+        }
+        this.monitorList.splice(i, 1);
+    }
+
+    RemoveGroupItem(employeeId: any) {
+        var id = 0;
+        var length = this.pageObject.GroupMemberList.length;
+        for (var i = 0; i < length; i++) {
+            if (this.pageObject.GroupMemberList[i].Id == employeeId) {
+                id = i;
+                break;
+            }
+        }
+        this.pageObject.GroupMemberList.splice(i, 1);
+    }
+
+    RemoveGroupMember() {
+        var obj = [];
+        var grpMemberLength = this.pageObject.GroupMemberList.length;
+        for (var i = 0; i < grpMemberLength; i++) {
+            if (this.pageObject.GroupMemberList[i].IsValid == true) {
+                this.pageObject.GroupMemberList[i].IsValid = false;
+                obj.push(this.pageObject.GroupMemberList[i]);
+                this.pageObject.EmployeeList.push(this.pageObject.GroupMemberList[i]);
+                this.RemoveMonitorListItem(this.pageObject.GroupMemberList[i].Id);
+            }
+        }
+        for (var i = 0; i < obj.length; i++) {
+            this.RemoveGroupItem(obj[i].Id);
         }
     }
 
     RefreshEmployeeList() {
-        for (var i = 0; i < this.tempList.length; i++) {
-
+        for (var i = 0; i < this.monitorList.length; i++) {
+            this.monitorList.IsValid = false;
             var count = 0;
             for (var j = 0; j < this.pageObject.EmployeeList.length; j++) {
-                if (this.pageObject.EmployeeList[j].Id == this.tempList[i].Id)
+                if (this.pageObject.EmployeeList[j].Id == this.monitorList[i].Id)
                     count++;
             }
             if (count == 0)
-                this.pageObject.EmployeeList.push(this.tempList[i]);
+                this.pageObject.EmployeeList.push(this.monitorList[i]);
 
         }
-        this.tempList = [];
+        this.monitorList = [];
         for (var i = 0; i < this.pageObject.GroupMemberList.length; i++) {
             var groupMember = this.pageObject.GroupMemberList[i];
 
@@ -144,13 +220,12 @@ export class UserGroupComponent {
                         FullName: groupMember.FullName,
                         IsValid: false
                     });
-                    this.tempList.push(obj);
+                    this.monitorList.push(obj);
 
                     this.pageObject.EmployeeList.splice(j, 1);
                 }
             }
         }
-
     }
 
 }

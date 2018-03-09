@@ -4,7 +4,7 @@
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
         <div class="row">
             <div class="col-sm-12 col-md-6 col-xs-12">
-                <button ngx-rights="400|Write" [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" >Save</button>
+                <button ngx-rights="201|Write" [hidden]="disabled" [disabled]="GroupId == 0" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" >Save</button>
             </div>
             <div class="col-sm-12 col-md-6 col-xs-12">
 
@@ -33,7 +33,7 @@
                                     <div style="padding:5px"><b>Employees</b></div>
                                   
                                     <div style="width:100%;height:300px; border:1px solid #ddd">
-                                        <div class="input-group input-sm ">
+                                        <div ngx-rights="201|Write" class="input-group input-sm ">
                                             <input [(ngModel)]="filterText" type="email" id="input2-group2" name="" class="form-control form-control-sm" placeholder="Search Text">
                                             <span class="input-group-append">
                                                 <button (click)="SearchFilter()" type="button" title="Search" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
@@ -42,13 +42,13 @@
                                                 <button (click)="ClearFilter()" title="Clear" type="button" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
                                             </span>
                                             <span class="input-group-append">
-                                                <button (click)="AddEmployeeToGroup()" style="width:100%" type="button" class="btn btn-primary btn-sm">Add >></button>
+                                                <button [disabled]="GroupId == 0" (click)="AddEmployeeToGroup()" style="width:100%" type="button" class="btn btn-primary btn-sm">Add >></button>
                                             </span>
                                         </div>
                                         <table class="CustomeTable" style="width:100%">
                                             <tr>
-                                                <th style="text-align:center">Select</th>
-                                                <th>Employee Name</th>
+                                                <th style="text-align:center;width:20%;">Select</th>
+                                                <th style="width:80%;">Employee Name</th>
                                             </tr>
                                             <tbody>
                                                 <tr *ngFor="let item of pageObject.EmployeeList">
@@ -61,12 +61,12 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div style="padding:5px"><b>Group Members</b></div>
-                                    <button style="width:100%" type="button" class="btn btn-primary btn-sm"><< Remove Group Member</button>
+                                    <button [disabled]="GroupId == 0" ngx-rights="201|Write" (click)="RemoveGroupMember()" style="width:100%" type="button" class="btn btn-primary btn-sm"><< Remove Group Member</button>
                                     <div style="width:100%;height:300px; border:1px solid #ddd">
                                         <table class="CustomeTable" style="width:100%">
                                             <tr>
-                                                <th style="text-align:center">Select</th>
-                                                <th>Employee Name</th>
+                                                <th style="text-align:center;width:20%;">Select</th>
+                                                <th style="width:80%;">Employee Name</th>
                                             </tr>
                                             <tbody>
                                                 <tr *ngFor="let item of pageObject.GroupMemberList">

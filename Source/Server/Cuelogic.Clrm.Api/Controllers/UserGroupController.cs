@@ -1,10 +1,13 @@
-﻿using Cuelogic.Clrm.Service.UserGroup;
+﻿using Cuelogic.Clrm.Model.DatabaseModel;
+using Cuelogic.Clrm.Service.UserGroup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static Cuelogic.Clrm.Api.Filter.CustomFilter;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
@@ -18,6 +21,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("employees")]
+        [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Read)]
         public IHttpActionResult GetEmployeeList(string employeeName)
         {
             if (employeeName == null)
@@ -27,6 +31,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("groups")]
+        [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Read)]
         public IHttpActionResult GetGroupList()
         {
             var data = _userGroupService.GetGroupList();
@@ -34,25 +39,24 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("groupmembers/{id}")]
+        [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Read)]
         public IHttpActionResult GetIdentityGroupMembers(int id)
         {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
             var data = _userGroupService.GetIdentityGroupMembers(id);
             return Ok(data);
         }
 
-        // POST: api/UserGroup
-        public void Post([FromBody]string value)
+        [Route("")]
+        [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Write)]
+        public void Post([FromBody]List<IdentityEmployeeGroup> identityEmployeeGroup)
         {
+            if(identityEmployeeGroup == null)
+                throw new Exception("Null object not allowed");
+            var userContext = base.GetUserContext();
+            _userGroupService.InsertGroupUsers(identityEmployeeGroup, userContext);
         }
-
-        // PUT: api/UserGroup/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/UserGroup/5
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
