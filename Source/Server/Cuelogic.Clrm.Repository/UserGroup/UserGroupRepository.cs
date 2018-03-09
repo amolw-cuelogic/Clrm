@@ -48,14 +48,10 @@ namespace Cuelogic.Clrm.Repository.UserGroup
         {
             foreach(var item in identityEmployeeGroup)
             {
-                item.IsValid = true;
                 item.CreatedBy = userContext.UserId;
                 item.UpdatedBy = userContext.UserId;
                 item.CreatedOn = DateTime.Now.ToMySqlDateString();
                 item.UpdatedOn = DateTime.Now.ToMySqlDateString();
-                item.GroupName = "temp";
-                item.CreatedByName = "temp";
-                item.UpdatedByName = "temp";
             }
             var xmlString = Helper.ObjectToXml(identityEmployeeGroup);
             _userGroupDataAcces.InsertGroupUsers(xmlString);

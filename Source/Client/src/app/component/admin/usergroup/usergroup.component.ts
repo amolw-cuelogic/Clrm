@@ -54,8 +54,7 @@ export class UserGroupComponent {
 
     SaveGroup() {
 
-        if (this.pageObject.GroupMemberList.length == 0)
-        {
+        if (this.pageObject.GroupMemberList.length == 0) {
             var model = new BootstrapModel();
             model.Title = "Warning";
             model.MessageType = model.ModelType.Warning;
@@ -70,7 +69,7 @@ export class UserGroupComponent {
             var igObject = new Object({
                 GroupId: this.GroupId,
                 EmployeeId: data[i].Id,
-                IsValid:true
+                IsValid: data[i].IsValid
             });
             identityGroupList.push(igObject);
         }
@@ -144,8 +143,9 @@ export class UserGroupComponent {
         var obj = [];
         var empLength = this.pageObject.EmployeeList.length;
         for (var i = 0; i < empLength; i++) {
-            if (this.pageObject.EmployeeList[i].IsValid == true) {
-                this.pageObject.EmployeeList[i].IsValid = false;
+            if (this.pageObject.EmployeeList[i].IsChecked == true) {
+                this.pageObject.EmployeeList[i].IsChecked = false;
+                this.pageObject.EmployeeList[i].IsValid = true;
                 obj.push(this.pageObject.EmployeeList[i]);
                 this.monitorList.push(this.pageObject.EmployeeList[i]);
                 this.pageObject.GroupMemberList.push(this.pageObject.EmployeeList[i]);
@@ -185,8 +185,8 @@ export class UserGroupComponent {
         var obj = [];
         var grpMemberLength = this.pageObject.GroupMemberList.length;
         for (var i = 0; i < grpMemberLength; i++) {
-            if (this.pageObject.GroupMemberList[i].IsValid == true) {
-                this.pageObject.GroupMemberList[i].IsValid = false;
+            if (this.pageObject.GroupMemberList[i].IsChecked == true) {
+                this.pageObject.GroupMemberList[i].IsChecked = false;
                 obj.push(this.pageObject.GroupMemberList[i]);
                 this.pageObject.EmployeeList.push(this.pageObject.GroupMemberList[i]);
                 this.RemoveMonitorListItem(this.pageObject.GroupMemberList[i].Id);
@@ -199,7 +199,7 @@ export class UserGroupComponent {
 
     RefreshEmployeeList() {
         for (var i = 0; i < this.monitorList.length; i++) {
-            this.monitorList.IsValid = false;
+            this.monitorList.IsChecked = false;
             var count = 0;
             for (var j = 0; j < this.pageObject.EmployeeList.length; j++) {
                 if (this.pageObject.EmployeeList[j].Id == this.monitorList[i].Id)
@@ -218,7 +218,7 @@ export class UserGroupComponent {
                     var obj = new Object({
                         Id: groupMember.Id,
                         FullName: groupMember.FullName,
-                        IsValid: false
+                        IsChecked: false
                     });
                     this.monitorList.push(obj);
 
