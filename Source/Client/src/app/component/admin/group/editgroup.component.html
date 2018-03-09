@@ -51,13 +51,13 @@
                                            Right
                                         </th>
                                         <th>
-                                            <input type="checkbox" (change)="MarkAllRead()" [(ngModel)]="ActionRead" style="margin-right:5px;" />Read
+                                            <input [disabled]="Disabled" type="checkbox" (change)="MarkAllRead()" [(ngModel)]="ActionRead" style="margin-right:5px;" />Read
                                         </th>
                                         <th >
-                                            <input type="checkbox" (change)="MarkAllWrite()" [(ngModel)]="ActionWrite" style="margin-right:5px;" />Write
+                                            <input [disabled]="Disabled" type="checkbox" (change)="MarkAllWrite()" [(ngModel)]="ActionWrite" style="margin-right:5px;" />Write
                                         </th>
                                         <th>
-                                            <input type="checkbox" (change)="MarkAllInvalid()" [(ngModel)]="ActionInValid" style="margin-right:5px;" />InValid
+                                            <input [disabled]="Disabled" type="checkbox" (change)="MarkAllInvalid()" [(ngModel)]="ActionInValid" style="margin-right:5px;" />InValid
                                         </th>
                                     </tr>
                                     <tbody>
@@ -66,13 +66,13 @@
                                                 {{item.RightTitle}}
                                             </td>
                                             <td >
-                                                <input (ngModelChange)="ReadClick($event,i)" [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
+                                                <input [disabled]="Disabled" (ngModelChange)="ReadClick($event,i)" [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
                                             </td>
                                             <td>
-                                                <input (ngModelChange)="WriteClick($event,i)" [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
+                                                <input [disabled]="Disabled" (ngModelChange)="WriteClick($event,i)" [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
                                             </td>
                                             <td>
-                                                <input (ngModelChange)="DeleteClick($event,i)" [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
+                                                <input [disabled]="Disabled" (ngModelChange)="DeleteClick($event,i)" [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
                                             </td>
                                         </tr>
                                     </tbody>

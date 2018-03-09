@@ -36,6 +36,13 @@ export class UserGroupComponent {
         this.LoadEmployeeList();
     }
 
+    SetDivHeight() {
+        var dynamicDivHeight = document.getElementById("dynamicDiv").clientHeight;
+        var height = dynamicDivHeight - 165 + "px";
+        document.getElementById("userDiv1").style.height = height
+        document.getElementById("userDiv2").style.height = height
+    }
+
     EnterkeyPress(event: any) {
         this.SearchFilter();
     }
@@ -118,6 +125,7 @@ export class UserGroupComponent {
                 this.pageObject.EmployeeList = m;
                 this.serviceAppConfig.AdjustBottomHeight();
                 this.RefreshEmployeeList();
+                this.SetDivHeight();
             }
             );
     }
