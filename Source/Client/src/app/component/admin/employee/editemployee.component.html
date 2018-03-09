@@ -103,7 +103,7 @@
                                                     <th ngx-rights="202|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
-                                                    <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index">
+                                                    <tr *ngFor="let skillItem of pageObject.Employee.EmployeeSkillList;let i=index" [class]="(skillItem.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveSkill(i)" class="icon-close"></i>
                                                         </td>-->
@@ -142,7 +142,7 @@
                                                     <th ngx-rights="202|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
-                                                    <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index">
+                                                    <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index" [class]="(item.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveGroup(i)" class="icon-close"></i>
                                                         </td>-->
@@ -181,7 +181,7 @@
                                                     <th ngx-rights="202|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
-                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index">
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index" [class]="(item.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
                                                         </td>-->
@@ -220,7 +220,7 @@
                                                     <th ngx-rights="202|Delete" class="AlignCenter">Is Valid</th>
                                                 </tr>
                                                 <tbody>
-                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index">
+                                                    <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index" [class]="(item.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
                                                             <i (click)="RemoveDepartment(i)" class="icon-close"></i>
                                                         </td>-->

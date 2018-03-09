@@ -19,6 +19,13 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
+                                        <ngx-label value="Start Date"></ngx-label>
+                                        <input type="date" #StartDate="ngModel" [ngModel]="pageObject.StartDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.StartDate = $event" class="form-control" required name="StartDate" placeholder="Enter Start Date" />
+                                        <div *ngIf="StartDate.errors && (StartDate.dirty || StartDate.touched)" class="error">
+                                            Start Date is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <ngx-label value="Project Name"></ngx-label>
                                         <input maxlength="500" type="text" #ProjectName="ngModel" [(ngModel)]="pageObject.ProjectName" class="form-control" required name="ProjectName" placeholder="Enter Project Name" />
                                         <div *ngIf="ProjectName.errors && (ProjectName.dirty || ProjectName.touched)" class="error">
@@ -35,23 +42,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <ngx-label value="Start Date"></ngx-label>
-                                        <input type="date" #StartDate="ngModel" [ngModel]="pageObject.StartDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.StartDate = $event" class="form-control" required name="StartDate" placeholder="Enter Start Date" />
-                                        <div *ngIf="StartDate.errors && (StartDate.dirty || StartDate.touched)" class="error">
-                                            Start Date is required
-                                        </div>
+                                        <label>Project Description</label>
+                                        <textarea maxlength="500" rows="5" type="text" [(ngModel)]="pageObject.Description" class="form-control" name="Description" placeholder="Enter Project Description"></textarea>
                                     </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <label>End Date</label>
                                         <input type="date" [ngModel]="pageObject.EndDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.EndDate = $event" class="form-control" name="EndDate" placeholder="Enter End Date" />
                                     </div>
-                                    <div class="form-group">
-                                        <label>Project Description</label>
-                                        <textarea maxlength="500" rows="5" type="text" [(ngModel)]="pageObject.Description" class="form-control" name="Description" placeholder="Enter Project Description"></textarea>
-                                    </div>
-                                   
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="name">Is Project Complete</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">

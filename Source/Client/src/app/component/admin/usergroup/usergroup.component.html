@@ -70,7 +70,7 @@
                                             <th style="text-align:center;width:20%;">Is Valid</th>
                                         </tr>
                                         <tbody>
-                                            <tr *ngFor="let item of pageObject.GroupMemberList">
+                                            <tr *ngFor="let item of pageObject.GroupMemberList" [class]="(item.IsValid == false)?'notValid':''">
                                                 <td style="text-align:center">
                                                     <input [(ngModel)]="item.IsChecked" name="IsChecked" type="checkbox" />
                                                 </td>
