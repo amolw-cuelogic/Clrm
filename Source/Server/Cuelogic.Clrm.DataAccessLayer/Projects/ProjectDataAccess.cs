@@ -24,7 +24,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
                     new MySqlParameter("@pStartDate", project.StartDate),
                     new MySqlParameter("@pEndDate", project.EndDate),
                     new MySqlParameter("@pDescription", project.Description),
-                    new MySqlParameter("@pCurrencyId", project.CurrencyId),
                     new MySqlParameter("@pClientId", project.ClientId),
                     new MySqlParameter("@pIsComplete", project.IsComplete),
                     new MySqlParameter("@pIsValid", project.IsValid),
@@ -63,8 +62,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), 
                 null, 
                 new List<string> {
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient,
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency });
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient });
             return ds;
         }
 

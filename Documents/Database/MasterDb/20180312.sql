@@ -602,7 +602,7 @@ CREATE TABLE `MasterRole` (
 
 LOCK TABLES `MasterRole` WRITE;
 /*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
-INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','\0',1,'2018-01-01',NULL,NULL),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'new develop','\0',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','\0',1,'2018-01-01',NULL,NULL),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'new develop','',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -653,7 +653,6 @@ CREATE TABLE `Project` (
   `StartDate` date NOT NULL,
   `EndDate` date DEFAULT NULL,
   `Description` varchar(500) DEFAULT NULL,
-  `CurrencyId` int(11) NOT NULL,
   `ClientId` int(11) NOT NULL,
   `IsComplete` bit(1) DEFAULT NULL,
   `IsValid` bit(1) NOT NULL,
@@ -677,7 +676,7 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01',NULL,'Kantar',2,16,'\0','',1,'2018-03-06',NULL,NULL),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',3,15,'\0','\0',1,'2018-03-06',NULL,NULL),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',1,15,'\0','',1,'2018-03-06',1,NULL),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',2,18,'\0','',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01',NULL,'Kantar',16,'\0','',1,'2018-03-06',1,'2018-03-12'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','\0',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'\0','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-06');
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3010,7 +3009,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_AddOrUpdate`(
     IN pStartDate VARCHAR(50),
     IN pEndDate VARCHAR(50),
     IN pDescription VARCHAR(500),
-    IN pCurrencyId INT(11),
     IN pClientId INT(11),
     IN pIsComplete BIT,
     IN pIsValid BIT,
@@ -3028,7 +3026,6 @@ INSERT INTO Project
 		`StartDate`,
         `EndDate`,
         `Description`,
-        `CurrencyId`,
         `ClientId`,
         `IsComplete`,
         `IsValid`,
@@ -3045,7 +3042,6 @@ INSERT INTO Project
 		pStartDate,
         IF((pEndDate = ''), NULL,pEndDate),
 		pDescription, 
-        pCurrencyId,
         pClientId,
         pIsComplete,
         pIsValid,
@@ -3060,7 +3056,6 @@ INSERT INTO Project
 		StartDate = IF((pStartDate = ''), NULL,pStartDate),
         EndDate = IF((pEndDate = ''), NULL,pEndDate),
         Description = pDescription,
-        CurrencyId = pCurrencyId,
         ClientId = pClientId,
         IsComplete = pIsComplete,
         IsValid = pIsValid,
@@ -3093,7 +3088,6 @@ BEGIN
         DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate,
         DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
         a.Description,
-        a.CurrencyId,
         a.ClientId,
         a.IsComplete,
         a.IsValid,
@@ -3188,7 +3182,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetSelectList`()
 BEGIN
 	SELECT *  FROM MasterClient WHERE IsValid = true;
-    SELECT *  FROM MasterCurrency;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3391,4 +3384,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 11:25:16
+-- Dump completed on 2018-03-12 11:45:15

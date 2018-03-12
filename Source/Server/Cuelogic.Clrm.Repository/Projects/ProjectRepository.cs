@@ -24,7 +24,7 @@ namespace Cuelogic.Clrm.Repository.Projects
             project.UpdatedBy = userContext.UserId;
             project.CreatedBy = userContext.UserId;
             project.CreatedOn = DateTime.Now.ToMySqlDateString();
-            project.CreatedOn = DateTime.Now.ToMySqlDateString();
+            project.UpdatedOn = DateTime.Now.ToMySqlDateString();
 
             _projectDataAccess.AddOrUpdateProject(project);
             
@@ -45,7 +45,6 @@ namespace Cuelogic.Clrm.Repository.Projects
 
             var masterClientList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient].ToList<MasterClient>();
             project.ProjectMasterClientList = masterClientList;
-            project.ProjectMasterCurrencyList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency].ToList<MasterCurrency>();
 
             IMasterProjectTypeRepository _masterProjectTypeRepository = new MasterProjectTypeRepository();
             var masterProjectTypeDs = _masterProjectTypeRepository.GetMasterProjectTypeValidList();

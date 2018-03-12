@@ -19,7 +19,6 @@ namespace Cuelogic.Clrm.Api.Tests.ProjectTest
             var data = new Project();
             data.Id = 1;
             data.ProjectName = "Kantar";
-            data.CurrencyId = 1;
             data.ProjectTypeId = 1;
             data.StartDate = "2018-02-02";
             data.IsValid = true;

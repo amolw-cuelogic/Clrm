@@ -129,7 +129,6 @@ namespace Cuelogic.Clrm.Common
             public class spProject_GetSelectList_Tables
             {
                 public const string MasterClient = "MasterClient";
-                public const string MasterCurrency = "MasterCurrency";
             }
 
             #endregion

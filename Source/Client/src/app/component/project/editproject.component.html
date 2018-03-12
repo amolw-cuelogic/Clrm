@@ -76,15 +76,6 @@
                                             Client is required
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <ngx-label value="Billing Currency"></ngx-label>
-                                        <select required #CurrencyId="ngModel" [(ngModel)]="pageObject.CurrencyId" name="CurrencyId" class="form-control" id="" style="width:100%;">
-                                            <option *ngFor="let item of pageObject.ProjectMasterCurrencyList" value="{{item.Id}}">{{item.Currency}}</option>
-                                        </select>
-                                        <div *ngIf="CurrencyId.errors && (CurrencyId.dirty || CurrencyId.touched)" class="error">
-                                            Currency is required
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </form>

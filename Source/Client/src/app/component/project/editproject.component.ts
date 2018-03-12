@@ -75,8 +75,6 @@ export class EditProjectComponent {
                     m["ProjectTypeId"] = null;
                 if (m["ClientId"] == 0)
                     m["ClientId"] = null;
-                if (m["CurrencyId"] == 0)
-                    m["CurrencyId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
 
