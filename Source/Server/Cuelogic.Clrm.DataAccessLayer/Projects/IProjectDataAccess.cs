@@ -21,6 +21,8 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
 
         #region ADD OR UPDATE
         void AddOrUpdateProject(Project project);
+        void AddProjectRoles(string xmlString, int userId);
+
         #endregion
 
         #region OTHER FUNCTIONS

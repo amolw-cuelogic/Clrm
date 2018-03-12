@@ -602,7 +602,7 @@ CREATE TABLE `MasterRole` (
 
 LOCK TABLES `MasterRole` WRITE;
 /*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
-INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','\0',1,'2018-01-01',NULL,NULL),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'new develop','',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'new develop','',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -667,7 +667,7 @@ CREATE TABLE `Project` (
   CONSTRAINT `ProjectCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `ProjectUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Project_MasterProjectType` FOREIGN KEY (`ProjectTypeId`) REFERENCES `MasterProjectType` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -676,8 +676,50 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01',NULL,'Kantar',16,'\0','',1,'2018-03-06',1,'2018-03-12'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','\0',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'\0','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-12'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','\0',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-06'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ProjectRole`
+--
+
+DROP TABLE IF EXISTS `ProjectRole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ProjectRole` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ProjectId` int(11) NOT NULL,
+  `RoleId` int(11) NOT NULL,
+  `BillingRate` int(11) NOT NULL,
+  `CurrencyId` int(11) NOT NULL,
+  `IsValid` bit(1) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedOn` date NOT NULL,
+  `UpdatedBy` int(11) DEFAULT NULL,
+  `UpdatedOn` date DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `project_Id` (`ProjectId`),
+  KEY `role_Id` (`RoleId`),
+  KEY `currency_Id` (`CurrencyId`),
+  KEY `createdby_Id` (`CreatedBy`),
+  KEY `updatedby_Id` (`UpdatedBy`),
+  CONSTRAINT `createdby_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
+  CONSTRAINT `currency_Id` FOREIGN KEY (`CurrencyId`) REFERENCES `MasterCurrency` (`Id`),
+  CONSTRAINT `project_Id` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
+  CONSTRAINT `role_Id` FOREIGN KEY (`RoleId`) REFERENCES `MasterRole` (`Id`),
+  CONSTRAINT `updatedby_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ProjectRole`
+--
+
+LOCK TABLES `ProjectRole` WRITE;
+/*!40000 ALTER TABLE `ProjectRole` DISABLE KEYS */;
+INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'\0',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12');
+/*!40000 ALTER TABLE `ProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3067,6 +3109,80 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spProject_BulkInsertRoles` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_BulkInsertRoles`(
+	IN xmlText text, 
+	IN user INT(11) )
+BEGIN
+	DECLARE i INT DEFAULT 1;
+	DECLARE nodeCount INT(11);
+    
+    DECLARE prProjectId INT(11);
+    DECLARE prRoleId INT(11);
+    DECLARE prBillingRate INT(11);
+    DECLARE prCurrencyId INT(11);
+    DECLARE prIsValid BIT;
+    
+	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfProjectRole/ProjectRole)');
+    
+    WHILE i <= nodeCount DO
+		SET prProjectId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/ProjectId');
+		DELETE FROM ProjectRole WHERE ProjectId = prProjectId;
+		SET i = i+1;
+	END WHILE;
+    
+    SET i = 1;
+    
+	WHILE i <= nodeCount DO
+    
+		SET prProjectId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/ProjectId');
+		SET prRoleId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/RoleId');
+		SET prBillingRate = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/BillingRate');
+		SET prCurrencyId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/CurrencyId');
+		SET prIsValid = CASE WHEN (ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/IsValid') = 'true') THEN 1 ELSE 0 END;
+    
+		INSERT INTO 
+			ProjectRole 
+        (
+			`ProjectId`,
+            `RoleId`,
+            `BillingRate`,
+            `CurrencyId`,
+            `IsValid`,
+            `CreatedBy`,
+            `CreatedOn`,
+            `UpdatedBy`,
+            `UpdatedOn`
+		)
+        VALUES
+        (
+			prProjectId,
+            prRoleId,
+            prBillingRate,
+            prCurrencyId,
+            prIsValid,
+            user,
+            DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
+            user,
+            DATE_FORMAT(CURDATE(),'%Y-%m-%d')
+		);
+        SET i = i+1;
+        END WHILE;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spProject_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3105,6 +3221,8 @@ BEGIN
 		Employee c ON a.UpdatedBy = c.Id
 	WHERE
 		a.Id = pId;
+        
+	SELECT * FROM ProjectRole where ProjectId = pId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3182,6 +3300,8 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetSelectList`()
 BEGIN
 	SELECT *  FROM MasterClient WHERE IsValid = true;
+    SELECT *  FROM MasterRole WHERE IsValid = true;
+    SELECT *  FROM MasterCurrency;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3384,4 +3504,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 11:45:15
+-- Dump completed on 2018-03-12 14:44:12

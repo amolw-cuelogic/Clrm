@@ -51,7 +51,10 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@pId", projectId)
                 };
-            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam,
+                new List<string> {
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.Project,
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.ProjectRole});
             return ds;
         }
 
@@ -62,7 +65,9 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), 
                 null, 
                 new List<string> {
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient });
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient,
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterRole,
+                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency});
             return ds;
         }
 
@@ -90,6 +95,18 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
                     new MySqlParameter("@pId", projectId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+        }
+
+
+        public void AddProjectRoles(string xmlString, int userId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spProject_BulkInsertRoles;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@xmlString", xmlString),
+                    new MySqlParameter("@userId", userId)
+            };
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }
     }
 }

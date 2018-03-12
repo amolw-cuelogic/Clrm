@@ -30,6 +30,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
                  sqlparam.StoreProcedureParam);
         }
 
+
         public DataSet GetMasterProjectRole(int masterProjectRoleId)
         {
             var sqlParam = new MySqlSpParam();

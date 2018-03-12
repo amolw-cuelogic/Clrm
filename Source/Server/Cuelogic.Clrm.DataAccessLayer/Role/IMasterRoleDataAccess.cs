@@ -17,5 +17,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
 
         void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole);
         void MarkMasterProjectRoleInvalid(int masterProjectRoleId);
+        
+
     }
 }

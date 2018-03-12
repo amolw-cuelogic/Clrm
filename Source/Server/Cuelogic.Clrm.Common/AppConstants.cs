@@ -125,10 +125,16 @@ namespace Cuelogic.Clrm.Common
             public const string spProject_MarkInvalid = "spProject_MarkInvalid";
             public const string spProject_GetLatestId = "spProject_GetLatestId";
             public const string spProject_GetSelectList = "spProject_GetSelectList";
+            public const string spProject_BulkInsertRoles = "spProject_BulkInsertRoles";
 
             public class spProject_GetSelectList_Tables
             {
+                public const string Project = "Project";
+                public const string ProjectRole = "ProjectRole";
+
                 public const string MasterClient = "MasterClient";
+                public const string MasterRole = "MasterRole";
+                public const string MasterCurrency = "MasterCurrency";
             }
 
             #endregion

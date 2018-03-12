@@ -13,14 +13,16 @@ import { Router } from '@angular/router'
     templateUrl: 'editproject.component.html'
 })
 export class EditProjectComponent {
-   
+
     id: number;
     mode: string;
     baseUrl: string;
     pageObject: any = new Object({
-        ProjectClientChildList: [],
         ProjectMasterClientList: [],
-        ProjectTypeList: []
+        ProjectTypeList: [],
+        ProjectRoleList: [],
+        MasterCurrencyList: [],
+        MasterRoleList: []
     });
     loaded: boolean = false;
     apiController: string = "api/Project";
@@ -85,6 +87,19 @@ export class EditProjectComponent {
             );
     }
 
+    NewRecord() {
+        var projectRoleObj = new Object({
+            RoleId: null,
+            BillingRate: 0,
+            Currency: null,
+            IsValid: true
+        });
+        this.pageObject.ProjectRoleList.push(projectRoleObj);
+    }
+
+    RemoveRecord(index:any) {
+        this.pageObject.ProjectRoleList.splice(index, 1);
+    }
 
     constructor(private httpClient: HttpClient, private serviceAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,
@@ -92,7 +107,7 @@ export class EditProjectComponent {
         this.baseUrl = this.serviceAppConfig.GetBaseUrl();
 
     }
-    
+
 }
 
 
