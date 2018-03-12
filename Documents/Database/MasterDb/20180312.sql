@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (1,1,23,22,'',0,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(2,1,26,18,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `Allocation` VALUES (1,1,23,22,'',0,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(2,1,26,18,'',25,'2018-03-02',NULL,'\0',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,7 +710,7 @@ CREATE TABLE `ProjectRole` (
   CONSTRAINT `project_Id` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
   CONSTRAINT `role_Id` FOREIGN KEY (`RoleId`) REFERENCES `MasterRole` (`Id`),
   CONSTRAINT `updatedby_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +719,7 @@ CREATE TABLE `ProjectRole` (
 
 LOCK TABLES `ProjectRole` WRITE;
 /*!40000 ALTER TABLE `ProjectRole` DISABLE KEYS */;
-INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL),(28,15,16,899,6,'',1,'2018-03-12',NULL,NULL);
+INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL),(28,15,16,899,6,'',1,'2018-03-12',1,'2018-03-12'),(29,15,16,23,6,'',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `ProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1042,7 +1042,7 @@ BEGIN
 	SELECT
 		a.Id,
         CONCAT(b.FirstName,' ', b.MiddleName ,' ',b.LastName) as FullName,
-        c.Role,
+        x.Role,
         d.ProjectName,
         if(a.IsBillable,'Yes','No') as IsBillable,
         a.PercentageAllocation,
@@ -1052,10 +1052,12 @@ BEGIN
 	FROM 
 		Allocation a
 	INNER JOIN Employee b ON a.EmployeeId = b.Id
-    INNER JOIN MasterProjectRole c ON a.ProjectRoleId = c.Id
+    INNER JOIN ProjectRole c ON a.ProjectRoleId = c.Id
+    INNER JOIN MasterRole x ON c.RoleId = x.Id
     INNER JOIN Project d ON a.ProjectId = d.Id
     WHERE
-		a.EmployeeId = employeeId;
+		a.EmployeeId = employeeId AND
+        a.IsValid = true;
         
 END ;;
 DELIMITER ;
@@ -3582,4 +3584,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 19:33:51
+-- Dump completed on 2018-03-12 19:46:07
