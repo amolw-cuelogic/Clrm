@@ -30,6 +30,7 @@ namespace Cuelogic.Clrm.Common
             public const string spEmployeeAllocation_GetList = "spEmployeeAllocation_GetList";
             public const string spEmployeeRights_Get = "spEmployeeRights_Get";
             public const string spEmployee_GetByOrgEmpId = "spEmployee_GetByOrgEmpId";
+            public const string Common_LogLoginTime = "Common_LogLoginTime";
 
             #endregion
 

@@ -56,5 +56,15 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
         }
+
+        public void LogLoginTime(int employeeId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Common_LogLoginTime;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@employeeId", employeeId)
+                };
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+        }
     }
 }

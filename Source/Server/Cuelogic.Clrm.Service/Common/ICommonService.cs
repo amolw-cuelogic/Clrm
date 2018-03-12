@@ -18,6 +18,6 @@ namespace Cuelogic.Clrm.Service.Common
         string GetEmployeeAllocationList(int employeeId);
 
         List<IdentityGroupRight> GetEmployeeRights(int employeeId);
-        
+        void LogLoginTime(int employeeId);
     }
 }

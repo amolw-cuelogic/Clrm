@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (1,1,22,17,'',0,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(2,1,26,18,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `Allocation` VALUES (1,1,23,22,'',0,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(2,1,26,18,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,6 +84,7 @@ CREATE TABLE `Employee` (
   `CreatedOn` date NOT NULL,
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedOn` date DEFAULT NULL,
+  `LastLogin` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `EmployeeUpdatedBy_Employee` (`UpdatedBy`),
   KEY `EmployeeCreatedByBy_Employee` (`CreatedBy`),
@@ -98,7 +99,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-12'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',17,'2018-03-08'),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-09'),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-08'),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-08'),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-08'),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08'),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-12'),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','',17,'2018-03-08',17,'2018-03-08');
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-12','2018-03-12 19:33:06'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',17,'2018-03-08',NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-09',NULL),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-08',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08',NULL),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-12',NULL),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','',17,'2018-03-08',17,'2018-03-08',NULL);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -718,7 +719,7 @@ CREATE TABLE `ProjectRole` (
 
 LOCK TABLES `ProjectRole` WRITE;
 /*!40000 ALTER TABLE `ProjectRole` DISABLE KEYS */;
-INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'\0',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL),(28,15,16,899,6,'',1,'2018-03-12',NULL,NULL);
+INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL),(28,15,16,899,6,'',1,'2018-03-12',NULL,NULL);
 /*!40000 ALTER TABLE `ProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -729,6 +730,27 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'CuelogicResourceManagement'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `Common_LogLoginTime` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Common_LogLoginTime`(
+	IN employeeId INT(11)
+)
+BEGIN
+	UPDATE Employee SET LastLogin = NOW() WHERE Id = employeeId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spAllocation_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3204,7 +3226,9 @@ BEGIN
             `CurrencyId`,
             `IsValid`,
             `CreatedBy`,
-            `CreatedOn`
+            `CreatedOn`,
+            `UpdatedBy`,
+            `UpdatedOn`
 		)
         VALUES
         (
@@ -3214,6 +3238,8 @@ BEGIN
             prBillingRate,
             prCurrencyId,
             prIsValid,
+            user,
+            DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
             user,
             DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 		)
@@ -3556,4 +3582,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 18:29:48
+-- Dump completed on 2018-03-12 19:33:51

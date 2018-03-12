@@ -47,5 +47,10 @@ namespace Cuelogic.Clrm.Repository.Common
             var list = ds.Tables[0].ToList<IdentityGroupRight>();
             return list;
         }
+
+        public void LogLoginTime(int employeeId)
+        {
+            _commonDataAccess.LogLoginTime(employeeId);
+        }
     }
 }

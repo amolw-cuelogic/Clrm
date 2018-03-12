@@ -13,5 +13,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         DataSet GetEmployeeDetailsByOrgEmpId(string OrgEmpId);
         DataSet GetEmployeeAllocationList(int employeeId);
         DataSet GetEmployeeRightList(int employeeId);
+        void LogLoginTime(int employeeId);
     }
 }

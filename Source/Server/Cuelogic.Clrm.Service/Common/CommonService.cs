@@ -63,7 +63,12 @@ namespace Cuelogic.Clrm.Service.Common
             }
             return distinctList;
         }
-        
+
+        public void LogLoginTime(int employeeId)
+        {
+            _commonRepository.LogLoginTime(employeeId);
+        }
+
         public void Save(EmployeeVm employeeVm, UserContext userContext)
         {
             IEmployeeService _employeeService = new EmployeeService();
