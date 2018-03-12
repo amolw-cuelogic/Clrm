@@ -8,6 +8,8 @@ using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.DataAccessLayer.Allocations;
 using Cuelogic.Clrm.Common;
+using System.Web;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Repository.Allocations
 {
@@ -20,6 +22,17 @@ namespace Cuelogic.Clrm.Repository.Allocations
         }
         public void AddOrUpdateAllocation(Allocation allocation, UserContext userContext)
         {
+            if (allocation.IsValid)
+            {
+                var previousState = GetAllocation(allocation.Id);
+                if(!previousState.IsValid)
+                {
+                    var sum = GetAllocationSum(allocation.EmployeeId);
+                    var total = sum + allocation.PercentageAllocation;
+                    if (total > 100)
+                        throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee has been already occupied 100%, please check the allocation list."));
+                }
+            }
             allocation.UpdatedBy = userContext.UserId;
             allocation.CreatedBy = userContext.UserId;
             allocation.UpdatedOn = DateTime.Now.ToMySqlDateString();
@@ -34,7 +47,7 @@ namespace Cuelogic.Clrm.Repository.Allocations
             {
                 var allocationDs = _allocationDataAccess.GetAllocation(allocationId);
                 allocation = allocationDs.Tables[0].ToModel<Allocation>();
-                allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId);
+                allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId) - allocation.PercentageAllocation;
 
                 var masterRoleList = new List<MasterRole>();
                 var projectRoleDs = _allocationDataAccess.GetProjectRolebyId(allocation.ProjectId);

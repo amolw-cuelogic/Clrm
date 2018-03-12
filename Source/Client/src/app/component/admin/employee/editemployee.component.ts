@@ -131,6 +131,7 @@ export class EditEmployeeComponent {
         for (var i = 0; i < indexArray.length; i++) {
             var masterSkill = this.pageObject.MasterSkillList[indexArray[i]];
             var employeeSkill = new Object({
+                Id:0,
                 EmployeeId: this.pageObject.Employee.Id,
                 SkillId: masterSkill.Id,
                 IsValid: true,
@@ -176,6 +177,7 @@ export class EditEmployeeComponent {
         for (var i = 0; i < indexArray.length; i++) {
             var masterGroup = this.pageObject.IdentityGroupList[indexArray[i]];
             var employeeGroup = new Object({
+                Id:0,
                 EmployeeId: this.pageObject.Employee.Id,
                 GroupId: masterGroup.Id,
                 IsValid: true,
@@ -219,6 +221,7 @@ export class EditEmployeeComponent {
         for (var i = 0; i < indexArray.length; i++) {
             var masterOrganizationRole = this.pageObject.MasterOrganizationRoleList[indexArray[i]];
             var employeeGroup = new Object({
+                Id:0,
                 EmployeeId: this.pageObject.Employee.Id,
                 RoleId: masterOrganizationRole.Id,
                 IsValid: true,
@@ -262,6 +265,7 @@ export class EditEmployeeComponent {
         for (var i = 0; i < indexArray.length; i++) {
             var masterMasterDepartmentList = this.pageObject.MasterDepartmentList[indexArray[i]];
             var employeeDepartment = new Object({
+                Id: 0,
                 EmployeeId: this.pageObject.Employee.Id,
                 DepartmentId: masterMasterDepartmentList.Id,
                 IsValid: true,

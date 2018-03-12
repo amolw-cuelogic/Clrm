@@ -108,7 +108,7 @@
                                                             <i (click)="RemoveSkill(i)" class="icon-close"></i>
                                                         </td>-->
                                                         <td>
-                                                            {{skillItem.SkillName}}
+                                                            <i *ngIf="skillItem.Id == 0" (click)="RemoveSkill(i)" class="icon-close"></i>  &nbsp;{{skillItem.SkillName}}
                                                         </td>
                                                         <td ngx-rights="202|Delete" class="AlignCenter">
                                                             <input [disabled]="disabled" type="checkbox" [(ngModel)]="skillItem.IsValid" name="SkillName-{{i}}" />
@@ -144,10 +144,10 @@
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.IdentityEmployeeGroupList;let i=index" [class]="(item.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
-                                                            <i (click)="RemoveGroup(i)" class="icon-close"></i>
+                                                            <i *ngIf="item.Id == 0" (click)="RemoveGroup(i)" class="icon-close"></i>
                                                         </td>-->
                                                         <td>
-                                                            {{item.GroupName}}
+                                                            <i *ngIf="item.Id == 0" (click)="RemoveGroup(i)" class="icon-close"></i> &nbsp;{{item.GroupName}}
                                                         </td>
                                                         <td ngx-rights="202|Delete" class="AlignCenter">
                                                             <input [disabled]="disabled" type="checkbox" [(ngModel)]="item.IsValid" name="GroupName-{{i}}" />
@@ -183,10 +183,10 @@
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeOrganizationRoleList;let i=index" [class]="(item.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
-                                                            <i (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
+                                                            <i *ngIf="item.Id == 0" (click)="RemoveOrganizationRole(i)" class="icon-close"></i>
                                                         </td>-->
                                                         <td>
-                                                            {{item.RoleName}}
+                                                            <i *ngIf="item.Id == 0" (click)="RemoveOrganizationRole(i)" class="icon-close"></i>&nbsp;{{item.RoleName}}
                                                         </td>
                                                         <td ngx-rights="202|Delete" class="AlignCenter">
                                                             <input [disabled]="disabled" type="checkbox" [(ngModel)]="item.IsValid" name="RoleName-{{i}}" />
@@ -222,10 +222,10 @@
                                                 <tbody>
                                                     <tr *ngFor="let item of pageObject.Employee.EmployeeDepartmentList;let i=index" [class]="(item.IsValid == false)?'notValid':''">
                                                         <!--<td class="AlignCenter">
-                                                            <i (click)="RemoveDepartment(i)" class="icon-close"></i>
+                                                            <i *ngIf="item.Id == 0" (click)="RemoveDepartment(i)" class="icon-close"></i>
                                                         </td>-->
                                                         <td>
-                                                            {{item.DepartmentName}}
+                                                            <i *ngIf="item.Id == 0" (click)="RemoveDepartment(i)" class="icon-close"></i>&nbsp;{{item.DepartmentName}}
                                                         </td>
                                                         <td ngx-rights="202|Delete" class="AlignCenter">
                                                             <input [disabled]="disabled" type="checkbox" [(ngModel)]="item.IsValid" name="DepartmentName-{{i}}" />

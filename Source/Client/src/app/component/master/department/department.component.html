@@ -67,7 +67,7 @@
                 <td>
                     <button ngx-rights="301|Write" (click)="EditRecord(item.Id)" type="button" title="Edit Record" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
                     <button ngx-rights="301|Read" (click)="ViewRecord(item.Id)" type="button" title="View Record" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
-                    <button ngx-rights="301|Delete" (click)="DeleteRecord(item.Id)" type="button" title="Mark Record InValid" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    <button ngx-rights="301|Delete" (click)="DeleteRecord(item.Id)" type="button" title="Mark Record Valid/InValid (Toggle)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                 </td>
                 <td>
                     {{item.DepartmentName}}

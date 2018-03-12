@@ -20,7 +20,7 @@ export class EditAllocationComponent {
     pageObject: any = new Object({
         SelectListMasterRole: []
     });
-    ProjectRoleMessage: string = "";
+    ProjectRoleMessage: boolean = false;
     loaded: boolean = false;
     apiController: string = "api/EmployeeAllocation";
     allocationPercentageError: any;
@@ -110,11 +110,11 @@ export class EditAllocationComponent {
         ).subscribe(
             m => {
                 if (m['length'] == 0) {
-                    this.ProjectRoleMessage = "No role allocated to above selected project.";
+                    this.ProjectRoleMessage = true;
                     this.pageObject.SelectListMasterRole = [];
                 }
                 else {
-                    this.ProjectRoleMessage = "";
+                    this.ProjectRoleMessage = false;
                     this.pageObject.SelectListMasterRole = m;
                 }
             });
@@ -122,7 +122,7 @@ export class EditAllocationComponent {
 
     ValidateAllocation() {
         var CurrentAllocation = this.pageObject.PercentageAllocation;
-        var ExistingAllocation = this.pageObject.ExistingAllocation;
+        var ExistingAllocation = this.pageObject.ExistingAllocation ;
         var RemainingAllocation = 100 - ExistingAllocation;
         var TotalValidation = ExistingAllocation + CurrentAllocation;
         if (ExistingAllocation > 0) {
