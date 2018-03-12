@@ -62,8 +62,8 @@
     <Compile Include="Department\IMasterDepartmentDataAccess.cs" />
     <Compile Include="Group\IMasterGroupDataAccess.cs" />
     <Compile Include="OrganizationRole\IMasterOrganizationRoleDataAccess.cs" />
-    <Compile Include="ProjectRole\IMasterProjectRoleDataAccess.cs" />
-    <Compile Include="ProjectRole\MasterProjectRoleDataAccess.cs" />
+    <Compile Include="Role\IMasterRoleDataAccess.cs" />
+    <Compile Include="Role\MasterRoleDataAccess.cs" />
     <Compile Include="ProjectType\IMasterProjectTypeDataAccess.cs" />
     <Compile Include="ProjectType\MasterProjectTypeDataAccess.cs" />
     <Compile Include="Projects\IProjectDataAccess.cs" />

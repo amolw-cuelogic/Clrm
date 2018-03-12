@@ -27,7 +27,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
             UpdatedByName = "";
             ExistingAllocation = 0;
             SelectListEmployee = new List<Employee>();
-            SelectListMasterProjectRole = new List<MasterProjectRole>();
+            SelectListMasterProjectRole = new List<MasterRole>();
             SelectListProject = new List<Project>();
 
         }
@@ -50,7 +50,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public string CreatedByName { get; set; }
         public string UpdatedByName { get; set; }
         public List<Employee> SelectListEmployee { get; set;}
-        public List<MasterProjectRole> SelectListMasterProjectRole { get; set; }
+        public List<MasterRole> SelectListMasterProjectRole { get; set; }
         public List<Project> SelectListProject { get; set; }
 
         #endregion

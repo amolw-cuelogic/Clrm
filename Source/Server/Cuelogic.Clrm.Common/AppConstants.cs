@@ -89,10 +89,10 @@ namespace Cuelogic.Clrm.Common
 
             #region MASTER PROJECT ROLE
 
-            public const string spMasterProjectRole_AddOrUpdate = "spMasterProjectRole_AddOrUpdate";
-            public const string spMasterProjectRole_Get = "spMasterProjectRole_Get";
-            public const string spMasterProjectRole_GetList = "spMasterProjectRole_GetList";
-            public const string spMasterProjectRole_MarkInvalid = "spMasterProjectRole_MarkInvalid";
+            public const string spMasterRole_AddOrUpdate = "spMasterRole_AddOrUpdate";
+            public const string spMasterRole_Get = "spMasterRole_Get";
+            public const string spMasterRole_GetList = "spMasterRole_GetList";
+            public const string spMasterRole_MarkInvalid = "spMasterRole_MarkInvalid";
 
             #endregion
 

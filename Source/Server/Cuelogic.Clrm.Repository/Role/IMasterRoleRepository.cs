@@ -8,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.Repository.ProjectRole
+namespace Cuelogic.Clrm.Repository.Role
 {
-    public interface IMasterProjectRoleRepository
+    public interface IMasterRoleRepository
     {
         DataSet GetMasterProjectRoleList(SearchParam searchParam);
-        MasterProjectRole GetMasterProjectRole(int masterProjectRoleId);
-        void AddOrUpdateMasterProjectRole(MasterProjectRole masterProjectRole, UserContext userCtx);
+        MasterRole GetMasterProjectRole(int masterProjectRoleId);
+        void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole, UserContext userCtx);
         void MarkMasterProjectRoleInvalid(int masterProjectRoleId);
     }
 }

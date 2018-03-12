@@ -39,7 +39,7 @@ namespace Cuelogic.Clrm.Repository.Allocations
 
             var ds = _allocationDataAccess.GetAllocationSelectList();
             allocation.SelectListEmployee = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Employee].ToList<Employee>();
-            allocation.SelectListMasterProjectRole = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.MasterProjectRole].ToList<MasterProjectRole>();
+            allocation.SelectListMasterProjectRole = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.MasterProjectRole].ToList<MasterRole>();
             allocation.SelectListProject = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Project].ToList<Project>();
 
             return allocation;

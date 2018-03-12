@@ -6,9 +6,9 @@ import { Router } from '@angular/router'
 import { FormMode } from '../../../model/FormMode';
 
 @Component({
-    templateUrl: 'projectRole.component.html'
+    templateUrl: 'role.component.html'
 })
-export class ProjectRoleComponent{
+export class RoleComponent{
 
     baseUrl: string;
     PageList: any;
@@ -58,15 +58,15 @@ export class ProjectRoleComponent{
     }
 
     NewRecord() {
-        this.router.navigate(['/projectrole/' + this.formMode.Add + '/0']);
+        this.router.navigate(['/role/' + this.formMode.Add + '/0']);
     }
 
     EditRecord(id: any) {
-        this.router.navigate(['/projectrole/' + this.formMode.Edit + '/' + id]);
+        this.router.navigate(['/role/' + this.formMode.Edit + '/' + id]);
     }
 
     ViewRecord(id: any) {
-        this.router.navigate(['/projectrole/' + this.formMode.View + '/' + id]);
+        this.router.navigate(['/role/' + this.formMode.View + '/' + id]);
     }
 
     DeleteRecord(id: any) {

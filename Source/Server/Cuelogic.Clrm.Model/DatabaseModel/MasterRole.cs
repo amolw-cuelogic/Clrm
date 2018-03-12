@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.Model.DatabaseModel
 {
-    public class MasterProjectRole
+    public class MasterRole
     {
-        public MasterProjectRole()
+        public MasterRole()
         {
             Id = 0;
             Role = "";
-            Costing = 0;
             IsValid = false;
             CreatedBy = 0;
             CreatedOn = "";
@@ -23,7 +22,6 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         }
         public int Id { get; set; }
         public string Role { get; set; }
-        public int Costing { get; set; }
         public bool IsValid { get; set; }
         public int CreatedBy { get; set; }
         public string CreatedOn { get; set; }

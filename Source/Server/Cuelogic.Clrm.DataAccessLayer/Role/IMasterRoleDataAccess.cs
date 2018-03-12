@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
+namespace Cuelogic.Clrm.DataAccessLayer.Role
 {
-    public interface IMasterProjectRoleDataAccess
+    public interface IMasterRoleDataAccess
     {
         DataSet GetMasterProjectRoleList(SearchParam searchParam);
 
         DataSet GetMasterProjectRole(int masterProjectRoleId);
 
-        void AddOrUpdateMasterProjectRole(MasterProjectRole masterProjectRole);
+        void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole);
         void MarkMasterProjectRoleInvalid(int masterProjectRoleId);
     }
 }

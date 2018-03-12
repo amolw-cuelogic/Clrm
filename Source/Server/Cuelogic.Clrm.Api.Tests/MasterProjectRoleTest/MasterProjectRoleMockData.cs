@@ -14,9 +14,9 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
             return "[{'Id':13,'Role':'Developer','costing':20000,'IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':14,'Role':'Product Developer','costing':30000,'IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':15,'Role':'Technical Analyst','costing':25000,'IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':16,'Role':'Ui Engineer','costing':35000,'IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':17,'Role':'Backend Developer','costing':50000,'IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'}]";
         }
 
-        public static MasterProjectRole GetMockDataMasterProjectRole()
+        public static MasterRole GetMockDataMasterProjectRole()
         {
-            var data = new MasterProjectRole();
+            var data = new MasterRole();
             data.Id = 1;
             data.Role = "Ui Developer";
             data.IsValid = true;

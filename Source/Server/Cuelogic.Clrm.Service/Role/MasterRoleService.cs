@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Repository.ProjectRole;
+using Cuelogic.Clrm.Repository.Role;
 
 namespace Cuelogic.Clrm.Service.ProjectRole
 {
-    public class MasterProjectRoleService : IMasterProjectRoleService
+    public class MasterRoleService : IMasterRoleService
     {
-        private readonly IMasterProjectRoleRepository _projectRoleRepository;
-        public MasterProjectRoleService()
+        private readonly IMasterRoleRepository _projectRoleRepository;
+        public MasterRoleService()
         {
-            _projectRoleRepository = new MasterProjectRoleRepository();
+            _projectRoleRepository = new MasterRoleRepository();
         }
         public void Delete(int masterProjectRoleId)
         {
             _projectRoleRepository.MarkMasterProjectRoleInvalid(masterProjectRoleId);
         }
 
-        public MasterProjectRole GetItem(int masterProjectRoleId)
+        public MasterRole GetItem(int masterProjectRoleId)
         {
             var masterProjectRole = _projectRoleRepository.GetMasterProjectRole(masterProjectRoleId);
             return masterProjectRole;
@@ -35,7 +35,7 @@ namespace Cuelogic.Clrm.Service.ProjectRole
             return jsonString;
         }
 
-        public void Save(MasterProjectRole masterProjectRole, UserContext userCtx)
+        public void Save(MasterRole masterProjectRole, UserContext userCtx)
         {
             _projectRoleRepository.AddOrUpdateMasterProjectRole(masterProjectRole, userCtx);
         }

@@ -107,13 +107,13 @@ export const routes: Routes = [
                 canActivate: [AuthGuardService]
             },
             {
-                path: 'projectrole',
-                loadChildren: './component/master/projectRole/projectRole.module#ProjectRoleModule',
+                path: 'role',
+                loadChildren: './component/master/role/role.module#RoleModule',
                 canActivate: [AuthGuardService]
             },
             {
-                path: 'projectrole/:mode/:id',
-                loadChildren: './component/master/projectRole/editProjectRole.module#EditProjectRoleModule',
+                path: 'role/:mode/:id',
+                loadChildren: './component/master/role/editrole.module#EditRoleModule',
                 canActivate: [AuthGuardService]
             },
             {

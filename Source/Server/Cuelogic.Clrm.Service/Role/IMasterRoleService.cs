@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Cuelogic.Clrm.Service.ProjectRole
 {
-    public interface IMasterProjectRoleService
+    public interface IMasterRoleService
     {
         string GetList(SearchParam searchParam);
 
-        MasterProjectRole GetItem(int masterProjectRoleId);
+        MasterRole GetItem(int masterProjectRoleId);
 
-        void Save(MasterProjectRole masterProjectRole, UserContext userCtx);
+        void Save(MasterRole masterProjectRole, UserContext userCtx);
 
         void Delete(int masterProjectRoleId);
     }

@@ -9,9 +9,9 @@ import { ComponentSubscriptionService } from '../../../service/componentsubscrip
 import { Router } from '@angular/router'
 
 @Component({
-    templateUrl: 'editProjectRole.component.html'
+    templateUrl: 'editrole.component.html'
 })
-export class EditProjectRoleComponent {
+export class EditRoleComponent {
 
     id: number;
     mode: string;
@@ -51,7 +51,7 @@ export class EditProjectRoleComponent {
                 }
                 else
                 {
-                    this.router.navigate(["/projectrole"]);
+                    this.router.navigate(["/role"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;

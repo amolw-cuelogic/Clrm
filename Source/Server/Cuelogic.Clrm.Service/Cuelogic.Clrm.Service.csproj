@@ -59,8 +59,8 @@
     <Compile Include="Group\MasterGroupService.cs" />
     <Compile Include="OrganizationRole\IMasterOrganizationRoleService.cs" />
     <Compile Include="OrganizationRole\MasterOrganizationRoleService.cs" />
-    <Compile Include="ProjectRole\IMasterProjectRoleService.cs" />
-    <Compile Include="ProjectRole\MasterProjectRoleService.cs" />
+    <Compile Include="Role\IMasterRoleService.cs" />
+    <Compile Include="Role\MasterRoleService.cs" />
     <Compile Include="Projects\IProjectService.cs" />
     <Compile Include="Projects\ProjectService.cs" />
     <Compile Include="ProjectType\IMasterProjectTypeService.cs" />

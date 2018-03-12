@@ -15,8 +15,8 @@ namespace Cuelogic.Clrm.Api.Controllers
     [RoutePrefix("api/ProjectProfile")]
     public class MasterProjectRoleController : ApiBaseController
     {
-        private readonly IMasterProjectRoleService _masterProjectRoleService;
-        public MasterProjectRoleController(IMasterProjectRoleService masterProjectRoleService)
+        private readonly IMasterRoleService _masterProjectRoleService;
+        public MasterProjectRoleController(IMasterRoleService masterProjectRoleService)
         {
             _masterProjectRoleService = masterProjectRoleService;
         }
@@ -47,7 +47,7 @@ namespace Cuelogic.Clrm.Api.Controllers
 
         [Route("")]
         [AuthorizeUserRights(IdentityRights.MasterProjectRole, AuthorizeFlag.Write)]
-        public IHttpActionResult Post([FromBody]MasterProjectRole masterProjectRole)
+        public IHttpActionResult Post([FromBody]MasterRole masterProjectRole)
         {
             var userCtx = base.GetUserContext();
             _masterProjectRoleService.Save(masterProjectRole, userCtx);

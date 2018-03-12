@@ -58,8 +58,8 @@
     <Compile Include="Group\MasterGroupRepository.cs" />
     <Compile Include="OrganizationRole\IMasterOrganizationRoleRepository.cs" />
     <Compile Include="OrganizationRole\MasterOrganizationRoleRepository.cs" />
-    <Compile Include="ProjectRole\IMasterProjectRoleRepository.cs" />
-    <Compile Include="ProjectRole\MasterProjectRoleRepository.cs" />
+    <Compile Include="Role\IMasterRoleRepository.cs" />
+    <Compile Include="Role\MasterRoleRepository.cs" />
     <Compile Include="Projects\IProjectRepository.cs" />
     <Compile Include="Projects\ProjectRepository.cs" />
     <Compile Include="ProjectType\IMasterProjectTypeRepository.cs" />

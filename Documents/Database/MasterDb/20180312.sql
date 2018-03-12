@@ -48,7 +48,7 @@ CREATE TABLE `Allocation` (
   CONSTRAINT `AllocationUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ProjectRole` FOREIGN KEY (`ProjectRoleId`) REFERENCES `MasterProjectRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ProjectRole` FOREIGN KEY (`ProjectRoleId`) REFERENCES `masterrole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -541,40 +541,6 @@ INSERT INTO `MasterOrganizationRole` VALUES (20,'Software Engineer','',1,'2018-
 UNLOCK TABLES;
 
 --
--- Table structure for table `MasterProjectRole`
---
-
-DROP TABLE IF EXISTS `MasterProjectRole`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MasterProjectRole` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Role` varchar(50) NOT NULL,
-  `Costing` int(11) NOT NULL,
-  `IsValid` bit(1) NOT NULL,
-  `CreatedBy` int(11) NOT NULL,
-  `CreatedOn` date NOT NULL,
-  `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedOn` date DEFAULT NULL,
-  PRIMARY KEY (`Id`),
-  KEY `MasterProjectRoleCreatedBy_Employee_Id` (`CreatedBy`),
-  KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
-  CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
-  CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MasterProjectRole`
---
-
-LOCK TABLES `MasterProjectRole` WRITE;
-/*!40000 ALTER TABLE `MasterProjectRole` DISABLE KEYS */;
-INSERT INTO `MasterProjectRole` VALUES (13,'Developer',20000,'',1,'2018-01-01',NULL,NULL),(14,'Product Developer',30000,'',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst',25000,'\0',1,'2018-01-01',NULL,NULL),(16,'Ui Engineer',35000,'',1,'2018-01-01',NULL,NULL),(17,'Backend Developer',50000,'',1,'2018-01-01',NULL,NULL);
-/*!40000 ALTER TABLE `MasterProjectRole` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `MasterProjectType`
 --
 
@@ -605,6 +571,39 @@ LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
 INSERT INTO `MasterProjectType` VALUES (11,'Billable','',1,'2018-01-01',NULL,NULL),(12,'Non Billable','\0',1,'2018-01-01',NULL,NULL),(13,'In House','',1,'2018-01-01',NULL,NULL),(14,'R & D','',1,'2018-01-01',NULL,NULL);
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MasterRole`
+--
+
+DROP TABLE IF EXISTS `MasterRole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MasterRole` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Role` varchar(50) NOT NULL,
+  `IsValid` bit(1) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedOn` date NOT NULL,
+  `UpdatedBy` int(11) DEFAULT NULL,
+  `UpdatedOn` date DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `MasterProjectRoleCreatedBy_Employee_Id` (`CreatedBy`),
+  KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
+  CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
+  CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MasterRole`
+--
+
+LOCK TABLES `MasterRole` WRITE;
+/*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
+INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','\0',1,'2018-01-01',NULL,NULL),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'new develop','\0',1,'2018-03-12',1,'2018-03-12');
+/*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2498,167 +2497,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectRole_AddOrUpdate` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectRole_AddOrUpdate`(
-	IN mpId int(11),
-	IN mpRole varchar(150),
-    IN mpCosting varchar(150),
-    IN mpIsValid bit,
-    IN mpUpdatedBy int(11),
-    IN mpCreatedBy int(11),
-    IN mpUpdatedOn varchar(50),
-    IN mpCreatedOn varchar(50)
-)
-BEGIN
-INSERT INTO MasterProjectRole 
-    (
-		`Id`,
-		`Role`,
-		`Costing`,
-		`IsValid`,
-		`CreatedBy`,
-        `CreatedOn`,
-        `UpdatedBy`,
-        `UpdatedOn`
-	)
-    VALUES
-    (
-		mpId,
-		mpRole,
-		mpCosting,
-		mpIsValid,
-		mpCreatedBy,
-        mpCreatedOn,
-		mpCreatedBy, 
-        mpCreatedOn
-    )
-    ON DUPLICATE KEY UPDATE
-		Role = mpRole,
-		Costing = mpCosting,
-		IsValid = mpIsValid,
-		UpdatedBy = mpUpdatedBy,
-		UpdatedOn = mpUpdatedOn;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectRole_Get` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectRole_Get`(IN mpId int(11))
-BEGIN
-	SELECT 
-		a.Id, 
-		a.Role,
-        a.Costing,
-		a.IsValid, 
-		a.CreatedOn, 
-		a.UpdatedOn, 
-		a.CreatedBy, 
-		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
-	FROM 
-		MasterProjectRole a 
-	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
-	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
-	WHERE 
-		a.Id = mpId;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectRole_GetList` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectRole_GetList`(
-IN filterText varchar(200), 
-IN recordFrom int(4), 
-IN recordTill int(4)
-)
-BEGIN
-	SELECT 
-		a.Id, 
-		a.Role,
-        a.costing,
-		if(a.IsValid,'Yes','No') as IsValid,
-		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
-		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
-	FROM 
-		CuelogicResourceManagement.MasterProjectRole a
-	INNER JOIN 
-		Employee b on a.CreatedBy = b.Id
-	WHERE 
-		a.Role like concat('%', filterText,'%') or
-		b.FirstName like concat('%', filterText,'%') or
-		b.LastName like concat('%', filterText,'%') or
-		a.CreatedOn like concat('%', filterText,'%') or
-        a.IsValid = if(STRCMP(filterText,'Yes') = 0 ,true,false) 
-	limit 
-		recordFrom, recordTill;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectRole_MarkInvalid` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectRole_MarkInvalid`(
-	IN masterProjectRoleId int(11)
-)
-BEGIN
-	
-	UPDATE MasterProjectRole SET
-	IsValid = false
-	WHERE Id = masterProjectRoleId;
-    
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2828,6 +2666,161 @@ BEGIN
 	UPDATE MasterProjectType SET
 	IsValid = false
 	WHERE Id = mptId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_AddOrUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_AddOrUpdate`(
+	IN mpId int(11),
+	IN mpRole varchar(150),
+    IN mpIsValid bit,
+    IN mpUpdatedBy int(11),
+    IN mpCreatedBy int(11),
+    IN mpUpdatedOn varchar(50),
+    IN mpCreatedOn varchar(50)
+)
+BEGIN
+INSERT INTO MasterRole 
+    (
+		`Id`,
+		`Role`,
+		`IsValid`,
+		`CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
+    VALUES
+    (
+		mpId,
+		mpRole,
+		mpIsValid,
+		mpCreatedBy,
+        mpCreatedOn,
+		mpCreatedBy, 
+        mpCreatedOn
+    )
+    ON DUPLICATE KEY UPDATE
+		Role = mpRole,
+		IsValid = mpIsValid,
+		UpdatedBy = mpUpdatedBy,
+		UpdatedOn = mpUpdatedOn;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_Get` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_Get`(IN mpId int(11))
+BEGIN
+	SELECT 
+		a.Id, 
+		a.Role,
+		a.IsValid, 
+		a.CreatedOn, 
+		a.UpdatedOn, 
+		a.CreatedBy, 
+		a.UpdatedBy,
+		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+	FROM 
+		MasterRole a 
+	LEFT JOIN 
+		Employee b on a.CreatedBy = b.Id 
+	LEFT JOIN 
+		Employee c on a.UpdatedBy = c.Id 
+	WHERE 
+		a.Id = mpId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_GetList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_GetList`(
+IN filterText varchar(200), 
+IN recordFrom int(4), 
+IN recordTill int(4)
+)
+BEGIN
+	SELECT 
+		a.Id, 
+		a.Role,
+		if(a.IsValid,'Yes','No') as IsValid,
+		a.CreatedBy,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		a.UpdatedBy,
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
+		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+	FROM 
+		CuelogicResourceManagement.MasterRole a
+	INNER JOIN 
+		Employee b on a.CreatedBy = b.Id
+	WHERE 
+		a.Role like concat('%', filterText,'%') or
+		b.FirstName like concat('%', filterText,'%') or
+		b.LastName like concat('%', filterText,'%') or
+		a.CreatedOn like concat('%', filterText,'%') or
+        a.IsValid = if(STRCMP(filterText,'Yes') = 0 ,true,false) 
+	limit 
+		recordFrom, recordTill;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_MarkInvalid` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_MarkInvalid`(
+	IN masterProjectRoleId int(11)
+)
+BEGIN
+	
+	UPDATE MasterRole SET
+	IsValid = false
+	WHERE Id = masterProjectRoleId;
     
 END ;;
 DELIMITER ;
@@ -3398,4 +3391,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 10:23:37
+-- Dump completed on 2018-03-12 11:25:16

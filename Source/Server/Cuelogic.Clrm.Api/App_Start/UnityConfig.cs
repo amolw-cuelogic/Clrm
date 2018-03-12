@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.Api
             container.RegisterType<IMasterOrganizationRoleService, MasterOrganizationRoleService>();
             container.RegisterType<IMasterSkillService, MasterSkillService>();
             container.RegisterType<IEmployeeService, EmployeeService>();
-            container.RegisterType<IMasterProjectRoleService, MasterProjectRoleService>();
+            container.RegisterType<IMasterRoleService, MasterRoleService>();
             container.RegisterType<IMasterProjectTypeService, MasterProjectTypeService>();
             container.RegisterType<IMasterClientService, MasterClientService>();
             container.RegisterType<IProjectService, ProjectService>();

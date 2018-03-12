@@ -62,7 +62,7 @@
     <Compile Include="DatabaseModel\MasterCurrency.cs" />
     <Compile Include="DatabaseModel\MasterDepartment.cs" />
     <Compile Include="DatabaseModel\MasterOrganizationRole.cs" />
-    <Compile Include="DatabaseModel\MasterProjectRole.cs" />
+    <Compile Include="DatabaseModel\MasterRole.cs" />
     <Compile Include="DatabaseModel\MasterProjectType.cs" />
     <Compile Include="DatabaseModel\MasterSkill.cs" />
     <Compile Include="DatabaseModel\Project.cs" />

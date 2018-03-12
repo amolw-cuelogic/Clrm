@@ -18,7 +18,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
     [TestClass]
     public class MasterProjectRoleControllerTest
     {
-        Mock<IMasterProjectRoleService> mockService = new Mock<IMasterProjectRoleService>();
+        Mock<IMasterRoleService> mockService = new Mock<IMasterRoleService>();
 
         [TestMethod]
         public void TestMasterProjectRoleGet()
@@ -59,14 +59,14 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
             //ACT
             int id = 1;
             IHttpActionResult response = employeeController.Get(id);
-            var contentResult = response as OkNegotiatedContentResult<MasterProjectRole>;
+            var contentResult = response as OkNegotiatedContentResult<MasterRole>;
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
-            Assert.IsInstanceOfType(contentResult.Content, typeof(MasterProjectRole));
+            Assert.IsInstanceOfType(contentResult.Content, typeof(MasterRole));
             Assert.AreEqual(id, contentResult.Content.Id);
         }
 
@@ -75,7 +75,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
         {
             //ARRANGE
             var mockData = MasterProjectRoleMockData.GetMockDataMasterProjectRole();
-            mockService.Setup(m => m.Save(It.IsAny<MasterProjectRole>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.Save(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
             var customIdentity = CommonMockData.GetUserClaimsIdentity();
             MasterProjectRoleController controller = new MasterProjectRoleController(mockService.Object)
             {
@@ -86,7 +86,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
 
             //ACT
             IHttpActionResult response = controller.Post(mockData);
-            var contentResult = response as OkNegotiatedContentResult<MasterProjectRole>;
+            var contentResult = response as OkNegotiatedContentResult<MasterRole>;
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
@@ -108,7 +108,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
 
             //ACT
             IHttpActionResult response = controller.Delete(1);
-            var contentResult = response as OkNegotiatedContentResult<MasterProjectRole>;
+            var contentResult = response as OkNegotiatedContentResult<MasterRole>;
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT

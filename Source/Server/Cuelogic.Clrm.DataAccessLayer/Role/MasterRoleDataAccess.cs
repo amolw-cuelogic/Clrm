@@ -9,18 +9,17 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Common;
 using MySql.Data.MySqlClient;
 
-namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
+namespace Cuelogic.Clrm.DataAccessLayer.Role
 {
-    public class MasterProjectRoleDataAccess : IMasterProjectRoleDataAccess
+    public class MasterRoleDataAccess : IMasterRoleDataAccess
     {
-        public void AddOrUpdateMasterProjectRole(MasterProjectRole masterProjectRole)
+        public void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectRole_AddOrUpdate;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mpId", masterProjectRole.Id),
                     new MySqlParameter("@mpRole", masterProjectRole.Role),
-                    new MySqlParameter("@mpCosting", masterProjectRole.Costing),
                     new MySqlParameter("@mpIsValid", masterProjectRole.IsValid),
                     new MySqlParameter("@mpUpdatedBy", masterProjectRole.UpdatedBy),
                     new MySqlParameter("@mpCreatedBy", masterProjectRole.CreatedBy),
@@ -34,7 +33,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
         public DataSet GetMasterProjectRole(int masterProjectRoleId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectRole_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mpId", masterProjectRoleId)
                 };
@@ -48,7 +47,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectRole_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
                     new MySqlParameter("@recordFrom", recordFrom),
@@ -61,7 +60,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectRole
         public void MarkMasterProjectRoleInvalid(int masterProjectRoleId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectRole_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterProjectRoleId", masterProjectRoleId)
             };

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.DataAccessLayer.ProjectRole;
+using Cuelogic.Clrm.DataAccessLayer.Role;
 
-namespace Cuelogic.Clrm.Repository.ProjectRole
+namespace Cuelogic.Clrm.Repository.Role
 {
-    public class MasterProjectRoleRepository : IMasterProjectRoleRepository
+    public class MasterRoleRepository : IMasterRoleRepository
     {
-        private readonly IMasterProjectRoleDataAccess _masterProjectRoleDataAccess;
-        public MasterProjectRoleRepository()
+        private readonly IMasterRoleDataAccess _masterProjectRoleDataAccess;
+        public MasterRoleRepository()
         {
-            _masterProjectRoleDataAccess = new MasterProjectRoleDataAccess();
+            _masterProjectRoleDataAccess = new MasterRoleDataAccess();
         }
-        public void AddOrUpdateMasterProjectRole(MasterProjectRole masterProjectRole, UserContext userCtx)
+        public void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole, UserContext userCtx)
         {
             masterProjectRole.CreatedBy = userCtx.UserId;
             masterProjectRole.UpdatedBy = userCtx.UserId;
@@ -27,17 +27,17 @@ namespace Cuelogic.Clrm.Repository.ProjectRole
             _masterProjectRoleDataAccess.AddOrUpdateMasterProjectRole(masterProjectRole);
         }
 
-        public MasterProjectRole GetMasterProjectRole(int masterProjectRoleId)
+        public MasterRole GetMasterProjectRole(int masterProjectRoleId)
         {
             if (masterProjectRoleId != 0)
             {
                 var ds = _masterProjectRoleDataAccess.GetMasterProjectRole(masterProjectRoleId);
-                var masterProjectRole = ds.Tables[0].ToModel<MasterProjectRole>();
+                var masterProjectRole = ds.Tables[0].ToModel<MasterRole>();
                 return masterProjectRole;
             }
             else
             {
-                return new MasterProjectRole();
+                return new MasterRole();
             }
         }
 

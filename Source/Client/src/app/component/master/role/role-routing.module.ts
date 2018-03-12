@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EditProjectRoleComponent } from './editProjectRole.component';
+import { RoleComponent } from './role.component';
 
 const routes: Routes = [
   {
     path: '',
-        component: EditProjectRoleComponent,
+        component: RoleComponent,
     data: {
-        title: 'Edit Project Role'
+        title: 'Role'
     }
   }
 ];
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EditProjectRoleRoutingModule {}
+export class RoleRoutingModule {}
