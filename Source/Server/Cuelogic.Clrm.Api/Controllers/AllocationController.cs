@@ -55,6 +55,16 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(allocation);
         }
 
+        [AuthorizeUserRights(IdentityRights.Allocation, AuthorizeFlag.Read)]
+        [Route("GetProjectRole/{id}")]
+        public IHttpActionResult GetProjectRole(int id)
+        {
+            if (id < 0)
+                throw new Exception("Negative id now allowed");
+            var masterRolelist = _allocationService.GetProjectRolebyId(id);
+            return Ok(masterRolelist);
+        }
+
         [AuthorizeUserRights(IdentityRights.Allocation, AuthorizeFlag.Write)]
         [Route("")]
         public IHttpActionResult Post([FromBody]Allocation allocation)

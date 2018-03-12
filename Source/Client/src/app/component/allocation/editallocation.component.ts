@@ -18,10 +18,9 @@ export class EditAllocationComponent {
     mode: string;
     baseUrl: string;
     pageObject: any = new Object({
-        ProjectClientChildList: [],
-        ProjectMasterClientList: [],
-        ProjectTypeList: []
+        SelectListMasterRole: []
     });
+    ProjectRoleMessage: string = "";
     loaded: boolean = false;
     apiController: string = "api/EmployeeAllocation";
     allocationPercentageError: any;
@@ -82,7 +81,6 @@ export class EditAllocationComponent {
                     m["ProjectId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
-
                 if (this.mode == this.formMode.View) {
                     this.SetFormModeView();
                 }
@@ -104,6 +102,21 @@ export class EditAllocationComponent {
             m => {
                 this.pageObject.ExistingAllocation = (m == null) ? 0 : m;
                 this.pageObject.PercentageAllocation = 0;
+            });
+    }
+
+    GetProjectRole(projectId: any) {
+        this.httpClient.get(this.baseUrl + this.apiController + "/GetProjectRole/" + projectId
+        ).subscribe(
+            m => {
+                if (m['length'] == 0) {
+                    this.ProjectRoleMessage = "No role allocated to above selected project.";
+                    this.pageObject.SelectListMasterRole = [];
+                }
+                else {
+                    this.ProjectRoleMessage = "";
+                    this.pageObject.SelectListMasterRole = m;
+                }
             });
     }
 

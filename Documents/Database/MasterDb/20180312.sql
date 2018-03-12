@@ -39,17 +39,17 @@ CREATE TABLE `Allocation` (
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedOn` date DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  KEY `ProjectRole_idx` (`ProjectRoleId`),
   KEY `Project_idx` (`ProjectId`),
   KEY `Employee_idx` (`EmployeeId`),
   KEY `AllocationCreatedBy_Employee` (`CreatedBy`),
   KEY `AllocationUpdatedBy_Employee` (`UpdatedBy`),
+  KEY `projectrole_id` (`ProjectRoleId`),
   CONSTRAINT `AllocationCreatedBy_Employee` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `AllocationUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ProjectRole` FOREIGN KEY (`ProjectRoleId`) REFERENCES `masterrole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  CONSTRAINT `projectrole_id` FOREIGN KEY (`ProjectRoleId`) REFERENCES `ProjectRole` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (6,18,16,18,'',0,'2017-01-01','2018-03-31','\0',17,'2018-03-08',1,'2018-03-09');
+INSERT INTO `Allocation` VALUES (1,1,22,17,'',12,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(2,1,26,18,'',88,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',41,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -602,7 +602,7 @@ CREATE TABLE `MasterRole` (
 
 LOCK TABLES `MasterRole` WRITE;
 /*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
-INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'new develop','',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'Trainee Develop','',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -676,7 +676,7 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-12'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','\0',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-06'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-12'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','\0',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-12'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12');
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -709,7 +709,7 @@ CREATE TABLE `ProjectRole` (
   CONSTRAINT `project_Id` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
   CONSTRAINT `role_Id` FOREIGN KEY (`RoleId`) REFERENCES `MasterRole` (`Id`),
   CONSTRAINT `updatedby_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -718,7 +718,7 @@ CREATE TABLE `ProjectRole` (
 
 LOCK TABLES `ProjectRole` WRITE;
 /*!40000 ALTER TABLE `ProjectRole` DISABLE KEYS */;
-INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'\0',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'\0',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL);
 /*!40000 ALTER TABLE `ProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -890,7 +890,7 @@ BEGIN
 	SELECT
 		a.Id,
         CONCAT(b.FirstName,' ', b.MiddleName ,' ',b.LastName) as FullName,
-        c.Role,
+        x.Role,
         d.ProjectName,
         if(a.IsBillable,'Yes','No') as IsBillable,
         a.PercentageAllocation,
@@ -900,13 +900,14 @@ BEGIN
 	FROM 
 		Allocation a
 	INNER JOIN Employee b ON a.EmployeeId = b.Id
-    INNER JOIN MasterProjectRole c ON a.ProjectRoleId = c.Id
+    INNER JOIN ProjectRole c ON a.ProjectRoleId = c.Id
+    INNER JOIN MasterRole x ON c.RoleId = x.Id
     INNER JOIN Project d ON a.ProjectId = d.Id
     WHERE
 		b.FirstName like concat('%', filterText,'%') or
 		b.MiddleName like concat('%', filterText,'%') or
 		b.LastName like concat('%', filterText,'%') or
-		c.Role like concat('%', filterText,'%') or
+		x.Role like concat('%', filterText,'%') or
 		d.ProjectName like concat('%', filterText,'%') or
 		a.StartDate like concat('%', filterText,'%') or
 		a.EndDate like concat('%', filterText,'%') or
@@ -917,6 +918,38 @@ BEGIN
 	limit 
 		recordFrom, recordTill;
         
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_GetRoleByProject` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetRoleByProject`(IN aProjectId INT(11))
+BEGIN
+	SELECT 
+		b.Id,
+        c.Role
+	FROM
+		Project a
+	INNER JOIN 
+		ProjectRole b ON b.ProjectId = a.Id
+	INNER JOIN
+		MasterRole c ON c.Id = b.RoleId
+	WHERE 
+		a.Id = aProjectId AND
+		b.IsValid = true AND
+        c.IsValid = true;
+	
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -936,7 +969,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetSelectList`()
 BEGIN
 	SELECT Id, CONCAT(FirstName,' ',MiddleName,' ',LastName) AS FullName FROM Employee WHERE IsValid = true;
-    SELECT Id, Role FROM MasterProjectRole  WHERE IsValid = true;
     SELECT Id, ProjectName FROM Project  WHERE IsValid = true;
 END ;;
 DELIMITER ;
@@ -3126,6 +3158,7 @@ BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
     
+    DECLARE prId INT(11);
     DECLARE prProjectId INT(11);
     DECLARE prRoleId INT(11);
     DECLARE prBillingRate INT(11);
@@ -3133,17 +3166,10 @@ BEGIN
     DECLARE prIsValid BIT;
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfProjectRole/ProjectRole)');
-    
-    WHILE i <= nodeCount DO
-		SET prProjectId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/ProjectId');
-		DELETE FROM ProjectRole WHERE ProjectId = prProjectId;
-		SET i = i+1;
-	END WHILE;
-    
-    SET i = 1;
-    
+  
 	WHILE i <= nodeCount DO
     
+		SET prId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/Id');
 		SET prProjectId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/ProjectId');
 		SET prRoleId = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/RoleId');
 		SET prBillingRate = ExtractValue(xmlText, '/ArrayOfProjectRole/ProjectRole[$i]/BillingRate');
@@ -3153,28 +3179,34 @@ BEGIN
 		INSERT INTO 
 			ProjectRole 
         (
+			`Id`,
 			`ProjectId`,
             `RoleId`,
             `BillingRate`,
             `CurrencyId`,
             `IsValid`,
             `CreatedBy`,
-            `CreatedOn`,
-            `UpdatedBy`,
-            `UpdatedOn`
+            `CreatedOn`
 		)
         VALUES
         (
+			prId,
 			prProjectId,
             prRoleId,
             prBillingRate,
             prCurrencyId,
             prIsValid,
             user,
-            DATE_FORMAT(CURDATE(),'%Y-%m-%d'),
-            user,
             DATE_FORMAT(CURDATE(),'%Y-%m-%d')
-		);
+		)
+		ON DUPLICATE KEY UPDATE
+			ProjectId = prProjectId,
+			RoleId = prRoleId,
+            BillingRate = prBillingRate,
+            CurrencyId = prCurrencyId,
+            IsValid = prIsValid,
+			UpdatedBy = user,
+			UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d');
         SET i = i+1;
         END WHILE;
 END ;;
@@ -3504,4 +3536,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-12 14:44:12
+-- Dump completed on 2018-03-12 16:34:33

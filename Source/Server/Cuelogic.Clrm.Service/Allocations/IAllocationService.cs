@@ -19,5 +19,6 @@ namespace Cuelogic.Clrm.Service.Allocations
 
         void Delete(int allocationId);
         int GetAllocationSum(int employeeId);
+        List<MasterRole> GetProjectRolebyId(int projectId);
     }
 }

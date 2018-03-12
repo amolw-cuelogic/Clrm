@@ -42,6 +42,12 @@ namespace Cuelogic.Clrm.Service.Allocations
             return jsonString;
         }
 
+        public List<MasterRole> GetProjectRolebyId(int projectId)
+        {
+            var masterRoleList = _allocationRepository.GetProjectRolebyId(projectId);
+            return masterRoleList;
+        }
+
         public void Save(Allocation allocation, UserContext userCtx)
         {
             _allocationRepository.AddOrUpdateAllocation(allocation, userCtx);

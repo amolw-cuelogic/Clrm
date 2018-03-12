@@ -37,24 +37,26 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <ngx-label value="Project Role"></ngx-label>
-                                        <select #ProjectRoleId="ngModel" [(ngModel)]="pageObject.ProjectRoleId" name="ProjectRoleId" class="form-control form-control-sm" required style="width:100%;">
-                                            <option *ngFor="let item of pageObject.SelectListMasterProjectRole" value="{{item.Id}}">{{item.Role}}</option>
-                                        </select>
-                                        <div *ngIf="ProjectRoleId.errors && (ProjectRoleId.dirty || ProjectRoleId.touched)" class="error">
-                                            Project Type is required
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <ngx-label value="Project"></ngx-label>
-                                        <select #ProjectId="ngModel" [(ngModel)]="pageObject.ProjectId" name="ProjectId" class="form-control form-control-sm" required style="width:100%;">
+                                        <select (ngModelChange)="GetProjectRole($event)" #ProjectId="ngModel" [(ngModel)]="pageObject.ProjectId" name="ProjectId" class="form-control form-control-sm" required style="width:100%;">
                                             <option *ngFor="let item of pageObject.SelectListProject" value="{{item.Id}}">{{item.ProjectName}}</option>
                                         </select>
                                         <div *ngIf="ProjectId.errors && (ProjectId.dirty || ProjectId.touched)" class="error">
                                             Project is required
                                         </div>
                                     </div>
-
+                                    <div class="form-group" *ngIf="pageObject.SelectListMasterRole.length > 0">
+                                        <ngx-label value="Project Role"></ngx-label>
+                                        <select [disabled]="disabled" #ProjectRoleId="ngModel" [(ngModel)]="pageObject.ProjectRoleId" name="ProjectRoleId" class="form-control form-control-sm" required style="width:100%;">
+                                            <option *ngFor="let item of pageObject.SelectListMasterRole" value="{{item.Id}}">{{item.Role}}</option>
+                                        </select>
+                                        <div *ngIf="ProjectRoleId.errors && (ProjectRoleId.dirty || ProjectRoleId.touched)" class="error">
+                                            Role is required
+                                        </div>
+                                    </div>
+                                    <div *ngIf="ProjectRoleMessage != '' && ProjectRoleMessage != null" class="warning">
+                                        {{ProjectRoleMessage}}
+                                    </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">

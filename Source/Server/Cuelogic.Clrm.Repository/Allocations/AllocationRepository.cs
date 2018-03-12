@@ -35,11 +35,16 @@ namespace Cuelogic.Clrm.Repository.Allocations
                 var allocationDs = _allocationDataAccess.GetAllocation(allocationId);
                 allocation = allocationDs.Tables[0].ToModel<Allocation>();
                 allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId);
+
+                var masterRoleList = new List<MasterRole>();
+                var projectRoleDs = _allocationDataAccess.GetProjectRolebyId(allocation.ProjectId);
+                if (projectRoleDs.Tables[0].Rows.Count > 0)
+                    masterRoleList = projectRoleDs.Tables[0].ToList<MasterRole>();
+                allocation.SelectListMasterRole = masterRoleList;
             }
 
             var ds = _allocationDataAccess.GetAllocationSelectList();
             allocation.SelectListEmployee = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Employee].ToList<Employee>();
-            allocation.SelectListMasterProjectRole = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.MasterProjectRole].ToList<MasterRole>();
             allocation.SelectListProject = ds.Tables[AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Project].ToList<Project>();
 
             return allocation;
@@ -58,6 +63,15 @@ namespace Cuelogic.Clrm.Repository.Allocations
             if (ds.Tables[0].Rows.Count > 0)
                 id = ds.Tables[0].ToId();
             return id;
+        }
+
+        public List<MasterRole> GetProjectRolebyId(int projectId)
+        {
+            var masterRoleList = new List<MasterRole>();
+            var ds = _allocationDataAccess.GetProjectRolebyId(projectId);
+            if (ds.Tables[0].Rows.Count > 0)
+                masterRoleList = ds.Tables[0].ToList<MasterRole>();
+            return masterRoleList;
         }
 
         public void MarkAllocationInvalid(int allocationId)

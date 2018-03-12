@@ -68,7 +68,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetSelectList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), null, new List<string> {
                 AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Employee,
-                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.MasterProjectRole,
                 AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Project
             });
             return ds;
@@ -80,6 +79,17 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetAllocationSum;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            return ds;
+        }
+
+        public DataSet GetProjectRolebyId(int projectId)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetRoleByProject;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@aProjectId", projectId)
                 };
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
             return ds;

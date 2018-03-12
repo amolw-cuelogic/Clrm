@@ -89,6 +89,7 @@ export class EditProjectComponent {
 
     NewRecord() {
         var projectRoleObj = new Object({
+            Id:0,
             RoleId: null,
             BillingRate: 0,
             Currency: null,
