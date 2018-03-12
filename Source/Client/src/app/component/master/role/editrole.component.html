@@ -10,7 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Project Role </strong>
+                        <strong>Role </strong>
                         <small>Details</small>
                         <small *ngIf="pageObject.UpdatedOn" style="float:right">Last updated on <u>{{pageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{pageObject.UpdatedByName}}</u> </small>
                     </div>
@@ -27,9 +27,8 @@
                                             Project Role is required
                                         </div>
                                     </div>
-                                   
                                     <div ngx-rights="303|Delete" class="form-group">
-                                        <label for="name">Is Valid Project Role</label><br />
+                                        <label for="name">Is Valid Role</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsValid" name="pageObject.IsValid">
                                             <span class="switch-label"></span>
