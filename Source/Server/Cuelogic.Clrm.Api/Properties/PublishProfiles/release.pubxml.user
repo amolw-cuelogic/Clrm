@@ -85,22 +85,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/15/2018 16:53:47</publishTime>
     </File>
     <File Include="bin/Cuelogic.Clrm.Api.dll">
-      <publishTime>03/08/2018 18:52:33</publishTime>
+      <publishTime>03/13/2018 16:14:30</publishTime>
     </File>
     <File Include="bin/Cuelogic.Clrm.Common.dll">
-      <publishTime>03/08/2018 18:52:29</publishTime>
+      <publishTime>03/13/2018 16:14:24</publishTime>
     </File>
     <File Include="bin/Cuelogic.Clrm.DataAccessLayer.dll">
-      <publishTime>03/08/2018 18:52:29</publishTime>
+      <publishTime>03/13/2018 16:14:24</publishTime>
     </File>
     <File Include="bin/Cuelogic.Clrm.Model.dll">
-      <publishTime>03/08/2018 18:52:29</publishTime>
+      <publishTime>03/13/2018 16:14:23</publishTime>
     </File>
     <File Include="bin/Cuelogic.Clrm.Repository.dll">
-      <publishTime>03/08/2018 18:52:29</publishTime>
+      <publishTime>03/13/2018 16:14:25</publishTime>
     </File>
     <File Include="bin/Cuelogic.Clrm.Service.dll">
-      <publishTime>03/08/2018 18:52:29</publishTime>
+      <publishTime>03/13/2018 16:14:25</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -424,7 +424,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/31/2018 12:03:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/08/2018 18:52:41</publishTime>
+      <publishTime>03/13/2018 16:15:04</publishTime>
     </File>
   </ItemGroup>
 </Project>

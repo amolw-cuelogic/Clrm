@@ -7,14 +7,17 @@ import { CommonModule } from '@angular/common';
 import { LabelDirective } from "./directive/label-directive"
 import { CommonAppModule } from './common.module'
 
+import { FilterPipe } from './filter/filter.pipe'
+
 @NgModule({
     imports: [CommonAppModule],
-    declarations: [LabelDirective],
+    declarations: [LabelDirective, FilterPipe],
     exports: [
         LabelDirective,
         CommonModule,
         FormsModule,
-        CommonAppModule
+        CommonAppModule,
+        FilterPipe
     ]
 })
 export class SharedModule {

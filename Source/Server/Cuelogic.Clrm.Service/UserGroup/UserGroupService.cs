@@ -16,9 +16,9 @@ namespace Cuelogic.Clrm.Service.UserGroup
         {
             _userGroupRepository = new UserGroupRepository();
         }
-        public List<Employee> GetEmployeeList(string employeeName)
+        public List<Employee> GetEmployeeList()
         {
-            var data = _userGroupRepository.GetEmployeeList(employeeName);
+            var data = _userGroupRepository.GetEmployeeList();
             return data;
         }
 

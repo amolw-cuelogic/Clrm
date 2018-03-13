@@ -42,7 +42,7 @@ namespace Cuelogic.Clrm.Api
             container.RegisterType<ICommonService, CommonService>();
             container.RegisterType<IUserGroupService, UserGroupService>();
 
-            container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
+            //container.RegisterType<AccountController>(new InjectionConstructor());//needed to resolve conflict with owin injection
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             
         }

@@ -12,14 +12,11 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
 {
     public class UserGroupDataAccess : IUserGroupDataAccess
     {
-        public DataSet GetEmployeeList(string employeeName)
+        public DataSet GetEmployeeList()
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetEmployees;
-            sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@employeeName", employeeName)
-                };
-            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
         }
 

@@ -10,7 +10,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
     public interface IUserGroupDataAccess
     {
         DataSet GetGroupList();
-        DataSet GetEmployeeList(string employeeName);
+        DataSet GetEmployeeList();
         DataSet GetIdentityGroupMembers(int gId);
         void InsertGroupUsers(string xmlString);
 

@@ -17,9 +17,9 @@ namespace Cuelogic.Clrm.Repository.UserGroup
         {
             _userGroupDataAcces = new UserGroupDataAccess();
         }
-        public List<Employee> GetEmployeeList(string employeeName)
+        public List<Employee> GetEmployeeList()
         {
-            var ds = _userGroupDataAcces.GetEmployeeList(employeeName);
+            var ds = _userGroupDataAcces.GetEmployeeList();
             List<Employee> list = new List<Employee>();
             if (ds.Tables[0].Rows.Count > 0)
                 list = ds.Tables[0].ToList<Employee>();

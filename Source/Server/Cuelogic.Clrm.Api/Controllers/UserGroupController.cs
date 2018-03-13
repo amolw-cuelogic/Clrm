@@ -22,11 +22,9 @@ namespace Cuelogic.Clrm.Api.Controllers
 
         [Route("employees")]
         [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Read)]
-        public IHttpActionResult GetEmployeeList(string employeeName)
+        public IHttpActionResult GetEmployeeList()
         {
-            if (employeeName == null)
-                employeeName = "";
-            var data = _userGroupService.GetEmployeeList(employeeName);
+            var data = _userGroupService.GetEmployeeList();
             return Ok(data);
         }
 

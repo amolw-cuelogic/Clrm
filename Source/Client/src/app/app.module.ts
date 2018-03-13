@@ -42,7 +42,6 @@ import { GoogleLoginProvider } from "angular4-social-login";
 //Model
 import { FormMode } from './model/FormMode'
 
-
 import { CommonAppModule } from "./common.module"
 
 let config = new AuthServiceConfig([

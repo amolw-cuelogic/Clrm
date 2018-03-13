@@ -11,7 +11,7 @@ namespace Cuelogic.Clrm.Repository.UserGroup
     public interface IUserGroupRepository
     {
         List<IdentityGroup> GetGroupList();
-        List<Employee> GetEmployeeList(string employeeName);
+        List<Employee> GetEmployeeList();
         List<Employee> GetIdentityGroupMembers(int gId);
         void InsertGroupUsers(List<IdentityEmployeeGroup> identityEmployeeGroup, UserContext userContext);
     }

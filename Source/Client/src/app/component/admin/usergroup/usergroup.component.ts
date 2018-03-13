@@ -24,11 +24,9 @@ export class UserGroupComponent {
     });
     GroupId: any = 0;
     filterText: any;
-
+    filterTextGroupMember: any;
     monitorList: any = [];
-
     apiController: string = "api/Usergroup";
-
     disabled = false;
 
     ngAfterContentInit() {
@@ -41,10 +39,6 @@ export class UserGroupComponent {
         var height = dynamicDivHeight - 165 + "px";
         document.getElementById("userDiv1").style.height = height
         document.getElementById("userDiv2").style.height = height
-    }
-
-    EnterkeyPress(event: any) {
-        this.SearchFilter();
     }
 
     DropDownChange(id: any) {
@@ -99,13 +93,13 @@ export class UserGroupComponent {
         );
     }
 
-    SearchFilter() {
-        this.LoadEmployeeList();
-    }
-
     ClearFilter() {
         this.filterText = "";
-        this.SearchFilter();
+    }
+
+    ClearGroupMemberFilter()
+    {
+        this.filterTextGroupMember = "";
     }
 
     LoadGroupsDropdown() {
@@ -119,7 +113,7 @@ export class UserGroupComponent {
     }
 
     LoadEmployeeList() {
-        this.httpClient.get(this.baseUrl + this.apiController + "/employees?employeeName=" + this.filterText
+        this.httpClient.get(this.baseUrl + this.apiController + "/employees"
         ).subscribe(
             m => {
                 this.pageObject.EmployeeList = m;

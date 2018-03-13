@@ -26,7 +26,7 @@ namespace Cuelogic.Clrm.Api.Tests.UserGroup
         {
             //ARRANGE
             var mockData = UserGroupMockData.GetEmployeeList();
-            mockService.Setup(m => m.GetEmployeeList(It.IsAny<string>())).Returns(mockData);
+            mockService.Setup(m => m.GetEmployeeList()).Returns(mockData);
             UserGroupController controller = new UserGroupController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.Api.Tests.UserGroup
             };
 
             //ACT
-            IHttpActionResult response = controller.GetEmployeeList("");
+            IHttpActionResult response = controller.GetEmployeeList();
             var contentResult = response as OkNegotiatedContentResult<List<Employee>>;
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
