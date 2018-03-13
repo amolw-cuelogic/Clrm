@@ -60,7 +60,6 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
                 if (i == 3)
                     objBinaryRights.Read = (remainder == 1) ? true : false;
             }
-            Console.WriteLine("Binary:  {0}", result);
             BooleanRight= objBinaryRights;
         }
     }
