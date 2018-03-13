@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
         public DataSet GetMasterOrganizationRole(int masterOrganizationRoleId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@Id", masterOrganizationRoleId)
                 };
@@ -30,7 +30,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@FilterText", searchParam.FilterText),
                     new MySqlParameter("@RecordFrom", recordFrom),
@@ -43,7 +43,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
         public void InsertMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Insert;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_Insert;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@role", masterOrganizationRole.Role),
                     new MySqlParameter("@isValid", masterOrganizationRole.IsValid),
@@ -57,7 +57,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
         public void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterOrganizationRoleId", masterOrganizationRoleId)
                 };
@@ -68,7 +68,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
         public void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterOrganizationRole_Update;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_Update;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterOrganizationRoleId", masterOrganizationRole.Id),
                     new MySqlParameter("@role", masterOrganizationRole.Role),

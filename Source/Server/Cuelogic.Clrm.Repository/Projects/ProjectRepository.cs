@@ -55,20 +55,20 @@ namespace Cuelogic.Clrm.Repository.Projects
             if(projectId != 0)
             {
                 var projectDs = _projectDataAccess.GetProject(projectId);
-                project = projectDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.Project].ToModel<Project>();
-                if (projectDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.ProjectRole].Rows.Count > 0)
-                    project.ProjectRoleList = projectDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.ProjectRole].ToList<ProjectRole>();
+                project = projectDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.Project].ToModel<Project>();
+                if (projectDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.ProjectRole].Rows.Count > 0)
+                    project.ProjectRoleList = projectDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.ProjectRole].ToList<ProjectRole>();
                 else
                     project.ProjectRoleList = new List<ProjectRole>();
             }
 
             var masterClientDs = _projectDataAccess.GetProjectSelectList();
 
-            var masterClientList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient].ToList<MasterClient>();
+            var masterClientList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterClient].ToList<MasterClient>();
             project.ProjectMasterClientList = masterClientList;
-            var masterRoleList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterRole].ToList<MasterRole>();
+            var masterRoleList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterRole].ToList<MasterRole>();
             project.MasterRoleList = masterRoleList;
-            var masterCurrencyList = masterClientDs.Tables[AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency].ToList<MasterCurrency>();
+            var masterCurrencyList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterCurrency].ToList<MasterCurrency>();
             project.MasterCurrencyList = masterCurrencyList;
             IMasterProjectTypeRepository _masterProjectTypeRepository = new MasterProjectTypeRepository();
             var masterProjectTypeDs = _masterProjectTypeRepository.GetMasterProjectTypeValidList();

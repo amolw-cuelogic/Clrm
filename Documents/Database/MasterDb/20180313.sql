@@ -49,7 +49,7 @@ CREATE TABLE `Allocation` (
   CONSTRAINT `Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Project` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `projectrole_id` FOREIGN KEY (`ProjectRoleId`) REFERENCES `ProjectRole` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (1,1,23,22,'',0,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(2,1,26,18,'',25,'2018-03-02',NULL,'\0',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `Allocation` VALUES (1,1,23,22,'',10,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-13'),(2,1,26,18,'',25,'2018-03-02',NULL,'\0',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12'),(7,20,27,17,'',100,'2018-03-01',NULL,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `Employee` (
   KEY `EmployeeCreatedByBy_Employee` (`CreatedBy`),
   CONSTRAINT `EmployeeCreatedByBy_Employee` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `EmployeeUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-12','2018-03-12 19:33:06'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',17,'2018-03-08',NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-09',NULL),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-08',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08',NULL),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-12',NULL),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','',17,'2018-03-08',17,'2018-03-08',NULL);
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-13','2018-03-13 14:18:04'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',17,'2018-03-08',NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-09',NULL),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-08',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08',NULL),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-12',NULL),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','',17,'2018-03-08',17,'2018-03-08',NULL),(30,'Rythma ','','Nanaware','CUE343','2018-03-13',NULL,'987654321','rythma@cuelogic.com','',1,'2018-03-13',1,'2018-03-13',NULL);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `EmployeeDepartment` (
   CONSTRAINT `EmployeeDepartmentUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Id_DepartmentId_` FOREIGN KEY (`DepartmentId`) REFERENCES `MasterDepartment` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_EmployeeId1` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +138,7 @@ CREATE TABLE `EmployeeDepartment` (
 
 LOCK TABLES `EmployeeDepartment` WRITE;
 /*!40000 ALTER TABLE `EmployeeDepartment` DISABLE KEYS */;
-INSERT INTO `EmployeeDepartment` VALUES (1,20,17,'',1,'2018-03-06',NULL,NULL),(2,20,18,'',1,'2018-03-06',NULL,NULL),(3,20,19,'',1,'2018-03-06',NULL,NULL),(4,22,1,'\0',1,'2018-03-06',1,'2018-03-08'),(5,23,1,'',1,'2018-03-06',NULL,NULL),(6,20,20,'',1,'2018-03-06',1,'2018-03-06'),(7,21,20,'',1,'2018-03-06',1,'2018-03-06'),(8,22,20,'',1,'2018-03-06',1,'2018-03-06'),(9,23,20,'',1,'2018-03-06',1,'2018-03-06'),(10,20,21,'',1,'2018-03-07',1,'2018-03-07'),(17,20,27,'',1,'2018-03-08',1,'2018-03-08'),(18,20,28,'',1,'2018-03-08',1,'2018-03-08'),(19,20,29,'',17,'2018-03-08',17,'2018-03-08'),(20,24,1,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `EmployeeDepartment` VALUES (1,20,17,'',1,'2018-03-06',NULL,NULL),(2,20,18,'',1,'2018-03-06',NULL,NULL),(3,20,19,'',1,'2018-03-06',NULL,NULL),(4,22,1,'\0',1,'2018-03-06',1,'2018-03-08'),(5,23,1,'',1,'2018-03-06',NULL,NULL),(6,20,20,'',1,'2018-03-06',1,'2018-03-06'),(7,21,20,'',1,'2018-03-06',1,'2018-03-06'),(8,22,20,'',1,'2018-03-06',1,'2018-03-06'),(9,23,20,'',1,'2018-03-06',1,'2018-03-06'),(10,20,21,'',1,'2018-03-07',1,'2018-03-07'),(17,20,27,'',1,'2018-03-08',1,'2018-03-08'),(18,20,28,'',1,'2018-03-08',1,'2018-03-08'),(19,20,29,'',17,'2018-03-08',17,'2018-03-08'),(20,24,1,'',1,'2018-03-12',1,'2018-03-12'),(21,20,30,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `EmployeeDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
   CONSTRAINT `Id_EmployeeId` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `MasterOrganizationRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `UpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +176,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
 
 LOCK TABLES `EmployeeOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` DISABLE KEYS */;
-INSERT INTO `EmployeeOrganizationRole` VALUES (1,17,21,'',1,'2018-03-06',NULL,NULL),(2,18,20,'',1,'2018-03-06',NULL,NULL),(3,19,25,'',1,'2018-03-06',NULL,NULL),(4,1,22,'\0',1,'2018-03-06',1,'2018-03-08'),(5,1,23,'',1,'2018-03-06',NULL,NULL),(6,20,23,'',1,'2018-03-06',1,'2018-03-06'),(7,20,24,'',1,'2018-03-06',1,'2018-03-06'),(8,20,25,'',1,'2018-03-06',1,'2018-03-06'),(9,20,26,'',1,'2018-03-06',1,'2018-03-06'),(10,21,22,'',1,'2018-03-07',1,'2018-03-07'),(11,21,23,'',1,'2018-03-07',1,'2018-03-07'),(18,27,26,'',1,'2018-03-08',1,'2018-03-08'),(19,28,21,'',1,'2018-03-08',1,'2018-03-08'),(20,29,21,'',17,'2018-03-08',17,'2018-03-08'),(21,1,25,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `EmployeeOrganizationRole` VALUES (1,17,21,'',1,'2018-03-06',NULL,NULL),(2,18,20,'',1,'2018-03-06',NULL,NULL),(3,19,25,'',1,'2018-03-06',NULL,NULL),(4,1,22,'\0',1,'2018-03-06',1,'2018-03-08'),(5,1,23,'',1,'2018-03-06',NULL,NULL),(6,20,23,'',1,'2018-03-06',1,'2018-03-06'),(7,20,24,'',1,'2018-03-06',1,'2018-03-06'),(8,20,25,'',1,'2018-03-06',1,'2018-03-06'),(9,20,26,'',1,'2018-03-06',1,'2018-03-06'),(10,21,22,'',1,'2018-03-07',1,'2018-03-07'),(11,21,23,'',1,'2018-03-07',1,'2018-03-07'),(18,27,26,'',1,'2018-03-08',1,'2018-03-08'),(19,28,21,'',1,'2018-03-08',1,'2018-03-08'),(20,29,21,'',17,'2018-03-08',17,'2018-03-08'),(21,1,25,'',1,'2018-03-12',1,'2018-03-12'),(22,30,22,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ CREATE TABLE `EmployeeSkill` (
   CONSTRAINT `EmployeeSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Employee_EmployeeSkill` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkill_EmployeeSkill` FOREIGN KEY (`SkillId`) REFERENCES `MasterSkill` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE `EmployeeSkill` (
 
 LOCK TABLES `EmployeeSkill` WRITE;
 /*!40000 ALTER TABLE `EmployeeSkill` DISABLE KEYS */;
-INSERT INTO `EmployeeSkill` VALUES (1,17,28,'',1,'2018-03-06',NULL,NULL),(2,17,29,'\0',1,'2018-03-06',17,'2018-03-08'),(3,17,31,'',1,'2018-03-06',NULL,NULL),(4,17,33,'',1,'2018-03-06',NULL,NULL),(5,17,35,'',1,'2018-03-06',NULL,NULL),(6,17,37,'',1,'2018-03-06',NULL,NULL),(7,17,38,'',1,'2018-03-06',NULL,NULL),(8,18,32,'',1,'2018-03-06',NULL,NULL),(9,18,33,'',1,'2018-03-06',NULL,NULL),(10,18,34,'',1,'2018-03-06',NULL,NULL),(11,18,35,'',1,'2018-03-06',NULL,NULL),(12,18,36,'',1,'2018-03-06',NULL,NULL),(13,18,37,'',1,'2018-03-06',NULL,NULL),(14,18,38,'',1,'2018-03-06',NULL,NULL),(15,19,28,'',1,'2018-03-06',NULL,NULL),(16,19,29,'',1,'2018-03-06',NULL,NULL),(17,19,30,'',1,'2018-03-06',NULL,NULL),(18,19,31,'',1,'2018-03-06',NULL,NULL),(19,19,32,'',1,'2018-03-06',NULL,NULL),(20,19,33,'',1,'2018-03-06',NULL,NULL),(21,19,34,'',1,'2018-03-06',NULL,NULL),(22,1,28,'',1,'2018-03-06',1,'2018-03-08'),(23,1,29,'\0',1,'2018-03-06',1,'2018-03-08'),(24,1,30,'',1,'2018-03-06',NULL,NULL),(25,1,31,'',1,'2018-03-06',NULL,NULL),(26,1,32,'',1,'2018-03-06',NULL,NULL),(27,1,33,'',1,'2018-03-06',NULL,NULL),(28,1,34,'',1,'2018-03-06',NULL,NULL),(29,20,30,'',1,'2018-03-06',1,'2018-03-06'),(30,20,31,'',1,'2018-03-06',1,'2018-03-06'),(31,20,32,'',1,'2018-03-06',1,'2018-03-06'),(32,20,33,'',1,'2018-03-06',1,'2018-03-06'),(33,20,34,'',1,'2018-03-06',1,'2018-03-06'),(34,20,35,'',1,'2018-03-06',1,'2018-03-06'),(35,20,36,'',1,'2018-03-06',1,'2018-03-06'),(36,21,28,'',1,'2018-03-07',1,'2018-03-07'),(37,21,29,'',1,'2018-03-07',1,'2018-03-07'),(38,21,30,'',1,'2018-03-07',1,'2018-03-07'),(39,21,31,'',1,'2018-03-07',1,'2018-03-07'),(40,21,32,'',1,'2018-03-07',1,'2018-03-07'),(41,21,33,'',1,'2018-03-07',1,'2018-03-07'),(42,21,34,'',1,'2018-03-07',1,'2018-03-07'),(43,21,35,'',1,'2018-03-07',1,'2018-03-07'),(50,27,32,'',1,'2018-03-08',1,'2018-03-08'),(51,28,28,'',1,'2018-03-08',1,'2018-03-08'),(52,28,29,'',1,'2018-03-08',1,'2018-03-08'),(53,28,30,'',1,'2018-03-08',1,'2018-03-08'),(54,28,31,'',1,'2018-03-08',1,'2018-03-08'),(55,28,32,'',1,'2018-03-08',1,'2018-03-08'),(56,29,42,'',17,'2018-03-08',17,'2018-03-08');
+INSERT INTO `EmployeeSkill` VALUES (1,17,28,'',1,'2018-03-06',NULL,NULL),(2,17,29,'\0',1,'2018-03-06',17,'2018-03-08'),(3,17,31,'',1,'2018-03-06',NULL,NULL),(4,17,33,'',1,'2018-03-06',NULL,NULL),(5,17,35,'',1,'2018-03-06',NULL,NULL),(6,17,37,'',1,'2018-03-06',NULL,NULL),(7,17,38,'',1,'2018-03-06',NULL,NULL),(8,18,32,'',1,'2018-03-06',NULL,NULL),(9,18,33,'',1,'2018-03-06',NULL,NULL),(10,18,34,'',1,'2018-03-06',NULL,NULL),(11,18,35,'',1,'2018-03-06',NULL,NULL),(12,18,36,'',1,'2018-03-06',NULL,NULL),(13,18,37,'',1,'2018-03-06',NULL,NULL),(14,18,38,'',1,'2018-03-06',NULL,NULL),(15,19,28,'',1,'2018-03-06',NULL,NULL),(16,19,29,'',1,'2018-03-06',NULL,NULL),(17,19,30,'',1,'2018-03-06',NULL,NULL),(18,19,31,'',1,'2018-03-06',NULL,NULL),(19,19,32,'',1,'2018-03-06',NULL,NULL),(20,19,33,'',1,'2018-03-06',NULL,NULL),(21,19,34,'',1,'2018-03-06',NULL,NULL),(22,1,28,'\0',1,'2018-03-06',1,'2018-03-13'),(23,1,29,'\0',1,'2018-03-06',1,'2018-03-08'),(24,1,30,'\0',1,'2018-03-06',1,'2018-03-13'),(25,1,31,'',1,'2018-03-06',NULL,NULL),(26,1,32,'',1,'2018-03-06',NULL,NULL),(27,1,33,'',1,'2018-03-06',NULL,NULL),(28,1,34,'',1,'2018-03-06',NULL,NULL),(29,20,30,'',1,'2018-03-06',1,'2018-03-06'),(30,20,31,'',1,'2018-03-06',1,'2018-03-06'),(31,20,32,'',1,'2018-03-06',1,'2018-03-06'),(32,20,33,'',1,'2018-03-06',1,'2018-03-06'),(33,20,34,'',1,'2018-03-06',1,'2018-03-06'),(34,20,35,'',1,'2018-03-06',1,'2018-03-06'),(35,20,36,'',1,'2018-03-06',1,'2018-03-06'),(36,21,28,'',1,'2018-03-07',1,'2018-03-07'),(37,21,29,'',1,'2018-03-07',1,'2018-03-07'),(38,21,30,'',1,'2018-03-07',1,'2018-03-07'),(39,21,31,'',1,'2018-03-07',1,'2018-03-07'),(40,21,32,'',1,'2018-03-07',1,'2018-03-07'),(41,21,33,'',1,'2018-03-07',1,'2018-03-07'),(42,21,34,'',1,'2018-03-07',1,'2018-03-07'),(43,21,35,'',1,'2018-03-07',1,'2018-03-07'),(50,27,32,'',1,'2018-03-08',1,'2018-03-08'),(51,28,28,'',1,'2018-03-08',1,'2018-03-08'),(52,28,29,'',1,'2018-03-08',1,'2018-03-08'),(53,28,30,'',1,'2018-03-08',1,'2018-03-08'),(54,28,31,'',1,'2018-03-08',1,'2018-03-08'),(55,28,32,'',1,'2018-03-08',1,'2018-03-08'),(56,29,42,'',17,'2018-03-08',17,'2018-03-08'),(57,1,40,'',1,'2018-03-13',1,'2018-03-13'),(58,30,28,'',1,'2018-03-13',1,'2018-03-13'),(59,30,29,'',1,'2018-03-13',1,'2018-03-13'),(60,30,30,'',1,'2018-03-13',1,'2018-03-13'),(61,30,31,'',1,'2018-03-13',1,'2018-03-13'),(62,30,32,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `EmployeeSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +243,7 @@ CREATE TABLE `IdentityEmployeeGroup` (
   CONSTRAINT `IdentityEmployeeGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityEmployeeGroup_Employee` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityEmployeeGroup_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +252,7 @@ CREATE TABLE `IdentityEmployeeGroup` (
 
 LOCK TABLES `IdentityEmployeeGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityEmployeeGroup` DISABLE KEYS */;
-INSERT INTO `IdentityEmployeeGroup` VALUES (23,17,115,'',1,'2018-03-09',1,'2018-03-09'),(24,1,115,'',1,'2018-03-09',1,'2018-03-09'),(30,27,116,'',1,'2018-03-09',1,'2018-03-09'),(31,21,117,'',1,'2018-03-09',1,'2018-03-09'),(32,19,117,'',1,'2018-03-09',1,'2018-03-09'),(33,28,117,'',1,'2018-03-09',1,'2018-03-09'),(34,20,117,'',1,'2018-03-09',1,'2018-03-09'),(35,18,117,'\0',1,'2018-03-09',1,'2018-03-09'),(36,1,117,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `IdentityEmployeeGroup` VALUES (31,21,117,'',1,'2018-03-09',1,'2018-03-09'),(32,19,117,'',1,'2018-03-09',1,'2018-03-09'),(33,28,117,'',1,'2018-03-09',1,'2018-03-09'),(34,20,117,'',1,'2018-03-09',1,'2018-03-09'),(35,18,117,'\0',1,'2018-03-09',1,'2018-03-09'),(36,1,117,'',1,'2018-03-12',1,'2018-03-12'),(37,30,117,'',1,'2018-03-13',1,'2018-03-13'),(38,27,116,'',1,'2018-03-13',1,'2018-03-13'),(45,27,115,'',1,'2018-03-13',1,'2018-03-13'),(46,1,115,'',1,'2018-03-13',1,'2018-03-13'),(47,17,115,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `IdentityEmployeeGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +277,7 @@ CREATE TABLE `IdentityGroup` (
   KEY `IdentityGroupCreatedBy_Employee_Id` (`CreatedBy`),
   CONSTRAINT `IdentityGroupCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,7 +286,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
-INSERT INTO `IdentityGroup` VALUES (115,'Super Admin','Super Admin','',1,'2018-03-09',1,'2018-03-09'),(116,'Manager','Manager','',1,'2018-03-09',1,'2018-03-09'),(117,'Employee','Employee','',1,'2018-03-09',1,'2018-03-09');
+INSERT INTO `IdentityGroup` VALUES (115,'Super Admin','Super Admin','',1,'2018-03-09',1,'2018-03-09'),(116,'Manager','Manager','',1,'2018-03-09',1,'2018-03-13'),(117,'Employee','Employee','',1,'2018-03-09',1,'2018-03-09'),(119,'Admin','Admin','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `IdentityGroupRight` (
   CONSTRAINT `IdentityGroupRightCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRightUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRight_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +323,7 @@ CREATE TABLE `IdentityGroupRight` (
 
 LOCK TABLES `IdentityGroupRight` WRITE;
 /*!40000 ALTER TABLE `IdentityGroupRight` DISABLE KEYS */;
-INSERT INTO `IdentityGroupRight` VALUES (1,115,202,7,'\0',1,'2018-03-09',1,'2018-03-09'),(2,115,200,7,'\0',1,'2018-03-09',1,'2018-03-09'),(3,115,201,7,'\0',1,'2018-03-09',1,'2018-03-09'),(4,115,403,7,'\0',1,'2018-03-09',1,'2018-03-09'),(5,115,400,7,'\0',1,'2018-03-09',1,'2018-03-09'),(6,115,305,7,'\0',1,'2018-03-09',1,'2018-03-09'),(7,115,301,7,'\0',1,'2018-03-09',1,'2018-03-09'),(8,115,302,7,'\0',1,'2018-03-09',1,'2018-03-09'),(9,115,303,7,'\0',1,'2018-03-09',1,'2018-03-09'),(10,115,304,7,'\0',1,'2018-03-09',1,'2018-03-09'),(11,115,300,7,'\0',1,'2018-03-09',1,'2018-03-09'),(12,115,401,7,'\0',1,'2018-03-09',1,'2018-03-09'),(13,115,402,7,'\0',1,'2018-03-09',1,'2018-03-09'),(14,116,202,0,'\0',1,'2018-03-09',1,'2018-03-09'),(15,116,200,0,'\0',1,'2018-03-09',1,'2018-03-09'),(16,116,201,0,'\0',1,'2018-03-09',1,'2018-03-09'),(17,116,403,4,'\0',1,'2018-03-09',1,'2018-03-09'),(18,116,400,4,'\0',1,'2018-03-09',1,'2018-03-09'),(19,116,305,0,'\0',1,'2018-03-09',1,'2018-03-09'),(20,116,301,0,'\0',1,'2018-03-09',1,'2018-03-09'),(21,116,302,0,'\0',1,'2018-03-09',1,'2018-03-09'),(22,116,303,0,'\0',1,'2018-03-09',1,'2018-03-09'),(23,116,304,0,'\0',1,'2018-03-09',1,'2018-03-09'),(24,116,300,0,'\0',1,'2018-03-09',1,'2018-03-09'),(25,116,401,4,'\0',1,'2018-03-09',1,'2018-03-09'),(26,116,402,4,'\0',1,'2018-03-09',1,'2018-03-09'),(27,117,202,0,'\0',1,'2018-03-09',1,'2018-03-09'),(28,117,200,0,'\0',1,'2018-03-09',1,'2018-03-09'),(29,117,201,0,'\0',1,'2018-03-09',1,'2018-03-09'),(30,117,403,0,'\0',1,'2018-03-09',1,'2018-03-09'),(31,117,400,0,'\0',1,'2018-03-09',1,'2018-03-09'),(32,117,305,0,'\0',1,'2018-03-09',1,'2018-03-09'),(33,117,301,0,'\0',1,'2018-03-09',1,'2018-03-09'),(34,117,302,0,'\0',1,'2018-03-09',1,'2018-03-09'),(35,117,303,0,'\0',1,'2018-03-09',1,'2018-03-09'),(36,117,304,0,'\0',1,'2018-03-09',1,'2018-03-09'),(37,117,300,0,'\0',1,'2018-03-09',1,'2018-03-09'),(38,117,401,4,'\0',1,'2018-03-09',1,'2018-03-09'),(39,117,402,0,'\0',1,'2018-03-09',1,'2018-03-09');
+INSERT INTO `IdentityGroupRight` VALUES (1,115,202,7,'\0',1,'2018-03-09',1,'2018-03-09'),(2,115,200,7,'\0',1,'2018-03-09',1,'2018-03-09'),(3,115,201,7,'\0',1,'2018-03-09',1,'2018-03-09'),(4,115,403,7,'\0',1,'2018-03-09',1,'2018-03-09'),(5,115,400,7,'\0',1,'2018-03-09',1,'2018-03-09'),(6,115,305,7,'\0',1,'2018-03-09',1,'2018-03-09'),(7,115,301,7,'\0',1,'2018-03-09',1,'2018-03-09'),(8,115,302,7,'\0',1,'2018-03-09',1,'2018-03-09'),(9,115,303,7,'\0',1,'2018-03-09',1,'2018-03-09'),(10,115,304,7,'\0',1,'2018-03-09',1,'2018-03-09'),(11,115,300,7,'\0',1,'2018-03-09',1,'2018-03-09'),(12,115,401,7,'\0',1,'2018-03-09',1,'2018-03-09'),(13,115,402,7,'\0',1,'2018-03-09',1,'2018-03-09'),(14,116,202,0,'\0',1,'2018-03-09',1,'2018-03-09'),(15,116,200,0,'\0',1,'2018-03-09',1,'2018-03-09'),(16,116,201,0,'\0',1,'2018-03-09',1,'2018-03-09'),(17,116,403,6,'\0',1,'2018-03-09',1,'2018-03-13'),(18,116,400,6,'\0',1,'2018-03-09',1,'2018-03-13'),(19,116,305,0,'\0',1,'2018-03-09',1,'2018-03-09'),(20,116,301,0,'\0',1,'2018-03-09',1,'2018-03-09'),(21,116,302,0,'\0',1,'2018-03-09',1,'2018-03-09'),(22,116,303,0,'\0',1,'2018-03-09',1,'2018-03-09'),(23,116,304,0,'\0',1,'2018-03-09',1,'2018-03-09'),(24,116,300,0,'\0',1,'2018-03-09',1,'2018-03-09'),(25,116,401,4,'\0',1,'2018-03-09',1,'2018-03-09'),(26,116,402,4,'\0',1,'2018-03-09',1,'2018-03-09'),(27,117,202,0,'\0',1,'2018-03-09',1,'2018-03-09'),(28,117,200,0,'\0',1,'2018-03-09',1,'2018-03-09'),(29,117,201,0,'\0',1,'2018-03-09',1,'2018-03-09'),(30,117,403,0,'\0',1,'2018-03-09',1,'2018-03-09'),(31,117,400,0,'\0',1,'2018-03-09',1,'2018-03-09'),(32,117,305,0,'\0',1,'2018-03-09',1,'2018-03-09'),(33,117,301,0,'\0',1,'2018-03-09',1,'2018-03-09'),(34,117,302,0,'\0',1,'2018-03-09',1,'2018-03-09'),(35,117,303,0,'\0',1,'2018-03-09',1,'2018-03-09'),(36,117,304,0,'\0',1,'2018-03-09',1,'2018-03-09'),(37,117,300,0,'\0',1,'2018-03-09',1,'2018-03-09'),(38,117,401,4,'\0',1,'2018-03-09',1,'2018-03-09'),(39,117,402,0,'\0',1,'2018-03-09',1,'2018-03-09'),(53,119,202,7,'\0',1,'2018-03-13',1,'2018-03-13'),(54,119,200,7,'\0',1,'2018-03-13',1,'2018-03-13'),(55,119,201,7,'\0',1,'2018-03-13',1,'2018-03-13'),(56,119,403,0,'\0',1,'2018-03-13',1,'2018-03-13'),(57,119,400,0,'\0',1,'2018-03-13',1,'2018-03-13'),(58,119,305,0,'\0',1,'2018-03-13',1,'2018-03-13'),(59,119,301,0,'\0',1,'2018-03-13',1,'2018-03-13'),(60,119,302,0,'\0',1,'2018-03-13',1,'2018-03-13'),(61,119,303,0,'\0',1,'2018-03-13',1,'2018-03-13'),(62,119,304,0,'\0',1,'2018-03-13',1,'2018-03-13'),(63,119,300,0,'\0',1,'2018-03-13',1,'2018-03-13'),(64,119,401,0,'\0',1,'2018-03-13',1,'2018-03-13'),(65,119,402,0,'\0',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `IdentityGroupRight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +410,7 @@ CREATE TABLE `MasterClient` (
   KEY `MasterClientUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +419,7 @@ CREATE TABLE `MasterClient` (
 
 LOCK TABLES `MasterClient` WRITE;
 /*!40000 ALTER TABLE `MasterClient` DISABLE KEYS */;
-INSERT INTO `MasterClient` VALUES (15,'Abbott Laboratories',2,6,'',1,'2018-01-01',NULL,NULL),(16,'Aarons, Inc',2,6,'',1,'2018-01-01',NULL,NULL),(17,'Walmart',2,6,'\0',1,'2018-01-01',NULL,NULL),(18,'ExxonMobil',2,6,'',1,'2018-01-01',NULL,NULL);
+INSERT INTO `MasterClient` VALUES (15,'Abbott Laboratories',2,6,'',1,'2018-01-01',NULL,NULL),(16,'Aarons, Inc',2,6,'',1,'2018-01-01',NULL,NULL),(17,'Walmart',2,6,'',1,'2018-01-01',1,'2018-03-13'),(18,'ExxonMobil',2,6,'',1,'2018-01-01',NULL,NULL),(19,'Jumbo Jet',1,1,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -495,7 +495,7 @@ CREATE TABLE `MasterDepartment` (
   KEY `MasterDepartmentUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterDepartmentCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterDepartmentUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -504,7 +504,7 @@ CREATE TABLE `MasterDepartment` (
 
 LOCK TABLES `MasterDepartment` WRITE;
 /*!40000 ALTER TABLE `MasterDepartment` DISABLE KEYS */;
-INSERT INTO `MasterDepartment` VALUES (20,'Delivery','Vivek Phadke','',1,'2018-01-01',1,'2018-03-07'),(21,'HR','Uma Ramani','',1,'2018-01-01',NULL,NULL),(22,'Sales','Neel Vartikar','',1,'2018-01-01',NULL,NULL),(23,'Management','Nikhil Ambekar','',1,'2018-01-01',NULL,NULL),(24,'Technical','Vikrant Labde','',1,'2018-01-01',NULL,NULL),(25,'Admin','Admin','',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `MasterDepartment` VALUES (20,'Delivery','Vivek Phadke','',1,'2018-01-01',1,'2018-03-13'),(21,'HR','Uma Ramani','',1,'2018-01-01',NULL,NULL),(22,'Sales','Neel Vartikar','',1,'2018-01-01',NULL,NULL),(23,'Management','Nikhil Ambekar','',1,'2018-01-01',NULL,NULL),(24,'Technical','Vikrant Labde','',1,'2018-01-01',NULL,NULL),(25,'Admin','Admin','',1,'2018-03-06',1,'2018-03-06'),(26,'Cafeteria','Kaka','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,7 +528,7 @@ CREATE TABLE `MasterOrganizationRole` (
   KEY `MasterOrganizationRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterOrganizationRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterOrganizationRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -537,7 +537,7 @@ CREATE TABLE `MasterOrganizationRole` (
 
 LOCK TABLES `MasterOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `MasterOrganizationRole` DISABLE KEYS */;
-INSERT INTO `MasterOrganizationRole` VALUES (20,'Software Engineer','',1,'2018-01-01',NULL,NULL),(21,'Sr. Software Engineer','',1,'2018-01-01',NULL,NULL),(22,'Devops','',1,'2018-01-01',NULL,NULL),(23,'Trainee Software Engineer','',1,'2018-01-01',NULL,NULL),(24,'Principle Engineer','',1,'2018-01-01',NULL,NULL),(25,'Project Manager','',1,'2018-01-01',NULL,NULL),(26,'Sr. Project Manager','',1,'2018-01-01',NULL,NULL),(27,'Rails Developer','',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `MasterOrganizationRole` VALUES (20,'Software Engineer','',1,'2018-01-01',NULL,NULL),(21,'Sr. Software Engineer','',1,'2018-01-01',1,'2018-03-13'),(22,'Devops','',1,'2018-01-01',NULL,NULL),(23,'Trainee Software Engineer','',1,'2018-01-01',NULL,NULL),(24,'Principle Engineer','',1,'2018-01-01',NULL,NULL),(25,'Project Manager','',1,'2018-01-01',NULL,NULL),(26,'Sr. Project Manager','',1,'2018-01-01',NULL,NULL),(27,'Rails Developer','',1,'2018-03-06',1,'2018-03-06'),(28,'Desktop Engineer','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -561,7 +561,7 @@ CREATE TABLE `MasterProjectType` (
   KEY `MasterProjectTypeUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectTypeCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectTypeUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -570,7 +570,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
-INSERT INTO `MasterProjectType` VALUES (11,'Billable','',1,'2018-01-01',NULL,NULL),(12,'Non Billable','\0',1,'2018-01-01',NULL,NULL),(13,'In House','',1,'2018-01-01',NULL,NULL),(14,'R & D','',1,'2018-01-01',NULL,NULL);
+INSERT INTO `MasterProjectType` VALUES (11,'Billable','',1,'2018-01-01',NULL,NULL),(12,'Non Billable','',1,'2018-01-01',1,'2018-03-13'),(13,'In House','',1,'2018-01-01',NULL,NULL),(14,'R & D','\0',1,'2018-01-01',NULL,NULL),(15,'Client','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -594,7 +594,7 @@ CREATE TABLE `MasterRole` (
   KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -603,7 +603,7 @@ CREATE TABLE `MasterRole` (
 
 LOCK TABLES `MasterRole` WRITE;
 /*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
-INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'Trainee Develop','',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'Trainee Develop','',1,'2018-03-12',1,'2018-03-13'),(19,'Angular Developer','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -627,7 +627,7 @@ CREATE TABLE `MasterSkill` (
   KEY `MasterSkillUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterSkillCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -636,7 +636,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
-INSERT INTO `MasterSkill` VALUES (28,'C#','',1,'2018-01-01',NULL,NULL),(29,'Html','',1,'2018-01-01',NULL,NULL),(30,'Jquery','',1,'2018-01-01',NULL,NULL),(31,'Javascript','',1,'2018-01-01',NULL,NULL),(32,'SQL','',1,'2018-01-01',NULL,NULL),(33,'AngularJS 1','',1,'2018-01-01',NULL,NULL),(34,'Angular 4','',1,'2018-01-01',NULL,NULL),(35,'LINQ','',1,'2018-01-01',NULL,NULL),(36,'Entity Framework','',1,'2018-01-01',NULL,NULL),(37,'Ionic Cordova','',1,'2018-01-01',NULL,NULL),(38,'Scala','',1,'2018-01-01',NULL,NULL),(39,'Swift','',1,'2018-01-01',NULL,NULL),(40,'Python','',1,'2018-01-01',NULL,NULL),(41,'NodeJS','',1,'2018-01-01',NULL,NULL),(42,'Ruby On Rails','',1,'2018-03-06',1,'2018-03-06');
+INSERT INTO `MasterSkill` VALUES (28,'C#','',1,'2018-01-01',1,'2018-03-13'),(29,'Html','',1,'2018-01-01',NULL,NULL),(30,'Jquery','',1,'2018-01-01',NULL,NULL),(31,'Javascript','',1,'2018-01-01',NULL,NULL),(32,'SQL','',1,'2018-01-01',NULL,NULL),(33,'AngularJS 1','',1,'2018-01-01',NULL,NULL),(34,'Angular 4','',1,'2018-01-01',NULL,NULL),(35,'LINQ','',1,'2018-01-01',NULL,NULL),(36,'Entity Framework','',1,'2018-01-01',NULL,NULL),(37,'Ionic Cordova','',1,'2018-01-01',NULL,NULL),(38,'Scala','',1,'2018-01-01',NULL,NULL),(39,'Swift','',1,'2018-01-01',NULL,NULL),(40,'Python','',1,'2018-01-01',NULL,NULL),(41,'NodeJS','',1,'2018-01-01',NULL,NULL),(42,'Ruby On Rails','',1,'2018-03-06',1,'2018-03-06'),(43,'SCSS','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -668,7 +668,7 @@ CREATE TABLE `Project` (
   CONSTRAINT `ProjectCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `ProjectUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Project_MasterProjectType` FOREIGN KEY (`ProjectTypeId`) REFERENCES `MasterProjectType` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -677,7 +677,7 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-12'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-12'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-13'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-12'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(23,'E Learning System',11,'2018-03-13',NULL,'E Learning System',16,'\0','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,7 +710,7 @@ CREATE TABLE `ProjectRole` (
   CONSTRAINT `project_Id` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),
   CONSTRAINT `role_Id` FOREIGN KEY (`RoleId`) REFERENCES `MasterRole` (`Id`),
   CONSTRAINT `updatedby_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +719,7 @@ CREATE TABLE `ProjectRole` (
 
 LOCK TABLES `ProjectRole` WRITE;
 /*!40000 ALTER TABLE `ProjectRole` DISABLE KEYS */;
-INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL),(28,15,16,899,6,'',1,'2018-03-12',1,'2018-03-12'),(29,15,16,23,6,'',1,'2018-03-12',1,'2018-03-12');
+INSERT INTO `ProjectRole` VALUES (22,17,18,123,6,'',1,'2018-03-12',1,'2018-03-12'),(23,22,18,89,6,'',1,'2018-03-12',1,'2018-03-12'),(24,22,17,90,5,'',1,'2018-03-12',1,'2018-03-12'),(25,21,18,121212,5,'\0',1,'2018-03-12',1,'2018-03-12'),(26,18,17,123,6,'',1,'2018-03-12',1,'2018-03-12'),(27,17,17,677,6,'',1,'2018-03-12',NULL,NULL),(28,15,16,899,6,'',1,'2018-03-12',1,'2018-03-13'),(29,15,16,23,6,'',1,'2018-03-12',1,'2018-03-13'),(30,23,18,100,6,'',1,'2018-03-13',1,'2018-03-13'),(31,23,19,1200,6,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `ProjectRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -730,7 +730,7 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'CuelogicResourceManagement'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `Common_LogLoginTime` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -740,28 +740,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Common_LogLoginTime`(
-	IN employeeId INT(11)
-)
-BEGIN
-	UPDATE Employee SET LastLogin = NOW() WHERE Id = employeeId;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_AddOrUpdate` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_AddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_AddOrUpdate`(
 	IN aId INT(11),
     IN aEmployeeId INT(11),
     IN aProjectRoleId INT(11), 
@@ -777,56 +756,67 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_AddOrUpdate`(
     IN aCreatedOn varchar(50)
 )
 BEGIN
-INSERT INTO Allocation
-    (
-		`Id`,
-		`EmployeeId`,
-        `ProjectRoleId`,
-		`ProjectId`,
-		`IsBillable`,
-        `PercentageAllocation`,
-        `StartDate`,
-        `EndDate`,
-        `IsValid`,
-        `CreatedBy`,
-        `CreatedOn`,
-        `UpdatedBy`,
-        `UpdatedOn`
-	)
-    VALUES
-    (
-		aId,
-		aEmployeeId,
-        aProjectRoleId,
-		aProjectId,
-		aIsBillable,
-        aPercentageAllocation,
-		IF((aStartDate = ''), NULL,aStartDate), 
-        IF((aEndDate = ''), NULL,aEndDate),
-        aIsValid,
-        aCreatedBy,
-        aCreatedOn,
-        aCreatedBy,
-        aCreatedOn
-    )
-    ON DUPLICATE KEY UPDATE
-		EmployeeId = aEmployeeId,
-        ProjectRoleId = aProjectRoleId,
-		ProjectId = aProjectId,
-		IsBillable = aIsBillable,
-        PercentageAllocation= aPercentageAllocation,
-        StartDate= IF((aStartDate = ''), NULL,aStartDate), 
-        EndDate = IF((aEndDate = ''), NULL,aEndDate),
-        IsValid = aIsValid,
-		UpdatedBy= aUpdatedBy,
-        UpdatedOn = aUpdatedOn;
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+
+		INSERT INTO Allocation
+		(
+			`Id`,
+			`EmployeeId`,
+			`ProjectRoleId`,
+			`ProjectId`,
+			`IsBillable`,
+			`PercentageAllocation`,
+			`StartDate`,
+			`EndDate`,
+			`IsValid`,
+			`CreatedBy`,
+			`CreatedOn`,
+			`UpdatedBy`,
+			`UpdatedOn`
+		)
+		VALUES
+		(
+			aId,
+			aEmployeeId,
+			aProjectRoleId,
+			aProjectId,
+			aIsBillable,
+			aPercentageAllocation,
+			IF((aStartDate = ''), NULL,aStartDate), 
+			IF((aEndDate = ''), NULL,aEndDate),
+			aIsValid,
+			aCreatedBy,
+			aCreatedOn,
+			aCreatedBy,
+			aCreatedOn
+		)
+		ON DUPLICATE KEY UPDATE
+			EmployeeId = aEmployeeId,
+			ProjectRoleId = aProjectRoleId,
+			ProjectId = aProjectId,
+			IsBillable = aIsBillable,
+			PercentageAllocation= aPercentageAllocation,
+			StartDate= IF((aStartDate = ''), NULL,aStartDate), 
+			EndDate = IF((aEndDate = ''), NULL,aEndDate),
+			IsValid = aIsValid,
+			UpdatedBy= aUpdatedBy,
+			UpdatedOn = aUpdatedOn;
+			
+	COMMIT;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -836,10 +826,11 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_Get`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_Get`(
 	IN aId INT(11)
 )
 BEGIN
+
 	SELECT
 		a.Id,
         a.EmployeeId,
@@ -847,15 +838,15 @@ BEGIN
         a.ProjectId,
         a.IsBillable,
         a.PercentageAllocation,
-        DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate,
-        DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
+        DATE_FORMAT(a.StartDate,'%Y/%m/%d') AS StartDate,
+        DATE_FORMAT(a.EndDate,'%Y/%m/%d') AS EndDate,
         a.IsValid,
 		a.CreatedBy,
 		a.CreatedOn,
 		a.UpdatedBy,
 		a.UpdatedOn,
-        CONCAT(b.FirstName,' ',b.LastName) as CreatedByName,
-        CONCAT(c.FirstName,' ',c.LastName) as UpdatedByName
+        CONCAT(b.FirstName,' ',b.LastName) AS CreatedByName,
+        CONCAT(c.FirstName,' ',c.LastName) AS UpdatedByName
 	FROM
 		Allocation a
 	LEFT JOIN 
@@ -864,7 +855,7 @@ BEGIN
 		Employee c ON a.UpdatedBy = c.Id
 	WHERE
 		a.Id = aId
-	Group By a.EmployeeId;
+	GROUP BY a.EmployeeId;
         
 END ;;
 DELIMITER ;
@@ -872,7 +863,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_GetAllocationSum` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_GetAllocationSum` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -882,18 +873,24 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetAllocationSum`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_GetAllocationSum`(
 	IN aId INT(11)
 )
 BEGIN
-	SELECT SUM(PercentageAllocation) FROM Allocation WHERE EmployeeId = aId AND IsValid = true;
+	SELECT 
+		SUM(PercentageAllocation) 
+	FROM 
+		Allocation 
+	WHERE 
+		EmployeeId = aId AND 
+        IsValid = true;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -903,22 +900,22 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetList`(
-IN filterText varchar(200), 
-IN recordFrom int(4), 
-IN recordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_GetList`(
+IN filterText VARCHAR(200), 
+IN recordFrom INT(4), 
+IN recordTill INT(4)
 )
 BEGIN
 	SELECT
 		a.Id,
-        CONCAT(b.FirstName,' ', b.MiddleName ,' ',b.LastName) as FullName,
+        CONCAT(b.FirstName,' ', b.MiddleName ,' ',b.LastName) AS FullName,
         x.Role,
         d.ProjectName,
-        if(a.IsBillable,'Yes','No') as IsBillable,
+        IF(a.IsBillable,'Yes','No') AS IsBillable,
         a.PercentageAllocation,
-        DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate, 
-        DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
-        if(a.IsValid,'Yes','No') as IsValid
+        DATE_FORMAT(a.StartDate,'%Y/%m/%d') AS StartDate, 
+        DATE_FORMAT(a.EndDate,'%Y/%m/%d') AS EndDate,
+        IF(a.IsValid,'Yes','No') AS IsValid
 	FROM 
 		Allocation a
 	INNER JOIN Employee b ON a.EmployeeId = b.Id
@@ -926,18 +923,19 @@ BEGIN
     INNER JOIN MasterRole x ON c.RoleId = x.Id
     INNER JOIN Project d ON a.ProjectId = d.Id
     WHERE
-		b.FirstName like concat('%', filterText,'%') or
-		b.MiddleName like concat('%', filterText,'%') or
-		b.LastName like concat('%', filterText,'%') or
-		x.Role like concat('%', filterText,'%') or
-		d.ProjectName like concat('%', filterText,'%') or
-		a.StartDate like concat('%', filterText,'%') or
-		a.EndDate like concat('%', filterText,'%') or
-		a.PercentageAllocation like concat('%', filterText,'%') or
-		a.IsBillable = if(filterText = 'yes',true,false) or
-        a.IsValid = if(filterText = 'yes',true,false)
-	ORDER BY a. EmployeeId Asc
-	limit 
+		b.FirstName LIKE concat('%', filterText,'%') OR
+		b.MiddleName LIKE concat('%', filterText,'%') OR
+		b.LastName LIKE concat('%', filterText,'%') OR
+		x.Role LIKE concat('%', filterText,'%') OR
+		d.ProjectName LIKE concat('%', filterText,'%') OR
+		a.StartDate LIKE concat('%', filterText,'%') OR
+		a.EndDate LIKE concat('%', filterText,'%') OR
+		a.PercentageAllocation LIKE concat('%', filterText,'%') OR
+		a.IsBillable = IF(filterText = 'yes',true,false) OR
+        a.IsValid = IF(filterText = 'yes',true,false)
+	ORDER BY 
+		a. EmployeeId ASC
+	LIMIT 
 		recordFrom, recordTill;
         
 END ;;
@@ -946,7 +944,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_GetRoleByProject` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_GetRoleByProject` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -956,7 +954,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetRoleByProject`(IN aProjectId INT(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_GetRoleByProject`(
+	IN aProjectId INT(11)
+)
 BEGIN
 	SELECT 
 		b.Id,
@@ -978,7 +978,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_GetSelectList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_GetSelectList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -988,17 +988,28 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_GetSelectList`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_GetSelectList`()
 BEGIN
-	SELECT Id, CONCAT(FirstName,' ',MiddleName,' ',LastName) AS FullName FROM Employee WHERE IsValid = true;
-    SELECT Id, ProjectName FROM Project  WHERE IsValid = true;
+
+	SELECT 
+		Id, 
+		CONCAT(FirstName,' ',MiddleName,' ',LastName) AS FullName 
+	FROM Employee 
+	WHERE IsValid = true;
+        
+    SELECT 
+		Id, 
+        ProjectName 
+	FROM Project  
+    WHERE IsValid = true;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spAllocation_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Allocation_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1008,23 +1019,36 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllocation_MarkInvalid`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_MarkInvalid`(
 	IN aId INT(11)
 )
 BEGIN
-	UPDATE Allocation SET
-		IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	UPDATE Allocation 
+    SET IsValid = CASE 
+					  WHEN IsValid = 1 THEN 0 
+					  WHEN IsValid = 0 THEN 1 
+                  END
 	WHERE
 		Id = aId;
+	
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployeeAllocation_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Common_LogLoginTime` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1034,7 +1058,40 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployeeAllocation_GetList`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Common_LogLoginTime`(
+	IN employeeId INT(11)
+)
+BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	UPDATE Employee SET LastLogin = NOW() WHERE Id = employeeId;
+    
+    COMMIT;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `EmployeeAllocation_GetList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EmployeeAllocation_GetList`(
 	IN employeeId INT(11)
 )
 BEGIN
@@ -1065,7 +1122,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployeeDepartment_BulkAddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `EmployeeDepartment_BulkAddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1075,7 +1132,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployeeDepartment_BulkAddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EmployeeDepartment_BulkAddOrUpdate`(
 	IN xmlText text,
     IN userId int(11)
 )
@@ -1087,6 +1144,14 @@ BEGIN
     DECLARE masterEmployeeId INT(11);
     DECLARE masterDepartmentId INT(11);
     DECLARE isDepartmentValid BIT;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfEmployeeDepartment/EmployeeDepartment)');
 		WHILE i <= nodeCount DO
@@ -1142,13 +1207,16 @@ BEGIN
                       
 		SET i = i+1;
 		END WHILE;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployeeGroup_BulkAddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `EmployeeGroup_BulkAddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1158,18 +1226,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployeeGroup_BulkAddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EmployeeGroup_BulkAddOrUpdate`(
 	IN xmlText text,
     IN userId int(11)
 )
 BEGIN
-DECLARE i INT DEFAULT 1;
+	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
-    
     DECLARE employeeGroupId INT(11);
     DECLARE masterEmployeeId INT(11);
     DECLARE masterGroupId INT(11);
     DECLARE isGroupValid BIT;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfIdentityEmployeeGroup/IdentityEmployeeGroup)');
 		WHILE i <= nodeCount DO
@@ -1224,13 +1299,16 @@ DECLARE i INT DEFAULT 1;
                       
 		SET i = i+1;
 		END WHILE;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployeeOrganizationRole_BulkAddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `EmployeeOrganizationRole_BulkAddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1240,18 +1318,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployeeOrganizationRole_BulkAddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EmployeeOrganizationRole_BulkAddOrUpdate`(
 	IN xmlText text,
     IN userId int(11)
 )
 BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
-    
     DECLARE employeeOrgRoleId INT(11);
     DECLARE masterEmployeeId INT(11);
     DECLARE masterOrgRoleId INT(11);
     DECLARE isOrgRoleValid BIT;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfEmployeeOrganizationRole/EmployeeOrganizationRole)');
 	WHILE i <= nodeCount DO
@@ -1307,13 +1392,16 @@ BEGIN
 	
 	SET i = i+1;
 	END WHILE;
+    
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployeeRights_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `EmployeeRights_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1323,13 +1411,20 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployeeRights_Get`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EmployeeRights_Get`(
 	IN employeeId INT(11)
 )
 BEGIN
 	SELECT 
-		d.Id,d.GroupId, d.RightId,d.Action,d.IsValid,d.CreatedBy,d.CreatedOn,
-        d.UpdatedBy,d.UpdatedOn
+		d.Id,
+        d.GroupId, 
+        d.RightId,
+        d.Action,
+        d.IsValid,
+        d.CreatedBy,
+        d.CreatedOn,
+        d.UpdatedBy,
+        d.UpdatedOn
     FROM 
 		Employee a
 	INNER JOIN IdentityEmployeeGroup b on a.Id = b.EmployeeId 
@@ -1345,7 +1440,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployeeSkill_BulkAddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `EmployeeSkill_BulkAddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1355,18 +1450,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployeeSkill_BulkAddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EmployeeSkill_BulkAddOrUpdate`(
 	IN xmlText text,
     IN userId int(11)
 )
 BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
-    
     DECLARE employeeSkillId INT(11);
     DECLARE masterEmployeeId INT(11);
     DECLARE masterSkillId INT(11);
     DECLARE isSkillValid BIT;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfEmployeeSkill/EmployeeSkill)');
 		WHILE i <= nodeCount DO
@@ -1419,17 +1521,18 @@ BEGIN
 				EmployeeId = masterEmployeeId,
                 SkillId = masterSkillId,
                 IsValid = isSkillValid;
-                                      
-		
+                          
 		SET i = i+1;
 		END WHILE;
+        
+        COMMIT;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_AddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1439,7 +1542,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_AddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_AddOrUpdate`(
 	IN employeeId int(11),
 	IN firstName varchar(150),
     IN middleName varchar(150),
@@ -1456,6 +1559,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_AddOrUpdate`(
     IN createdOn varchar(50)
 )
 BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION;
+    
 	INSERT INTO Employee 
     (
 		`Id`,
@@ -1503,13 +1615,15 @@ BEGIN
 		UpdatedBy =updatedBy,
 		UpdatedOn = updatedOn;
     
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetByEmailId` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetByEmailId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1519,16 +1633,18 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetByEmailId`(IN EmailId varchar(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetByEmailId`(
+	IN EmailId varchar(100)
+)
 BEGIN
-select * from Employee where Email = EmailId;
+	SELECT * FROM Employee WHERE Email = EmailId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetById` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetById` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1538,7 +1654,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetById`(IN employeeId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetById`(
+	IN employeeId int(11)
+)
 BEGIN
 
 	SELECT
@@ -1573,7 +1691,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetByOrgEmpId` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetByOrgEmpId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1583,18 +1701,18 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetByOrgEmpId`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetByOrgEmpId`(
 	IN eOrgEmpId varchar(150)
 )
 BEGIN
-select * from Employee where OrgEmpId = eOrgEmpId;
+	SELECT * FROM Employee WHERE OrgEmpId = eOrgEmpId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetChildValidList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetChildValidList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1604,41 +1722,90 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetChildValidList`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetChildValidList`(
 	IN masterEmployeeId INT(11)
 )
 BEGIN
 
-	SELECT a.Id, a.EmployeeId, a.GroupId, a.IsValid, a.CreatedBy, 
-    a.CreatedOn, a.UpdatedBy, a.UpdatedOn, b.GroupName 
-    FROM IdentityEmployeeGroup a
+	SELECT 
+		a.Id, 
+        a.EmployeeId, 
+        a.GroupId, 
+        a.IsValid, 
+        a.CreatedBy, 
+		a.CreatedOn, 
+        a.UpdatedBy, 
+        a.UpdatedOn, 
+        b.GroupName 
+    FROM 
+		IdentityEmployeeGroup a
     INNER JOIN
 		IdentityGroup b ON a.GroupId = b.Id
-    WHERE b.IsValid = true AND a.EmployeeId = masterEmployeeId
-    ORDER BY a.IsValid = true DESC;
+    WHERE 
+		b.IsValid = true AND 
+		a.EmployeeId = masterEmployeeId
+    ORDER BY 
+		a.IsValid = true DESC;
     
-	SELECT a.Id, a.EmployeeId, a.DepartmentId, a.IsValid, a.CreatedBy, 
-    a.CreatedOn, a.UpdatedBy, a.UpdatedOn, b.DepartmentName  
-    FROM EmployeeDepartment a
+	SELECT 
+		a.Id, 
+        a.EmployeeId, 
+        a.DepartmentId, 
+        a.IsValid, 
+        a.CreatedBy, 
+		a.CreatedOn, 
+        a.UpdatedBy, 
+        a.UpdatedOn, 
+        b.DepartmentName  
+    FROM 
+		EmployeeDepartment a
     INNER JOIN
 		MasterDepartment b ON a.DepartmentId = b. Id
-    WHERE b.IsValid = true AND a.EmployeeId = masterEmployeeId
-    ORDER BY a.IsValid = true DESC;
+    WHERE 
+		b.IsValid = true AND 
+        a.EmployeeId = masterEmployeeId
+    ORDER BY 
+		a.IsValid = true DESC;
     
-	SELECT a.Id, a.EmployeeId, a.SkillId, a.IsValid, a.CreatedBy, a.CreatedOn,
-    a.UpdatedBy, a.UpdatedOn, b.Skill AS SkillName FROM EmployeeSkill  a 
+	SELECT 
+		a.Id, 
+        a.EmployeeId, 
+        a.SkillId, 
+        a.IsValid, 
+        a.CreatedBy, 
+        a.CreatedOn,
+		a.UpdatedBy, 
+        a.UpdatedOn, 
+        b.Skill AS SkillName 
+	FROM 
+		EmployeeSkill  a 
     INNER JOIN
 		MasterSkill b ON a.SkillId = b. Id
-    WHERE b.IsValid = true AND a.EmployeeId = masterEmployeeId
-    ORDER BY a.IsValid = true DESC;
+    WHERE 
+		b.IsValid = true AND 
+        a.EmployeeId = masterEmployeeId
+    ORDER BY 
+		a.IsValid = true DESC;
     
-    SELECT a.Id, a.EmployeeId, a.RoleId, a.IsValid, a.CreatedBy, 
-    a.CreatedOn, a.UpdatedBy, a.UpdatedOn, b.Role AS RoleName
-    FROM EmployeeOrganizationRole a 
+    SELECT 
+		a.Id, 
+        a.EmployeeId, 
+        a.RoleId, 
+        a.IsValid, 
+        a.CreatedBy, 
+		a.CreatedOn, 
+        a.UpdatedBy, 
+        a.UpdatedOn, 
+        b.Role AS RoleName
+    FROM 
+		EmployeeOrganizationRole a 
     INNER JOIN
 		MasterOrganizationRole b ON a.RoleId = b. Id
-	WHERE b.IsValid = true AND a.EmployeeId = masterEmployeeId
-    ORDER BY a.IsValid = true DESC;
+	WHERE 
+		b.IsValid = true AND 
+        a.EmployeeId = masterEmployeeId
+    ORDER BY 
+		a.IsValid = true DESC;
     
 END ;;
 DELIMITER ;
@@ -1646,7 +1813,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetLatestId` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetLatestId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1656,16 +1823,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetLatestId`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetLatestId`()
 BEGIN
-	SELECT MAX(Id) from Employee;
+	SELECT MAX(Id) FROM Employee;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1675,34 +1842,34 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetList`(
-IN filterText varchar(200), 
-IN recordFrom int(4), 
-IN recordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetList`(
+	IN filterText varchar(200), 
+	IN recordFrom int(4), 
+	IN recordTill int(4)
 )
 BEGIN
 	SELECT 
 		a.Id, 
-		concat(a.FirstName, ' ',a.MiddleName, ' ',a.LastName) as FullName,
+		concat(a.FirstName, ' ',a.MiddleName, ' ',a.LastName) AS FullName,
         a.OrgEmpId,
-        DATE_FORMAT(a.JoiningDate,'%Y/%m/%d') as JoiningDate,
+        DATE_FORMAT(a.JoiningDate,'%Y/%m/%d') AS JoiningDate,
         a.Email,
-		if(a.IsValid,'Yes','No') as IsValid,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		IF(a.IsValid,'Yes','No') AS IsValid,
+		concat(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		Employee a
 	INNER JOIN 
-		Employee b on a.CreatedBy = b.Id
+		Employee b ON a.CreatedBy = b.Id
 	WHERE 
-		a.MiddleName like concat('%', filterText,'%') or
-		a.FirstName like concat('%', filterText,'%') or
-		a.LastName like concat('%', filterText,'%') or
-        a.OrgEmpId like concat('%', filterText,'%') or
-        a.JoiningDate like concat('%', filterText,'%') or
-        a.Email like concat('%', filterText,'%') or
-        a.IsValid = if(filterText = 'yes',true,false) or
-		a.CreatedOn like concat('%', filterText,'%')
-	limit 
+		a.MiddleName LIKE concat('%', filterText,'%') OR
+		a.FirstName LIKE concat('%', filterText,'%') OR
+		a.LastName LIKE concat('%', filterText,'%') OR
+        a.OrgEmpId LIKE concat('%', filterText,'%') OR
+        a.JoiningDate LIKE concat('%', filterText,'%') OR
+        a.Email LIKE concat('%', filterText,'%') OR
+        a.IsValid = IF(filterText = 'yes',true,false) OR
+		a.CreatedOn LIKE concat('%', filterText,'%')
+	LIMIT 
 		recordFrom, recordTill;
 END ;;
 DELIMITER ;
@@ -1710,7 +1877,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_GetMasterValidList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_GetMasterValidList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1720,19 +1887,19 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_GetMasterValidList`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_GetMasterValidList`()
 BEGIN
-	select * from IdentityGroup  where IsValid = true;
-    select * from MasterDepartment where IsValid = true;
-    select * from MasterSkill  where IsValid = true;
-    select * from MasterOrganizationRole  where IsValid = true;
+	SELECT * FROM IdentityGroup  WHERE IsValid = true;
+    SELECT * FROM MasterDepartment WHERE IsValid = true;
+    SELECT * FROM MasterSkill  WHERE IsValid = true;
+    SELECT * FROM MasterOrganizationRole  WHERE IsValid = true;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spEmployee_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Employee_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1742,23 +1909,35 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spEmployee_MarkInvalid`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_MarkInvalid`(
 	IN masterEmployeeId int(11)
 )
 BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION;
+    
 	UPDATE Employee SET
 		IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
 		  WHEN IsValid = 0 THEN 1 END
 	WHERE
 		Id = masterEmployeeId;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroupRight_BulkInsert` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroupRight_BulkInsert` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1768,14 +1947,32 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroupRight_BulkInsert`(IN xmltext text)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroupRight_BulkInsert`(IN xmltext text)
 BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
+    
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	SET nodeCount = ExtractValue(xmltext, 'count(/ArrayOfIdentityGroupRight/IdentityGroupRight)');
 	WHILE i <= nodeCount DO
 		INSERT INTO IdentityGroupRight 
-        (`GroupId`,`RightId`,`Action`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
+        (
+			`GroupId`,
+            `RightId`,
+            `Action`,
+            `IsValid`,
+            `CreatedBy`,
+            `CreatedOn`,
+            `UpdatedBy`,
+            `UpdatedOn`
+		)
         VALUES
         (
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/GroupId'),
@@ -1787,15 +1984,19 @@ BEGIN
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/CreatedBy'),
 			ExtractValue(xmltext, '/ArrayOfIdentityGroupRight/IdentityGroupRight[$i]/CreatedOn')
 		);
+        
         SET i = i+1;
 	END WHILE;
+    
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroupRight_BulkUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroupRight_BulkUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1805,18 +2006,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroupRight_BulkUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroupRight_BulkUpdate`(
 	IN xmltext text
 )
 BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
-    
     DECLARE identityGroupId INT(11);
     DECLARE identityGroupRightId INT(11);
     DECLARE identityGroupAction INT(11);
     DECLARE identityGroupIsValid BIT;
     DECLARE identityGroupUpdatedBy INT(11);
+    
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmltext, 'count(/ArrayOfIdentityGroupRight/IdentityGroupRight)');
 	WHILE i <= nodeCount DO
@@ -1842,15 +2050,19 @@ BEGIN
 				Action <> identityGroupAction OR
 				IsValid <> identityGroupIsValid 
             );
+            
         SET i = i+1;
 	END WHILE;
+    
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroupRight_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroupRight_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1860,24 +2072,42 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroupRight_Get`(IN GroupId int(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroupRight_Get`(
+	IN GroupId INT(4)
+)
 BEGIN
-select b.Id, b.GroupId, b.RightId, b.Action, b.IsValid, b.CreatedOn,
-b.CreatedBy, b.UpdatedBy, b.UpdatedOn, a.RightTitle,
-concat(c.FirstName, ' ', c.LastName) as CreatedByName,
-concat(d.FirstName, ' ', d.LastName) as UpdatedByName from IdentityGroupRight b 
-inner join IdentityRight a on a.RightId = b.RightId
-left join Employee c on b.CreatedBy = c.Id 
-left join Employee d on b.UpdatedBy = d.Id 
-where b.GroupId = GroupId
-order by a.RightTitle asc;
+	SELECT 
+		b.Id, 
+        b.GroupId, 
+        b.RightId, 
+        b.Action, 
+        b.IsValid, 
+        b.CreatedOn,
+		b.CreatedBy, 
+        b.UpdatedBy, 
+        b.UpdatedOn, 
+        a.RightTitle,
+		concat(c.FirstName, ' ', c.LastName) AS CreatedByName,
+		concat(d.FirstName, ' ', d.LastName) AS UpdatedByName 
+	FROM 
+		IdentityGroupRight b 
+	INNER JOIN
+		IdentityRight a ON a.RightId = b.RightId
+	LEFT JOIN
+		Employee c ON b.CreatedBy = c.Id 
+	LEFT JOIN
+		Employee d ON b.UpdatedBy = d.Id 
+	WHERE 
+		b.GroupId = GroupId
+	ORDER BY
+		a.RightTitle ASC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroup_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroup_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1887,22 +2117,36 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroup_Get`(IN GroupId int(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_Get`(
+	IN GroupId int(4)
+)
 BEGIN
-select a.Id, a.GroupName, a.GroupDescription,a.IsValid, a.CreatedOn, a.UpdatedOn, a.CreatedBy, a.UpdatedBy,
-concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-concat(c.FirstName, ' ', c.LastName) as UpdatedByName
-from IdentityGroup a 
-inner join Employee b on a.CreatedBy = b.Id 
-left join Employee c on a.UpdatedBy = c.Id 
-where a.Id = GroupId;
+	SELECT 
+		a.Id, 
+        a.GroupName, 
+        a.GroupDescription,
+        a.IsValid, 
+        a.CreatedOn, 
+        a.UpdatedOn, 
+        a.CreatedBy, 
+        a.UpdatedBy,
+		CONCAT(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		CONCAT(c.FirstName, ' ', c.LastName) AS UpdatedByName
+	FROM 
+		IdentityGroup a 
+	INNER JOIN 
+		Employee b ON a.CreatedBy = b.Id 
+	LEFT JOIN 
+		Employee c ON a.UpdatedBy = c.Id 
+	WHERE 
+		a.Id = GroupId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroup_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroup_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1912,29 +2156,33 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroup_GetList`(
-IN FilterText varchar(200), 
-IN RecordFrom int(4), 
-IN RecordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_GetList`(
+	IN FilterText varchar(200), 
+	IN RecordFrom int(4), 
+	IN RecordTill int(4)
 )
 BEGIN
 
-SELECT a.Id, a.GroupName,a.GroupDescription,if(a.IsValid,'Yes','No') as IsValid,
-concat(b.FirstName ,' ', b.LastName) as Name, 
-DATE_FORMAT(a.CreatedOn,'%d/%m/%Y') as CreatedOn
-
-FROM CuelogicResourceManagement.IdentityGroup a
-
-inner join Employee b on a.CreatedBy = b.Id
-
-where a.IsValid = if(FilterText = 'yes',true,false) or
-a.GroupName like concat('%', FilterText,'%') or
-a.GroupDescription like concat('%', FilterText,'%') or
-b.FirstName like concat('%', FilterText,'%') or
-b.LastName like concat('%', FilterText,'%') or
-a.CreatedOn like concat('%', FilterText,'%')
-
-limit RecordFrom, RecordTill;
+	SELECT 
+		a.Id, 
+        a.GroupName,
+        a.GroupDescription,
+        IF(a.IsValid,'Yes','No') AS IsValid,
+		CONCAT(b.FirstName ,' ', b.LastName) AS Name, 
+		DATE_FORMAT(a.CreatedOn,'%d/%m/%Y') AS CreatedOn
+	FROM 
+		CuelogicResourceManagement.IdentityGroup a
+	INNER JOIN 
+		Employee b ON a.CreatedBy = b.Id
+	WHERE
+		a.IsValid = IF(FilterText = 'yes',true,false) OR
+		a.GroupName LIKE concat('%', FilterText,'%') OR
+		a.GroupDescription LIKE concat('%', FilterText,'%') OR
+		b.FirstName LIKE concat('%', FilterText,'%') OR
+		b.LastName LIKE concat('%', FilterText,'%') OR
+		a.CreatedOn LIKE concat('%', FilterText,'%')
+	LIMIT 
+		RecordFrom, RecordTill;
 
 END ;;
 DELIMITER ;
@@ -1942,7 +2190,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroup_Insert` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroup_Insert` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1952,7 +2200,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroup_Insert`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_Insert`(
 IN groupName VARCHAR(150),
 IN groupDesc VARCHAR(500),
 IN isValid BOOL,
@@ -1960,18 +2208,46 @@ IN createdBy INT(11),
 IN createdOn VARCHAR(150)
 )
 BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	INSERT INTO IdentityGroup
-    (`GroupName`,`GroupDescription`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
+    (
+		`GroupName`,
+        `GroupDescription`,
+        `IsValid`,
+        `CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
     VALUES
-    (groupName,groupDesc,isValid,createdBy,createdOn,createdBy,createdOn);
-    select MAX(Id) as Id from IdentityGroup;
+    (
+		groupName,
+        groupDesc,
+        isValid,
+        createdBy,
+        createdOn,
+        createdBy,
+        createdOn);
+        
+    SELECT MAX(Id) AS Id FROM IdentityGroup;
+    
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroup_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroup_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1981,9 +2257,17 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroup_MarkInvalid`(IN groupId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_MarkInvalid`(IN groupId int(11))
 BEGIN
 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE IdentityGroupRight SET
 	IsValid = false
 	WHERE GroupId = groupId;
@@ -1994,13 +2278,15 @@ BEGIN
 		  WHEN IsValid = 0 THEN 1 END
 	WHERE Id = groupId;
     
+    COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityGroup_Update` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityGroup_Update` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2010,30 +2296,42 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityGroup_Update`(
-IN GroupId int(11),
-IN grpname VARCHAR(150),
-IN groupdesc VARCHAR(500),
-IN valid bit,
-IN updatedby int(11),
-IN updatedon date
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_Update`(
+	IN GroupId INT(11),
+	IN grpname VARCHAR(150),
+	IN groupdesc VARCHAR(500),
+	IN valid BIT,
+	IN updatedby INT(11),
+	IN updatedon DATE
 )
 BEGIN
-update IdentityGroup set 
-GroupName = grpname ,
-`GroupDescription` = groupdesc,
-`IsValid` = valid,
-`UpdatedBy` = updatedby,
-`UpdatedOn` = updatedon
-where 
-`Id` = GroupId;
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	UPDATE IdentityGroup SET 
+		GroupName = grpname ,
+		`GroupDescription` = groupdesc,
+		`IsValid` = valid,
+		`UpdatedBy` = updatedby,
+		`UpdatedOn` = updatedon
+	WHERE 
+		`Id` = GroupId;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spIdentityRight_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `IdentityRight_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2043,16 +2341,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spIdentityRight_Get`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityRight_Get`()
 BEGIN
-	SELECT * FROM IdentityRight ORDER BY RightTitle Asc;
+	SELECT * FROM IdentityRight ORDER BY RightTitle ASC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_AddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterClient_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2062,7 +2360,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_AddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_AddOrUpdate`(
 	IN mcId int(11),
 	IN mcClientName varchar(150),
     IN mcCountryId int(11),
@@ -2074,7 +2372,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_AddOrUpdate`(
     IN mcCreatedOn varchar(50)
 )
 BEGIN
-INSERT INTO MasterClient
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	INSERT INTO MasterClient
     (
 		`Id`,
 		`ClientName`,
@@ -2105,13 +2412,16 @@ INSERT INTO MasterClient
 		IsValid = mcIsValid,
 		UpdatedBy = mcUpdatedBy,
 		UpdatedOn = mcUpdatedOn;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterClient_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2121,7 +2431,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_Get`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_Get`(
 	IN mcId int(11)
 )
 BEGIN
@@ -2135,14 +2445,14 @@ BEGIN
 		a.UpdatedOn, 
 		a.CreatedBy, 
 		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+		concat(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) AS UpdatedByName
 	FROM 
 		MasterClient a 
 	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
+		Employee b ON a.CreatedBy = b.Id 
 	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
+		Employee c ON a.UpdatedBy = c.Id 
 	WHERE 
 		a.Id = mcId;
 END ;;
@@ -2151,7 +2461,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_GetCityList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterClient_GetCityList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2161,7 +2471,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_GetCityList`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_GetCityList`(
 	IN mcCountryId INT(11)
 )
 BEGIN
@@ -2174,7 +2484,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_GetCountryList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterClient_GetCountryList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2184,7 +2494,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_GetCountryList`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_GetCountryList`()
 BEGIN
 
 	SELECT * FROM MasterCountry;
@@ -2195,7 +2505,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterClient_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2205,7 +2515,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_GetList`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_GetList`(
 	IN filterText varchar(200), 
 	IN recordFrom int(4), 
 	IN recordTill int(4)
@@ -2215,25 +2525,25 @@ BEGIN
 		a.Id, 
 		a.ClientName,
         c.CountryName,
-		if(a.IsValid,'Yes','No') as IsValid,
+		IF(a.IsValid,'Yes','No') AS IsValid,
 		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') AS CreatedOn,
 		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') AS UpdatedBy,
+		CONCAT(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		CuelogicResourceManagement.MasterClient a
 	INNER JOIN 
-		Employee b on a.CreatedBy = b.Id
-	INNER JOIN MasterCountry c on a.CountryId = c.Id
+		Employee b ON a.CreatedBy = b.Id
+	INNER JOIN MasterCountry c ON a.CountryId = c.Id
 	WHERE 
-		a.IsValid = if(filterText = 'yes',true,false) or
-		a.ClientName like concat('%', filterText,'%') or
-        a.IsValid like concat('%', filterText,'%') or
-		b.FirstName like concat('%', filterText,'%') or
-		b.LastName like concat('%', filterText,'%') or
-		a.CreatedOn like concat('%', filterText,'%')
-	limit 
+		a.IsValid = IF(filterText = 'yes',true,false) OR
+		a.ClientName LIKE concat('%', filterText,'%') OR
+        a.IsValid LIKE concat('%', filterText,'%') OR
+		b.FirstName LIKE concat('%', filterText,'%') OR
+		b.LastName LIKE concat('%', filterText,'%') OR
+		a.CreatedOn LIKE concat('%', filterText,'%')
+	LIMIT 
 		recordFrom, recordTill;
 END ;;
 DELIMITER ;
@@ -2241,7 +2551,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterClient_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterClient_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2251,16 +2561,26 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterClient_MarkInvalid`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_MarkInvalid`(
 	IN mcId int(11)
 )
 BEGIN
-	
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE MasterClient SET
 	IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
 		  WHEN IsValid = 0 THEN 1 END
 	WHERE Id = mcId;
+    
+    COMMIT;
     
 END ;;
 DELIMITER ;
@@ -2268,7 +2588,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterDepartment_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterDepartment_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2278,7 +2598,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_Get`(IN MasterDepartmentId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_Get`(
+	IN MasterDepartmentId int(11)
+)
 BEGIN
 	SELECT 
 		a.Id, 
@@ -2289,14 +2611,14 @@ BEGIN
 		a.UpdatedOn, 
 		a.CreatedBy, 
 		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+		concat(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) AS UpdatedByName
 	FROM 
 		MasterDepartment a 
 	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
+		Employee b ON a.CreatedBy = b.Id 
 	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
+		Employee c ON a.UpdatedBy = c.Id 
 	WHERE 
 		a.Id = MasterDepartmentId;
 END ;;
@@ -2305,7 +2627,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterDepartment_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterDepartment_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2315,34 +2637,34 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_GetList`(
-IN FilterText varchar(200), 
-IN RecordFrom int(4), 
-IN RecordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_GetList`(
+	IN FilterText varchar(200), 
+	IN RecordFrom int(4), 
+	IN RecordTill int(4)
 )
 BEGIN
 	SELECT 
 		a.Id, 
 		a.DepartmentName,
 		a.DepartmentHead,
-		if(a.IsValid,'Yes','No') as IsValid,
+		if(a.IsValid,'Yes','No') AS IsValid,
 		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') AS CreatedOn,
 		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') AS UpdatedBy,
+		CONCAT(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		CuelogicResourceManagement.MasterDepartment a
 	INNER JOIN 
-		Employee b on a.CreatedBy = b.Id
+		Employee b ON a.CreatedBy = b.Id
 	WHERE 
-		a.IsValid = if(FilterText = 'yes',true,false) or
-		a.DepartmentName like concat('%', FilterText,'%') or
-		a.DepartmentHead like concat('%', FilterText,'%') or
-		b.FirstName like concat('%', FilterText,'%') or
-		b.LastName like concat('%', FilterText,'%') or
-		a.CreatedOn like concat('%', FilterText,'%')
-	limit 
+		a.IsValid = IF(FilterText = 'yes',true,false) OR
+		a.DepartmentName LIKE concat('%', FilterText,'%') OR
+		a.DepartmentHead LIKE concat('%', FilterText,'%') OR
+		b.FirstName LIKE concat('%', FilterText,'%') OR
+		b.LastName LIKE concat('%', FilterText,'%') OR
+		a.CreatedOn LIKE concat('%', FilterText,'%')
+	LIMIT 
 		RecordFrom, RecordTill;
 END ;;
 DELIMITER ;
@@ -2350,7 +2672,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterDepartment_Insert` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterDepartment_Insert` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2360,7 +2682,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_Insert`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_Insert`(
 	IN departmentName VARCHAR(150),
 	IN departmentHead VARCHAR(500),
 	IN isValid bit,
@@ -2368,34 +2690,37 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_Insert`(
 	IN createdOn date
 )
 BEGIN
-	INSERT INTO MasterDepartment
-		(`DepartmentName`,`DepartmentHead`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
-    VALUES
-		(departmentName,departmentHead,isValid,createdBy,createdOn,createdBy,createdOn);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterDepartment_MarkInvalid` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_MarkInvalid`(IN MasterDepartmentId int(11))
-BEGIN
 
-	UPDATE MasterDepartment SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
-	WHERE Id = MasterDepartmentId;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	INSERT INTO MasterDepartment
+	(
+		`DepartmentName`,
+        `DepartmentHead`,
+        `IsValid`,
+        `CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
+    VALUES
+	(
+		departmentName,
+        departmentHead,
+        isValid,
+        createdBy,
+        createdOn,
+        createdBy,
+        createdOn
+	);
+    
+    COMMIT;
     
 END ;;
 DELIMITER ;
@@ -2403,7 +2728,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterDepartment_Update` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterDepartment_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2413,16 +2738,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterDepartment_Update`(
-IN departmentId int(11),
-IN departmentName VARCHAR(150),
-IN departmentHead VARCHAR(500),
-IN isValid bit,
-IN updatedby int(11),
-IN updatedon date
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_MarkInvalid`(IN MasterDepartmentId int(11))
+BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	UPDATE MasterDepartment SET
+	IsValid = CASE 
+		  WHEN IsValid = 1 THEN 0 
+		  WHEN IsValid = 0 THEN 1 END
+	WHERE Id = MasterDepartmentId;
+    
+    COMMIT;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterDepartment_Update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_Update`(
+	IN departmentId int(11),
+	IN departmentName VARCHAR(150),
+	IN departmentHead VARCHAR(500),
+	IN isValid bit,
+	IN updatedby int(11),
+	IN updatedon date
 )
 BEGIN
 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE MasterDepartment 
     SET
 		`DepartmentName` = departmentName,
@@ -2433,13 +2801,15 @@ BEGIN
 	WHERE
 		`Id` = departmentId;
 
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterOrganizationRole_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterOrganizationRole_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2449,7 +2819,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterOrganizationRole_Get`(IN Id int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterOrganizationRole_Get`(IN Id int(11))
 BEGIN
 	SELECT 
 		a.Id, 
@@ -2459,14 +2829,14 @@ BEGIN
 		a.UpdatedOn, 
 		a.CreatedBy, 
 		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+		concat(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) AS UpdatedByName
 	FROM 
 		MasterOrganizationRole a 
 	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
+		Employee b ON a.CreatedBy = b.Id 
 	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
+		Employee c ON a.UpdatedBy = c.Id 
 	WHERE 
 		a.Id = Id;
 END ;;
@@ -2475,7 +2845,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterOrganizationRole_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterOrganizationRole_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2485,32 +2855,32 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterOrganizationRole_GetList`(
-IN FilterText varchar(200), 
-IN RecordFrom int(4), 
-IN RecordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterOrganizationRole_GetList`(
+	IN FilterText varchar(200), 
+	IN RecordFrom int(4), 
+	IN RecordTill int(4)
 )
 BEGIN
 	SELECT 
 		a.Id, 
 		a.Role,
-		if(a.IsValid,'Yes','No') as IsValid,
+		IF(a.IsValid,'Yes','No') AS IsValid,
 		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') AS CreatedOn,
 		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') AS UpdatedBy,
+		CONCAT(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		CuelogicResourceManagement.MasterOrganizationRole a
 	INNER JOIN 
-		Employee b on a.CreatedBy = b.Id
+		Employee b ON a.CreatedBy = b.Id
 	WHERE 
-		a.IsValid = if(FilterText = 'yes',true,false) or
-		a.Role like concat('%', FilterText,'%') or
-		b.FirstName like concat('%', FilterText,'%') or
-		b.LastName like concat('%', FilterText,'%') or
-		a.CreatedOn like concat('%', FilterText,'%')
-	limit 
+		a.IsValid = IF(FilterText = 'yes',true,false) OR
+		a.Role LIKE CONCAT('%', FilterText,'%') OR
+		b.FirstName LIKE CONCAT('%', FilterText,'%') OR
+		b.LastName LIKE CONCAT('%', FilterText,'%') OR
+		a.CreatedOn LIKE CONCAT('%', FilterText,'%')
+	LIMIT 
 		RecordFrom, RecordTill;
 END ;;
 DELIMITER ;
@@ -2518,7 +2888,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterOrganizationRole_Insert` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterOrganizationRole_Insert` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2528,43 +2898,42 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterOrganizationRole_Insert`(	
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterOrganizationRole_Insert`(	
 	IN role VARCHAR(150),
-	IN isValid bit,
-	IN createdBy int(11),
-	IN createdOn date
+	IN isValid BIT,
+	IN createdBy INT(11),
+	IN createdOn DATE
 )
 BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	INSERT INTO MasterOrganizationRole
-		(`Role`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
+	(
+		`Role`,
+        `IsValid`,
+        `CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
     VALUES
-		(role,isValid,createdBy,createdOn,createdBy,createdOn);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterOrganizationRole_MarkInvalid` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterOrganizationRole_MarkInvalid`(
-	IN MasterOrganizationRoleId int(11)
-)
-BEGIN
-	
-	UPDATE MasterOrganizationRole SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
-	WHERE Id = MasterOrganizationRoleId;
+	(
+		role,
+        isValid,
+        createdBy,
+        createdOn,
+        createdBy,
+        createdOn
+	);
+    
+    COMMIT;
     
 END ;;
 DELIMITER ;
@@ -2572,7 +2941,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterOrganizationRole_Update` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterOrganizationRole_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2582,15 +2951,60 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterOrganizationRole_Update`(
-IN masterOrganizationRoleId int(11),
-IN role VARCHAR(150),
-IN isValid bit,
-IN updatedby int(11),
-IN updatedon date
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterOrganizationRole_MarkInvalid`(
+	IN MasterOrganizationRoleId int(11)
+)
+BEGIN
+	
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	UPDATE MasterOrganizationRole SET
+	IsValid = CASE 
+		  WHEN IsValid = 1 THEN 0 
+		  WHEN IsValid = 0 THEN 1 END
+	WHERE Id = MasterOrganizationRoleId;
+    
+    COMMIT;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterOrganizationRole_Update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterOrganizationRole_Update`(
+	IN masterOrganizationRoleId int(11),
+	IN role VARCHAR(150),
+	IN isValid bit,
+	IN updatedby int(11),
+	IN updatedon date
 )
 BEGIN
 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE MasterOrganizationRole 
     SET
 		`Role` = role,
@@ -2600,13 +3014,15 @@ BEGIN
 	WHERE
 		`Id` = masterOrganizationRoleId;
 
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_AddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterProjectType_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2616,7 +3032,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_AddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterProjectType_AddOrUpdate`(
 	IN mptId int(11),
 	IN mptType varchar(150),
     IN mptIsValid bit,
@@ -2626,7 +3042,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_AddOrUpdate`(
     IN mptCreatedOn varchar(50)
 )
 BEGIN
-INSERT INTO MasterProjectType 
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	INSERT INTO MasterProjectType 
     (
 		`Id`,
 		`Type`,
@@ -2651,13 +3076,15 @@ INSERT INTO MasterProjectType
 		IsValid = mptIsValid,
 		UpdatedBy = mptUpdatedBy,
 		UpdatedOn = mptUpdatedOn;
+        
+	COMMIT;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterProjectType_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2667,7 +3094,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_Get`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterProjectType_Get`(
 	IN mptId int(11)
 )
 BEGIN
@@ -2679,14 +3106,14 @@ BEGIN
 		a.UpdatedOn, 
 		a.CreatedBy, 
 		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+		concat(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) AS UpdatedByName
 	FROM 
 		MasterProjectType a 
 	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
+		Employee b ON a.CreatedBy = b.Id 
 	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
+		Employee c ON a.UpdatedBy = c.Id 
 	WHERE 
 		a.Id = mptId;
 END ;;
@@ -2695,7 +3122,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterProjectType_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2705,32 +3132,32 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_GetList`(
-	IN filterText varchar(200), 
-	IN recordFrom int(4), 
-	IN recordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterProjectType_GetList`(
+	IN filterText VARCHAR(200), 
+	IN recordFrom INT(4), 
+	IN recordTill INT(4)
 )
 BEGIN
 	SELECT 
 		a.Id, 
 		a.Type,
-		if(a.IsValid,'Yes','No') as IsValid,
+		IF(a.IsValid,'Yes','No') AS IsValid,
 		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') AS CreatedOn,
 		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') AS UpdatedBy,
+		CONCAT(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		CuelogicResourceManagement.MasterProjectType a
 	INNER JOIN 
 		Employee b on a.CreatedBy = b.Id
 	WHERE 
-		a.IsValid = if(filterText = 'yes',true,false) or
-		a.Type like concat('%', filterText,'%') or
-		b.FirstName like concat('%', filterText,'%') or
-		b.LastName like concat('%', filterText,'%') or
-		a.CreatedOn like concat('%', filterText,'%')
-	limit 
+		a.IsValid = IF(filterText = 'yes',true,false) OR
+		a.Type LIKE CONCAT('%', filterText,'%') OR
+		b.FirstName LIKE CONCAT('%', filterText,'%') OR
+		b.LastName LIKE CONCAT('%', filterText,'%') OR
+		a.CreatedOn LIKE CONCAT('%', filterText,'%')
+	LIMIT 
 		recordFrom, recordTill;
 END ;;
 DELIMITER ;
@@ -2738,7 +3165,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_GetValidList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterProjectType_GetValidList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2748,7 +3175,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_GetValidList`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterProjectType_GetValidList`()
 BEGIN
 	SELECT * FROM MasterProjectType WHERE IsValid = true;
 END ;;
@@ -2757,7 +3184,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterProjectType_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterProjectType_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2767,16 +3194,26 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterProjectType_MarkInvalid`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterProjectType_MarkInvalid`(
 	IN mptId int(11)
 )
 BEGIN
 	
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE MasterProjectType SET
 	IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
 		  WHEN IsValid = 0 THEN 1 END
 	WHERE Id = mptId;
+    
+    COMMIT;
     
 END ;;
 DELIMITER ;
@@ -2784,7 +3221,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_AddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterRole_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2794,7 +3231,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_AddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterRole_AddOrUpdate`(
 	IN mpId int(11),
 	IN mpRole varchar(150),
     IN mpIsValid bit,
@@ -2804,7 +3241,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_AddOrUpdate`(
     IN mpCreatedOn varchar(50)
 )
 BEGIN
-INSERT INTO MasterRole 
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	INSERT INTO MasterRole 
     (
 		`Id`,
 		`Role`,
@@ -2829,13 +3275,16 @@ INSERT INTO MasterRole
 		IsValid = mpIsValid,
 		UpdatedBy = mpUpdatedBy,
 		UpdatedOn = mpUpdatedOn;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterRole_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2845,7 +3294,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_Get`(IN mpId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterRole_Get`(IN mpId int(11))
 BEGIN
 	SELECT 
 		a.Id, 
@@ -2855,14 +3304,14 @@ BEGIN
 		a.UpdatedOn, 
 		a.CreatedBy, 
 		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+		concat(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) AS UpdatedByName
 	FROM 
 		MasterRole a 
 	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
+		Employee b ON a.CreatedBy = b.Id 
 	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
+		Employee c ON a.UpdatedBy = c.Id 
 	WHERE 
 		a.Id = mpId;
 END ;;
@@ -2871,7 +3320,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterRole_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2881,32 +3330,32 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_GetList`(
-IN filterText varchar(200), 
-IN recordFrom int(4), 
-IN recordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterRole_GetList`(
+	IN filterText VARCHAR(200), 
+	IN recordFrom INT(4), 
+	IN recordTill INT(4)
 )
 BEGIN
 	SELECT 
 		a.Id, 
 		a.Role,
-		if(a.IsValid,'Yes','No') as IsValid,
+		IF(a.IsValid,'Yes','No') AS IsValid,
 		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') AS CreatedOn,
 		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') AS UpdatedBy,
+		CONCAT(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		CuelogicResourceManagement.MasterRole a
 	INNER JOIN 
 		Employee b on a.CreatedBy = b.Id
 	WHERE 
-		a.Role like concat('%', filterText,'%') or
-		b.FirstName like concat('%', filterText,'%') or
-		b.LastName like concat('%', filterText,'%') or
-		a.CreatedOn like concat('%', filterText,'%') or
-        a.IsValid = if(STRCMP(filterText,'Yes') = 0 ,true,false) 
-	limit 
+		a.Role LIKE CONCAT('%', filterText,'%') OR
+		b.FirstName LIKE CONCAT('%', filterText,'%') OR
+		b.LastName LIKE CONCAT('%', filterText,'%') OR
+		a.CreatedOn LIKE CONCAT('%', filterText,'%') OR
+        a.IsValid = IF(STRCMP(filterText,'Yes') = 0 ,true,false) 
+	LIMIT 
 		recordFrom, recordTill;
 END ;;
 DELIMITER ;
@@ -2914,7 +3363,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterRole_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterRole_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2924,16 +3373,26 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterRole_MarkInvalid`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterRole_MarkInvalid`(
 	IN masterProjectRoleId int(11)
 )
 BEGIN
-	
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    	
 	UPDATE MasterRole SET
 	IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
 		  WHEN IsValid = 0 THEN 1 END
 	WHERE Id = masterProjectRoleId;
+    
+    COMMIT;
     
 END ;;
 DELIMITER ;
@@ -2941,7 +3400,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterSkill_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterSkill_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2951,7 +3410,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_Get`(IN MasterSkillId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterSkill_Get`(IN MasterSkillId int(11))
 BEGIN
 	SELECT 
 		a.Id, 
@@ -2961,14 +3420,14 @@ BEGIN
 		a.UpdatedOn, 
 		a.CreatedBy, 
 		a.UpdatedBy,
-		concat(b.FirstName, ' ', b.LastName) as CreatedByName,
-		concat(c.FirstName, ' ', c.LastName) as UpdatedByName
+		concat(b.FirstName, ' ', b.LastName) AS CreatedByName,
+		concat(c.FirstName, ' ', c.LastName) AS UpdatedByName
 	FROM 
 		MasterSkill a 
 	LEFT JOIN 
-		Employee b on a.CreatedBy = b.Id 
+		Employee b ON a.CreatedBy = b.Id 
 	LEFT JOIN 
-		Employee c on a.UpdatedBy = c.Id 
+		Employee c ON a.UpdatedBy = c.Id 
 	WHERE 
 		a.Id = MasterSkillId;
 END ;;
@@ -2977,7 +3436,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterSkill_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterSkill_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2987,32 +3446,32 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_GetList`(
-IN FilterText varchar(200), 
-IN RecordFrom int(4), 
-IN RecordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterSkill_GetList`(
+	IN FilterText varchar(200), 
+	IN RecordFrom int(4), 
+	IN RecordTill int(4)
 )
 BEGIN
 	SELECT 
 		a.Id, 
 		a.Skill,
-		if(a.IsValid,'Yes','No') as IsValid,
+		IF(a.IsValid,'Yes','No') AS IsValid,
 		a.CreatedBy,
-		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') as CreatedOn,
+		DATE_FORMAT(a.CreatedOn,'%Y/%m/%d') AS CreatedOn,
 		a.UpdatedBy,
-		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') as UpdatedBy,
-		concat(b.FirstName ,' ', b.LastName) as CreatedByName
+		DATE_FORMAT(a.UpdatedBy,'%Y/%m/%d') AS UpdatedBy,
+		CONCAT(b.FirstName ,' ', b.LastName) AS CreatedByName
 	FROM 
 		CuelogicResourceManagement.MasterSkill a
 	INNER JOIN 
 		Employee b on a.CreatedBy = b.Id
 	WHERE 
-		a.IsValid = if(FilterText = 'yes',true,false) or
-		a.Skill like concat('%', FilterText,'%') or
-		b.FirstName like concat('%', FilterText,'%') or
-		b.LastName like concat('%', FilterText,'%') or
-		a.CreatedOn like concat('%', FilterText,'%')
-	limit 
+		a.IsValid = IF(FilterText = 'yes',true,false) OR
+		a.Skill LIKE CONCAT('%', FilterText,'%') OR
+		b.FirstName LIKE CONCAT('%', FilterText,'%') OR
+		b.LastName LIKE CONCAT('%', FilterText,'%') OR
+		a.CreatedOn LIKE CONCAT('%', FilterText,'%')
+	LIMIT 
 		RecordFrom, RecordTill;
 END ;;
 DELIMITER ;
@@ -3020,7 +3479,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterSkill_Insert` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterSkill_Insert` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3030,43 +3489,42 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_Insert`(	
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterSkill_Insert`(	
 	IN skill VARCHAR(150),
 	IN isValid bit,
 	IN createdBy int(11),
 	IN createdOn date
 )
 BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	INSERT INTO MasterSkill
-		(`Skill`,`IsValid`,`CreatedBy`,`CreatedOn`,`UpdatedBy`,`UpdatedOn`)
+	(
+		`Skill`,
+        `IsValid`,
+        `CreatedBy`,
+        `CreatedOn`,
+        `UpdatedBy`,
+        `UpdatedOn`
+	)
     VALUES
-		(skill,isValid,createdBy,createdOn,createdBy,createdOn);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterSkill_MarkInvalid` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_MarkInvalid`(
-	IN MasterSkillId int(11)
-)
-BEGIN
-	
-	UPDATE MasterSkill SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
-	WHERE Id = MasterSkillId;
+	(
+		skill,
+        isValid,
+        createdBy,
+        createdOn,
+        createdBy,
+        createdOn
+	);
+    
+    COMMIT;
     
 END ;;
 DELIMITER ;
@@ -3074,7 +3532,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spMasterSkill_Update` */;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterSkill_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3084,7 +3542,44 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spMasterSkill_Update`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterSkill_MarkInvalid`(
+	IN MasterSkillId int(11)
+)
+BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	UPDATE MasterSkill SET
+	IsValid = CASE 
+		  WHEN IsValid = 1 THEN 0 
+		  WHEN IsValid = 0 THEN 1 END
+	WHERE Id = MasterSkillId;
+    
+    COMMIT;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `MasterSkill_Update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterSkill_Update`(
 IN masterSkillId int(11),
 IN skill VARCHAR(150),
 IN isValid bit,
@@ -3093,6 +3588,14 @@ IN updatedon date
 )
 BEGIN
 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE MasterSkill 
     SET
 		`Skill` = skill,
@@ -3101,14 +3604,16 @@ BEGIN
 		`UpdatedOn` = updatedon
 	WHERE
 		`Id` = masterSkillId;
-
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_AddOrUpdate` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_AddOrUpdate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3118,7 +3623,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_AddOrUpdate`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_AddOrUpdate`(
 	IN pId INT(11),
     IN pProjectName VARCHAR(500),
     IN pProjectTypeId INT(11),
@@ -3134,7 +3639,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_AddOrUpdate`(
     IN pUpdatedOn VARCHAR(50)
 )
 BEGIN
-INSERT INTO Project 
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
+	INSERT INTO Project 
     (
 		`Id`,
 		`ProjectName`,
@@ -3177,13 +3691,16 @@ INSERT INTO Project
         IsValid = pIsValid,
         UpdatedBy = pUpdatedBy,
         UpdatedOn = pUpdatedOn;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_BulkInsertRoles` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_BulkInsertRoles` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3193,19 +3710,26 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_BulkInsertRoles`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_BulkInsertRoles`(
 	IN xmlText text, 
 	IN user INT(11) )
 BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
-    
     DECLARE prId INT(11);
     DECLARE prProjectId INT(11);
     DECLARE prRoleId INT(11);
     DECLARE prBillingRate INT(11);
     DECLARE prCurrencyId INT(11);
     DECLARE prIsValid BIT;
+    
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfProjectRole/ProjectRole)');
   
@@ -3255,13 +3779,16 @@ BEGIN
 			UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d');
         SET i = i+1;
         END WHILE;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_Get` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_Get` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3271,7 +3798,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_Get`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_Get`(
 	IN pId INT(11)
 )
 BEGIN
@@ -3279,8 +3806,8 @@ BEGIN
 		a.Id,
         a.ProjectName,
         a.ProjectTypeId,
-        DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate,
-        DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
+        DATE_FORMAT(a.StartDate,'%Y/%m/%d') AS StartDate,
+        DATE_FORMAT(a.EndDate,'%Y/%m/%d') AS EndDate,
         a.Description,
         a.ClientId,
         a.IsComplete,
@@ -3289,8 +3816,8 @@ BEGIN
         a.CreatedOn,
         a.UpdatedBy,
         a.UpdatedOn,
-        CONCAT(b.FirstName,' ',b.LastName) as CreatedByName,
-        CONCAT(c.FirstName,' ',c.LastName) as UpdatedByName
+        CONCAT(b.FirstName,' ',b.LastName) AS CreatedByName,
+        CONCAT(c.FirstName,' ',c.LastName) AS UpdatedByName
 	FROM
 		Project a
 	LEFT JOIN 
@@ -3300,14 +3827,14 @@ BEGIN
 	WHERE
 		a.Id = pId;
         
-	SELECT * FROM ProjectRole where ProjectId = pId;
+	SELECT * FROM ProjectRole WHERE ProjectId = pId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_GetLatestId` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_GetLatestId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3317,16 +3844,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetLatestId`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_GetLatestId`()
 BEGIN
-	SELECT MAX(Id) from Project;
+	SELECT MAX(Id) FROM Project;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_GetList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_GetList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3336,28 +3863,28 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetList`(
-IN filterText varchar(200), 
-IN recordFrom int(4), 
-IN recordTill int(4)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_GetList`(
+	IN filterText VARCHAR(200), 
+	IN recordFrom INT(4), 
+	IN recordTill INT(4)
 )
 BEGIN
 	SELECT
 		a.Id, 
         a.ProjectName, 
         b.Type, 
-        DATE_FORMAT(a.StartDate,'%Y/%m/%d') as StartDate, 
-        DATE_FORMAT(a.EndDate,'%Y/%m/%d') as EndDate,
-        if(a.IsComplete,'Yes','No') as IsComplete,
-        if(a.IsValid,'Yes','No') as IsValid
+        DATE_FORMAT(a.StartDate,'%Y/%m/%d') AS StartDate, 
+        DATE_FORMAT(a.EndDate,'%Y/%m/%d') AS EndDate,
+        IF(a.IsComplete,'Yes','No') AS IsComplete,
+        IF(a.IsValid,'Yes','No') AS IsValid
 	FROM
 		Project a
 	INNER JOIN 
 		MasterProjectType b ON  a.ProjectTypeId = b.Id
     WHERE
-		a.ProjectName like concat('%', filterText,'%') or
-		b.Type like concat('%', filterText,'%') 
-	limit 
+		a.ProjectName like CONCAT('%', filterText,'%') OR
+		b.Type LIKE CONCAT('%', filterText,'%') 
+	LIMIT 
 		recordFrom, recordTill;
 END ;;
 DELIMITER ;
@@ -3365,7 +3892,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_GetSelectList` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_GetSelectList` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3375,7 +3902,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_GetSelectList`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_GetSelectList`()
 BEGIN
 	SELECT *  FROM MasterClient WHERE IsValid = true;
     SELECT *  FROM MasterRole WHERE IsValid = true;
@@ -3386,7 +3913,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spProject_MarkInvalid` */;
+/*!50003 DROP PROCEDURE IF EXISTS `Project_MarkInvalid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3396,23 +3923,35 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spProject_MarkInvalid`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_MarkInvalid`(
 	IN pId INT(11)
 )
 BEGIN
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
+    
 	UPDATE Project SET
 		IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
 		  WHEN IsValid = 0 THEN 1 END
 	WHERE
 		Id = pId;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_GetEmployees` */;
+/*!50003 DROP PROCEDURE IF EXISTS `UserGroup_GetEmployees` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3422,22 +3961,24 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_GetEmployees`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UserGroup_GetEmployees`(
 	IN employeeName VARCHAR(150)
 )
 BEGIN
 
 	SELECT 
 		Id,
-        CONCAT(FirstName,' ',MiddleName,' ',LastName) as FullName
+        CONCAT(FirstName,' ',MiddleName,' ',LastName) AS FullName
     FROM 
 		Employee 
     WHERE 
 		IsValid = true
     AND
-		(FirstName like concat('%', employeeName,'%') or
-        MiddleName like concat('%', employeeName,'%') or
-		LastName like concat('%', employeeName,'%')); 
+		(
+			FirstName like CONCAT('%', employeeName,'%') OR
+			MiddleName like CONCAT('%', employeeName,'%') OR
+			LastName like CONCAT('%', employeeName,'%')
+        ); 
 
 END ;;
 DELIMITER ;
@@ -3445,7 +3986,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_GetIdentityGroup` */;
+/*!50003 DROP PROCEDURE IF EXISTS `UserGroup_GetIdentityGroup` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3455,7 +3996,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_GetIdentityGroup`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UserGroup_GetIdentityGroup`()
 BEGIN
 
 	SELECT * FROM IdentityGroup WHERE IsValid = true;
@@ -3466,7 +4007,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_GetIdentityGroupMembers` */;
+/*!50003 DROP PROCEDURE IF EXISTS `UserGroup_GetIdentityGroupMembers` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3476,14 +4017,14 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_GetIdentityGroupMembers`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UserGroup_GetIdentityGroupMembers`(
 	IN gId INT(11)
 )
 BEGIN
 	
      SELECT 
 		a.Id,
-        CONCAT(a.FirstName,' ',a.MiddleName,' ',a.LastName) as FullName,
+        CONCAT(a.FirstName,' ',a.MiddleName,' ',a.LastName) AS FullName,
         b.IsValid
 	FROM 
 		Employee a
@@ -3504,7 +4045,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `spUserGroup_InsertGroupUser` */;
+/*!50003 DROP PROCEDURE IF EXISTS `UserGroup_InsertGroupUser` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3514,17 +4055,24 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserGroup_InsertGroupUser`(IN xmlText text)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UserGroup_InsertGroupUser`(IN xmlText text)
 BEGIN
 DECLARE i INT DEFAULT 1;
 	DECLARE nodeCount INT(11);
-    
     DECLARE employeeGroupId INT(11);
     DECLARE masterEmployeeId INT(11);
     DECLARE masterGroupId INT(11);
     DECLARE isGroupValid BIT;
     DECLARE user INT(11);
     DECLARE mGroupId INT(11);
+    
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
+	BEGIN
+		ROLLBACK;
+		RESIGNAL;
+	END;
+
+	START TRANSACTION; 
     
 	SET nodeCount = ExtractValue(xmlText, 'count(/ArrayOfIdentityEmployeeGroup/IdentityEmployeeGroup)');
 		
@@ -3568,6 +4116,9 @@ DECLARE i INT DEFAULT 1;
                       
 		SET i = i+1;
 		END WHILE;
+        
+	COMMIT;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3584,4 +4135,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-13 10:41:20
+-- Dump completed on 2018-03-13 14:19:15

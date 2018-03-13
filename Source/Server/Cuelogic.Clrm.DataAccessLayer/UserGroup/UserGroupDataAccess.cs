@@ -15,7 +15,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
         public DataSet GetEmployeeList(string employeeName)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spUserGroup_GetEmployees;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetEmployees;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeName", employeeName)
                 };
@@ -26,7 +26,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
         public DataSet GetGroupList()
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spUserGroup_GetIdentityGroup;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetIdentityGroup;
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
             return ds;
         }
@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
         public DataSet GetIdentityGroupMembers(int gId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spUserGroup_GetIdentityGroupMembers;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetIdentityGroupMembers;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@gId", gId)
                 };
@@ -45,7 +45,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.UserGroup
         public void InsertGroupUsers(string xmlString)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spUserGroup_InsertGroupUser;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_InsertGroupUser;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmlText", xmlString)
                 };

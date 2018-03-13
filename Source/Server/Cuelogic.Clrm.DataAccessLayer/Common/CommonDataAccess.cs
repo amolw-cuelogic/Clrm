@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         public DataSet GetEmployeeAllocationList(int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployeeAllocation_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeAllocation_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
                 };
@@ -27,7 +27,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         public DataSet GetEmployeeDetailsByEmailId(string emailId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByEmailId;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByEmailId;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@EmailId", emailId)
                 };
@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         public DataSet GetEmployeeDetailsByOrgEmpId(string OrgEmpId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByOrgEmpId;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByOrgEmpId;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@eOrgEmpId", OrgEmpId)
                 };
@@ -49,7 +49,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         public DataSet GetEmployeeRightList(int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployeeRights_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeRights_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
                 };

@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
         public void AddOrUpdateMasterClient(MasterClient masterClient)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_AddOrUpdate;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClient.Id),
                     new MySqlParameter("@mcClientName", masterClient.ClientName),
@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
         public DataSet GetCityList(int countryId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_GetCityList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetCityList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcCountryId", countryId)
                 };
@@ -45,7 +45,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
         public DataSet GetCountryList()
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_GetCountryList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetCountryList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
         }
@@ -53,7 +53,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
         public DataSet GetMasterClient(int masterClientId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClientId)
                 };
@@ -67,7 +67,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
                     new MySqlParameter("@recordFrom", recordFrom),
@@ -80,7 +80,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
         public void MarkMasterClientInvalid(int masterClientId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterClient_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClientId)
             };

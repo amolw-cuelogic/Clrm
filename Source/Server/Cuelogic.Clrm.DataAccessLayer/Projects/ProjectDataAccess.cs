@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
         public void AddOrUpdateProject(Project project)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_AddOrUpdate;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Project_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@pId", project.Id),
                     new MySqlParameter("@pProjectName", project.ProjectName),
@@ -39,7 +39,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
         public DataSet GetLatestId()
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_GetLatestId;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Project_GetLatestId;
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
             return ds;
         }
@@ -47,27 +47,27 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
         public DataSet GetProject(int projectId)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_Get;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Project_Get;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@pId", projectId)
                 };
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam,
                 new List<string> {
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.Project,
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.ProjectRole});
+                AppConstants.StoreProcedure.Project_GetSelectList_Tables.Project,
+                AppConstants.StoreProcedure.Project_GetSelectList_Tables.ProjectRole});
             return ds;
         }
 
         public DataSet GetProjectSelectList()
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_GetSelectList;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Project_GetSelectList;
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), 
                 null, 
                 new List<string> {
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterClient,
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterRole,
-                AppConstants.StoreProcedure.spProject_GetSelectList_Tables.MasterCurrency});
+                AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterClient,
+                AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterRole,
+                AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterCurrency});
             return ds;
         }
 
@@ -77,7 +77,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spProject_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Project_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
                     new MySqlParameter("@recordFrom", recordFrom),
@@ -90,7 +90,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
         public void MarkProjectInvalid(int projectId)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spProject_MarkInvalid;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Project_MarkInvalid;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@pId", projectId)
                 };
@@ -101,7 +101,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
         public void AddProjectRoles(string xmlString, int userId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spProject_BulkInsertRoles;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Project_BulkInsertRoles;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmlString", xmlString),
                     new MySqlParameter("@userId", userId)

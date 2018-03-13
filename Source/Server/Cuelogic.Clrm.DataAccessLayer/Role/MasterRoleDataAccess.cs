@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
         public void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_AddOrUpdate;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mpId", masterProjectRole.Id),
                     new MySqlParameter("@mpRole", masterProjectRole.Role),
@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
         public DataSet GetMasterProjectRole(int masterProjectRoleId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mpId", masterProjectRoleId)
                 };
@@ -48,7 +48,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
                     new MySqlParameter("@recordFrom", recordFrom),
@@ -61,7 +61,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
         public void MarkMasterProjectRoleInvalid(int masterProjectRoleId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterRole_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterProjectRoleId", masterProjectRoleId)
             };

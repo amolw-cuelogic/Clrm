@@ -50,10 +50,10 @@ namespace Cuelogic.Clrm.Repository.Employees
         {
             var employeeVm = new EmployeeVm();
             var ds = _employeeDataAccess.GetMasterListForEmployees();
-            employeeVm.IdentityGroupList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.IdentityGroup].ToList<IdentityGroup>();
-            employeeVm.MasterDepartmentList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterDepartment].ToList<MasterDepartment>();
-            employeeVm.MasterSkillList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterSkill].ToList<MasterSkill>();
-            employeeVm.MasterOrganizationRoleList = ds.Tables[StoreProcedure.spEmployee_GetMasterValidList_Tables.MasterOrganizationRole].ToList<MasterOrganizationRole>();
+            employeeVm.IdentityGroupList = ds.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.IdentityGroup].ToList<IdentityGroup>();
+            employeeVm.MasterDepartmentList = ds.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.MasterDepartment].ToList<MasterDepartment>();
+            employeeVm.MasterSkillList = ds.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.MasterSkill].ToList<MasterSkill>();
+            employeeVm.MasterOrganizationRoleList = ds.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.MasterOrganizationRole].ToList<MasterOrganizationRole>();
             return employeeVm;
         }
 
