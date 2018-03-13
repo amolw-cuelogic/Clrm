@@ -15,7 +15,7 @@ namespace Cuelogic.Clrm.Repository.Allocations
         void AddOrUpdateAllocation(Allocation allocation, UserContext userContext);
         DataSet GetAllocationList(SearchParam searchParam);
         Allocation GetAllocation(int allocationId);
-        void MarkAllocationInvalid(int allocationId);
+        void MarkAllocationInvalid(int allocationId, int employeeId);
         int GetAllocationSum(int employeeId);
         List<MasterRole> GetProjectRolebyId(int projectId);
     }

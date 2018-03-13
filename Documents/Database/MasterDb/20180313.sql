@@ -58,7 +58,7 @@ CREATE TABLE `Allocation` (
 
 LOCK TABLES `Allocation` WRITE;
 /*!40000 ALTER TABLE `Allocation` DISABLE KEYS */;
-INSERT INTO `Allocation` VALUES (1,1,23,22,'',10,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-13'),(2,1,26,18,'',25,'2018-03-02',NULL,'\0',1,'2018-03-12',1,'2018-03-12'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-12'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-12'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-12'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-12'),(7,20,27,17,'',100,'2018-03-01',NULL,'',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `Allocation` VALUES (1,1,23,22,'',10,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-13'),(2,1,26,18,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-13'),(3,1,27,17,'',25,'2018-03-02',NULL,'',1,'2018-03-12',1,'2018-03-13'),(4,1,22,17,'\0',25,'2018-03-12',NULL,'',1,'2018-03-12',1,'2018-03-13'),(5,1,27,17,'',25,'2018-03-01',NULL,'',1,'2018-03-12',1,'2018-03-13'),(6,19,27,17,'',12,'2018-03-03',NULL,'',1,'2018-03-12',1,'2018-03-13'),(7,20,27,17,'',100,'2018-03-01',NULL,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `Allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +99,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-13','2018-03-13 14:18:04'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',17,'2018-03-08',NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-09',NULL),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-08',NULL),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-08',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-08',NULL),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-12',NULL),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','',17,'2018-03-08',17,'2018-03-08',NULL),(30,'Rythma ','','Nanaware','CUE343','2018-03-13',NULL,'987654321','rythma@cuelogic.com','',1,'2018-03-13',1,'2018-03-13',NULL);
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-13','2018-03-13 14:18:04'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',1,'2018-03-13',NULL),(18,'Pranav','Ravindra','Shinde','CUE672','2018-01-05',NULL,'7854123698','pranav.shinde@cuelogic.com','',1,'2018-03-06',1,'2018-03-13',NULL),(19,'Debujit','Shrikant','Suryavanshi','CUE295','2017-08-04',NULL,'8541235698','debujit.suryavanshi@cuelogic.com','',1,'2018-03-06',1,'2018-03-13',NULL),(20,'Pandurang','Tukaram','Deshpande','CUE674','2017-08-04',NULL,'8745121385784','panduranf.tukaram@cuelogic.com','',1,'2018-03-06',1,'2018-03-13',NULL),(21,'Bharat','','Puranik','CUE456','2018-02-21',NULL,'1234567895','bharat.puranik@cuelogic.com','',1,'2018-03-07',1,'2018-03-13',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-13',NULL),(28,'Nikhil','','Babur','CUE0012','2018-03-08',NULL,'123456789','nikhil.babar@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-13',NULL),(29,'gaurav','','mothe kadam','cue250','2016-08-17',NULL,'7848578544','gaurav.mothekadam@cuelogic.co.in','',17,'2018-03-08',1,'2018-03-13',NULL),(30,'Rythma ','','Nanaware','CUE343','2018-03-13',NULL,'987654321','rythma@cuelogic.com','',1,'2018-03-13',1,'2018-03-13',NULL);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,7 +286,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
-INSERT INTO `IdentityGroup` VALUES (115,'Super Admin','Super Admin','',1,'2018-03-09',1,'2018-03-09'),(116,'Manager','Manager','',1,'2018-03-09',1,'2018-03-13'),(117,'Employee','Employee','',1,'2018-03-09',1,'2018-03-09'),(119,'Admin','Admin','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `IdentityGroup` VALUES (115,'Super Admin','Super Admin','',1,'2018-03-09',1,'2018-03-13'),(116,'Manager','Manager','',1,'2018-03-09',1,'2018-03-13'),(117,'Employee','Employee','',1,'2018-03-09',1,'2018-03-13'),(119,'Admin','Admin','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,7 +419,7 @@ CREATE TABLE `MasterClient` (
 
 LOCK TABLES `MasterClient` WRITE;
 /*!40000 ALTER TABLE `MasterClient` DISABLE KEYS */;
-INSERT INTO `MasterClient` VALUES (15,'Abbott Laboratories',2,6,'',1,'2018-01-01',NULL,NULL),(16,'Aarons, Inc',2,6,'',1,'2018-01-01',NULL,NULL),(17,'Walmart',2,6,'',1,'2018-01-01',1,'2018-03-13'),(18,'ExxonMobil',2,6,'',1,'2018-01-01',NULL,NULL),(19,'Jumbo Jet',1,1,'',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `MasterClient` VALUES (15,'Abbott Laboratories',2,6,'',1,'2018-01-01',1,'2018-03-13'),(16,'Aarons, Inc',2,6,'',1,'2018-01-01',1,'2018-03-13'),(17,'Walmart',2,6,'',1,'2018-01-01',1,'2018-03-13'),(18,'ExxonMobil',2,6,'',1,'2018-01-01',NULL,NULL),(19,'Jumbo Jet',1,1,'',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,7 +504,7 @@ CREATE TABLE `MasterDepartment` (
 
 LOCK TABLES `MasterDepartment` WRITE;
 /*!40000 ALTER TABLE `MasterDepartment` DISABLE KEYS */;
-INSERT INTO `MasterDepartment` VALUES (20,'Delivery','Vivek Phadke','',1,'2018-01-01',1,'2018-03-13'),(21,'HR','Uma Ramani','',1,'2018-01-01',NULL,NULL),(22,'Sales','Neel Vartikar','',1,'2018-01-01',NULL,NULL),(23,'Management','Nikhil Ambekar','',1,'2018-01-01',NULL,NULL),(24,'Technical','Vikrant Labde','',1,'2018-01-01',NULL,NULL),(25,'Admin','Admin','',1,'2018-03-06',1,'2018-03-06'),(26,'Cafeteria','Kaka','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `MasterDepartment` VALUES (20,'Delivery','Vivek Phadke','',1,'2018-01-01',1,'2018-03-13'),(21,'HR','Uma Ramani','',1,'2018-01-01',1,'2018-03-13'),(22,'Sales','Neel Vartikar','',1,'2018-01-01',1,'2018-03-13'),(23,'Management','Nikhil Ambekar','',1,'2018-01-01',1,'2018-03-13'),(24,'Technical','Vikrant Labde','',1,'2018-01-01',1,'2018-03-13'),(25,'Admin','Admin','',1,'2018-03-06',1,'2018-03-13'),(26,'Cafeteria','Kaka','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,7 +537,7 @@ CREATE TABLE `MasterOrganizationRole` (
 
 LOCK TABLES `MasterOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `MasterOrganizationRole` DISABLE KEYS */;
-INSERT INTO `MasterOrganizationRole` VALUES (20,'Software Engineer','',1,'2018-01-01',NULL,NULL),(21,'Sr. Software Engineer','',1,'2018-01-01',1,'2018-03-13'),(22,'Devops','',1,'2018-01-01',NULL,NULL),(23,'Trainee Software Engineer','',1,'2018-01-01',NULL,NULL),(24,'Principle Engineer','',1,'2018-01-01',NULL,NULL),(25,'Project Manager','',1,'2018-01-01',NULL,NULL),(26,'Sr. Project Manager','',1,'2018-01-01',NULL,NULL),(27,'Rails Developer','',1,'2018-03-06',1,'2018-03-06'),(28,'Desktop Engineer','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `MasterOrganizationRole` VALUES (20,'Software Engineer','',1,'2018-01-01',1,'2018-03-13'),(21,'Sr. Software Engineer','',1,'2018-01-01',1,'2018-03-13'),(22,'Devops','',1,'2018-01-01',1,'2018-03-13'),(23,'Trainee Software Engineer','',1,'2018-01-01',1,'2018-03-13'),(24,'Principle Engineer','',1,'2018-01-01',1,'2018-03-13'),(25,'Project Manager','',1,'2018-01-01',1,'2018-03-13'),(26,'Sr. Project Manager','',1,'2018-01-01',1,'2018-03-13'),(27,'Rails Developer','',1,'2018-03-06',1,'2018-03-13'),(28,'Desktop Engineer','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -570,7 +570,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
-INSERT INTO `MasterProjectType` VALUES (11,'Billable','',1,'2018-01-01',NULL,NULL),(12,'Non Billable','',1,'2018-01-01',1,'2018-03-13'),(13,'In House','',1,'2018-01-01',NULL,NULL),(14,'R & D','\0',1,'2018-01-01',NULL,NULL),(15,'Client','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `MasterProjectType` VALUES (11,'Billable','',1,'2018-01-01',1,'2018-03-13'),(12,'Non Billable','',1,'2018-01-01',1,'2018-03-13'),(13,'In House','',1,'2018-01-01',1,'2018-03-13'),(14,'R & D','',1,'2018-01-01',1,'2018-03-13'),(15,'Client','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -603,7 +603,7 @@ CREATE TABLE `MasterRole` (
 
 LOCK TABLES `MasterRole` WRITE;
 /*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
-INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',NULL,NULL),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',NULL,NULL),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'Trainee Develop','',1,'2018-03-12',1,'2018-03-13'),(19,'Angular Developer','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `MasterRole` VALUES (13,'Developer','',1,'2018-01-01',1,'2018-03-12'),(14,'Product Developer','',1,'2018-01-01',1,'2018-03-13'),(15,'Technical Analyst','',1,'2018-01-01',1,'2018-03-12'),(16,'Ui Engineer','',1,'2018-01-01',1,'2018-03-13'),(17,'Backend Developer','',1,'2018-01-01',1,'2018-03-12'),(18,'Trainee Develop','',1,'2018-03-12',1,'2018-03-13'),(19,'Angular Developer','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -636,7 +636,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
-INSERT INTO `MasterSkill` VALUES (28,'C#','',1,'2018-01-01',1,'2018-03-13'),(29,'Html','',1,'2018-01-01',NULL,NULL),(30,'Jquery','',1,'2018-01-01',NULL,NULL),(31,'Javascript','',1,'2018-01-01',NULL,NULL),(32,'SQL','',1,'2018-01-01',NULL,NULL),(33,'AngularJS 1','',1,'2018-01-01',NULL,NULL),(34,'Angular 4','',1,'2018-01-01',NULL,NULL),(35,'LINQ','',1,'2018-01-01',NULL,NULL),(36,'Entity Framework','',1,'2018-01-01',NULL,NULL),(37,'Ionic Cordova','',1,'2018-01-01',NULL,NULL),(38,'Scala','',1,'2018-01-01',NULL,NULL),(39,'Swift','',1,'2018-01-01',NULL,NULL),(40,'Python','',1,'2018-01-01',NULL,NULL),(41,'NodeJS','',1,'2018-01-01',NULL,NULL),(42,'Ruby On Rails','',1,'2018-03-06',1,'2018-03-06'),(43,'SCSS','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `MasterSkill` VALUES (28,'C#','',1,'2018-01-01',1,'2018-03-13'),(29,'Html','',1,'2018-01-01',1,'2018-03-13'),(30,'Jquery','',1,'2018-01-01',1,'2018-03-13'),(31,'Javascript','',1,'2018-01-01',1,'2018-03-13'),(32,'SQL','',1,'2018-01-01',1,'2018-03-13'),(33,'AngularJS 1','',1,'2018-01-01',1,'2018-03-13'),(34,'Angular 4','',1,'2018-01-01',1,'2018-03-13'),(35,'LINQ','',1,'2018-01-01',1,'2018-03-13'),(36,'Entity Framework','',1,'2018-01-01',1,'2018-03-13'),(37,'Ionic Cordova','',1,'2018-01-01',1,'2018-03-13'),(38,'Scala','',1,'2018-01-01',NULL,NULL),(39,'Swift','',1,'2018-01-01',NULL,NULL),(40,'Python','',1,'2018-01-01',NULL,NULL),(41,'NodeJS','',1,'2018-01-01',NULL,NULL),(42,'Ruby On Rails','',1,'2018-03-06',1,'2018-03-06'),(43,'SCSS','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -677,7 +677,7 @@ CREATE TABLE `Project` (
 
 LOCK TABLES `Project` WRITE;
 /*!40000 ALTER TABLE `Project` DISABLE KEYS */;
-INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-13'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','',1,'2018-03-06',1,'2018-03-12'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-12'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-12'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-12'),(23,'E Learning System',11,'2018-03-13',NULL,'E Learning System',16,'\0','',1,'2018-03-13',1,'2018-03-13');
+INSERT INTO `Project` VALUES (15,'Kantar',11,'2017-07-01','2018-03-02','Kantar',16,'','',1,'2018-03-06',1,'2018-03-13'),(16,'Tiny Torch',11,'2017-01-01',NULL,'Tiny Torch',15,'\0','',1,'2018-03-06',1,'2018-03-13'),(17,'Cuelogic Resource Management',13,'2018-01-15',NULL,'Cuelogic Resource Management',15,'','',1,'2018-03-06',1,'2018-03-13'),(18,'Big Data Charting System',11,'2018-03-01',NULL,'Big Data Charting System',18,'\0','',1,'2018-03-06',1,'2018-03-13'),(21,'Micro Launch',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-13'),(22,'Alpha1',11,'2018-03-12',NULL,'Alpha1',16,'','',1,'2018-03-12',1,'2018-03-13'),(23,'E Learning System',11,'2018-03-13',NULL,'E Learning System',16,'\0','',1,'2018-03-13',1,'2018-03-13');
 /*!40000 ALTER TABLE `Project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1020,7 +1020,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Allocation_MarkInvalid`(
-	IN aId INT(11)
+	IN aId INT(11),
+    IN employeeId INT(11)
 )
 BEGIN
 
@@ -1033,10 +1034,13 @@ BEGIN
 	START TRANSACTION; 
     
 	UPDATE Allocation 
-    SET IsValid = CASE 
+    SET 
+		IsValid = CASE 
 					  WHEN IsValid = 1 THEN 0 
 					  WHEN IsValid = 0 THEN 1 
-                  END
+                  END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE
 		Id = aId;
 	
@@ -1910,7 +1914,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Employee_MarkInvalid`(
-	IN masterEmployeeId int(11)
+	IN masterEmployeeId int(11),
+    IN employeeId INT(11)
 )
 BEGIN
 
@@ -1925,7 +1930,9 @@ BEGIN
 	UPDATE Employee SET
 		IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE
 		Id = masterEmployeeId;
         
@@ -2257,7 +2264,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_MarkInvalid`(IN groupId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IdentityGroup_MarkInvalid`(
+	IN groupId INT(11),
+    IN employeeId INT(11)
+)
 BEGIN
 
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
@@ -2273,9 +2283,11 @@ BEGIN
 	WHERE GroupId = groupId;
     
 	UPDATE IdentityGroup SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = groupId;
     
     COMMIT;
@@ -2562,7 +2574,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterClient_MarkInvalid`(
-	IN mcId int(11)
+	IN mcId int(11),
+    IN employeeId INT(11)
 )
 BEGIN
 
@@ -2575,9 +2588,11 @@ BEGIN
 	START TRANSACTION; 
     
 	UPDATE MasterClient SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = mcId;
     
     COMMIT;
@@ -2738,7 +2753,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_MarkInvalid`(IN MasterDepartmentId int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterDepartment_MarkInvalid`(
+	IN MasterDepartmentId int(11),
+    IN employeeId INT(11)
+)
 BEGIN
 
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING, NOT FOUND
@@ -2750,9 +2768,11 @@ BEGIN
 	START TRANSACTION; 
     
 	UPDATE MasterDepartment SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = MasterDepartmentId;
     
     COMMIT;
@@ -2952,7 +2972,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterOrganizationRole_MarkInvalid`(
-	IN MasterOrganizationRoleId int(11)
+	IN MasterOrganizationRoleId int(11),
+    IN employeeId INT(11)
 )
 BEGIN
 	
@@ -2965,9 +2986,11 @@ BEGIN
 	START TRANSACTION; 
     
 	UPDATE MasterOrganizationRole SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = MasterOrganizationRoleId;
     
     COMMIT;
@@ -3195,7 +3218,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterProjectType_MarkInvalid`(
-	IN mptId int(11)
+	IN mptId int(11),
+    IN employeeId INT(11)
 )
 BEGIN
 	
@@ -3208,9 +3232,11 @@ BEGIN
 	START TRANSACTION; 
     
 	UPDATE MasterProjectType SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = mptId;
     
     COMMIT;
@@ -3374,7 +3400,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterRole_MarkInvalid`(
-	IN masterProjectRoleId int(11)
+	IN masterProjectRoleId int(11),
+    IN employeeId INT(11)
 )
 BEGIN
 
@@ -3387,9 +3414,11 @@ BEGIN
 	START TRANSACTION; 
     	
 	UPDATE MasterRole SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = masterProjectRoleId;
     
     COMMIT;
@@ -3543,7 +3572,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MasterSkill_MarkInvalid`(
-	IN MasterSkillId int(11)
+	IN MasterSkillId int(11),
+    IN employeeId INT(11)
 )
 BEGIN
 
@@ -3556,9 +3586,11 @@ BEGIN
 	START TRANSACTION; 
     
 	UPDATE MasterSkill SET
-	IsValid = CASE 
-		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		IsValid = CASE 
+			  WHEN IsValid = 1 THEN 0 
+			  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = employeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE Id = MasterSkillId;
     
     COMMIT;
@@ -3924,7 +3956,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Project_MarkInvalid`(
-	IN pId INT(11)
+	IN pId INT(11),
+    IN pEmployeeId INT(11)
 )
 BEGIN
 
@@ -3939,7 +3972,9 @@ BEGIN
 	UPDATE Project SET
 		IsValid = CASE 
 		  WHEN IsValid = 1 THEN 0 
-		  WHEN IsValid = 0 THEN 1 END
+		  WHEN IsValid = 0 THEN 1 END,
+		UpdatedBy = pEmployeeId,
+        UpdatedOn = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
 	WHERE
 		Id = pId;
         
@@ -4135,4 +4170,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-13 14:19:15
+-- Dump completed on 2018-03-13 15:09:22

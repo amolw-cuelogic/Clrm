@@ -54,9 +54,9 @@ namespace Cuelogic.Clrm.Repository.ProjectType
             return ds;
         }
 
-        public void MarkMasterProjectTypeInvalid(int masterProjectTypeId)
+        public void MarkMasterProjectTypeInvalid(int masterProjectTypeId, int employeeId)
         {
-            _masterProjectTypeDataAccess.MarkMasterProjectTypeInvalid(masterProjectTypeId);
+            _masterProjectTypeDataAccess.MarkMasterProjectTypeInvalid(masterProjectTypeId, employeeId);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Cuelogic.Clrm.Service.Group
 
         void Save(IdentityGroup identityGroup, UserContext userCtx);
 
-        void Delete(int groupId);
+        void Delete(int groupId, int employeeId);
 
     }
 }

@@ -26,7 +26,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
         #endregion
 
         #region OTHER FUNCTIONS
-        void MarkProjectInvalid(int projectId);
+        void MarkProjectInvalid(int projectId,int employeeId);
         #endregion
     }
 }

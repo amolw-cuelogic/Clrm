@@ -14,6 +14,6 @@ namespace Cuelogic.Clrm.Service.Projects
         string GetList(SearchParam searchParam);
         Project GetItem(int projectId);
         void Save(Project project, UserContext userCtx);
-        void Delete(int projectId);
+        void Delete(int projectId, int employeeId);
     }
 }

@@ -19,6 +19,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
 
         void InsertMasterSkill(MasterSkill masterSkill);
 
-        void MarkMasterSkillInvalid(int masterSkillId);
+        void MarkMasterSkillInvalid(int masterSkillId, int employeeId);
     }
 }

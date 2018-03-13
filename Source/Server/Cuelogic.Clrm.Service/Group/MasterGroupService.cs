@@ -54,9 +54,9 @@ namespace Cuelogic.Clrm.Service.Group
 
         }
 
-        public void Delete(int groupId)
+        public void Delete(int groupId, int employeeId)
         {
-            _masterGroupRepository.MarkGroupInvalid(groupId);
+            _masterGroupRepository.MarkGroupInvalid(groupId, employeeId);
 
         }
     }

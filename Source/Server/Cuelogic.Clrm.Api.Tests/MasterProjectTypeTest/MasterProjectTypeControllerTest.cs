@@ -99,10 +99,11 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectTypeTest
         public void TestMasterProjectTypeDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
             MasterProjectTypeController controller = new MasterProjectTypeController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(CommonMockData.GetUserClaimsIdentity()),
                 Configuration = new HttpConfiguration()
             };
 

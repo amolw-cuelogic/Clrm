@@ -54,12 +54,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
                  sqlParam.StoreProcedureParam);
         }
 
-        public void MarkMasterSkillInvalid(int masterSkillId)
+        public void MarkMasterSkillInvalid(int masterSkillId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterSkillId", masterSkillId)
+                    new MySqlParameter("@MasterSkillId", masterSkillId),
+                    new MySqlParameter("@employeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
                  sqlParam.StoreProcedureParam);

@@ -19,7 +19,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Department
         
         void InsertMasterDepartment(MasterDepartment masterDepartment);
         
-        void MarkMasterDepartmentInvalid(int masterDepartmentId);
+        void MarkMasterDepartmentInvalid(int masterDepartmentId, int employeeId);
         
     }
 }

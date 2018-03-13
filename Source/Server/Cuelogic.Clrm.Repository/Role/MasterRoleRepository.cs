@@ -47,9 +47,9 @@ namespace Cuelogic.Clrm.Repository.Role
             return ds;
         }
 
-        public void MarkMasterProjectRoleInvalid(int masterProjectRoleId)
+        public void MarkMasterProjectRoleInvalid(int masterProjectRoleId, int employeeId)
         {
-            _masterProjectRoleDataAccess.MarkMasterProjectRoleInvalid(masterProjectRoleId);
+            _masterProjectRoleDataAccess.MarkMasterProjectRoleInvalid(masterProjectRoleId, employeeId);
         }
     }
 }

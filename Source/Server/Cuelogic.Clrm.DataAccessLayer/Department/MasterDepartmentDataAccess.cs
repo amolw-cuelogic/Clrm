@@ -72,12 +72,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Department
                  sqlParam.StoreProcedureParam);
         }
 
-        public void MarkMasterDepartmentInvalid(int masterDepartmentId)
+        public void MarkMasterDepartmentInvalid(int masterDepartmentId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterDepartmentId", masterDepartmentId)
+                    new MySqlParameter("@MasterDepartmentId", masterDepartmentId),
+                    new MySqlParameter("@employeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
                  sqlParam.StoreProcedureParam);

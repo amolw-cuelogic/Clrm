@@ -99,10 +99,11 @@ namespace Cuelogic.Clrm.Api.Tests.MasterOrganizationRoleTest
         public void TestMasterOrganizationRoleDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
             MasterOrganizationRoleController controller = new MasterOrganizationRoleController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(CommonMockData.GetUserClaimsIdentity()),
                 Configuration = new HttpConfiguration()
             };
 

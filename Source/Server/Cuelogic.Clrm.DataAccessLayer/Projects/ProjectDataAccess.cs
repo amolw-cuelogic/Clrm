@@ -87,12 +87,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Projects
             return ds;
         }
         
-        public void MarkProjectInvalid(int projectId)
+        public void MarkProjectInvalid(int projectId, int employeeId)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Project_MarkInvalid;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@pId", projectId)
+                    new MySqlParameter("@pId", projectId),
+                    new MySqlParameter("@pEmployeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
         }

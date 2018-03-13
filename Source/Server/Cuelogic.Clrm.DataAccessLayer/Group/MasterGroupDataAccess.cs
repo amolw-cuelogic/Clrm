@@ -131,12 +131,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Group
 
         #region OTHER FUNCTIONS
 
-        public void MarkGroupInvalid(int GroupId)
+        public void MarkGroupInvalid(int GroupId, int employeeId)
         {
             var sqlparam = new MySqlSpParam();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.IdentityGroup_MarkInvalid;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@groupId", GroupId)
+                    new MySqlParameter("@groupId", GroupId),
+                    new MySqlParameter("@employeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlparam.ToSqlCommand(),
                  sqlparam.StoreProcedureParam);

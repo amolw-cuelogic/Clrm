@@ -99,10 +99,12 @@ namespace Cuelogic.Clrm.Api.Tests.ProjectTest
         public void TestProjectDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             ProjectController controller = new ProjectController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(customIdentity),
                 Configuration = new HttpConfiguration()
             };
 

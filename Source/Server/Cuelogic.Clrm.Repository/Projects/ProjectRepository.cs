@@ -83,9 +83,9 @@ namespace Cuelogic.Clrm.Repository.Projects
             return ds;
         }
 
-        public void MarkProjectInvalid(int projectId)
+        public void MarkProjectInvalid(int projectId, int employeeId)
         {
-            _projectDataAccess.MarkProjectInvalid(projectId);
+            _projectDataAccess.MarkProjectInvalid(projectId, employeeId);
         }
     }
 }

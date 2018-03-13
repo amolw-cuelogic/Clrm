@@ -18,9 +18,9 @@ namespace Cuelogic.Clrm.Service.Projects
             _projectRepository = new ProjectRepository();
         }
 
-        public void Delete(int projectId)
+        public void Delete(int projectId, int employeeId)
         {
-            _projectRepository.MarkProjectInvalid(projectId);
+            _projectRepository.MarkProjectInvalid(projectId, employeeId);
         }
 
         public Project GetItem(int projectId)

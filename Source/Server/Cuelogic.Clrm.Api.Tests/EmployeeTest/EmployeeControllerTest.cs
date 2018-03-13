@@ -99,10 +99,11 @@ namespace Cuelogic.Clrm.Api.Tests.EmployeeTest
         public void TestEmployeeDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
             EmployeeController controller = new EmployeeController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(CommonMockData.GetUserClaimsIdentity()),
                 Configuration = new HttpConfiguration()
             };
 

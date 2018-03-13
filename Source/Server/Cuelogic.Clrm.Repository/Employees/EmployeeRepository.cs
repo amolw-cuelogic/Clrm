@@ -111,9 +111,9 @@ namespace Cuelogic.Clrm.Repository.Employees
             _employeeDataAccess.AddOrUpdateEmployeeGroup(groupListXml, userContext.UserId);
         }
 
-        public void MarkEmployeeInvalid(int employeeId)
+        public void MarkEmployeeInvalid(int employeeId, int userId)
         {
-            _employeeDataAccess.MarkEmployeeInvalid(employeeId);
+            _employeeDataAccess.MarkEmployeeInvalid(employeeId,userId);
         }
     }
 }

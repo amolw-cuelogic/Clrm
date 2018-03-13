@@ -77,12 +77,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
             return ds;
         }
 
-        public void MarkMasterClientInvalid(int masterClientId)
+        public void MarkMasterClientInvalid(int masterClientId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@mcId", masterClientId)
+                    new MySqlParameter("@mcId", masterClientId),
+                    new MySqlParameter("@employeeId", employeeId)
             };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }

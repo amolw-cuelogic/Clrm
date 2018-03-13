@@ -99,10 +99,11 @@ namespace Cuelogic.Clrm.Api.Tests.MasterSkillTest
         public void TestMasterSkillDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
             MasterSkillController controller = new MasterSkillController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(CommonMockData.GetUserClaimsIdentity()),
                 Configuration = new HttpConfiguration()
             };
 

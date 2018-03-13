@@ -100,10 +100,11 @@ namespace Cuelogic.Clrm.Api.Tests.Controllers
         public void TestMasterClientDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
             MasterClientController controller = new MasterClientController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(CommonMockData.GetUserClaimsIdentity()),
                 Configuration = new HttpConfiguration()
             };
 

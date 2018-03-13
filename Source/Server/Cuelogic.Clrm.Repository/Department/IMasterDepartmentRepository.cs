@@ -16,6 +16,6 @@ namespace Cuelogic.Clrm.Repository.Department
         MasterDepartment GetMasterDepartment(int masterDepartmentId);
         void SaveMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx);
         void UpdateMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx);
-        void MarkMasterDepartmentInvalid(int masterDepartmentId);
+        void MarkMasterDepartmentInvalid(int masterDepartmentId, int employeeId);
     }
 }

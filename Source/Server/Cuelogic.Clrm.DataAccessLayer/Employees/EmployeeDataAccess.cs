@@ -153,12 +153,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Employees
 
         #region OTHER FUNCTIONS
 
-        public void MarkEmployeeInvalid(int masterEmployeeId)
+        public void MarkEmployeeInvalid(int masterEmployeeId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@masterEmployeeId", masterEmployeeId)
+                    new MySqlParameter("@masterEmployeeId", masterEmployeeId),
+                    new MySqlParameter("@employeeId", employeeId)
             };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
 

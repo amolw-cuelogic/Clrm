@@ -99,10 +99,11 @@ namespace Cuelogic.Clrm.Api.Tests.MasterDepartmentTest
         public void TestMasterDepartmentDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
             MasterDepartmentController controller = new MasterDepartmentController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(CommonMockData.GetUserClaimsIdentity()),
                 Configuration = new HttpConfiguration()
             };
 

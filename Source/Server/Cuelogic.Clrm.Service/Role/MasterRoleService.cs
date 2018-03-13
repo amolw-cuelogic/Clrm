@@ -17,9 +17,9 @@ namespace Cuelogic.Clrm.Service.ProjectRole
         {
             _projectRoleRepository = new MasterRoleRepository();
         }
-        public void Delete(int masterProjectRoleId)
+        public void Delete(int masterProjectRoleId, int employeeId)
         {
-            _projectRoleRepository.MarkMasterProjectRoleInvalid(masterProjectRoleId);
+            _projectRoleRepository.MarkMasterProjectRoleInvalid(masterProjectRoleId, employeeId);
         }
 
         public MasterRole GetItem(int masterProjectRoleId)

@@ -40,9 +40,9 @@ namespace Cuelogic.Clrm.Repository.Department
             return ds;
         }
 
-        public void MarkMasterDepartmentInvalid(int masterDepartmentId)
+        public void MarkMasterDepartmentInvalid(int masterDepartmentId, int employeeId)
         {
-            _masterDepartmentDataAccess.MarkMasterDepartmentInvalid(masterDepartmentId);
+            _masterDepartmentDataAccess.MarkMasterDepartmentInvalid(masterDepartmentId, employeeId);
         }
 
         public void SaveMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx)

@@ -17,6 +17,6 @@ namespace Cuelogic.Clrm.Service.ProjectRole
 
         void Save(MasterRole masterProjectRole, UserContext userCtx);
 
-        void Delete(int masterProjectRoleId);
+        void Delete(int masterProjectRoleId, int employeeId);
     }
 }

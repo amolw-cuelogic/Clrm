@@ -155,10 +155,12 @@ namespace Cuelogic.Clrm.Api.Tests.AllocationTest
         public void TestAllocationDelete()
         {
             //ARRANGE
-            mockService.Setup(m => m.Delete(It.IsAny<int>()));
+            mockService.Setup(m => m.Delete(It.IsAny<int>(), It.IsAny<int>()));
+            var customIdentity = CommonMockData.GetUserClaimsIdentity();
             AllocationController allocationController = new AllocationController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
+                User = new ClaimsPrincipal(customIdentity),
                 Configuration = new HttpConfiguration()
             };
 

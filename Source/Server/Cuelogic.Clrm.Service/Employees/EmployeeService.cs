@@ -19,9 +19,9 @@ namespace Cuelogic.Clrm.Service.Employees
             _employeeRepository = new EmployeeRepository();
         }
 
-        public void Delete(int employeeId)
+        public void Delete(int employeeId, int userId)
         {
-            _employeeRepository.MarkEmployeeInvalid(employeeId);
+            _employeeRepository.MarkEmployeeInvalid(employeeId, userId);
         }
 
         public EmployeeVm GetItem(int employeeId)

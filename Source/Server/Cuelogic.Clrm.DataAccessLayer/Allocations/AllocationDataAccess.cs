@@ -95,12 +95,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
             return ds;
         }
 
-        public void MarkAllocationInvalid(int allocationId)
+        public void MarkAllocationInvalid(int allocationId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@aId", allocationId)
+                    new MySqlParameter("@aId", allocationId),
+                    new MySqlParameter("@employeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }

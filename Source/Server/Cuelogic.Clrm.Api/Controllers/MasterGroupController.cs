@@ -65,7 +65,8 @@ namespace Cuelogic.Clrm.Api.Controllers
         {
             if (id < 0)
                 throw new Exception("Negative id now allowed");
-            _masterGroup.Delete(id);
+            var userContext = base.GetUserContext();
+            _masterGroup.Delete(id, userContext.UserId);
             return Ok();
         }
     }

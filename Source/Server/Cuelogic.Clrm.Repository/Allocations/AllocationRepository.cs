@@ -87,9 +87,9 @@ namespace Cuelogic.Clrm.Repository.Allocations
             return masterRoleList;
         }
 
-        public void MarkAllocationInvalid(int allocationId)
+        public void MarkAllocationInvalid(int allocationId, int employeeId)
         {
-            _allocationDataAccess.MarkAllocationInvalid(allocationId);
+            _allocationDataAccess.MarkAllocationInvalid(allocationId, employeeId);
         }
     }
 }

@@ -15,6 +15,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
         DataSet GetMasterProjectType(int masterProjectTypeId);
         DataSet GetMasterProjectTypeValidList();
         void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType);
-        void MarkMasterProjectTypeInvalid(int masterProjectTypeId);
+        void MarkMasterProjectTypeInvalid(int masterProjectTypeId, int employeeId);
     }
 }

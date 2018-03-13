@@ -32,7 +32,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Employees
         #endregion
 
         #region OTHER FUNCTIONS
-        void MarkEmployeeInvalid(int masterEmployeeId);
+        void MarkEmployeeInvalid(int masterEmployeeId, int employeeId);
 
         #endregion
     }

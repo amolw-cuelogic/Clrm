@@ -58,12 +58,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
             return ds;
         }
 
-        public void MarkMasterProjectRoleInvalid(int masterProjectRoleId)
+        public void MarkMasterProjectRoleInvalid(int masterProjectRoleId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@masterProjectRoleId", masterProjectRoleId)
+                    new MySqlParameter("@masterProjectRoleId", masterProjectRoleId),
+                    new MySqlParameter("@employeeId", employeeId)
             };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }

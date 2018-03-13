@@ -38,9 +38,9 @@ namespace Cuelogic.Clrm.Repository.Skill
             return ds;
         }
 
-        public void MarkMasterSkillInvalid(int masterSkillId)
+        public void MarkMasterSkillInvalid(int masterSkillId, int employeeId)
         {
-            _masterSkillDataAccess.MarkMasterSkillInvalid(masterSkillId);
+            _masterSkillDataAccess.MarkMasterSkillInvalid(masterSkillId, employeeId);
         }
 
         public void SaveMasterSkill(MasterSkill masterSkill, UserContext userCtx)

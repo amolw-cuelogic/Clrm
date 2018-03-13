@@ -18,9 +18,9 @@ namespace Cuelogic.Clrm.Service.Allocations
         {
             _allocationRepository = new AllocationRepository();
         }
-        public void Delete(int allocationId)
+        public void Delete(int allocationId, int employeeId)
         {
-            _allocationRepository.MarkAllocationInvalid(allocationId);
+            _allocationRepository.MarkAllocationInvalid(allocationId, employeeId);
         }
 
         public int GetAllocationSum(int employeeId)

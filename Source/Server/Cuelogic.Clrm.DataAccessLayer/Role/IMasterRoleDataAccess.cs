@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Role
         DataSet GetMasterProjectRole(int masterProjectRoleId);
 
         void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole);
-        void MarkMasterProjectRoleInvalid(int masterProjectRoleId);
+        void MarkMasterProjectRoleInvalid(int masterProjectRoleId, int employeeId);
         
 
     }

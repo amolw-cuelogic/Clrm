@@ -17,6 +17,6 @@ namespace Cuelogic.Clrm.Service.Department
 
         void Save(MasterDepartment masterDepartment, UserContext userCtx);
 
-        void Delete(int departmentId);
+        void Delete(int departmentId, int employeeId);
     }
 }

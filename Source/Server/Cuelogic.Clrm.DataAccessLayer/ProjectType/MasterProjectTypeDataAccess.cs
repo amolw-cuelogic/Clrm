@@ -65,12 +65,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
             return ds;
         }
 
-        public void MarkMasterProjectTypeInvalid(int masterProjectTypeId)
+        public void MarkMasterProjectTypeInvalid(int masterProjectTypeId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@mptId", masterProjectTypeId)
+                    new MySqlParameter("@mptId", masterProjectTypeId),
+                    new MySqlParameter("@employeeId", employeeId)
             };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }

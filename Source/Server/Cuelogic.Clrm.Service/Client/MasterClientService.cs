@@ -17,9 +17,9 @@ namespace Cuelogic.Clrm.Service.Client
         {
             _masterClientRepository = new MasterClientRepository();
         }
-        public void Delete(int masterClientId)
+        public void Delete(int masterClientId, int employeeId)
         {
-            _masterClientRepository.MarkMasterClientInvalid(masterClientId);
+            _masterClientRepository.MarkMasterClientInvalid(masterClientId, employeeId);
         }
 
         public MasterClient GetItem(int masterClientId)

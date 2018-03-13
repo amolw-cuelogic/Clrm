@@ -58,9 +58,9 @@ namespace Cuelogic.Clrm.Repository.Client
             return ds;
         }
 
-        public void MarkMasterClientInvalid(int masterClientId)
+        public void MarkMasterClientInvalid(int masterClientId, int employeeId)
         {
-            _masterClientDataAccess.MarkMasterClientInvalid(masterClientId);
+            _masterClientDataAccess.MarkMasterClientInvalid(masterClientId, employeeId);
         }
     }
 }

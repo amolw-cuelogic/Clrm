@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Group
 
         #region OTHER FUNCTIONS
 
-        void MarkGroupInvalid(int groupId);
+        void MarkGroupInvalid(int groupId, int employeeId);
 
         #endregion
     }

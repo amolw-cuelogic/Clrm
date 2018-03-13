@@ -15,6 +15,6 @@ namespace Cuelogic.Clrm.Repository.Role
         DataSet GetMasterProjectRoleList(SearchParam searchParam);
         MasterRole GetMasterProjectRole(int masterProjectRoleId);
         void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole, UserContext userCtx);
-        void MarkMasterProjectRoleInvalid(int masterProjectRoleId);
+        void MarkMasterProjectRoleInvalid(int masterProjectRoleId, int employeeId);
     }
 }
