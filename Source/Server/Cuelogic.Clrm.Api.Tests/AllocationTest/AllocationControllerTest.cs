@@ -14,6 +14,7 @@ using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using Cuelogic.Clrm.Api.Tests.Common;
+using System.Collections.Generic;
 
 namespace Cuelogic.Clrm.Api.Tests.AllocationTest
 {
@@ -96,6 +97,32 @@ namespace Cuelogic.Clrm.Api.Tests.AllocationTest
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
             Assert.IsInstanceOfType(contentResult.Content, typeof(Allocation));
             Assert.AreEqual(allocationId, contentResult.Content.Id);
+        }
+
+        [TestMethod]
+        public void TestAllocationGetProjectRole()
+        {
+            //ARRANGE
+            var mockData = AllocationMockData.GetMockDataMasterRoleList();
+            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockData);
+            AllocationController allocationController = new AllocationController(mockService.Object)
+            {
+                Request = new System.Net.Http.HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //ACT
+            int projectId = 1;
+            IHttpActionResult response = allocationController.GetProjectRole(projectId);
+            var contentResult = response as OkNegotiatedContentResult<List<MasterRole>>;
+            var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
+
+            //ASSERT
+            Assert.IsNotNull(contentResult);
+            Assert.IsTrue(idResponse.IsSuccessStatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
+            Assert.IsInstanceOfType(contentResult.Content, typeof(List<MasterRole>));
+            Assert.IsTrue(contentResult.Content.Count > 0);
         }
 
         [TestMethod]

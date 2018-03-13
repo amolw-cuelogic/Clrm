@@ -13,10 +13,10 @@ using static Cuelogic.Clrm.Common.AppConstants;
 namespace Cuelogic.Clrm.Api.Controllers
 {
     [RoutePrefix("api/ProjectProfile")]
-    public class MasterProjectRoleController : ApiBaseController
+    public class MasterRoleController : ApiBaseController
     {
         private readonly IMasterRoleService _masterProjectRoleService;
-        public MasterProjectRoleController(IMasterRoleService masterProjectRoleService)
+        public MasterRoleController(IMasterRoleService masterProjectRoleService)
         {
             _masterProjectRoleService = masterProjectRoleService;
         }

@@ -124,7 +124,7 @@
     <Compile Include="MasterSkillTest\MasterSkillControllerTest.cs" />
     <Compile Include="MasterDepartmentTest\MasterDepartmentControllerTest.cs" />
     <Compile Include="MasterOrganizationRoleTest\MasterOrganizationRoleControllerTest.cs" />
-    <Compile Include="MasterProjectRoleTest\MasterProjectRoleControllerTest.cs" />
+    <Compile Include="MasterRoleTest\MasterRoleControllerTest.cs" />
     <Compile Include="MasterProjectTypeTest\MasterProjectTypeControllerTest.cs" />
     <Compile Include="MasterClientTest\MasterClientControllerTest.cs" />
     <Compile Include="EmployeeTest\EmployeeControllerTest.cs" />
@@ -137,7 +137,7 @@
     <Compile Include="MasterDepartmentTest\MasterDepartmentMockData.cs" />
     <Compile Include="MasterGroupTest\MasterGroupMockData.cs" />
     <Compile Include="MasterOrganizationRoleTest\MasterOrganizationRoleMockData.cs" />
-    <Compile Include="MasterProjectRoleTest\MasterProjectRoleMockData.cs" />
+    <Compile Include="MasterRoleTest\MasterRoleMockData.cs" />
     <Compile Include="MasterProjectTypeTest\MasterProjectTypeMockData.cs" />
     <Compile Include="MasterSkillTest\MasterSkillMockData.cs" />
     <Compile Include="MyProfileTest\MyProfileMockData.cs" />

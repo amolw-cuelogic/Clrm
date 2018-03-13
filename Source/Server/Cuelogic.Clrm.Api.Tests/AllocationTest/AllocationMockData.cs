@@ -31,5 +31,32 @@ namespace Cuelogic.Clrm.Api.Tests.AllocationTest
             return data;
         }
 
+
+        public static List<MasterRole> GetMockDataMasterRoleList()
+        {
+            var list = new List<MasterRole>();
+            var data = new MasterRole();
+            data.Id = 1;
+            data.Role = "Ui Developer";
+            data.IsValid = true;
+            data.CreatedBy = 1;
+            data.CreatedOn = "2018-02-02";
+            data.UpdatedBy = 1;
+            data.UpdatedOn = "2018-02-02";
+            list.Add(data);
+
+            var data1 = new MasterRole();
+            data1.Id = 1;
+            data1.Role = "Ui Developer";
+            data1.IsValid = true;
+            data1.CreatedBy = 1;
+            data1.CreatedOn = "2018-02-02";
+            data1.UpdatedBy = 1;
+            data1.UpdatedOn = "2018-02-02";
+            list.Add(data1);
+
+            return list;
+        }
+
     }
 }

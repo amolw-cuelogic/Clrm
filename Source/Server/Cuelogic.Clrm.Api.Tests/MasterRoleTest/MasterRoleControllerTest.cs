@@ -13,10 +13,10 @@ using System.Threading;
 using System.Net;
 using Cuelogic.Clrm.Api.Tests.Common;
 
-namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
+namespace Cuelogic.Clrm.Api.Tests.MasterRoleTest
 {
     [TestClass]
-    public class MasterProjectRoleControllerTest
+    public class MasterRoleControllerTest
     {
         Mock<IMasterRoleService> mockService = new Mock<IMasterRoleService>();
 
@@ -24,9 +24,9 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
         public void TestMasterProjectRoleGet()
         {
             //ARRANGE
-            var mockData = MasterProjectRoleMockData.GetMockDataMasterProjectRoleList();
+            var mockData = MasterRoleMockData.GetMockDataMasterProjectRoleList();
             mockService.Setup(m => m.GetList(It.IsAny<SearchParam>())).Returns(mockData);
-            MasterProjectRoleController controller = new MasterProjectRoleController(mockService.Object)
+            MasterRoleController controller = new MasterRoleController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
@@ -48,9 +48,9 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
         public void TestMasterProjectRoleGetPerId()
         {
             //ARRANGE
-            var mockData = MasterProjectRoleMockData.GetMockDataMasterProjectRole();
+            var mockData = MasterRoleMockData.GetMockDataMasterProjectRole();
             mockService.Setup(m => m.GetItem(It.IsAny<int>())).Returns(mockData);
-            MasterProjectRoleController employeeController = new MasterProjectRoleController(mockService.Object)
+            MasterRoleController employeeController = new MasterRoleController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
@@ -69,15 +69,15 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
             Assert.IsInstanceOfType(contentResult.Content, typeof(MasterRole));
             Assert.AreEqual(id, contentResult.Content.Id);
         }
-
+        
         [TestMethod]
         public void TestMasterProjectRolePost()
         {
             //ARRANGE
-            var mockData = MasterProjectRoleMockData.GetMockDataMasterProjectRole();
+            var mockData = MasterRoleMockData.GetMockDataMasterProjectRole();
             mockService.Setup(m => m.Save(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
             var customIdentity = CommonMockData.GetUserClaimsIdentity();
-            MasterProjectRoleController controller = new MasterProjectRoleController(mockService.Object)
+            MasterRoleController controller = new MasterRoleController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
                 User = new ClaimsPrincipal(customIdentity),
@@ -100,7 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.MasterProjectRoleTest
         {
             //ARRANGE
             mockService.Setup(m => m.Delete(It.IsAny<int>()));
-            MasterProjectRoleController controller = new MasterProjectRoleController(mockService.Object)
+            MasterRoleController controller = new MasterRoleController(mockService.Object)
             {
                 Request = new System.Net.Http.HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
