@@ -84,6 +84,7 @@ export class EditAllocationComponent {
                 if (this.mode == this.formMode.View) {
                     this.SetFormModeView();
                 }
+                this.ValidateAllocation();
             }
             );
     }

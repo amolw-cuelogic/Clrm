@@ -47,7 +47,10 @@ namespace Cuelogic.Clrm.Repository.Allocations
             {
                 var allocationDs = _allocationDataAccess.GetAllocation(allocationId);
                 allocation = allocationDs.Tables[0].ToModel<Allocation>();
-                allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId) - allocation.PercentageAllocation;
+                if (allocation.IsValid)
+                    allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId) - allocation.PercentageAllocation;
+                else
+                    allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId);
 
                 var masterRoleList = new List<MasterRole>();
                 var projectRoleDs = _allocationDataAccess.GetProjectRolebyId(allocation.ProjectId);
@@ -89,6 +92,17 @@ namespace Cuelogic.Clrm.Repository.Allocations
 
         public void MarkAllocationInvalid(int allocationId, int employeeId)
         {
+            var previousState = GetAllocation(allocationId);
+            if (!previousState.IsValid)
+            {
+                var sum = GetAllocationSum(previousState.EmployeeId);
+                if (sum >= 100)
+                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)"));
+
+                var total = sum + previousState.PercentageAllocation;
+                if (total > 100)
+                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)"));
+            }
             _allocationDataAccess.MarkAllocationInvalid(allocationId, employeeId);
         }
     }
