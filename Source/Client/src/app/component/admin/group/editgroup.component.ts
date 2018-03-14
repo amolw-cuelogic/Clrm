@@ -54,7 +54,7 @@ export class EditGroupComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
                 else {
                     this.router.navigate(["/group"]);
@@ -62,7 +62,7 @@ export class EditGroupComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
             }
         );

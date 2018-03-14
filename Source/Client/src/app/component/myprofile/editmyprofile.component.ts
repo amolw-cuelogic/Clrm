@@ -56,7 +56,7 @@ export class EditMyProfileComponent {
                 model.Title = "Saved";
                 model.MessageType = model.ModelType.Success;
                 model.Message = "Saved Successfully";
-                this.compSubSrv.OpenBootstrapModal(model);
+                this.compSubSrv.OpenToaster(model);
                 this.LoadEditPage();
             }
         );
