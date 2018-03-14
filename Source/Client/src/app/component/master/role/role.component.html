@@ -51,13 +51,13 @@
                 <th><button ngx-rights="303|Write" (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
                 <th>Role</th>
                 <th>
-                    Is Valid
-                </th>
-                <th>
                     Created By
                 </th>
                 <th>
                     Created On
+                </th>
+                <th>
+                    Is Valid
                 </th>
             </tr>
         </thead>
@@ -72,13 +72,13 @@
                     {{item.Role}}
                 </td>
                 <td>
-                    {{item.IsValid}}
-                </td>
-                <td>
                     {{item.CreatedByName}}
                 </td>
                 <td>
                     {{item.CreatedOn}}
+                </td>
+                <td>
+                    {{item.IsValid}}
                 </td>
             </tr>
         </tbody>

@@ -51,17 +51,17 @@
                 <th><button ngx-rights="302|Write" (click)="NewRecord()" type="button" title="New Record" class="btn btn-sm btn-success">New Record&nbsp;<i class="fa fa-plus"></i></button></th>
                 <th>Organization Role</th>
                 <th>
-                    Is Valid
-                </th>
-                <th>
                     Created By
                 </th>
                 <th>
                     Created On
                 </th>
+                <th>
+                    Is Valid
+                </th>
             </tr>
         </thead>
-        <tbody> 
+        <tbody>
             <tr *ngFor="let item of PageList" [class]="(item.IsValid == 'No')?'notValid':''">
                 <td>
                     <button ngx-rights="302|Write" (click)="EditRecord(item.Id)" type="button" title="Edit Record" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
@@ -72,13 +72,13 @@
                     {{item.Role}}
                 </td>
                 <td>
-                    {{item.IsValid}}
-                </td>
-                <td>
                     {{item.CreatedByName}}
                 </td>
                 <td>
                     {{item.CreatedOn}}
+                </td>
+                <td>
+                    {{item.IsValid}}
                 </td>
             </tr>
         </tbody>
