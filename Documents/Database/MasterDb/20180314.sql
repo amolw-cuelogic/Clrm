@@ -98,7 +98,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-14','2018-03-14 15:38:00'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',1,'2018-03-13',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-13','2018-03-14 15:31:06');
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-14','2018-03-14 16:00:01'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',1,'2018-03-13',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-13','2018-03-14 15:41:43');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ CREATE TABLE `EmployeeDepartment` (
   CONSTRAINT `EmployeeDepartmentUpdatedBy_Employee` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Id_DepartmentId_` FOREIGN KEY (`DepartmentId`) REFERENCES `MasterDepartment` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_EmployeeId1` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,6 +137,7 @@ CREATE TABLE `EmployeeDepartment` (
 
 LOCK TABLES `EmployeeDepartment` WRITE;
 /*!40000 ALTER TABLE `EmployeeDepartment` DISABLE KEYS */;
+INSERT INTO `EmployeeDepartment` VALUES (1,27,1,'',1,'2018-03-14',1,'2018-03-14');
 /*!40000 ALTER TABLE `EmployeeDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +166,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
   CONSTRAINT `Id_EmployeeId` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Id_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `MasterOrganizationRole` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `UpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,6 +175,7 @@ CREATE TABLE `EmployeeOrganizationRole` (
 
 LOCK TABLES `EmployeeOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` DISABLE KEYS */;
+INSERT INTO `EmployeeOrganizationRole` VALUES (1,1,31,'',1,'2018-03-14',1,'2018-03-14');
 /*!40000 ALTER TABLE `EmployeeOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +204,7 @@ CREATE TABLE `EmployeeSkill` (
   CONSTRAINT `EmployeeSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `Employee_EmployeeSkill` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkill_EmployeeSkill` FOREIGN KEY (`SkillId`) REFERENCES `MasterSkill` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,6 +213,7 @@ CREATE TABLE `EmployeeSkill` (
 
 LOCK TABLES `EmployeeSkill` WRITE;
 /*!40000 ALTER TABLE `EmployeeSkill` DISABLE KEYS */;
+INSERT INTO `EmployeeSkill` VALUES (1,1,44,'',1,'2018-03-14',1,'2018-03-14'),(2,1,45,'',1,'2018-03-14',1,'2018-03-14'),(3,1,46,'',1,'2018-03-14',1,'2018-03-14'),(4,1,47,'',1,'2018-03-14',1,'2018-03-14');
 /*!40000 ALTER TABLE `EmployeeSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +276,7 @@ CREATE TABLE `IdentityGroup` (
   KEY `IdentityGroupCreatedBy_Employee_Id` (`CreatedBy`),
   CONSTRAINT `IdentityGroupCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,7 +285,7 @@ CREATE TABLE `IdentityGroup` (
 
 LOCK TABLES `IdentityGroup` WRITE;
 /*!40000 ALTER TABLE `IdentityGroup` DISABLE KEYS */;
-INSERT INTO `IdentityGroup` VALUES (115,'Super Admin','Super Admin','',1,'2018-03-09',1,'2018-03-14');
+INSERT INTO `IdentityGroup` VALUES (115,'Super Admin','Super Admin','',1,'2018-03-09',1,'2018-03-14'),(120,'Employee','The normal employee group to club all employees within Cuelogic','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `IdentityGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +313,7 @@ CREATE TABLE `IdentityGroupRight` (
   CONSTRAINT `IdentityGroupRightCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRightUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `IdentityGroupRight_IdentityGroup` FOREIGN KEY (`GroupId`) REFERENCES `IdentityGroup` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +322,7 @@ CREATE TABLE `IdentityGroupRight` (
 
 LOCK TABLES `IdentityGroupRight` WRITE;
 /*!40000 ALTER TABLE `IdentityGroupRight` DISABLE KEYS */;
-INSERT INTO `IdentityGroupRight` VALUES (66,115,400,7,'',1,'2018-01-01',NULL,NULL),(67,115,401,7,'',1,'2018-01-01',NULL,NULL),(68,115,402,7,'',1,'2018-01-01',NULL,NULL),(69,115,403,7,'',1,'2018-01-01',NULL,NULL),(70,115,200,7,'',1,'2018-01-01',NULL,NULL),(71,115,201,7,'',1,'2018-01-01',NULL,NULL),(72,115,202,7,'',1,'2018-01-01',NULL,NULL),(73,115,300,7,'',1,'2018-01-01',NULL,NULL),(74,115,301,7,'',1,'2018-01-01',NULL,NULL),(75,115,302,7,'',1,'2018-01-01',NULL,NULL),(76,115,303,7,'',1,'2018-01-01',NULL,NULL),(77,115,304,7,'',1,'2018-01-01',NULL,NULL),(78,115,305,7,'',1,'2018-01-01',NULL,NULL);
+INSERT INTO `IdentityGroupRight` VALUES (66,115,400,7,'',1,'2018-01-01',NULL,NULL),(67,115,401,7,'',1,'2018-01-01',NULL,NULL),(68,115,402,7,'',1,'2018-01-01',NULL,NULL),(69,115,403,7,'',1,'2018-01-01',NULL,NULL),(70,115,200,7,'',1,'2018-01-01',NULL,NULL),(71,115,201,7,'',1,'2018-01-01',NULL,NULL),(72,115,202,7,'',1,'2018-01-01',NULL,NULL),(73,115,300,7,'',1,'2018-01-01',NULL,NULL),(74,115,301,7,'',1,'2018-01-01',NULL,NULL),(75,115,302,7,'',1,'2018-01-01',NULL,NULL),(76,115,303,7,'',1,'2018-01-01',NULL,NULL),(77,115,304,7,'',1,'2018-01-01',NULL,NULL),(78,115,305,7,'',1,'2018-01-01',NULL,NULL),(79,120,202,0,'',27,'2018-03-14',27,'2018-03-14'),(80,120,200,0,'',27,'2018-03-14',27,'2018-03-14'),(81,120,201,0,'',27,'2018-03-14',27,'2018-03-14'),(82,120,403,4,'',27,'2018-03-14',27,'2018-03-14'),(83,120,400,4,'',27,'2018-03-14',27,'2018-03-14'),(84,120,305,0,'',27,'2018-03-14',27,'2018-03-14'),(85,120,301,0,'',27,'2018-03-14',27,'2018-03-14'),(86,120,302,0,'',27,'2018-03-14',27,'2018-03-14'),(87,120,303,0,'',27,'2018-03-14',27,'2018-03-14'),(88,120,304,0,'',27,'2018-03-14',27,'2018-03-14'),(89,120,300,0,'',27,'2018-03-14',27,'2018-03-14'),(90,120,401,4,'',27,'2018-03-14',27,'2018-03-14'),(91,120,402,4,'',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `IdentityGroupRight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +374,7 @@ CREATE TABLE `MasterCity` (
   PRIMARY KEY (`Id`),
   KEY `FK_Country_City` (`CountryId`),
   CONSTRAINT `FK_Country_City` FOREIGN KEY (`CountryId`) REFERENCES `MasterCountry` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,7 +383,7 @@ CREATE TABLE `MasterCity` (
 
 LOCK TABLES `MasterCity` WRITE;
 /*!40000 ALTER TABLE `MasterCity` DISABLE KEYS */;
-INSERT INTO `MasterCity` VALUES (1,1,'Pune'),(2,1,'Mumbai'),(3,1,'Chennai'),(4,1,'Kolkata'),(5,1,'Surat'),(6,2,'New York'),(7,2,'Washington D.C.'),(8,2,'Chicago'),(9,2,'Los Angeles'),(10,3,'Rome'),(11,3,'Venice'),(12,3,'Florence'),(13,3,'Milan'),(14,4,'Barcelona'),(15,4,'Madrid'),(16,5,'Amsterdam'),(17,5,'Rotterdam');
+INSERT INTO `MasterCity` VALUES (1,1,'Pune'),(2,1,'Mumbai'),(3,1,'Chennai'),(4,1,'Kolkata'),(5,1,'Surat'),(6,2,'New York'),(7,2,'Washington D.C.'),(8,2,'Chicago'),(9,2,'Los Angeles'),(10,3,'Rome'),(11,3,'Venice'),(12,3,'Florence'),(13,3,'Milan'),(14,4,'Barcelona'),(15,4,'Madrid'),(16,5,'Amsterdam'),(17,5,'Rotterdam'),(18,2,'Houston');
 /*!40000 ALTER TABLE `MasterCity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -406,7 +409,7 @@ CREATE TABLE `MasterClient` (
   KEY `MasterClientUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterClientCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterClientUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -415,6 +418,7 @@ CREATE TABLE `MasterClient` (
 
 LOCK TABLES `MasterClient` WRITE;
 /*!40000 ALTER TABLE `MasterClient` DISABLE KEYS */;
+INSERT INTO `MasterClient` VALUES (20,'Reva Digital',2,6,'',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterClient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -490,7 +494,7 @@ CREATE TABLE `MasterDepartment` (
   KEY `MasterDepartmentUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterDepartmentCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterDepartmentUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,6 +503,7 @@ CREATE TABLE `MasterDepartment` (
 
 LOCK TABLES `MasterDepartment` WRITE;
 /*!40000 ALTER TABLE `MasterDepartment` DISABLE KEYS */;
+INSERT INTO `MasterDepartment` VALUES (27,'Delivery','Vivek Phadke','',27,'2018-03-14',1,'2018-03-14'),(28,'Technology','Vikrant Labde','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterDepartment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -522,7 +527,7 @@ CREATE TABLE `MasterOrganizationRole` (
   KEY `MasterOrganizationRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterOrganizationRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterOrganizationRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -531,6 +536,7 @@ CREATE TABLE `MasterOrganizationRole` (
 
 LOCK TABLES `MasterOrganizationRole` WRITE;
 /*!40000 ALTER TABLE `MasterOrganizationRole` DISABLE KEYS */;
+INSERT INTO `MasterOrganizationRole` VALUES (29,'Junior Software Engineer','',27,'2018-03-14',1,'2018-03-14'),(30,'Software Engineer','',27,'2018-03-14',27,'2018-03-14'),(31,'Senior Software Engineer','',27,'2018-03-14',27,'2018-03-14'),(32,'Technology Lead','',27,'2018-03-14',27,'2018-03-14'),(33,'QA Engineer','',27,'2018-03-14',27,'2018-03-14'),(34,'Senior QA Engineer','',27,'2018-03-14',27,'2018-03-14'),(35,'Front End Developer','',27,'2018-03-14',27,'2018-03-14'),(36,'Principal Engineer','',27,'2018-03-14',27,'2018-03-14'),(37,'Senior Principal Engineer','',27,'2018-03-14',27,'2018-03-14'),(38,'Project Manager','',27,'2018-03-14',27,'2018-03-14'),(39,'Senior Project Manager','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterOrganizationRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +560,7 @@ CREATE TABLE `MasterProjectType` (
   KEY `MasterProjectTypeUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectTypeCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectTypeUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -563,6 +569,7 @@ CREATE TABLE `MasterProjectType` (
 
 LOCK TABLES `MasterProjectType` WRITE;
 /*!40000 ALTER TABLE `MasterProjectType` DISABLE KEYS */;
+INSERT INTO `MasterProjectType` VALUES (16,'Cuelogic Internal','',27,'2018-03-14',1,'2018-03-14'),(17,'Internal Research and Design','',27,'2018-03-14',27,'2018-03-14'),(18,'Client Project','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterProjectType` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -586,7 +593,7 @@ CREATE TABLE `MasterRole` (
   KEY `MasterProjectRoleUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterProjectRoleCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterProjectRoleUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -595,6 +602,7 @@ CREATE TABLE `MasterRole` (
 
 LOCK TABLES `MasterRole` WRITE;
 /*!40000 ALTER TABLE `MasterRole` DISABLE KEYS */;
+INSERT INTO `MasterRole` VALUES (20,'UI Developer (HTML / CSS)','',27,'2018-03-14',1,'2018-03-14'),(21,'UX Expert (HTML / CSS)','',27,'2018-03-14',27,'2018-03-14'),(22,'Front End Engineer','',27,'2018-03-14',27,'2018-03-14'),(23,'Server Side Developer','',27,'2018-03-14',27,'2018-03-14'),(24,'Project Manager','',27,'2018-03-14',27,'2018-03-14'),(25,'QA Engineer','',27,'2018-03-14',27,'2018-03-14'),(26,'DevOps Engineer','',27,'2018-03-14',27,'2018-03-14'),(27,'Solution Architect','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterRole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -618,7 +626,7 @@ CREATE TABLE `MasterSkill` (
   KEY `MasterSkillUpdatedBy_Employee_Id` (`UpdatedBy`),
   CONSTRAINT `MasterSkillCreatedBy_Employee_Id` FOREIGN KEY (`CreatedBy`) REFERENCES `Employee` (`Id`),
   CONSTRAINT `MasterSkillUpdatedBy_Employee_Id` FOREIGN KEY (`UpdatedBy`) REFERENCES `Employee` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -627,6 +635,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
+INSERT INTO `MasterSkill` VALUES (44,'HTML / CSS','',27,'2018-03-14',1,'2018-03-14'),(45,'.Net (C# / VB.Net / ASP.Net MVC / WebAPI)','',27,'2018-03-14',1,'2018-03-14'),(46,'AngularJS / Angular','',27,'2018-03-14',27,'2018-03-14'),(47,'NodeJS','',27,'2018-03-14',27,'2018-03-14'),(48,'Python','',27,'2018-03-14',27,'2018-03-14'),(49,'Database (Relational / Non-Relational)','',27,'2018-03-14',27,'2018-03-14'),(50,'Mobility (iOS / Android)','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -729,6 +738,25 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` FUNCTION ` GetDateFormat`() RETURNS varchar(50) CHARSET latin1
+BEGIN
+	RETURN '%Y/%m/%d';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `GetDateFormat` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `GetDateFormat`() RETURNS varchar(50) CHARSET latin1
 BEGIN
 	RETURN '%Y/%m/%d';
 END ;;
@@ -920,8 +948,8 @@ BEGIN
         d.ProjectName,
         IF(a.IsBillable,'Yes','No') AS IsBillable,
         a.PercentageAllocation,
-        DATE_FORMAT(a.StartDate, `CuelogicResourceManagement`.` GetDateFormat`()) AS StartDate, 
-        DATE_FORMAT(a.EndDate, `CuelogicResourceManagement`.` GetDateFormat`()) AS EndDate,
+        DATE_FORMAT(a.StartDate, GetDateFormat()) AS StartDate, 
+        DATE_FORMAT(a.EndDate, GetDateFormat()) AS EndDate,
         IF(a.IsValid,'Yes','No') AS IsValid
 	FROM 
 		Allocation a
@@ -4182,4 +4210,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-14 15:39:15
+-- Dump completed on 2018-03-14 19:03:26
