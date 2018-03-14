@@ -28,14 +28,14 @@ export class AuthGuardService implements CanActivate {
                         if (right == null)
                             alert("Right isuue, Please contact admin");
                         if (right.Read == false) {
-                            if (rightId == 400) {
+                            if (rightId == 401) {
                                 this.authService.signOut();
                                 this.srvAppConfig.ClearToken();
                                 this.router.navigate(["/login"]);
                                 alert("Basic right denied ( My Profile ) please contact admin.");
                                 return false;
                             }
-                            if (rightId == 404) {
+                            if (rightId == 400) {
                                 this.router.navigate(["/myprofile"]);
                             }
                         }

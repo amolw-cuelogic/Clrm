@@ -8,6 +8,7 @@ Source/Client/src/assets/fonts/*.ttf binary
 Source/Client/src/assets/fonts/*.eot binary
 Source/Client/src/assets/fonts/*.woff binary
 Source/Client/src/assets/fonts/*.woff2 binary
+Source/Server/Cuelogic.Clrm.Api/Properties/PublishProfiles/release.pubxml.user
 
 *.eot binary
 *.otf binary
