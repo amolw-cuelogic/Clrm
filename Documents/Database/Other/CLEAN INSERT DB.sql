@@ -64,5 +64,19 @@ Values
 
 
 
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '400', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '401', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '402', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '403', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '200', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '201', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '202', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '300', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '301', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '302', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '303', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '304', 7, 1, 1, '2018-01-01');
+INSERT INTO `CuelogicResourceManagement`.`IdentityGroupRight` (`GroupId`, `RightId`, `Action`, `IsValid`, `CreatedBy`, `CreatedOn`) VALUES (115, '305', 7, 1, 1, '2018-01-01');
+
 
 

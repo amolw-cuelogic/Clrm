@@ -57,11 +57,11 @@ namespace Cuelogic.Clrm.Api.Providers
                 }
             }
 
-
+            var displayName = employeeDetails.FirstName + " " + employeeDetails.LastName;
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("Email", employeeDetails.Email));
             identity.AddClaim(new Claim("Id", employeeDetails.Id.ToString()));
-            identity.AddClaim(new Claim("UserName", employeeDetails.FirstName + " " + employeeDetails.LastName));
+            identity.AddClaim(new Claim("UserName", displayName));
 
             ICommonService commonService = new CommonService();
             commonService.LogLoginTime(employeeDetails.Id);
@@ -74,7 +74,7 @@ namespace Cuelogic.Clrm.Api.Providers
             ClaimsIdentity oAuthIdentity = identity;
             ClaimsIdentity cookiesIdentity =
             new ClaimsIdentity(context.Options.AuthenticationType);
-            AuthenticationProperties properties = CreateProperties(context.UserName, employeeRightsJson);
+            AuthenticationProperties properties = CreateProperties(context.UserName, employeeRightsJson, displayName);
             AuthenticationTicket ticket =
             new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
@@ -117,12 +117,13 @@ namespace Cuelogic.Clrm.Api.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName, string rights)
+        public static AuthenticationProperties CreateProperties(string userName, string rights,string displayName)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
                 { "userName", userName },
-                { "rights", rights }
+                { "rights", rights },
+                { "displayName",displayName}
             };
             return new AuthenticationProperties(data);
         }

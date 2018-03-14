@@ -1,6 +1,6 @@
 .breadcrumb {
   position: relative;
   margin-bottom: 0.5 * $spacer;
-
+  padding-left:28px;
   @include borders($breadcrumb-borders);
 }

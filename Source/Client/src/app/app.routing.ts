@@ -23,7 +23,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
@@ -142,7 +142,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
@@ -161,7 +161,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
@@ -180,7 +180,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {

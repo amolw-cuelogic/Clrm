@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 
                 var credentials = JSON.parse(m["_body"]);
                 this.user.AccessToken = credentials.access_token;
-                this.user.DisplayName = authData.name;
+                this.user.DisplayName = credentials.displayName;// <- database displayName | gmail displayName-> authData.name;
                 this.user.Email = authData.email;
                 this.user.PhotoUrl = authData.photoUrl;
                 this.user.Rights = credentials.rights;
