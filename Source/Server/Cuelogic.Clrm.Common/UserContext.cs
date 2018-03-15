@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cuelogic.Clrm.Model.DatabaseModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace Cuelogic.Clrm.Common
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string EmailId { get; set; }
+        public List<IdentityGroupRight> Rights { get; set; }
     }
 }

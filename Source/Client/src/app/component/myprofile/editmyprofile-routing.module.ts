@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
         component: EditMyProfileComponent,
     data: {
-        title: 'Edit MyProfile'
+        title: 'My Profile'
     }
   }
 ];

@@ -19,9 +19,9 @@ namespace Cuelogic.Clrm.Service.Department
         {
             _masterDepartmentRepository = new MasterDepartmentRepository();
         }
-        public void Delete(int DepartmentId)
+        public void Delete(int DepartmentId, int employeeId)
         {
-            _masterDepartmentRepository.MarkMasterDepartmentInvalid(DepartmentId);
+            _masterDepartmentRepository.MarkMasterDepartmentInvalid(DepartmentId, employeeId);
 
         }
 

@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using Cuelogic.Clrm.Service.Common;
 using Cuelogic.Clrm.Common;
 using static Cuelogic.Clrm.Common.AppConstants;
+using log4net;
 
 namespace Cuelogic.Clrm.Api.Providers
 {
@@ -21,6 +22,7 @@ namespace Cuelogic.Clrm.Api.Providers
     {
         private ICommonService _commonService;
         private readonly string _publicClientId;
+        private ILog applogManager = AppLogManager.GetLogger();
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -36,18 +38,7 @@ namespace Cuelogic.Clrm.Api.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var employeeDetails = _commonService.GetEmployeeByEmail(context.UserName);
-
-            var domain = Regex.Match(context.UserName, @"@(.+?).co").Groups[1].Value.ToLower();
-            if (domain != "cuelogic")
-            {
-                context.SetError("custom_error",
-                Helper.ComposeClientMessage(MessageType.Error, 
-                "Please login from cuelogic Id, Signout from your Gmail account : " + 
-                context.UserName));
-                context.Response.StatusCode = 500;
-                return;
-            }
-
+            
             if (employeeDetails.IsValid == false)
             {
                 context.SetError("custom_error", Helper.ComposeClientMessage(MessageType.Error, "User not valid"));
@@ -66,21 +57,24 @@ namespace Cuelogic.Clrm.Api.Providers
                 }
             }
 
-
+            var displayName = employeeDetails.FirstName + " " + employeeDetails.LastName;
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("Email", employeeDetails.Email));
             identity.AddClaim(new Claim("Id", employeeDetails.Id.ToString()));
-            identity.AddClaim(new Claim("UserName", employeeDetails.FirstName + " " + employeeDetails.LastName));
+            identity.AddClaim(new Claim("UserName", displayName));
 
             ICommonService commonService = new CommonService();
-            var employeeRights = commonService.GetEmployeeRightsJson(employeeDetails.Id);
+            commonService.LogLoginTime(employeeDetails.Id);
+            var employeeRights =  commonService.GetEmployeeRights(employeeDetails.Id);
+            var employeeRightsXml = Helper.ObjectToXml(employeeRights);
+            var employeeRightsJson = Helper.ObjectToJson(employeeRights);
 
-            identity.AddClaim(new Claim("Rights", employeeRights));
+            identity.AddClaim(new Claim("Rights", employeeRightsXml));
 
             ClaimsIdentity oAuthIdentity = identity;
             ClaimsIdentity cookiesIdentity =
             new ClaimsIdentity(context.Options.AuthenticationType);
-            AuthenticationProperties properties = CreateProperties(context.UserName);
+            AuthenticationProperties properties = CreateProperties(context.UserName, employeeRightsJson, displayName);
             AuthenticationTicket ticket =
             new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
@@ -123,11 +117,13 @@ namespace Cuelogic.Clrm.Api.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, string rights,string displayName)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                { "rights", rights },
+                { "displayName",displayName}
             };
             return new AuthenticationProperties(data);
         }

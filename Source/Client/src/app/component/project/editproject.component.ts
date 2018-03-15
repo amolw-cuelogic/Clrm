@@ -13,14 +13,16 @@ import { Router } from '@angular/router'
     templateUrl: 'editproject.component.html'
 })
 export class EditProjectComponent {
-   
+
     id: number;
     mode: string;
     baseUrl: string;
     pageObject: any = new Object({
-        ProjectClientChildList: [],
         ProjectMasterClientList: [],
-        ProjectTypeList: []
+        ProjectTypeList: [],
+        ProjectRoleList: [],
+        MasterCurrencyList: [],
+        MasterRoleList: []
     });
     loaded: boolean = false;
     apiController: string = "api/Project";
@@ -52,7 +54,7 @@ export class EditProjectComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
                 else {
                     this.router.navigate(["/project"]);
@@ -60,7 +62,7 @@ export class EditProjectComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
             }
         );
@@ -73,6 +75,8 @@ export class EditProjectComponent {
             m => {
                 if (m["ProjectTypeId"] == 0)
                     m["ProjectTypeId"] = null;
+                if (m["ClientId"] == 0)
+                    m["ClientId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
 
@@ -83,6 +87,20 @@ export class EditProjectComponent {
             );
     }
 
+    NewRecord() {
+        var projectRoleObj = new Object({
+            Id:0,
+            RoleId: null,
+            BillingRate: 0,
+            Currency: null,
+            IsValid: true
+        });
+        this.pageObject.ProjectRoleList.push(projectRoleObj);
+    }
+
+    RemoveRecord(index:any) {
+        this.pageObject.ProjectRoleList.splice(index, 1);
+    }
 
     constructor(private httpClient: HttpClient, private serviceAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,
@@ -91,55 +109,6 @@ export class EditProjectComponent {
 
     }
 
-
-    CloseModal(id: any) {
-        this.commonService.HideBootstrapModal(id);
-    }
-
-    //Client Modal
-
-    OpenModal(id: any) {
-        $('#idDivModalCollection input:checkbox').closest('tr').show();
-        $('#idDivModalCollection #' + id + ' input:checkbox').each(function () {
-            if ($(this).is(":checked"))
-                $(this).trigger('click');
-        });
-
-        for (var i = 0; i < this.pageObject.ProjectClientChildList.length; i++) {
-            var item = this.pageObject.ProjectClientChildList[i];
-            var ClientId = item.ClientId;
-            $('#idDivModalCollection input:checkbox[data-s-id="' + ClientId + '"]').closest('tr').hide();
-        }
-
-        this.commonService.ShowBootstrapModal(id);
-    }
-
-    AddClients(id: any) {
-        var indexArray = [];
-        $('#idDivModalCollection #' + id + ' input:checkbox').each(function () {
-            if ($(this).is(":checked")) {
-                var index = $(this).attr('data-s-index');
-                indexArray.push(index);
-            }
-        });
-
-        for (var i = 0; i < indexArray.length; i++) {
-            var masterClient = this.pageObject.ProjectMasterClientList[indexArray[i]];
-            var projectClient = new Object({
-                ProjectId: this.pageObject.Id,
-                ClientId: masterClient.Id,
-                IsValid: true,
-                ClientName: masterClient.ClientName
-            });
-            this.pageObject.ProjectClientChildList.push(projectClient);
-        }
-        this.commonService.HideBootstrapModal(id);
-    }
-
-    RemoveClient(id: any) {
-        this.pageObject.ProjectClientChildList.splice(id, 1);
-    }
-    
 }
 
 

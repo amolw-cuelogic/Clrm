@@ -8,7 +8,7 @@ import { User } from '../model/user';
 export class AppconfigService {
 
     private baseUrlDev: any = "http://localhost/Cuelogic.Clrm.Api/";
-    private baseUrlProd: any = "http://localhost/Cuelogic.Clrm.Api/";
+    private baseUrlProd: any = "http://amolw-pc/clrmapi/";
     private user: User = new User();
 
     constructor() { }
@@ -20,21 +20,34 @@ export class AppconfigService {
             return this.baseUrlProd;
     }
 
+    GetRights(RightId: number) {
+        var rightObject = null;
+        var user = this.GetToken();
+
+        if (user.Rights != undefined && user.Rights != null && user.Rights != "") {
+            var rightsList = JSON.parse(user.Rights);
+            for (var i = 0; i < rightsList.length; i++) {
+                if (rightsList[i].RightId == RightId) {
+                    rightObject = rightsList[i].BooleanRight;
+                    break;
+                }
+            }
+        }
+        return rightObject;
+    }
+
     SetToken(user: User) {
-        this.user = user;
-        localStorage.setItem("AccessToken", this.user.AccessToken);
-        localStorage.setItem("DisplayName", this.user.DisplayName);
-        localStorage.setItem("Email", this.user.Email);
-        localStorage.setItem("PhotoUrl", this.user.PhotoUrl);
+        var data = JSON.stringify(user);
+        var encryptData = btoa(data);
+        localStorage.setItem("accessToken", encryptData);
     }
 
     GetToken() {
-        var token = localStorage.getItem("AccessToken");
-        if (token != null && token != undefined && token != "") {
-            this.user.AccessToken = token;
-            this.user.DisplayName = localStorage.getItem("DisplayName");
-            this.user.Email = localStorage.getItem("Email")
-            this.user.PhotoUrl = localStorage.getItem("PhotoUrl")
+        var data = localStorage.getItem("accessToken");
+
+        if (data != null && data != undefined && data != "") {
+            var decryptData = atob(data)
+            this.user = JSON.parse(decryptData);
             return this.user;
         }
         else
@@ -42,10 +55,7 @@ export class AppconfigService {
     }
 
     ClearToken() {
-        localStorage.setItem("AccessToken", "");
-        localStorage.setItem("DisplayName", "");
-        localStorage.setItem("Email", "");
-        localStorage.setItem("PhotoUrl", "");
+        localStorage.removeItem("accessToken");
     }
 
     GetGmailLogoutUrl() {
@@ -61,6 +71,14 @@ export class AppconfigService {
         var topFooterOffSet = winHt - footerHeight;
         var ht = (topFooterOffSet - topTableOffSet) - 5;
         $('.dynamicBottomDiv').css({ "height": ht + "px" });
+    }
+
+    ShowLoader() {
+        $('#loadingDiv').addClass('loader');
+    }
+
+    HideLoader() {
+        $('#loadingDiv').removeClass('loader');
     }
 
 }

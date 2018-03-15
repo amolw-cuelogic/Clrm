@@ -19,6 +19,6 @@ namespace Cuelogic.Clrm.DataAccessLayer.OrganizationRole
 
         void InsertMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole);
 
-        void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId);
+        void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId, int employeeId);
     }
 }

@@ -18,4 +18,11 @@ export class ComponentSubscriptionService {
         $('#idGlobalErrorModal').css({ 'display': 'block' });
     }
 
+    OpenToaster(objModel: BootstrapModel) {
+        this.bootstrapModalMessageSource.next(objModel)
+        var x = document.getElementById("toast")
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 1600);
+    }
+
 }

@@ -17,15 +17,21 @@ namespace Cuelogic.Clrm.Service.Client
         {
             _masterClientRepository = new MasterClientRepository();
         }
-        public void Delete(int masterClientId)
+        public void Delete(int masterClientId, int employeeId)
         {
-            _masterClientRepository.MarkMasterClientInvalid(masterClientId);
+            _masterClientRepository.MarkMasterClientInvalid(masterClientId, employeeId);
         }
 
         public MasterClient GetItem(int masterClientId)
         {
             var masterClient = _masterClientRepository.GetMasterClient(masterClientId);
             return masterClient;
+        }
+
+        public List<MasterCity> GetCityList(int countryId)
+        {
+            var cityList = _masterClientRepository.GetCityList(countryId);
+            return cityList;
         }
 
         public string GetList(SearchParam searchParam)

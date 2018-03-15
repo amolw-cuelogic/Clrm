@@ -61,7 +61,7 @@ namespace Cuelogic.Clrm.Api.Filter
                 if (RightId != 0 && ActionFlag != 0)
                 {
                     ClaimsPrincipal principal = actionContext.Request.GetRequestContext().Principal as ClaimsPrincipal;
-                    var xml = principal.Claims.Where(c => c.Type == "RightsXml").Single().Value;
+                    var xml = principal.Claims.Where(c => c.Type == "Rights").Single().Value;
                     Type t = (new List<IdentityGroupRight>()).GetType();
                     var employeeRights = Helper.XmlToObject(xml, t) as List<IdentityGroupRight>;
                     var sectionRight = employeeRights.Where(m => m.RightId == RightId).FirstOrDefault();
@@ -85,7 +85,6 @@ namespace Cuelogic.Clrm.Api.Filter
                             break;
                         default:
                             throw new Exception(Helper.ComposeClientMessage(MessageType.Error, "No rights defined"));
-                            break;
                     }
                 }
             }

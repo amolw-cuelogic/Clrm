@@ -20,7 +20,6 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
                 <div class="dropdown-header text-center"><strong>Account</strong></div>
-                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                 <a (click)="Logout()" class="dropdown-item" href="javascript:void(0);"><i class="fa fa-lock"></i> Logout</a>
             </div>
         </li>
@@ -30,50 +29,54 @@
     <div class="sidebar">
         <nav class="sidebar-nav">
             <ul class="nav">
-                <li class="nav-item">
+                <li ngx-rights="400|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-home"></i> Dashboard </a>
                 </li>
-                <li class="nav-item">
+                <li ngx-rights="401|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/myprofile']"><i class="icon-user"></i> My Profile </a>
                 </li>
-                <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <li ngx-rights="200,201,202|Read" class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                     <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-settings"></i> Admin</a>
                     <ul class="nav-dropdown-items">
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/group']"><i class="icon-arrow-right"></i> Group</a>
+                        <li ngx-rights="200|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/group']"><i class="icon-arrow-right "></i>Group</a>
+                        </li>
+                        <li ngx-rights="201|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/usergroup']"><i class="icon-arrow-right"></i>User Group</a>
+                        </li>
+                        <li ngx-rights="202|Read" class="nav-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/employee']"><i class="icon-arrow-right"></i>Employee </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <li ngx-rights="300,301,302,303,304,305|Read" class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                     <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-list"></i> Master</a>
                     <ul class="nav-dropdown-items">
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/skill']"><i class="icon-arrow-right"></i> Skill</a>
+                        <li ngx-rights="300|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/skill']"><i class="icon-arrow-right"></i> Skill</a>
                         </li>
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/department']"><i class="icon-arrow-right"></i> Department</a>
+                        <li ngx-rights="301|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/department']"><i class="icon-arrow-right"></i> Department</a>
                         </li>
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/organizationrole']"><i class="icon-arrow-right"></i> Organization Role</a>
+                        <li ngx-rights="302|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/organizationrole']"><i class="icon-arrow-right"></i> Organization Role</a>
                         </li>
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/projectrole']"><i class="icon-arrow-right"></i> Project Role</a>
+                        <li ngx-rights="303|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/role']"><i class="icon-arrow-right"></i> Role</a>
                         </li>
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/projecttype']"><i class="icon-arrow-right"></i> Project Type</a>
+                        <li ngx-rights="304|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/projecttype']"><i class="icon-arrow-right"></i> Project Type</a>
                         </li>
-                        <li class="nav-item Child-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/client']"><i class="icon-arrow-right"></i> Client</a>
+                        <li ngx-rights="305|Read" class="nav-item Child-item">
+                            <a class="nav-link childMenuItem" routerLinkActive="active" [routerLink]="['/client']"><i class="icon-arrow-right"></i> Client</a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/employee']"><i class="icon-people"></i> Employee </a>
-                </li>
-                <li class="nav-item">
+
+                <li ngx-rights="402|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/project']"><i class="icon-control-play"></i> Project </a>
                 </li>
-                <li class="nav-item">
+                <li ngx-rights="403|Read" class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/allocation']"><i class="icon-pin"></i> Allocation </a>
                 </li>
             </ul>
@@ -90,6 +93,7 @@
         </div><!-- /.conainer-fluid -->
     </main>
     <global-bootstrapmodal></global-bootstrapmodal>
+    <div id="loadingDiv"></div>
 </div>
 <footer class="app-footer">
     <span><a href="javascript:void(0);">Cuelogic Resource Management</a></span>

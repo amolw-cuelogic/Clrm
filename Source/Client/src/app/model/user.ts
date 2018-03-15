@@ -3,4 +3,5 @@ export class User {
     DisplayName: string;
     AccessToken: string;
     PhotoUrl: string;
+    Rights: string;
 }

@@ -19,15 +19,15 @@ namespace Cuelogic.Clrm.Api.Controllers
     [RoutePrefix("api/Group")]
     public class MasterGroupController : ApiBaseController
     {
-        private readonly IMasterGroup _masterGroup;
-        public MasterGroupController(IMasterGroup masterGroup)
+        private readonly IMasterGroupService _masterGroup;
+        public MasterGroupController(IMasterGroupService masterGroup)
         {
             
             _masterGroup = masterGroup;
         }
 
         [Route("")]
-        [AuthorizeUserRights(IdentityRights.Group, AuthorizeFlag.Read)]
+        [AuthorizeUserRights(IdentityRights.AdminGroup, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int show, int page, string filterText)
         {
             if (show < 0 || page < 0)
@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
-        [AuthorizeUserRights(IdentityRights.Group, AuthorizeFlag.Read)]
+        [AuthorizeUserRights(IdentityRights.AdminGroup, AuthorizeFlag.Read)]
         public IHttpActionResult Get(int id)
         {
             if (id < 0)
@@ -51,7 +51,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("")]
-        [AuthorizeUserRights(IdentityRights.Group, AuthorizeFlag.Write)]
+        [AuthorizeUserRights(IdentityRights.AdminGroup, AuthorizeFlag.Write)]
         public IHttpActionResult Post([FromBody]IdentityGroup identityGroup)
         {
             var userCtx = base.GetUserContext();
@@ -60,12 +60,13 @@ namespace Cuelogic.Clrm.Api.Controllers
         }
 
         [Route("{id}")]
-        [AuthorizeUserRights(IdentityRights.Group, AuthorizeFlag.Delete)]
+        [AuthorizeUserRights(IdentityRights.AdminGroup, AuthorizeFlag.Delete)]
         public IHttpActionResult Delete(int id)
         {
             if (id < 0)
                 throw new Exception("Negative id now allowed");
-            _masterGroup.Delete(id);
+            var userContext = base.GetUserContext();
+            _masterGroup.Delete(id, userContext.UserId);
             return Ok();
         }
     }

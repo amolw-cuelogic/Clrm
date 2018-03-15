@@ -34,15 +34,17 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this.srvAppConfig.ShowLoader();
         var gmailLogoutUrl = this.srvAppConfig.GetGmailLogoutUrl();
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
             m => {
-                var temp = m.email.replace(/.*@/, '').split('.');
-                var domain = temp[temp.length - 2];
-                if (domain.toUpperCase() == "CUELOGIC") {
+                var temp = m.email.split('@');
+                var domain = temp[1];
+                if (domain.toUpperCase().indexOf("CUELOGIC") > -1 ){
                     this.RegisterGmailToken(m);
                 }
                 else {
+                    this.srvAppConfig.HideLoader();
                     var model = new BootstrapModel();
                     model.Title = "Error";
                     model.MessageType = model.ModelType.Danger;
@@ -61,14 +63,16 @@ export class LoginComponent implements OnInit {
         var baseurl = this.srvAppConfig.GetBaseUrl();
         this.httpClient.post(baseurl + 'token', data, { headers: headers }).subscribe(
             m => {
-
+                this.srvAppConfig.HideLoader();
                 var credentials = JSON.parse(m["_body"]);
                 this.user.AccessToken = credentials.access_token;
-                this.user.DisplayName = authData.name;
+                this.user.DisplayName = credentials.displayName;// <- database displayName | gmail displayName-> authData.name;
                 this.user.Email = authData.email;
                 this.user.PhotoUrl = authData.photoUrl;
+                this.user.Rights = credentials.rights;
                 this.srvAppConfig.SetToken(this.user);
-                window.location.href = '/';
+                this.srvAppConfig.GetRights(1);
+                this.router.navigate(["/"]);
 
             }
         );

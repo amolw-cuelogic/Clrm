@@ -10,8 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Project Type </strong>
-                        <small>Details</small>
+                        <strong>Project Type Details</strong>
                         <small *ngIf="pageObject.UpdatedOn" style="float:right">Last updated on <u>{{pageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{pageObject.UpdatedByName}}</u> </small>
                     </div>
 
@@ -21,13 +20,13 @@
                             <div class="col-sm-12 col-md-6 col-xs-12">
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
-                                        <ngx-label value="Role"></ngx-label>
-                                        <input type="text" #ProjectType="ngModel" [(ngModel)]="pageObject.Type" class="form-control" required name="pageObject.Type" placeholder="Enter Project Type">
+                                        <ngx-label value="Project Type"></ngx-label>
+                                        <input maxlength="150" type="text" #ProjectType="ngModel" [(ngModel)]="pageObject.Type" class="form-control" required name="pageObject.Type" placeholder="Enter Project Type">
                                         <div *ngIf="ProjectType.errors && (ProjectType.dirty || ProjectType.touched)" class="error">
                                             Project Role is required
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="304|Delete" class="form-group">
                                         <label for="name">Is Valid Project Role</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsValid" name="pageObject.IsValid">

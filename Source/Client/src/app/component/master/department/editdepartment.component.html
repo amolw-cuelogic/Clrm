@@ -10,8 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Department </strong>
-                        <small>Details</small>
+                        <strong>Department Details</strong>
                         <small *ngIf="PageObject.UpdatedOn" style="float:right">Last updated on <u>{{PageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{PageObject.UpdatedByName}}</u> </small>
                     </div>
                     <div class="card-body">
@@ -21,17 +20,17 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Department Name"></ngx-label>
-                                        <input type="text" #DepartmentName="ngModel" [(ngModel)]="PageObject.DepartmentName" class="form-control" required name="PageObject.DepartmentName" placeholder="Enter Department Name">
+                                        <input maxlength="150" type="text" #DepartmentName="ngModel" [(ngModel)]="PageObject.DepartmentName" class="form-control" required name="PageObject.DepartmentName" placeholder="Enter Department Name">
                                         <div *ngIf="DepartmentName.errors && (DepartmentName.dirty || DepartmentName.touched)" class="error">
                                             Department Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Department Head</label>
-                                        <input class="form-control" [(ngModel)]="PageObject.DepartmentHead" rows="5" name="PageObject.DepartmentHead" placeholder="Enter Department Head" />
+                                        <input maxlength="150" class="form-control" [(ngModel)]="PageObject.DepartmentHead" rows="5" name="PageObject.DepartmentHead" placeholder="Enter Department Head" />
 
                                     </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="301|Delete" class="form-group">
                                         <label for="name">Is Valid Department</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="PageObject.IsValid" name="PageObject.IsValid">

@@ -95,9 +95,9 @@ namespace Cuelogic.Clrm.Repository.Group
 
         }
 
-        public void MarkGroupInvalid(int groupId)
+        public void MarkGroupInvalid(int groupId, int employeeId)
         {
-            _masterGroupDataAccess.MarkGroupInvalid(groupId);
+            _masterGroupDataAccess.MarkGroupInvalid(groupId, employeeId);
         }
     }
 }

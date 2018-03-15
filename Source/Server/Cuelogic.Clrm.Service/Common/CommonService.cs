@@ -64,11 +64,9 @@ namespace Cuelogic.Clrm.Service.Common
             return distinctList;
         }
 
-        public string GetEmployeeRightsJson(int employeeId)
+        public void LogLoginTime(int employeeId)
         {
-            var data = GetEmployeeRights(employeeId);
-            var json = new JavaScriptSerializer().Serialize(data);
-            return json;
+            _commonRepository.LogLoginTime(employeeId);
         }
 
         public void Save(EmployeeVm employeeVm, UserContext userContext)

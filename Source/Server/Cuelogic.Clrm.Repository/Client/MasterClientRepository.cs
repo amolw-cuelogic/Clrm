@@ -28,18 +28,28 @@ namespace Cuelogic.Clrm.Repository.Client
             _masterClientDataAccess.AddOrUpdateMasterClient(masterClient);
         }
 
+        public List<MasterCity> GetCityList(int countryId)
+        {
+            var ds = _masterClientDataAccess.GetCityList(countryId);
+            var cityList = ds.Tables[0].ToList<MasterCity>();
+            return cityList;
+        }
+
         public MasterClient GetMasterClient(int masterClientId)
         {
+            var masterClient = new MasterClient();
             if (masterClientId != 0)
             {
                 var ds = _masterClientDataAccess.GetMasterClient(masterClientId);
-                var masterClient = ds.Tables[0].ToModel<MasterClient>();
-                return masterClient;
+                masterClient = ds.Tables[0].ToModel<MasterClient>();
+
+                var masterCityDs = _masterClientDataAccess.GetCityList(masterClient.CountryId);
+                masterClient.MasterCityList = masterCityDs.Tables[0].ToList<MasterCity>();
+
             }
-            else
-            {
-                return new MasterClient();
-            }
+            var countryListDs = _masterClientDataAccess.GetCountryList();
+            masterClient.MasterCountryList = countryListDs.Tables[0].ToList<MasterCountry>();
+            return masterClient;
         }
 
         public DataSet GetMasterClientList(SearchParam searchParam)
@@ -48,9 +58,9 @@ namespace Cuelogic.Clrm.Repository.Client
             return ds;
         }
 
-        public void MarkMasterClientInvalid(int masterClientId)
+        public void MarkMasterClientInvalid(int masterClientId, int employeeId)
         {
-            _masterClientDataAccess.MarkMasterClientInvalid(masterClientId);
+            _masterClientDataAccess.MarkMasterClientInvalid(masterClientId, employeeId);
         }
     }
 }

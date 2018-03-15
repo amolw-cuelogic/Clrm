@@ -14,6 +14,8 @@ namespace Cuelogic.Clrm.DataAccessLayer.Client
         DataSet GetMasterClientList(SearchParam searchParam);
         DataSet GetMasterClient(int masterClientId);
         void AddOrUpdateMasterClient(MasterClient masterClient);
-        void MarkMasterClientInvalid(int masterClientId);
+        void MarkMasterClientInvalid(int masterClientId,int employeeId);
+        DataSet GetCountryList();
+        DataSet GetCityList(int countryId);
     }
 }

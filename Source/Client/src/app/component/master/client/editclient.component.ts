@@ -32,7 +32,7 @@ export class EditClientComponent {
 
     SetFormModeView() {
         this.Disabled = true;
-        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"]').attr("disabled", "true");
+        $('.dynamicBottomDiv input,.dynamicBottomDiv textarea,input[type="checkbox"], select').attr("disabled", "true");
     }
 
     Save() {
@@ -47,16 +47,15 @@ export class EditClientComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
-                else
-                {
+                else {
                     this.router.navigate(["/client"]);
                     var model = new BootstrapModel();
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
             }
         );
@@ -67,6 +66,10 @@ export class EditClientComponent {
         this.httpClient.get(this.baseUrl + this.ApiController + "/" + id
         ).subscribe(
             m => {
+                if (m["CountryId"] == 0)
+                    m["CountryId"] = null;
+                if (m["CityId"] == 0)
+                    m["CityId"] = null;
                 this.pageObject = m;
                 this.SrvAppConfig.AdjustBottomHeight();
 
@@ -76,7 +79,33 @@ export class EditClientComponent {
             }
             );
     }
-    
+
+    GetCities(id: any) {
+        this.httpClient.get(this.baseUrl + this.ApiController + "/GetCities/" + id
+        ).subscribe(
+            m => {
+                if (m != null && m != undefined) {
+                    this.pageObject.MasterCityList = m;
+                    this.pageObject.CityId = null;
+                    this.SrvAppConfig.AdjustBottomHeight();
+                }
+                else {
+                    this.ThrowCityNotPresentWarning();
+                }
+
+
+
+            }
+            );
+    }
+
+    ThrowCityNotPresentWarning() {
+        var model = new BootstrapModel();
+        model.Title = "Warning";
+        model.MessageType = model.ModelType.Warning;
+        model.Message = "City not entered for selected country.";
+        this.compSubSrv.OpenBootstrapModal(model);
+    }
 
     constructor(private httpClient: HttpClient, private SrvAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,

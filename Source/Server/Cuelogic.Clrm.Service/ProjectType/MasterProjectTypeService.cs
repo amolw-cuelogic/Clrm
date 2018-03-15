@@ -17,9 +17,9 @@ namespace Cuelogic.Clrm.Service.ProjectType
         {
             _masterProjectTypeRepository = new MasterProjectTypeRepository();
         }
-        public void Delete(int masterProjectTypeId)
+        public void Delete(int masterProjectTypeId, int employeeId)
         {
-            _masterProjectTypeRepository.MarkMasterProjectTypeInvalid(masterProjectTypeId);
+            _masterProjectTypeRepository.MarkMasterProjectTypeInvalid(masterProjectTypeId, employeeId);
         }
 
         public MasterProjectType GetItem(int masterProjectTypeId)

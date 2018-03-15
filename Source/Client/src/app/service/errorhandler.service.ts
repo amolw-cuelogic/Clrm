@@ -2,12 +2,12 @@ import { ErrorHandler, Injectable } from '@angular/core';
 import { ComponentSubscriptionService } from './componentsubscription.service'
 import { BootstrapModel } from '../model/bootstrapmodel'
 import { isDevMode } from '@angular/core';
-
+import { AppconfigService } from '../service/appconfig.service'
 @Injectable()
 export class ErrorhandlerService implements ErrorHandler {
-    constructor(private srvCompSub: ComponentSubscriptionService) { }
+    constructor(private srvCompSub: ComponentSubscriptionService, private srvAppConfig: AppconfigService) { }
     handleError(error) {
-
+        this.srvAppConfig.HideLoader();
         var StringifiedError = JSON.stringify(error);
 
         var model = new BootstrapModel();

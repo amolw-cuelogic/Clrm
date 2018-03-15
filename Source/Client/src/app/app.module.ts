@@ -42,14 +42,12 @@ import { GoogleLoginProvider } from "angular4-social-login";
 //Model
 import { FormMode } from './model/FormMode'
 
-//Directive
-import { LabelDirective } from "./directive/label-directive"
-
+import { CommonAppModule } from "./common.module"
 
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("15147801980-uhliicuk0kpn72ukm45oobidk14afguc.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider("1090200624498-7hivvojqi786b3icdm4s7q4g3f8eeq99.apps.googleusercontent.com")
     }
 ]);
 
@@ -68,7 +66,8 @@ export function provideConfig() {
         ChartsModule,
         HttpModule,
         HttpClientModule,
-        SocialLoginModule
+        SocialLoginModule,
+        CommonAppModule
     ],
     declarations: [
         AppComponent,
@@ -98,6 +97,10 @@ export function provideConfig() {
         {
             provide: ErrorHandler,
             useClass: ErrorhandlerService
+        },
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
         }
     ],
     bootstrap: [AppComponent]

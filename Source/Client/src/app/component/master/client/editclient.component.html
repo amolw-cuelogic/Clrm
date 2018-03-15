@@ -10,8 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Project Type </strong>
-                        <small>Details</small>
+                        <strong>Project Type Details</strong>
                         <small *ngIf="pageObject.UpdatedOn" style="float:right">Last updated on <u>{{pageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{pageObject.UpdatedByName}}</u> </small>
                     </div>
 
@@ -22,16 +21,30 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Client Name"></ngx-label>
-                                        <input type="text" #ClientName="ngModel" [(ngModel)]="pageObject.ClientName" class="form-control" required name="pageObject.ClientName" placeholder="Enter Client Name">
+                                        <input maxlength="200" type="text" #ClientName="ngModel" [(ngModel)]="pageObject.ClientName" class="form-control" required name="pageObject.ClientName" placeholder="Enter Client Name">
                                         <div *ngIf="ClientName.errors && (ClientName.dirty || ClientName.touched)" class="error">
                                             Client Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Client Location</label>
-                                        <input type="text" [(ngModel)]="pageObject.ClientLocation" class="form-control" name="pageObject.ClientLocation" placeholder="Enter Client Location">
+                                        <ngx-label value="Client Country"></ngx-label>
+                                        <select required #CountryId="ngModel" (ngModelChange)="GetCities($event)" [(ngModel)]="pageObject.CountryId" name="CountryId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.MasterCountryList" value="{{item.Id}}">{{item.CountryName}}</option>
+                                        </select>
+                                        <div *ngIf="CountryId.errors && (CountryId.dirty || CountryId.touched)" class="error">
+                                            Country is required
+                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" *ngIf="pageObject.CityId != null || pageObject.MasterCityList?.length > 0">
+                                        <ngx-label value="Client City"></ngx-label>
+                                        <select [disabled]="Disabled" required #CityId="ngModel" [(ngModel)]="pageObject.CityId" name="CityId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.MasterCityList" value="{{item.Id}}">{{item.CityName}}</option>
+                                        </select>
+                                        <div *ngIf="CityId.errors && (CityId.dirty || CityId.touched)" class="error">
+                                            City is required
+                                        </div>
+                                    </div>
+                                    <div ngx-rights="305|Delete" class="form-group">
                                         <label for="name">Is Valid Client</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsValid" name="pageObject.IsValid">

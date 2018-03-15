@@ -2,7 +2,7 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-12 col-xs-12" style="padding-bottom:7px;">
-        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid || pageObject.ProjectClientChildList.length == 0">Save</button>
+        <button [hidden]="disabled" type="button" class="btn btn-primary  btn-sm" (click)="SaveGroup()" [disabled]="!formCtrl.form.valid || pageObject.ProjectRoleList.length == 0">Save</button>
         <button routerLink="/project" type="button" class="btn btn-primary btn-sm">Back</button>
     </div>
     <div class="col-sm-12 col-md-12 col-xs-12 dynamicBottomDiv">
@@ -10,8 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Project </strong>
-                        <small>Details</small>
+                        <strong>Project Details</strong>
                         <small *ngIf="pageObject.UpdatedOn" style="float:right">Last updated on <u>{{pageObject.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{pageObject.UpdatedByName}}</u> </small>
                     </div>
                     <div class="card-body">
@@ -20,7 +19,7 @@
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <ngx-label value="Project Name"></ngx-label>
-                                        <input type="text" #ProjectName="ngModel" [(ngModel)]="pageObject.ProjectName" class="form-control" required name="ProjectName" placeholder="Enter Project Name" />
+                                        <input maxlength="500" type="text" #ProjectName="ngModel" [(ngModel)]="pageObject.ProjectName" class="form-control" required name="ProjectName" placeholder="Enter Project Name" />
                                         <div *ngIf="ProjectName.errors && (ProjectName.dirty || ProjectName.touched)" class="error">
                                             Project Name is required
                                         </div>
@@ -35,6 +34,21 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label>Project Description</label>
+                                        <textarea maxlength="500" rows="10" type="text" [(ngModel)]="pageObject.Description" class="form-control" name="Description" placeholder="Enter Project Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <ngx-label value="Client"></ngx-label>
+                                        <select required #ClientId="ngModel" [(ngModel)]="pageObject.ClientId" name="ClientId" class="form-control" id="" style="width:100%;">
+                                            <option *ngFor="let item of pageObject.ProjectMasterClientList" value="{{item.Id}}">{{item.ClientName}}</option>
+                                        </select>
+                                        <div *ngIf="ClientId.errors && (ClientId.dirty || ClientId.touched)" class="error">
+                                            Client is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <ngx-label value="Start Date"></ngx-label>
                                         <input type="date" #StartDate="ngModel" [ngModel]="pageObject.StartDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.StartDate = $event" class="form-control" required name="StartDate" placeholder="Enter Start Date" />
                                         <div *ngIf="StartDate.errors && (StartDate.dirty || StartDate.touched)" class="error">
@@ -45,22 +59,7 @@
                                         <label>End Date</label>
                                         <input type="date" [ngModel]="pageObject.EndDate | date:'yyyy-MM-dd'" (ngModelChange)="pageObject.EndDate = $event" class="form-control" name="EndDate" placeholder="Enter End Date" />
                                     </div>
-                                    <div class="form-group">
-                                        <label>Project Description</label>
-                                        <textarea rows="5" type="text" [(ngModel)]="pageObject.Description" class="form-control" name="Description" placeholder="Enter Project Description"></textarea>
-                                    </div>
-                                   
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="name">Is Project Complete</label><br />
-                                        <label class="switch switch-3d switch-success switch-sm">
-                                            <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsComplete" name="IsComplete">
-                                            <span class="switch-label"></span>
-                                            <span class="switch-handle"></span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="402|Delete" class="form-group">
                                         <label for="name">Is Valid Project</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsValid" name="IsValid">
@@ -69,42 +68,73 @@
                                         </label>
                                     </div>
                                     <div class="form-group">
-                                        <ngx-label value="Client"></ngx-label><a style="float:right;" href="javascript:void(0);" (click)="OpenModal('clientModal')">Add Client</a>
-                                        <div style="border:1px solid #ddd; padding:5px; max-height:150px; overflow:auto;">
-                                            <table style="width:100%" class="CustomeTable">
-                                                <tr *ngIf="pageObject.ProjectClientChildList.length != 0">
-                                                    <!--<th class="AlignCenter">
-                                                        Action
-                                                    </th>-->
-                                                    <th style="width:60%">
-                                                        Client Name
-                                                    </th>
-                                                    <th class="AlignCenter">Is Valid</th>
-                                                </tr>
-                                                <tbody>
-                                                    <tr *ngFor="let item of pageObject.ProjectClientChildList; let i=index">
-                                                        <!--<td class="AlignCenter">
-                                                            <i (click)="RemoveClient(i)" class="icon-close"></i>
-                                                        </td>-->
-                                                        <td>
-                                                            {{item.ClientName}}
-                                                        </td>
-                                                        <td class="AlignCenter">
-                                                            <input type="checkbox" [(ngModel)]="item.IsValid" name="ClientName-{{i}}" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr *ngIf="pageObject.ProjectClientChildList.length == 0">
-                                                        <td>
-                                                            No Client Added
-                                                        </td>
+                                        <label for="name">Is Project Complete</label><br />
+                                        <label class="switch switch-3d switch-success switch-sm">
+                                            <input type="checkbox" class="switch-input" [(ngModel)]="pageObject.IsComplete" name="IsComplete">
+                                            <span class="switch-label"></span>
+                                            <span class="switch-handle"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr />
+                                <ngx-label value="Roles" style="margin-left:15px;"></ngx-label>
+                                <div class="col-sm-12 col-md-12 col-xs-12">
+                                    <table class="table table-sm table-hover  " style="width:100%">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th style="width:5%"><button [disabled]="disabled" ngx-rights="402|Write" (click)="NewRecord()" type="button" title="Add Role" class="btn btn-sm btn-success btn-sm"><i class="fa fa-plus"></i></button></th>
+                                                <th style="width:30%">Role</th>
+                                                <th style="width:30%">Billing Rate</th>
+                                                <th style="width:25%">Currency</th>
+                                                <th style="width:10%; text-align:center">Is Valid</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of pageObject.ProjectRoleList; let i = index;" [class]="(item.IsValid == 'No')?'notValid':''">
+                                                <td>
+                                                    <button *ngIf="item.Id == 0" [disabled]="disabled" ngx-rights="402|Write" (click)="RemoveRecord(i)" type="button" title="Remove Role" class="btn btn-sm btn-primary btn-sm"><i class="fa fa-times"></i></button>
+                                                </td>
+                                                <td>
+                                                    <select [disabled]="disabled" required #RoleId="ngModel" [(ngModel)]="item.RoleId" name="RoleId_{{i}}" class="form-control form-control-sm" id="" style="width:100%;">
+                                                        <option *ngFor="let item of pageObject.MasterRoleList" value="{{item.Id}}">{{item.Role}}</option>
+                                                    </select>
+                                                    <div *ngIf="RoleId.errors && (RoleId.dirty || RoleId.touched)" class="error">
+                                                        Role is required
+                                                    </div>
 
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="warning" *ngIf="pageObject.ProjectClientChildList.length == 0">
-                                            Please Select atleast One Client
-                                        </div>
+                                                </td>
+                                                <td>
+                                                    <input [disabled]="disabled" maxlength="11" pattern="[0-9]+" type="text" #BillingRate="ngModel" [(ngModel)]="item.BillingRate" class="form-control form-control-sm" required name="BillingRate_{{i}}" placeholder="Enter Billing Rate" />
+                                                    <div *ngIf="BillingRate.errors">
+                                                        <div *ngIf="BillingRate.errors.required && (BillingRate.dirty || BillingRate.touched)" class="error">
+                                                            Billing Rate is required
+                                                        </div>
+                                                        <div *ngIf="BillingRate.errors.pattern && (BillingRate.dirty || BillingRate.touched)" class="error">
+                                                            Please enter numerical value.
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <select [disabled]="disabled" required #CurrencyId="ngModel" [(ngModel)]="item.CurrencyId" name="CurrencyId_{{i}}" class="form-control form-control-sm" id="" style="width:100%;">
+                                                        <option *ngFor="let item of pageObject.MasterCurrencyList" value="{{item.Id}}">{{item.Currency}}</option>
+                                                    </select>
+                                                    <div *ngIf="CurrencyId.errors && (CurrencyId.dirty || CurrencyId.touched)" class="error">
+                                                        Currency is required
+                                                    </div>
+                                                </td>
+                                                <td style="text-align:center; vertical-align:middle;">
+                                                    <label class="switch switch-3d switch-success switch-sm">
+                                                        <input [disabled]="disabled" type="checkbox" class="switch-input" [(ngModel)]="item.IsValid" name="IsValid_{{i}}">
+                                                        <span class="switch-label"></span>
+                                                        <span class="switch-handle"></span>
+                                                    </label>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div *ngIf="pageObject.ProjectRoleList.length == 0" class="warning">
+                                        Minimum one role.
                                     </div>
 
                                 </div>
@@ -115,44 +145,4 @@
             </div>
         </div>
     </div>
-</div>
-<div id="idDivModalCollection">
-    <!-- MASTER SKILLS -->
-    <div id="clientModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-info" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Master Clients</h4>
-                    <button type="button" class="close" (click)="CloseModal('clientModal')" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="max-height:350px; overflow:auto;">
-                    <table class="CustomeTable" style="width:100%">
-                        <tr>
-                            <th style="width:20%;text-align:center">
-                                Add
-                            </th>
-                            <th>Clients</th>
-                        </tr>
-                        <tbody>
-                            <tr *ngFor="let item of pageObject.ProjectMasterClientList;let i=index">
-                                <td style="text-align:center">
-                                    <input type="checkbox" [attr.data-s-index]="i" [attr.data-s-id]="item.Id" />
-                                </td>
-                                <td>
-                                    {{item.ClientName}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="CloseModal('clientModal')">Close</button>
-                    <button type="button" class="btn btn-primary" (click)="AddClients('clientModal')">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

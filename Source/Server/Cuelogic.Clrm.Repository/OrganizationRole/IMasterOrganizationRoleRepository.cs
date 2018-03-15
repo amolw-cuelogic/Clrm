@@ -20,6 +20,6 @@ namespace Cuelogic.Clrm.Repository.OrganizationRole
 
         void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
 
-        void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId);
+        void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId, int employeeId);
     }
 }

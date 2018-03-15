@@ -41,9 +41,9 @@ namespace Cuelogic.Clrm.Repository.OrganizationRole
             return ds;
         }
 
-        public void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId)
+        public void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId, int employeeId)
         {
-            _masterOrganizationRoleDataAccess.MarkMasterOrganizationRoleInvalid(masterOrganizationRoleId);
+            _masterOrganizationRoleDataAccess.MarkMasterOrganizationRoleInvalid(masterOrganizationRoleId, employeeId);
         }
 
         public void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)

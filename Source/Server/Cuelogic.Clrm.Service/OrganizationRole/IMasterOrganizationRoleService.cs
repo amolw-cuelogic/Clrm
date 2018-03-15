@@ -17,6 +17,6 @@ namespace Cuelogic.Clrm.Service.OrganizationRole
 
         void Save(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
 
-        void Delete(int masterOrganizationRoleId);
+        void Delete(int masterOrganizationRoleId, int employeeId);
     }
 }

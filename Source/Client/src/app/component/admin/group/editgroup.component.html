@@ -10,8 +10,7 @@
             <div class="col-sm-12 col-md-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Group </strong>
-                        <small>Details</small>
+                        <strong>Group Details</strong>
                         <small *ngIf="IdentityGroup.UpdatedOn" style="float:right">Last updated on <u>{{IdentityGroup.UpdatedOn | date :  "MMM d y"}}</u>, by <u>{{IdentityGroup.UpdatedByName}}</u> </small>
                     </div>
                     <div class="card-body">
@@ -21,19 +20,19 @@
                                 <form form #formCtrl="ngForm">
                                     <div class="form-group">
                                         <ngx-label value="Group Name"></ngx-label>
-                                        <input type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
+                                        <input maxlength="150" type="text" #GroupName="ngModel" [(ngModel)]="IdentityGroup.GroupName" class="form-control" required name="IdentityGroup.GroupName" placeholder="Enter Group Name">
                                         <div *ngIf="GroupName.errors && (GroupName.dirty || GroupName.touched)" class="error">
                                             Group Name is required
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <ngx-label value="Group Description"></ngx-label>
-                                        <textarea #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
+                                        <textarea maxlength="500" #GroupDescription="ngModel" class="form-control" [(ngModel)]="IdentityGroup.GroupDescription" required rows="5" name="IdentityGroup.GroupDescription" placeholder="Enter Group Description"></textarea>
                                         <div *ngIf="GroupDescription.errors && (GroupDescription.dirty || GroupDescription.touched)" class="error">
                                             Group Description is required
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div ngx-rights="200|Delete" class="form-group">
                                         <label for="name">Is Valid Group</label><br />
                                         <label class="switch switch-3d switch-success switch-sm">
                                             <input type="checkbox" class="switch-input" [(ngModel)]="IdentityGroup.IsValid" name="IdentityGroup.IsValid">
@@ -51,28 +50,28 @@
                                            Right
                                         </th>
                                         <th>
-                                            <input type="checkbox" (change)="MarkAllRead()" [(ngModel)]="ActionRead" style="margin-right:5px;" />Read
+                                            <input [disabled]="Disabled" type="checkbox" (change)="MarkAllRead()" [(ngModel)]="ActionRead" style="margin-right:5px;" />Read
                                         </th>
                                         <th >
-                                            <input type="checkbox" (change)="MarkAllWrite()" [(ngModel)]="ActionWrite" style="margin-right:5px;" />Write
+                                            <input [disabled]="Disabled" type="checkbox" (change)="MarkAllWrite()" [(ngModel)]="ActionWrite" style="margin-right:5px;" />Write
                                         </th>
                                         <th>
-                                            <input type="checkbox" (change)="MarkAllInvalid()" [(ngModel)]="ActionInValid" style="margin-right:5px;" />InValid
+                                            <input [disabled]="Disabled" type="checkbox" (change)="MarkAllInvalid()" [(ngModel)]="ActionInValid" style="margin-right:5px;" />InValid
                                         </th>
                                     </tr>
                                     <tbody>
-                                        <tr *ngFor="let item of IdentityGroup.GroupRight">
+                                        <tr *ngFor="let item of IdentityGroup.GroupRight; let i = index">
                                             <td>
                                                 {{item.RightTitle}}
                                             </td>
                                             <td >
-                                                <input [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
+                                                <input [disabled]="Disabled" (ngModelChange)="ReadClick($event,i)" [(ngModel)]="item.BooleanRight.Read" name="item.BooleanRight.Read" type="checkbox" />
                                             </td>
                                             <td>
-                                                <input [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
+                                                <input [disabled]="Disabled" (ngModelChange)="WriteClick($event,i)" [(ngModel)]="item.BooleanRight.Write" name="item.BooleanRight.Write" type="checkbox" />
                                             </td>
                                             <td>
-                                                <input [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
+                                                <input [disabled]="Disabled" (ngModelChange)="DeleteClick($event,i)" [(ngModel)]="item.BooleanRight.Delete" name="item.BooleanRight.Delete" type="checkbox" />
                                             </td>
                                         </tr>
                                     </tbody>

@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
         public DataSet GetMasterSkill(int masterSkillId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterSkillId", masterSkillId)
                 };
@@ -30,7 +30,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@FilterText", searchParam.FilterText),
                     new MySqlParameter("@RecordFrom", recordFrom),
@@ -43,7 +43,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
         public void InsertMasterSkill(MasterSkill masterSkill)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Insert;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Insert;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@skill", masterSkill.Skill),
                     new MySqlParameter("@isValid", masterSkill.IsValid),
@@ -54,12 +54,13 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
                  sqlParam.StoreProcedureParam);
         }
 
-        public void MarkMasterSkillInvalid(int masterSkillId)
+        public void MarkMasterSkillInvalid(int masterSkillId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@MasterSkillId", masterSkillId)
+                    new MySqlParameter("@MasterSkillId", masterSkillId),
+                    new MySqlParameter("@employeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(),
                  sqlParam.StoreProcedureParam);
@@ -68,7 +69,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Skill
         public void UpdateMasterSkill(MasterSkill masterSkill)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterSkill_Update;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Update;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterSkillId", masterSkill.Id),
                     new MySqlParameter("@skill", masterSkill.Skill),

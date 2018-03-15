@@ -23,13 +23,14 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
                 path: 'dashboard',
                 loadChildren: './Component/dashboard/dashboard.module#DashboardModule',
-                canActivate: [AuthGuardService]
+                canActivate: [AuthGuardService],
+                data: { RightId: 400 }
             }
         ]
     },
@@ -50,7 +51,22 @@ export const routes: Routes = [
                 loadChildren: './component/admin/group/editgroup.module#EditGroupModule',
                 canActivate: [AuthGuardService]
             },
-            
+            {
+                path: 'usergroup',
+                loadChildren: './component/admin/usergroup/usergroup.module#UserGroupModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'employee',
+                loadChildren: './component/admin/employee/employee.module#EmployeeModule',
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'employee/:mode/:id',
+                loadChildren: './component/admin/employee/editemployee.module#EditEmployeeModule',
+                canActivate: [AuthGuardService]
+            }
+
         ]
     },
     {
@@ -91,13 +107,13 @@ export const routes: Routes = [
                 canActivate: [AuthGuardService]
             },
             {
-                path: 'projectrole',
-                loadChildren: './component/master/projectRole/projectRole.module#ProjectRoleModule',
+                path: 'role',
+                loadChildren: './component/master/role/role.module#RoleModule',
                 canActivate: [AuthGuardService]
             },
             {
-                path: 'projectrole/:mode/:id',
-                loadChildren: './component/master/projectRole/editProjectRole.module#EditProjectRoleModule',
+                path: 'role/:mode/:id',
+                loadChildren: './component/master/role/editrole.module#EditRoleModule',
                 canActivate: [AuthGuardService]
             },
             {
@@ -126,26 +142,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
-        },
-        children: [
-            {
-                path: 'employee',
-                loadChildren: './component/employee/employee.module#EmployeeModule',
-                canActivate: [AuthGuardService]
-            },
-            {
-                path: 'employee/:mode/:id',
-                loadChildren: './component/employee/editemployee.module#EditEmployeeModule',
-                canActivate: [AuthGuardService]
-            }
-        ]
-    },
-    {
-        path: '',
-        component: FullLayoutComponent,
-        data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
@@ -164,7 +161,7 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
@@ -183,13 +180,14 @@ export const routes: Routes = [
         path: '',
         component: FullLayoutComponent,
         data: {
-            title: 'Home'
+            title: ''
         },
         children: [
             {
                 path: 'myprofile',
                 loadChildren: './component/myprofile/editmyprofile.module#EditMyProfileModule',
-                canActivate: [AuthGuardService]
+                canActivate: [AuthGuardService],
+                data: { RightId: 401 }
             }
         ]
     },

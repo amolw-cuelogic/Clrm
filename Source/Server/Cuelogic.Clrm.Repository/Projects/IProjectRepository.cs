@@ -15,6 +15,6 @@ namespace Cuelogic.Clrm.Repository.Projects
         Project GetProject(int projectId);
         DataSet GetProjectList(SearchParam searchParam);
         void AddOrUpdateProject(Project project, UserContext userContext);
-        void MarkProjectInvalid(int projectId);
+        void MarkProjectInvalid(int projectId, int employeeId);
     }
 }

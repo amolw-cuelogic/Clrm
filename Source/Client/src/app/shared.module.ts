@@ -5,13 +5,19 @@ import { CommonModule } from '@angular/common';
 
 //Directive
 import { LabelDirective } from "./directive/label-directive"
+import { CommonAppModule } from './common.module'
+
+import { FilterPipe } from './filter/filter.pipe'
 
 @NgModule({
-    declarations: [LabelDirective],
+    imports: [CommonAppModule],
+    declarations: [LabelDirective, FilterPipe],
     exports: [
         LabelDirective,
         CommonModule,
-        FormsModule
+        FormsModule,
+        CommonAppModule,
+        FilterPipe
     ]
 })
 export class SharedModule {

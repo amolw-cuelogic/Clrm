@@ -19,9 +19,9 @@ namespace Cuelogic.Clrm.Service.Skill
         {
             _IMasterSkillRepository = new MasterSkillRepository();
         }
-        public void Delete(int masterSkillId)
+        public void Delete(int masterSkillId, int employeeId)
         {
-            _IMasterSkillRepository.MarkMasterSkillInvalid(masterSkillId);
+            _IMasterSkillRepository.MarkMasterSkillInvalid(masterSkillId, employeeId);
         }
 
         public MasterSkill GetItem(int masterSkillId)

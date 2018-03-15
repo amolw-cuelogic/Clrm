@@ -15,8 +15,9 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
         DataSet GetAllocationList(SearchParam searchParam);
         DataSet GetAllocation(int allocationId);
         DataSet GetAllocationSelectList();
-        void MarkAllocationInvalid(int allocationId);
+        void MarkAllocationInvalid(int allocationId, int employeeId);
         DataSet GetAllocationSum(int employeeId);
+        DataSet GetProjectRolebyId(int projectId);
 
     }
 }

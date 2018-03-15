@@ -26,6 +26,10 @@ export class OrganizationRoleComponent{
         this.Page = 0;
     }
 
+    EnterkeyPress(event: any) {
+        this.SearchFilter();
+    }
+
     NextPage() {
         if (this.PageList.length == this.Show) {
             this.Page = this.Page + 1;

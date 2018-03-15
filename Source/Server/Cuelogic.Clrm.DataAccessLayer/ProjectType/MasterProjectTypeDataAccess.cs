@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
         public void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectType_AddOrUpdate;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mptId", masterProjectType.Id),
                     new MySqlParameter("@mptType", masterProjectType.Type),
@@ -33,7 +33,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
         public DataSet GetMasterProjectType(int masterProjectTypeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectType_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mptId", masterProjectTypeId)
                 };
@@ -47,7 +47,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectType_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
                     new MySqlParameter("@recordFrom", recordFrom),
@@ -60,17 +60,18 @@ namespace Cuelogic.Clrm.DataAccessLayer.ProjectType
         public DataSet GetMasterProjectTypeValidList()
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectType_GetValidList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_GetValidList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
         }
 
-        public void MarkMasterProjectTypeInvalid(int masterProjectTypeId)
+        public void MarkMasterProjectTypeInvalid(int masterProjectTypeId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spMasterProjectType_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@mptId", masterProjectTypeId)
+                    new MySqlParameter("@mptId", masterProjectTypeId),
+                    new MySqlParameter("@employeeId", employeeId)
             };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }

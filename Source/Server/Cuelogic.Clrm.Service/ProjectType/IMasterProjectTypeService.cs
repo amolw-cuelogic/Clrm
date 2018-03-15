@@ -17,6 +17,6 @@ namespace Cuelogic.Clrm.Service.ProjectType
 
         void Save(MasterProjectType masterProjectType, UserContext userCtx);
 
-        void Delete(int masterProjectTypeId);
+        void Delete(int masterProjectTypeId, int employeeId);
     }
 }

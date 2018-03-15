@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         public DataSet GetEmployeeAllocationList(int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployeeAllocation_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeAllocation_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
                 };
@@ -24,12 +24,23 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
             return ds;
         }
 
-        public DataSet GetEmployeeDetails(string emailId)
+        public DataSet GetEmployeeDetailsByEmailId(string emailId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployee_GetByEmailId;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByEmailId;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@EmailId", emailId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
+            return ds;
+        }
+
+        public DataSet GetEmployeeDetailsByOrgEmpId(string OrgEmpId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByOrgEmpId;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@eOrgEmpId", OrgEmpId)
                 };
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
@@ -38,12 +49,22 @@ namespace Cuelogic.Clrm.DataAccessLayer.Common
         public DataSet GetEmployeeRightList(int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spEmployeeRights_Get;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeRights_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
                 };
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
             return ds;
+        }
+
+        public void LogLoginTime(int employeeId)
+        {
+            var sqlParam = new MySqlSpParam();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Common_LogLoginTime;
+            sqlParam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@employeeId", employeeId)
+                };
+            DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }
     }
 }

@@ -19,9 +19,9 @@ namespace Cuelogic.Clrm.Service.OrganizationRole
         {
             _masterOrganizationRoleRepository = new MasterOrganizationRoleRepository();
         }
-        public void Delete(int masterOrganizationRoleId)
+        public void Delete(int masterOrganizationRoleId, int employeeId)
         {
-            _masterOrganizationRoleRepository.MarkMasterOrganizationRoleInvalid(masterOrganizationRoleId);
+            _masterOrganizationRoleRepository.MarkMasterOrganizationRoleInvalid(masterOrganizationRoleId, employeeId);
         }
 
         public MasterOrganizationRole GetItem(int masterOrganizationRoleId)

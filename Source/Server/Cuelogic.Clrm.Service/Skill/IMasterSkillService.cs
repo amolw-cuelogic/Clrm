@@ -17,6 +17,6 @@ namespace Cuelogic.Clrm.Service.Skill
 
         void Save(MasterSkill masterSkill, UserContext userCtx);
 
-        void Delete(int masterSkillId);
+        void Delete(int masterSkillId, int employeeId);
     }
 }

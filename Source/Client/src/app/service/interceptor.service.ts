@@ -15,7 +15,7 @@ export class InterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         //Clone the request to add the new header.
-        $('body').addClass('loader');
+        this.srvAppConfig.ShowLoader();
         var token = this.srvAppConfig.GetToken().AccessToken;
 
         this.authReq = req.clone({ headers: req.headers.set("Authorization", "Bearer " + token) });
@@ -24,21 +24,17 @@ export class InterceptorService implements HttpInterceptor {
         return next.handle(this.authReq).map((event: HttpResponse<any>) => {
             if (event instanceof HttpResponse) {
                 //Write you code here after Http request is complete
-                $('body').removeClass('loader');
+                this.srvAppConfig.HideLoader();
                 return event;
             }
         })
             .catch((error, caught) => {
-                $('body').removeClass('loader');
+                this.srvAppConfig.HideLoader();
                 this.token = token;
                 if (this.token == null || this.token == undefined) {
                     this.router.navigate(['/login']);
-                    //return Observable.throw('Not Logged In.');
-
                 }
-
-                //intercept the respons error and displace it to the console
-
+                
                 if (error.status == 401 || error.status == 0) {
                     this.router.navigate(['/login']);
                 }

@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
         public void AddOrUpdateAllocation(Allocation allocation)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_AddOrUpdate;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@aId", allocation.Id),
                     new MySqlParameter("@aEmployeeId", allocation.EmployeeId),
@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
         public DataSet GetAllocation(int allocationId)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_Get;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_Get;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@aId", allocationId)
                 };
@@ -52,7 +52,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
             var show = searchParam.Show;
 
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
                     new MySqlParameter("@recordFrom", recordFrom),
@@ -65,11 +65,10 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
         public DataSet GetAllocationSelectList()
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetSelectList;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetSelectList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), null, new List<string> {
-                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Employee,
-                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.MasterProjectRole,
-                AppConstants.StoreProcedure.spAllocation_GetSelectList_Tables.Project
+                AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Employee,
+                AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Project
             });
             return ds;
         }
@@ -77,7 +76,7 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
         public DataSet GetAllocationSum(int employeeId)
         {
             var sqlparam = new MySqlSpParam();
-            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_GetAllocationSum;
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetAllocationSum;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
                 };
@@ -85,12 +84,24 @@ namespace Cuelogic.Clrm.DataAccessLayer.Allocations
             return ds;
         }
 
-        public void MarkAllocationInvalid(int allocationId)
+        public DataSet GetProjectRolebyId(int projectId)
+        {
+            var sqlparam = new MySqlSpParam();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetRoleByProject;
+            sqlparam.StoreProcedureParam = new MySqlParameter[] {
+                    new MySqlParameter("@aProjectId", projectId)
+                };
+            var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand(), sqlparam.StoreProcedureParam);
+            return ds;
+        }
+
+        public void MarkAllocationInvalid(int allocationId, int employeeId)
         {
             var sqlParam = new MySqlSpParam();
-            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.spAllocation_MarkInvalid;
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
-                    new MySqlParameter("@aId", allocationId)
+                    new MySqlParameter("@aId", allocationId),
+                    new MySqlParameter("@employeeId", employeeId)
                 };
             DataAccessHelper.ExecuteNonQuery(sqlParam.ToSqlCommand(), sqlParam.StoreProcedureParam);
         }

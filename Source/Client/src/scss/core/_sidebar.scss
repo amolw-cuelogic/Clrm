@@ -162,10 +162,10 @@
             width: ($font-size-base);
             height: ($font-size-base);
             padding: 0;
-            font-size: $font-size-base;
+            font-size: 20px;
             line-height: ($font-size-base * 3 / 4);
             text-align: center;
-            content: "\2039";
+            content: "\203A";
             transition: .3s;
           }
         }
@@ -189,7 +189,7 @@
           }
 
           > .nav-link.nav-dropdown-toggle::before {
-            transform: rotate(-90deg);
+            transform: rotate(90deg);
           }
 
           .nav-dropdown.open {

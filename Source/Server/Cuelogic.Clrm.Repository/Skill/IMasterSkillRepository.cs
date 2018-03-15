@@ -20,6 +20,6 @@ namespace Cuelogic.Clrm.Repository.Skill
 
         void UpdateMasterSkill(MasterSkill masterSkill, UserContext userCtx);
 
-        void MarkMasterSkillInvalid(int masterSkillId);
+        void MarkMasterSkillInvalid(int masterSkillId, int employeeId);
     }
 }

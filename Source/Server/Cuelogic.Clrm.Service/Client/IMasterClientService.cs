@@ -12,11 +12,9 @@ namespace Cuelogic.Clrm.Service.Client
     public interface IMasterClientService
     {
         string GetList(SearchParam searchParam);
-
         MasterClient GetItem(int masterClientId);
-
         void Save(MasterClient masterClient, UserContext userCtx);
-
-        void Delete(int masterClientId);
+        void Delete(int masterClientId, int employeeId);
+        List<MasterCity> GetCityList(int countryId);
     }
 }

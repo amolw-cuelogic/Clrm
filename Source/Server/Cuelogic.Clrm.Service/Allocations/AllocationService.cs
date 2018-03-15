@@ -18,9 +18,9 @@ namespace Cuelogic.Clrm.Service.Allocations
         {
             _allocationRepository = new AllocationRepository();
         }
-        public void Delete(int allocationId)
+        public void Delete(int allocationId, int employeeId)
         {
-            _allocationRepository.MarkAllocationInvalid(allocationId);
+            _allocationRepository.MarkAllocationInvalid(allocationId, employeeId);
         }
 
         public int GetAllocationSum(int employeeId)
@@ -40,6 +40,12 @@ namespace Cuelogic.Clrm.Service.Allocations
             var ds = _allocationRepository.GetAllocationList(searchParam);
             var jsonString = ds.Tables[0].ToJsonString();
             return jsonString;
+        }
+
+        public List<MasterRole> GetProjectRolebyId(int projectId)
+        {
+            var masterRoleList = _allocationRepository.GetProjectRolebyId(projectId);
+            return masterRoleList;
         }
 
         public void Save(Allocation allocation, UserContext userCtx)

@@ -20,6 +20,6 @@ namespace Cuelogic.Clrm.Repository.Group
 
         void UpdateIdentityGroup(IdentityGroup identityGroup, UserContext userCtx);
 
-        void MarkGroupInvalid(int groupId);
+        void MarkGroupInvalid(int groupId, int employeeId);
     }
 }

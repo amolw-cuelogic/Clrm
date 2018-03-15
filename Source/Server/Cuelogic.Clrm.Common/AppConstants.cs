@@ -10,73 +10,31 @@ namespace Cuelogic.Clrm.Common
     {
         public static class StoreProcedure
         {
-            #region MASTER GROUP 
-
-            public const string spIdentityGroup_GetList = "spIdentityGroup_GetList";
-            public const string spIdentityGroup_Get = "spIdentityGroup_Get";
-            public const string spIdentityGroupRight_Get = "spIdentityGroupRight_Get";
-            public const string spIdentityGroup_Update = "spIdentityGroup_Update";
-            public const string spIdentityGroupRight_BulkUpdate = "spIdentityGroupRight_BulkUpdate";
-            public const string spIdentityGroup_Insert = "spIdentityGroup_Insert";
-            public const string spIdentityGroupRight_BulkInsert = "spIdentityGroupRight_BulkInsert";
-            public const string spIdentityGroup_MarkInvalid = "spIdentityGroup_MarkInvalid";
-            public const string spIdentityRight_Get = "spIdentityRight_Get";
-
-            #endregion
-
             #region COMMON 
 
-            public const string spEmployee_GetByEmailId = "spEmployee_GetByEmailId";
-            public const string spEmployeeAllocation_GetList = "spEmployeeAllocation_GetList";
-            public const string spEmployeeRights_Get = "spEmployeeRights_Get";
-
-            #endregion
-
-            #region MASTER DEPARTMENT 
-
-            public const string spMasterDepartment_GetList = "spMasterDepartment_GetList";
-            public const string spMasterDepartment_Get = "spMasterDepartment_Get";
-            public const string spMasterDepartment_MarkInvalid = "spMasterDepartment_MarkInvalid";
-            public const string spMasterDepartment_Update = "spMasterDepartment_Update";
-            public const string spMasterDepartment_Insert = "spMasterDepartment_Insert";
-
-            #endregion
-
-            #region MASTER ORGANIZATION ROLE
-
-            public const string spMasterOrganizationRole_GetList = "spMasterOrganizationRole_GetList";
-            public const string spMasterOrganizationRole_Get = "spMasterOrganizationRole_Get";
-            public const string spMasterOrganizationRole_Insert = "spMasterOrganizationRole_Insert";
-            public const string spMasterOrganizationRole_Update = "spMasterOrganizationRole_Update";
-            public const string spMasterOrganizationRole_MarkInvalid = "spMasterOrganizationRole_MarkInvalid";
-
-            #endregion
-
-            #region MASTER SKILLS
-
-            public const string spMasterSkill_Get = "spMasterSkill_Get";
-            public const string spMasterSkill_GetList = "spMasterSkill_GetList";
-            public const string spMasterSkill_Insert = "spMasterSkill_Insert";
-            public const string spMasterSkill_MarkInvalid = "spMasterSkill_MarkInvalid";
-            public const string spMasterSkill_Update = "spMasterSkill_Update";
+            public const string Employee_GetByEmailId = "Employee_GetByEmailId";
+            public const string EmployeeAllocation_GetList = "EmployeeAllocation_GetList";
+            public const string EmployeeRights_Get = "EmployeeRights_Get";
+            public const string Employee_GetByOrgEmpId = "Employee_GetByOrgEmpId";
+            public const string Common_LogLoginTime = "Common_LogLoginTime";
 
             #endregion
 
             #region EMPLOYEE
 
-            public const string spEmployee_GetById = "spEmployee_GetById";
-            public const string spEmployee_GetList = "spEmployee_GetList";
-            public const string spEmployee_GetMasterValidList = "spEmployee_GetMasterValidList";
-            public const string spEmployee_GetChildValidList = "spEmployee_GetChildValidList";
-            public const string spEmployee_AddOrUpdate = "spEmployee_AddOrUpdate";
-            public const string spEmployeeSkill_BulkAddOrUpdate = "spEmployeeSkill_BulkAddOrUpdate";
-            public const string spEmployeeDepartment_BulkAddOrUpdate = "spEmployeeDepartment_BulkAddOrUpdate";
-            public const string spEmployeeOrganizationRole_BulkAddOrUpdate = "spEmployeeOrganizationRole_BulkAddOrUpdate";
-            public const string spEmployeeGroup_BulkAddOrUpdate = "spEmployeeGroup_BulkAddOrUpdate";
-            public const string spEmployee_GetLatestId = "spEmployee_GetLatestId";
-            public const string spEmployee_MarkInvalid = "spEmployee_MarkInvalid";
+            public const string Employee_GetById = "Employee_GetById";
+            public const string Employee_GetList = "Employee_GetList";
+            public const string Employee_GetMasterValidList = "Employee_GetMasterValidList";
+            public const string Employee_GetChildValidList = "Employee_GetChildValidList";
+            public const string Employee_AddOrUpdate = "Employee_AddOrUpdate";
+            public const string EmployeeSkill_BulkAddOrUpdate = "EmployeeSkill_BulkAddOrUpdate";
+            public const string EmployeeDepartment_BulkAddOrUpdate = "EmployeeDepartment_BulkAddOrUpdate";
+            public const string EmployeeOrganizationRole_BulkAddOrUpdate = "EmployeeOrganizationRole_BulkAddOrUpdate";
+            public const string EmployeeGroup_BulkAddOrUpdate = "EmployeeGroup_BulkAddOrUpdate";
+            public const string Employee_GetLatestId = "Employee_GetLatestId";
+            public const string Employee_MarkInvalid = "Employee_MarkInvalid";
 
-            public static class spEmployee_GetMasterValidList_Tables
+            public static class Employee_GetMasterValidList_Tables
             {
                 public const string IdentityGroup = "IdentityGroup";
                 public const string MasterDepartment = "MasterDepartment";
@@ -86,64 +44,129 @@ namespace Cuelogic.Clrm.Common
 
             #endregion
 
-            #region MASTER PROJECT ROLE
-
-            public const string spMasterProjectRole_AddOrUpdate = "spMasterProjectRole_AddOrUpdate";
-            public const string spMasterProjectRole_Get = "spMasterProjectRole_Get";
-            public const string spMasterProjectRole_GetList = "spMasterProjectRole_GetList";
-            public const string spMasterProjectRole_MarkInvalid = "spMasterProjectRole_MarkInvalid";
-
-            #endregion
-
-            #region MASTER PROJECT TYPE
-
-            public const string spMasterProjectType_AddOrUpdate = "spMasterProjectType_AddOrUpdate";
-            public const string spMasterProjectType_Get = "spMasterProjectType_Get";
-            public const string spMasterProjectType_GetList = "spMasterProjectType_GetList";
-            public const string spMasterProjectType_MarkInvalid = "spMasterProjectType_MarkInvalid";
-            public const string spMasterProjectType_GetValidList = "spMasterProjectType_GetValidList";
-
-            #endregion
-
-            #region MASTER CLIENT
-
-            public const string spMasterClient_AddOrUpdate = "spMasterClient_AddOrUpdate";
-            public const string spMasterClient_Get = "spMasterClient_Get";
-            public const string spMasterClient_GetList = "spMasterClient_GetList";
-            public const string spMasterClient_MarkInvalid = "spMasterClient_MarkInvalid";
-
-            #endregion
-
             #region PROJECT
 
-            public const string spProject_AddOrUpdate = "spProject_AddOrUpdate";
-            public const string spProject_Get = "spProject_Get";
-            public const string spProject_GetChildList = "spProject_GetChildList";
-            public const string spProject_GetList = "spProject_GetList";
-            public const string spProject_GetMasterList = "spProject_GetMasterList";
-            public const string spProjectClient_BulkAddOrUpdate = "spProjectClient_BulkAddOrUpdate";
-            public const string spProject_MarkInvalid = "spProject_MarkInvalid";
-            public const string spProject_GetLatestId = "spProject_GetLatestId";
+            public const string Project_AddOrUpdate = "Project_AddOrUpdate";
+            public const string Project_Get = "Project_Get";
+            public const string Project_GetList = "Project_GetList";
+            public const string Project_MarkInvalid = "Project_MarkInvalid";
+            public const string Project_GetLatestId = "Project_GetLatestId";
+            public const string Project_GetSelectList = "Project_GetSelectList";
+            public const string Project_BulkInsertRoles = "Project_BulkInsertRoles";
+
+            public class Project_GetSelectList_Tables
+            {
+                public const string Project = "Project";
+                public const string ProjectRole = "ProjectRole";
+                public const string MasterClient = "MasterClient";
+                public const string MasterRole = "MasterRole";
+                public const string MasterCurrency = "MasterCurrency";
+            }
 
             #endregion
 
             #region ALLOCATION
 
-            public const string spAllocation_AddOrUpdate = "spAllocation_AddOrUpdate";
-            public const string spAllocation_GetList = "spAllocation_GetList";
-            public const string spAllocation_Get = "spAllocation_Get";
-            public const string spAllocation_GetSelectList = "spAllocation_GetSelectList";
-            public const string spAllocation_MarkInvalid = "spAllocation_MarkInvalid";
-            public const string spAllocation_GetAllocationSum = "spAllocation_GetAllocationSum";
+            public const string Allocation_AddOrUpdate = "Allocation_AddOrUpdate";
+            public const string Allocation_GetList = "Allocation_GetList";
+            public const string Allocation_Get = "Allocation_Get";
+            public const string Allocation_GetSelectList = "Allocation_GetSelectList";
+            public const string Allocation_MarkInvalid = "Allocation_MarkInvalid";
+            public const string Allocation_GetAllocationSum = "Allocation_GetAllocationSum";
+            public const string Allocation_GetRoleByProject = "Allocation_GetRoleByProject";
 
-            public class spAllocation_GetSelectList_Tables
+            public class Allocation_GetSelectList_Tables
             {
                 public const string Employee = "Employee";
-                public const string MasterProjectRole = "MasterProjectRole";
+                public const string MasterRole = "MasterRole";
                 public const string Project = "Project";
             }
 
             #endregion
+
+            #region USER GROUP 
+
+            public const string UserGroup_GetEmployees = "UserGroup_GetEmployees";
+            public const string UserGroup_GetIdentityGroup = "UserGroup_GetIdentityGroup";
+            public const string UserGroup_GetIdentityGroupMembers = "UserGroup_GetIdentityGroupMembers";
+            public const string UserGroup_InsertGroupUser = "UserGroup_InsertGroupUser";
+
+            #endregion
+
+            #region MASTER GROUP 
+
+            public const string IdentityGroup_GetList = "IdentityGroup_GetList";
+            public const string IdentityGroup_Get = "IdentityGroup_Get";
+            public const string IdentityGroupRight_Get = "IdentityGroupRight_Get";
+            public const string IdentityGroup_Update = "IdentityGroup_Update";
+            public const string IdentityGroupRight_BulkUpdate = "IdentityGroupRight_BulkUpdate";
+            public const string IdentityGroup_Insert = "IdentityGroup_Insert";
+            public const string IdentityGroupRight_BulkInsert = "IdentityGroupRight_BulkInsert";
+            public const string IdentityGroup_MarkInvalid = "IdentityGroup_MarkInvalid";
+            public const string IdentityRight_Get = "IdentityRight_Get";
+
+            #endregion
+            
+            #region MASTER DEPARTMENT 
+
+            public const string MasterDepartment_GetList = "MasterDepartment_GetList";
+            public const string MasterDepartment_Get = "MasterDepartment_Get";
+            public const string MasterDepartment_MarkInvalid = "MasterDepartment_MarkInvalid";
+            public const string MasterDepartment_Update = "MasterDepartment_Update";
+            public const string MasterDepartment_Insert = "MasterDepartment_Insert";
+
+            #endregion
+
+            #region MASTER ORGANIZATION ROLE
+
+            public const string MasterOrganizationRole_GetList = "MasterOrganizationRole_GetList";
+            public const string MasterOrganizationRole_Get = "MasterOrganizationRole_Get";
+            public const string MasterOrganizationRole_Insert = "MasterOrganizationRole_Insert";
+            public const string MasterOrganizationRole_Update = "MasterOrganizationRole_Update";
+            public const string MasterOrganizationRole_MarkInvalid = "MasterOrganizationRole_MarkInvalid";
+
+            #endregion
+
+            #region MASTER SKILLS
+
+            public const string MasterSkill_Get = "MasterSkill_Get";
+            public const string MasterSkill_GetList = "MasterSkill_GetList";
+            public const string MasterSkill_Insert = "MasterSkill_Insert";
+            public const string MasterSkill_MarkInvalid = "MasterSkill_MarkInvalid";
+            public const string MasterSkill_Update = "MasterSkill_Update";
+
+            #endregion
+            
+            #region MASTER ROLE
+
+            public const string MasterRole_AddOrUpdate = "MasterRole_AddOrUpdate";
+            public const string MasterRole_Get = "MasterRole_Get";
+            public const string MasterRole_GetList = "MasterRole_GetList";
+            public const string MasterRole_MarkInvalid = "MasterRole_MarkInvalid";
+
+            #endregion
+
+            #region MASTER PROJECT TYPE
+
+            public const string MasterProjectType_AddOrUpdate = "MasterProjectType_AddOrUpdate";
+            public const string MasterProjectType_Get = "MasterProjectType_Get";
+            public const string MasterProjectType_GetList = "MasterProjectType_GetList";
+            public const string MasterProjectType_MarkInvalid = "MasterProjectType_MarkInvalid";
+            public const string MasterProjectType_GetValidList = "MasterProjectType_GetValidList";
+
+            #endregion
+
+            #region MASTER CLIENT
+
+            public const string MasterClient_AddOrUpdate = "MasterClient_AddOrUpdate";
+            public const string MasterClient_Get = "MasterClient_Get";
+            public const string MasterClient_GetList = "MasterClient_GetList";
+            public const string MasterClient_MarkInvalid = "MasterClient_MarkInvalid";
+            public const string MasterClient_GetCountryList = "MasterClient_GetCountryList";
+            public const string MasterClient_GetCityList = "MasterClient_GetCityList";
+
+            #endregion
+            
         }
 
         public class MessageType
@@ -158,7 +181,9 @@ namespace Cuelogic.Clrm.Common
         public static class IdentityRights
         {
             //200 Series for Admin level sections 
-            public const int Group = 200;
+            public const int AdminGroup = 200;
+            public const int AdminUserGroup = 201;
+            public const int AdminEmployee = 202;
 
             //300 Series for Master level sections
             public const int MasterSkill = 300;
@@ -169,10 +194,11 @@ namespace Cuelogic.Clrm.Common
             public const int MasterClient = 305;
 
             //400 Series for root level sections
-            public const int MyProfile = 400;
-            public const int Employee = 401;
+            public const int Dashboard = 400;
+            public const int MyProfile = 401;
             public const int Project = 402;
             public const int Allocation = 403;
+            
         }
 
         public static class AuthorizeFlag

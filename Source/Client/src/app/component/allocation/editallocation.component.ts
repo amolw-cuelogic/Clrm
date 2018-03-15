@@ -18,10 +18,9 @@ export class EditAllocationComponent {
     mode: string;
     baseUrl: string;
     pageObject: any = new Object({
-        ProjectClientChildList: [],
-        ProjectMasterClientList: [],
-        ProjectTypeList: []
+        SelectListMasterRole: []
     });
+    ProjectRoleMessage: boolean = false;
     loaded: boolean = false;
     apiController: string = "api/EmployeeAllocation";
     allocationPercentageError: any;
@@ -54,7 +53,7 @@ export class EditAllocationComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
                 else {
                     this.router.navigate(["/allocation"]);
@@ -62,7 +61,7 @@ export class EditAllocationComponent {
                     model.Title = "Saved";
                     model.MessageType = model.ModelType.Success;
                     model.Message = "Saved Successfully";
-                    this.compSubSrv.OpenBootstrapModal(model);
+                    this.compSubSrv.OpenToaster(model);
                 }
             }
         );
@@ -82,10 +81,10 @@ export class EditAllocationComponent {
                     m["ProjectId"] = null;
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
-
                 if (this.mode == this.formMode.View) {
                     this.SetFormModeView();
                 }
+                this.ValidateAllocation();
             }
             );
     }
@@ -107,9 +106,24 @@ export class EditAllocationComponent {
             });
     }
 
+    GetProjectRole(projectId: any) {
+        this.httpClient.get(this.baseUrl + this.apiController + "/GetProjectRole/" + projectId
+        ).subscribe(
+            m => {
+                if (m['length'] == 0) {
+                    this.ProjectRoleMessage = true;
+                    this.pageObject.SelectListMasterRole = [];
+                }
+                else {
+                    this.ProjectRoleMessage = false;
+                    this.pageObject.SelectListMasterRole = m;
+                }
+            });
+    }
+
     ValidateAllocation() {
         var CurrentAllocation = this.pageObject.PercentageAllocation;
-        var ExistingAllocation = this.pageObject.ExistingAllocation;
+        var ExistingAllocation = this.pageObject.ExistingAllocation ;
         var RemainingAllocation = 100 - ExistingAllocation;
         var TotalValidation = ExistingAllocation + CurrentAllocation;
         if (ExistingAllocation > 0) {

@@ -24,22 +24,28 @@ namespace Cuelogic.Clrm.Repository.Projects
             project.UpdatedBy = userContext.UserId;
             project.CreatedBy = userContext.UserId;
             project.CreatedOn = DateTime.Now.ToMySqlDateString();
-            project.CreatedOn = DateTime.Now.ToMySqlDateString();
+            project.UpdatedOn = DateTime.Now.ToMySqlDateString();
 
             _projectDataAccess.AddOrUpdateProject(project);
-
-            if(project.Id == 0)
+            
+            if (project.Id == 0)
             {
                 var ds = _projectDataAccess.GetLatestId();
                 var id = ds.Tables[0].ToId();
-                foreach(var item in project.ProjectClientChildList)
+                foreach (var item in project.ProjectRoleList)
                 {
                     item.ProjectId = id;
                 }
             }
-
-            var xmlString = Helper.ObjectToXml(project.ProjectClientChildList);
-            _projectDataAccess.AddOrUpdateProjectClient(xmlString, userContext.UserId);
+            else
+            {
+                foreach (var item in project.ProjectRoleList)
+                {
+                    item.ProjectId = project.Id;
+                }
+            }
+            var xmlString = Helper.ObjectToXml(project.ProjectRoleList);
+            _projectDataAccess.AddProjectRoles(xmlString,userContext.UserId);
         }
 
         public Project GetProject(int projectId)
@@ -49,16 +55,21 @@ namespace Cuelogic.Clrm.Repository.Projects
             if(projectId != 0)
             {
                 var projectDs = _projectDataAccess.GetProject(projectId);
-                project = projectDs.Tables[0].ToModel<Project>();
-                var projectClientDs = _projectDataAccess.GetProjectChildList(projectId);
-                project.ProjectClientChildList = projectClientDs.Tables[0].ToList<ProjectClient>();
-
+                project = projectDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.Project].ToModel<Project>();
+                if (projectDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.ProjectRole].Rows.Count > 0)
+                    project.ProjectRoleList = projectDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.ProjectRole].ToList<ProjectRole>();
+                else
+                    project.ProjectRoleList = new List<ProjectRole>();
             }
 
-            var masterClientDs = _projectDataAccess.GetProjectMasterList();
-            var masterClientList = masterClientDs.Tables[0].ToList<MasterClient>();
-            project.ProjectMasterClientList = masterClientList;
+            var masterClientDs = _projectDataAccess.GetProjectSelectList();
 
+            var masterClientList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterClient].ToList<MasterClient>();
+            project.ProjectMasterClientList = masterClientList;
+            var masterRoleList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterRole].ToList<MasterRole>();
+            project.MasterRoleList = masterRoleList;
+            var masterCurrencyList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterCurrency].ToList<MasterCurrency>();
+            project.MasterCurrencyList = masterCurrencyList;
             IMasterProjectTypeRepository _masterProjectTypeRepository = new MasterProjectTypeRepository();
             var masterProjectTypeDs = _masterProjectTypeRepository.GetMasterProjectTypeValidList();
             project.ProjectTypeList = masterProjectTypeDs.Tables[0].ToList<MasterProjectType>();
@@ -72,9 +83,9 @@ namespace Cuelogic.Clrm.Repository.Projects
             return ds;
         }
 
-        public void MarkProjectInvalid(int projectId)
+        public void MarkProjectInvalid(int projectId, int employeeId)
         {
-            _projectDataAccess.MarkProjectInvalid(projectId);
+            _projectDataAccess.MarkProjectInvalid(projectId, employeeId);
         }
     }
 }
