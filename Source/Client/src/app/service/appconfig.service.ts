@@ -73,4 +73,12 @@ export class AppconfigService {
         $('.dynamicBottomDiv').css({ "height": ht + "px" });
     }
 
+    ShowLoader() {
+        $('#loadingDiv').addClass('loader');
+    }
+
+    HideLoader() {
+        $('#loadingDiv').removeClass('loader');
+    }
+
 }

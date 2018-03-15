@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        this.srvAppConfig.ShowLoader();
         var gmailLogoutUrl = this.srvAppConfig.GetGmailLogoutUrl();
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
             m => {
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
                     this.RegisterGmailToken(m);
                 }
                 else {
+                    this.srvAppConfig.HideLoader();
                     var model = new BootstrapModel();
                     model.Title = "Error";
                     model.MessageType = model.ModelType.Danger;
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
         var baseurl = this.srvAppConfig.GetBaseUrl();
         this.httpClient.post(baseurl + 'token', data, { headers: headers }).subscribe(
             m => {
-
+                this.srvAppConfig.HideLoader();
                 var credentials = JSON.parse(m["_body"]);
                 this.user.AccessToken = credentials.access_token;
                 this.user.DisplayName = credentials.displayName;// <- database displayName | gmail displayName-> authData.name;
