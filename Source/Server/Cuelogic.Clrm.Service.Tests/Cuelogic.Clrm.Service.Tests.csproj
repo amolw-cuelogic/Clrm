@@ -151,6 +151,8 @@
     <Compile Include="Common\CommonMockData.cs" />
     <Compile Include="AllocationTest\AllocationServiceTest.cs" />
     <Compile Include="AllocationTest\AllocationServiceMockData.cs" />
+    <Compile Include="EmployeeTest\EmployeeServiceMockData.cs" />
+    <Compile Include="EmployeeTest\EmployeeServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +187,7 @@
       <Name>Cuelogic.Clrm.Service</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

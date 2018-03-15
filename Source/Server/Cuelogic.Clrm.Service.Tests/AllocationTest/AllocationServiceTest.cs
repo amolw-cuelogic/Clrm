@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Service.Tests.AllocationTest
             //ARRANGE
             var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = AllocationServiceMockData.GetMockDataMasterRoleList();
+            mockService.Setup(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()));
             privateObject.SetField("_allocationRepository", mockService.Object);
 
             //ACT
@@ -84,6 +84,7 @@ namespace Cuelogic.Clrm.Service.Tests.AllocationTest
             privateObject.SetField("_allocationRepository", mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
             var expectedResult = AllocationServiceMockData.GetMockDataAllocationList();
+
             //ACT
             var data = serviceObject.GetList(searchParam);
             var dt = Helper.JsonStringToDatatable(data);
