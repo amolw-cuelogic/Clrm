@@ -148,32 +148,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CommonMockData.cs" />
-    <Compile Include="MasterGroupTest\MasterGroupControllerTest.cs" />
-    <Compile Include="MasterSkillTest\MasterSkillControllerTest.cs" />
-    <Compile Include="MasterDepartmentTest\MasterDepartmentControllerTest.cs" />
-    <Compile Include="MasterOrganizationRoleTest\MasterOrganizationRoleControllerTest.cs" />
-    <Compile Include="MasterRoleTest\MasterRoleControllerTest.cs" />
-    <Compile Include="MasterProjectTypeTest\MasterProjectTypeControllerTest.cs" />
-    <Compile Include="MasterClientTest\MasterClientControllerTest.cs" />
-    <Compile Include="EmployeeTest\EmployeeControllerTest.cs" />
-    <Compile Include="ProjectTest\ProjectControllerTest.cs" />
-    <Compile Include="AllocationTest\AllocationControllerTest.cs" />
-    <Compile Include="MyProfileTest\MyProfileControllerTest.cs" />
-    <Compile Include="AllocationTest\AllocationMockData.cs" />
-    <Compile Include="EmployeeTest\EmployeeMockData.cs" />
-    <Compile Include="MasterClientTest\MasterClientMockData.cs" />
-    <Compile Include="MasterDepartmentTest\MasterDepartmentMockData.cs" />
-    <Compile Include="MasterGroupTest\MasterGroupMockData.cs" />
-    <Compile Include="MasterOrganizationRoleTest\MasterOrganizationRoleMockData.cs" />
-    <Compile Include="MasterRoleTest\MasterRoleMockData.cs" />
-    <Compile Include="MasterProjectTypeTest\MasterProjectTypeMockData.cs" />
-    <Compile Include="MasterSkillTest\MasterSkillMockData.cs" />
-    <Compile Include="MyProfileTest\MyProfileMockData.cs" />
-    <Compile Include="ProjectTest\ProjectMockData.cs" />
+    <Compile Include="TestCase\MasterGroupControllerTest.cs" />
+    <Compile Include="TestCase\MasterSkillControllerTest.cs" />
+    <Compile Include="TestCase\MasterDepartmentControllerTest.cs" />
+    <Compile Include="TestCase\MasterOrganizationRoleControllerTest.cs" />
+    <Compile Include="TestCase\MasterRoleControllerTest.cs" />
+    <Compile Include="TestCase\MasterProjectTypeControllerTest.cs" />
+    <Compile Include="TestCase\MasterClientControllerTest.cs" />
+    <Compile Include="TestCase\EmployeeControllerTest.cs" />
+    <Compile Include="TestCase\ProjectControllerTest.cs" />
+    <Compile Include="TestCase\AllocationControllerTest.cs" />
+    <Compile Include="TestCase\MyProfileControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserGroup\UserGroupControllerTest.cs" />
-    <Compile Include="UserGroup\UserGroupMockData.cs" />
+    <Compile Include="TestCase\UserGroupControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -194,6 +181,10 @@
       <Project>{07d0b68a-d234-4a2f-ad9b-c7d5dbe687ee}</Project>
       <Name>Cuelogic.Clrm.DataAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.MockData\Cuelogic.Clrm.MockData.csproj">
+      <Project>{94a9ba6e-7229-46cf-bb9a-0bd2293c7e83}</Project>
+      <Name>Cuelogic.Clrm.MockData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cuelogic.Clrm.Model\Cuelogic.Clrm.Model.csproj">
       <Project>{3E12EEED-CBE7-40AB-B78D-0DF7A32ECB81}</Project>
       <Name>Cuelogic.Clrm.Model</Name>
@@ -207,6 +198,7 @@
       <Name>Cuelogic.Clrm.Service</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -96,7 +96,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-14','2018-03-14 16:00:01'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',1,'2018-03-13',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-13','2018-03-14 15:41:43');
+INSERT INTO `Employee` VALUES (1,'Amol','Maruti','Wabale','CUE355','2018-02-28',NULL,'9876543210','amol.wabale@cuelogic.com','',1,'2018-02-02',1,'2018-03-14','2018-03-15 13:36:42'),(17,'Vivek','','Phadke','CUE238','2018-03-15',NULL,'987654321','vivek.phadke@cuelogic.co.in','',1,'2018-03-06',1,'2018-03-13',NULL),(27,'Amit','','Govil','CUE333','2018-03-08',NULL,'987654321','amit.govil@cuelogic.co.in','',1,'2018-03-08',1,'2018-03-13','2018-03-14 15:41:43');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,7 +633,7 @@ CREATE TABLE `MasterSkill` (
 
 LOCK TABLES `MasterSkill` WRITE;
 /*!40000 ALTER TABLE `MasterSkill` DISABLE KEYS */;
-INSERT INTO `MasterSkill` VALUES (44,'HTML / CSS','',27,'2018-03-14',1,'2018-03-15'),(45,'.Net (C# / VB.Net / ASP.Net MVC / WebAPI)','',27,'2018-03-14',1,'2018-03-15'),(46,'AngularJS / Angular','',27,'2018-03-14',27,'2018-03-14'),(47,'NodeJS','',27,'2018-03-14',27,'2018-03-14'),(48,'Python','',27,'2018-03-14',27,'2018-03-14'),(49,'Database (Relational / Non-Relational)','',27,'2018-03-14',27,'2018-03-14'),(50,'Mobility (iOS / Android)','',27,'2018-03-14',27,'2018-03-14');
+INSERT INTO `MasterSkill` VALUES (44,'HTML / CSS','',27,'2018-03-14',1,'2018-03-15'),(45,'.Net (C# / VB.Net / ASP.Net MVC / WebAPI)','',27,'2018-03-14',1,'2018-03-15'),(46,'AngularJS / Angular','',27,'2018-03-14',1,'2018-03-15'),(47,'NodeJS','',27,'2018-03-14',27,'2018-03-14'),(48,'Python','',27,'2018-03-14',27,'2018-03-14'),(49,'Database (Relational / Non-Relational)','',27,'2018-03-14',27,'2018-03-14'),(50,'Mobility (iOS / Android)','',27,'2018-03-14',27,'2018-03-14');
 /*!40000 ALTER TABLE `MasterSkill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4189,4 +4189,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-15 12:44:53
+-- Dump completed on 2018-03-15 18:43:55
