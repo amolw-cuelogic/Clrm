@@ -14,16 +14,17 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
     [TestClass]
     public class EmployeeServiceTest
     {
-        Mock<IEmployeeRepository> mockService = new Mock<IEmployeeRepository>();
+        private Mock<IEmployeeRepository> mockService = new Mock<IEmployeeRepository>();
+        private EmployeeService serviceObject = new EmployeeService();
+        private string dependencyField = "_employeeRepository";
 
         [TestMethod]
         public void TestEmployeeServiceDelete()
         {
             //ARRANGE
-            var serviceObject = new EmployeeService();
             var privateObject = new PrivateObject(serviceObject);
             mockService.Setup(m => m.MarkEmployeeInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            privateObject.SetField("_employeeRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Delete(1, 1);
@@ -37,14 +38,13 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestEmployeeServiceGetItem()
         {
             //ARRANGE
-            var serviceObject = new EmployeeService();
             var privateObject = new PrivateObject(serviceObject);
             var mockDataEmployeeVm = EmployeeMockData.GetMockDataEmployeeVm();
             var mockDataEmployee = EmployeeMockData.GetMockDataEmployee();
             mockService.Setup(m => m.GetMasterListForEmployees()).Returns(mockDataEmployeeVm);
             mockService.Setup(m => m.GetEmployee(It.IsAny<int>())).Returns(mockDataEmployee);
             mockService.Setup(m => m.GetChildListForEmployees(It.IsAny<int>())).Returns(mockDataEmployee);
-            privateObject.SetField("_employeeRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetItem(1);
@@ -63,11 +63,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestEmployeeServiceGetList()
         {
             //ARRANGE
-            var serviceObject = new EmployeeService();
             var privateObject = new PrivateObject(serviceObject);
             var mockData = EmployeeMockData.GetMockDataEmployeeDataset();
             mockService.Setup(m => m.GetEmployeeList(It.IsAny<SearchParam>())).Returns(mockData);
-            privateObject.SetField("_employeeRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
             var expectedResult = EmployeeMockData.GetMockDataemployeeList();
 
@@ -87,12 +86,11 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestEmployeeServiceSave()
         {
             //ARRANGE
-            var serviceObject = new EmployeeService();
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = EmployeeMockData.GetMockDataEmployeeVm();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
             mockService.Setup(m => m.AddOrUpdateEmployee(It.IsAny<EmployeeVm>(), It.IsAny<UserContext>()));
-            privateObject.SetField("_employeeRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);

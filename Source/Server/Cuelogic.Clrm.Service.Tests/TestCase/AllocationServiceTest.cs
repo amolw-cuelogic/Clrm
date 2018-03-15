@@ -14,16 +14,17 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
     [TestClass]
     public class AllocationServiceTest
     {
-        Mock<IAllocationRepository> mockService = new Mock<IAllocationRepository>();
+        private Mock<IAllocationRepository> mockService = new Mock<IAllocationRepository>();
+        private AllocationService serviceObject = new AllocationService();
+        private string dependencyField = "_allocationRepository";
 
         [TestMethod]
         public void TestAllocationServiceDelete()
         {
             //ARRANGE
-            var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
             mockService.Setup(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            privateObject.SetField("_allocationRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Delete(1,1);
@@ -37,10 +38,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestAllocationServiceGetAllocationSum()
         {
             //ARRANGE
-            var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
             mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(100);
-            privateObject.SetField("_allocationRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetAllocationSum(1);
@@ -57,11 +57,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestAllocationServiceGetItem()
         {
             //ARRANGE
-            var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocation();
             mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdata);
-            privateObject.SetField("_allocationRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetItem(1);
@@ -77,11 +76,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestAllocationServiceGetList()
         {
             //ARRANGE
-            var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocationDataset();
             mockService.Setup(m => m.GetAllocationList(It.IsAny<SearchParam>())).Returns(mockdata);
-            privateObject.SetField("_allocationRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
             var expectedResult = AllocationMockData.GetMockDataAllocationList();
 
@@ -101,11 +99,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestAllocationServiceGetProjectRolebyId()
         {
             //ARRANGE
-            var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataMasterRoleList();
             mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockdata);
-            privateObject.SetField("_allocationRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetProjectRolebyId(1);
@@ -120,11 +117,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         public void TestAllocationServiceSave()
         {
             //ARRANGE
-            var serviceObject = new AllocationService();
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocation();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            privateObject.SetField("_allocationRepository", mockService.Object);
+            privateObject.SetField(dependencyField, mockService.Object);
             mockService.Setup(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>(), It.IsAny<UserContext>()));
 
             //ACT

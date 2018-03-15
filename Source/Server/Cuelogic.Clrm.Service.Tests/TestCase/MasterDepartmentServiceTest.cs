@@ -1,30 +1,29 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cuelogic.Clrm.Repository.Client;
+using Cuelogic.Clrm.Repository.Department;
 using Moq;
-using Cuelogic.Clrm.Service.Client;
-using Cuelogic.Clrm.Model.DatabaseModel;
-using System.Collections.Generic;
-using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Service.Department;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
+using Cuelogic.Clrm.Common;
 using System.Data;
 
 namespace Cuelogic.Clrm.Service.Tests.TestCase
 {
     [TestClass]
-    public class MasterClientServiceTest
+    public class MasterDepartmentServiceTest
     {
-        private Mock<IMasterClientRepository> mockService = new Mock<IMasterClientRepository>();
-        private MasterClientService serviceObject = new MasterClientService();
-        private string dependencyField = "_masterClientRepository";
+        private Mock<IMasterDepartmentRepository> mockService = new Mock<IMasterDepartmentRepository>();
+        private MasterDepartmentService serviceObject = new MasterDepartmentService();
+        private string dependencyField = "_masterDepartmentRepository";
 
         [TestMethod]
         public void TestMasterClientServiceDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.MarkMasterClientInvalid(It.IsAny<int>(), It.IsAny<int>()));
+            mockService.Setup(m => m.MarkMasterDepartmentInvalid(It.IsAny<int>(), It.IsAny<int>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -36,12 +35,12 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
-        public void TestMasterClientServiceGetItem()
+        public void TestMasterDepartmentServiceGetItem()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterClientMockData.GetMockDataMasterClient();
-            mockService.Setup(m => m.GetMasterClient(It.IsAny<int>())).Returns(mockData);
+            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartment();
+            mockService.Setup(m => m.GetMasterDepartment(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -49,17 +48,17 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(MasterClient));
+            Assert.IsInstanceOfType(data, typeof(MasterDepartment));
             Assert.IsTrue(data.Id == 1);
         }
 
         [TestMethod]
-        public void TestMasterClientServiceGetList()
+        public void TestMasterDepartmentServiceGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterClientMockData.GetMockDataMasterClientDataset();
-            mockService.Setup(m => m.GetMasterClientList(It.IsAny<SearchParam>())).Returns(mockData);
+            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartmentDataset();
+            mockService.Setup(m => m.GetMasterDepartmentList(It.IsAny<SearchParam>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
             var expectedResult = EmployeeMockData.GetMockDataemployeeList();
@@ -77,31 +76,13 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
-        public void TestMasterClientServiceGetCityList()
+        public void TestMasterDepartmentServiceSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterClientMockData.GetMockDataMasterCity();
-            mockService.Setup(m => m.GetCityList(It.IsAny<int>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
-
-            //ACT
-            var data = serviceObject.GetCityList(1);
-
-            //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<MasterCity>));
-            Assert.IsTrue(data.Count > 1);
-        }
-
-        [TestMethod]
-        public void TestMasterClientServiceSave()
-        {
-            //ARRANGE
-            var privateObject = new PrivateObject(serviceObject);
-            var mockdata = MasterClientMockData.GetMockDataMasterClient();
+            var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateMasterClient(It.IsAny<MasterClient>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.SaveMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -112,5 +93,23 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             //If error occurs test will fail automatically
         }
 
+        [TestMethod]
+        public void TestMasterDepartmentServiceUpdate()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
+            var mockDataUserContext = CommonMockData.GetMockDataUserContext();
+            mockService.Setup(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
+            privateObject.SetField(dependencyField, mockService.Object);
+            mockdata.Id = 0;
+
+            //ACT
+            serviceObject.Save(mockdata, mockDataUserContext);
+
+            //ASSERT
+            //AS IT IS VOID TYPE IT DOES NOT RETURN ANYTHING
+            //If error occurs test will fail automatically
+        }
     }
 }
