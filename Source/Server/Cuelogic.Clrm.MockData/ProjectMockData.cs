@@ -1,6 +1,8 @@
-﻿using Cuelogic.Clrm.Model.DatabaseModel;
+﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,15 @@ namespace Cuelogic.Clrm.MockData
         public static string GetMockDataProjectList()
         {
             return "[{'Id':15,'ProjectName':'Kantar','Type':'Billable','StartDate':'2017/07/01','EndDate':null,'IsComplete':'No','IsValid':'Yes'},{'Id':16,'ProjectName':'Tiny Torch','Type':'Billable','StartDate':'2017/01/01','EndDate':null,'IsComplete':'No','IsValid':'Yes'},{'Id':17,'ProjectName':'Cuelogic Resource Management','Type':'In House','StartDate':'2018/01/15','EndDate':null,'IsComplete':'No','IsValid':'Yes'},{'Id':18,'ProjectName':'Big Data Charting System','Type':'Billable','StartDate':'2018/03/01','EndDate':null,'IsComplete':'No','IsValid':'Yes'}]";
+        }
+
+        public static DataSet GetMockDataProjectDataset()
+        {
+            var ds = new DataSet();
+            var jsonString = GetMockDataProjectList();
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
         }
 
         public static Project GetMockDataProject()

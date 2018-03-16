@@ -19,8 +19,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class ProjectControllerTest
     {
         Mock<IProjectService> mockService = new Mock<IProjectService>();
+        private const string _testCategory = "Controller - Project";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestProjectGet()
         {
             //ARRANGE
@@ -45,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestProjectGetPerId()
         {
             //ARRANGE
@@ -71,6 +74,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestProjectPost()
         {
             //ARRANGE
@@ -96,6 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestProjectDelete()
         {
             //ARRANGE

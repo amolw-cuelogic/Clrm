@@ -19,8 +19,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class MasterClientControllerTest
     {
         Mock<IMasterClientService> mockService = new Mock<IMasterClientService>();
+        private const string _testCategory = "Controller - Master Client";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientGet()
         {
             //ARRANGE
@@ -45,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientGetPerId()
         {
             //ARRANGE
@@ -71,6 +74,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientPost()
         {
             //ARRANGE
@@ -96,6 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientDelete()
         {
             //ARRANGE

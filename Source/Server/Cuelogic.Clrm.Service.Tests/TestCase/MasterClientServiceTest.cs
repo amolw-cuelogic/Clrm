@@ -18,8 +18,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         private Mock<IMasterClientRepository> mockService = new Mock<IMasterClientRepository>();
         private MasterClientService serviceObject = new MasterClientService();
         private string dependencyField = "_masterClientRepository";
+        private const string _testCategory = "Service - Master Client";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientServiceDelete()
         {
             //ARRANGE
@@ -36,6 +38,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientServiceGetItem()
         {
             //ARRANGE
@@ -54,6 +57,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientServiceGetList()
         {
             //ARRANGE
@@ -77,6 +81,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientServiceGetCityList()
         {
             //ARRANGE
@@ -95,6 +100,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterClientServiceSave()
         {
             //ARRANGE

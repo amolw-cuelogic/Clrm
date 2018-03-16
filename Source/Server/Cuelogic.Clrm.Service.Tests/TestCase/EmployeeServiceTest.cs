@@ -17,8 +17,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         private Mock<IEmployeeRepository> mockService = new Mock<IEmployeeRepository>();
         private EmployeeService serviceObject = new EmployeeService();
         private string dependencyField = "_employeeRepository";
+        private const string _testCategory = "Service - Employee";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeServiceDelete()
         {
             //ARRANGE
@@ -35,6 +37,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeServiceGetItem()
         {
             //ARRANGE
@@ -60,6 +63,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeServiceGetList()
         {
             //ARRANGE
@@ -83,6 +87,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeServiceSave()
         {
             //ARRANGE

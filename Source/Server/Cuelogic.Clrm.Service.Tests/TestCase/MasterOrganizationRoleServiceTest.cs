@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cuelogic.Clrm.Repository.Department;
+using Cuelogic.Clrm.Repository.OrganizationRole;
 using Moq;
-using Cuelogic.Clrm.Service.Department;
+using Cuelogic.Clrm.Service.OrganizationRole;
 using Cuelogic.Clrm.MockData;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
@@ -12,21 +12,22 @@ using System.Data;
 namespace Cuelogic.Clrm.Service.Tests.TestCase
 {
     [TestClass]
-    public class MasterDepartmentServiceTest
+    public class MasterOrganizationRoleServiceTest
     {
-        private Mock<IMasterDepartmentRepository> mockService = new Mock<IMasterDepartmentRepository>();
-        private MasterDepartmentService serviceObject = new MasterDepartmentService();
-        private string dependencyField = "_masterDepartmentRepository";
-        private const string _testCategory = "Service - Master Department";
+        private Mock<IMasterOrganizationRoleRepository> mockService = new Mock<IMasterOrganizationRoleRepository>();
+        private MasterOrganizationRoleService serviceObject = new MasterOrganizationRoleService();
+        private string _dependencyField = "_masterOrganizationRoleRepository";
+        private const string _testCategory = "Service - Master Organization Role";
 
+        
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterClientServiceDelete()
+        public void TestMasterOrganizationRoleDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.MarkMasterDepartmentInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.MarkMasterOrganizationRoleInvalid(It.IsAny<int>(), It.IsAny<int>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Delete(1, 1);
@@ -38,34 +39,34 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceGetItem()
+        public void TestMasterOrganizationRoleGetItem()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartment();
-            mockService.Setup(m => m.GetMasterDepartment(It.IsAny<int>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            var mockData = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRole();
+            mockService.Setup(m => m.GetMasterOrganizationRole(It.IsAny<int>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetItem(1);
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(MasterDepartment));
+            Assert.IsInstanceOfType(data, typeof(MasterOrganizationRole));
             Assert.IsTrue(data.Id == 1);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceGetList()
+        public void TestMasterOrganizationRoleGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartmentDataset();
-            mockService.Setup(m => m.GetMasterDepartmentList(It.IsAny<SearchParam>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            var mockData = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRoleDataset();
+            mockService.Setup(m => m.GetMasterOrganizationRoleList(It.IsAny<SearchParam>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
-            var expectedResult = EmployeeMockData.GetMockDataemployeeList();
+            var expectedResult = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRoleList();
 
             //ACT
             var data = serviceObject.GetList(searchParam);
@@ -81,16 +82,17 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceSave()
+        public void TestMasterOrganizationRoleSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
+            var mockdata = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRole();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.SaveMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
+            mockdata.Id = 0;
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
@@ -100,22 +102,23 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceUpdate()
+        public void TestMasterOrganizationRoleUpdate()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
+            var mockdata = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRole();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
-            privateObject.SetField(dependencyField, mockService.Object);
-            mockdata.Id = 0;
+            mockService.Setup(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
+            mockdata.Id = 0;
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
             //AS IT IS VOID TYPE IT DOES NOT RETURN ANYTHING
             //If error occurs test will fail automatically
         }
+
     }
 }

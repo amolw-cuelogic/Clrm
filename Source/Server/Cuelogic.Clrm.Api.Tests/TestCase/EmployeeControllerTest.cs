@@ -19,8 +19,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class EmployeeControllerTest
     {
         Mock<IEmployeeService> mockService = new Mock<IEmployeeService>();
+        private const string _testCategory = "Controller - Employee";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeGet()
         {
             //ARRANGE
@@ -45,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeGetPerId()
         {
             //ARRANGE
@@ -71,6 +74,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeePost()
         {
             //ARRANGE
@@ -96,6 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeDelete()
         {
             //ARRANGE

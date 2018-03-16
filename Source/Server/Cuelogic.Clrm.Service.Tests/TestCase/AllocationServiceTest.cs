@@ -17,8 +17,10 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         private Mock<IAllocationRepository> mockService = new Mock<IAllocationRepository>();
         private AllocationService serviceObject = new AllocationService();
         private string dependencyField = "_allocationRepository";
+        private const string _testCategory = "Service - Allocation";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationServiceDelete()
         {
             //ARRANGE
@@ -35,6 +37,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationServiceGetAllocationSum()
         {
             //ARRANGE
@@ -54,6 +57,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
         
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationServiceGetItem()
         {
             //ARRANGE
@@ -73,6 +77,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationServiceGetList()
         {
             //ARRANGE
@@ -96,6 +101,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationServiceGetProjectRolebyId()
         {
             //ARRANGE
@@ -114,6 +120,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationServiceSave()
         {
             //ARRANGE

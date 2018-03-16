@@ -19,8 +19,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class MasterRoleControllerTest
     {
         Mock<IMasterRoleService> mockService = new Mock<IMasterRoleService>();
+        private const string _testCategory = "Controller - Master Role";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectRoleGet()
         {
             //ARRANGE
@@ -45,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectRoleGetPerId()
         {
             //ARRANGE
@@ -71,6 +74,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
         
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectRolePost()
         {
             //ARRANGE
@@ -96,6 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectRoleDelete()
         {
             //ARRANGE

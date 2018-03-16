@@ -17,8 +17,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class MyProfileControllerTest
     {
         Mock<ICommonService> mockService = new Mock<ICommonService>();
+        private const string _testCategory = "Controller - My Profile";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeeGetPerId()
         {
             //ARRANGE
@@ -42,6 +44,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestEmployeePost()
         {
             //ARRANGE

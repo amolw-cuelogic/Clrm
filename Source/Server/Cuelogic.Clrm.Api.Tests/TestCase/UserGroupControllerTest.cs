@@ -20,8 +20,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class UserGroupControllerTest
     {
         Mock<IUserGroupService> mockService = new Mock<IUserGroupService>();
+        private const string _testCategory = "Controller - User Group";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestUserGroupGetEmployeeList()
         {
             //ARRANGE
@@ -46,6 +48,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestUserGroupGetGroupList()
         {
             //ARRANGE
@@ -70,6 +73,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestUserGroupGetIdentityGroupMembers()
         {
             //ARRANGE
@@ -94,6 +98,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestUserGroupPost()
         {
             //ARRANGE

@@ -22,8 +22,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class AllocationControllerTest
     {
         Mock<IAllocationService> mockService = new Mock<IAllocationService>();
+        private const string _testCategory = "Controller - Allocation";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationGet()
         {
             //ARRANGE
@@ -48,6 +50,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationGetPerId()
         {
             //ARRANGE
@@ -74,6 +77,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationGetAllocation()
         {
             //ARRANGE
@@ -100,6 +104,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationGetProjectRole()
         {
             //ARRANGE
@@ -126,6 +131,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationPost()
         {
             //ARRANGE
@@ -152,6 +158,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
 
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestAllocationDelete()
         {
             //ARRANGE

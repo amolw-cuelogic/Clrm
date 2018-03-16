@@ -19,8 +19,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class MasterProjectTypeControllerTest
     {
         Mock<IMasterProjectTypeService> mockService = new Mock<IMasterProjectTypeService>();
+        private const string _testCategory = "Controller - Master Project Type";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectTypeGet()
         {
             //ARRANGE
@@ -45,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectTypeGetPerId()
         {
             //ARRANGE
@@ -71,6 +74,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectTypePost()
         {
             //ARRANGE
@@ -96,6 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterProjectTypeDelete()
         {
             //ARRANGE

@@ -19,8 +19,10 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
     public class MasterDepartmentControllerTest
     {
         Mock<IMasterDepartmentService> mockService = new Mock<IMasterDepartmentService>();
+        private const string _testCategory = "Controller - Master Department";
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterDepartmentGet()
         {
             //ARRANGE
@@ -45,6 +47,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterDepartmentGetPerId()
         {
             //ARRANGE
@@ -71,6 +74,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterDepartmentPost()
         {
             //ARRANGE
@@ -96,6 +100,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         }
 
         [TestMethod]
+        [TestCategory(_testCategory)]
         public void TestMasterDepartmentDelete()
         {
             //ARRANGE

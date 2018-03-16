@@ -18,9 +18,11 @@ namespace Cuelogic.Clrm.Service.Common
     public class CommonService : ICommonService
     {
         private readonly ICommonRepository _commonRepository;
+        private readonly IEmployeeService _employeeService;
         public CommonService()
         {
             _commonRepository = new CommonRepository();
+            _employeeService = new EmployeeService();
         }
 
         public string GetEmployeeAllocationList(int employeeId)
@@ -36,7 +38,6 @@ namespace Cuelogic.Clrm.Service.Common
 
         public EmployeeVm GetEmployeeById(int employeeId)
         {
-            IEmployeeService _employeeService = new EmployeeService();
             var employee = _employeeService.GetItem(employeeId);
             return employee;
         }
@@ -44,7 +45,7 @@ namespace Cuelogic.Clrm.Service.Common
         public List<IdentityGroupRight> GetEmployeeRights(int employeeId)
         {
             var duplicateList = _commonRepository.GetGroupRights(employeeId);
-
+            
             var distinctList = new List<IdentityGroupRight>();
             foreach (var item in duplicateList)
             {
@@ -71,7 +72,6 @@ namespace Cuelogic.Clrm.Service.Common
 
         public void Save(EmployeeVm employeeVm, UserContext userContext)
         {
-            IEmployeeService _employeeService = new EmployeeService();
             _employeeService.Save(employeeVm, userContext);
         }
     }
