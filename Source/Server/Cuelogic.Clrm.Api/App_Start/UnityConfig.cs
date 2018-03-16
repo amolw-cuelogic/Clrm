@@ -1,25 +1,8 @@
+using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.Service.Interface;
 using System.Web.Http;
 using Unity;
 using Unity.WebApi;
-using Cuelogic.Clrm.Repository;
-using System.Web.Mvc;
-using Cuelogic.Clrm.Api.Controllers;
-using Unity.Injection;
-using Microsoft.AspNet.Identity;
-using Cuelogic.Clrm.Api.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Cuelogic.Clrm.Service.Group;
-using Cuelogic.Clrm.Service.Department;
-using Cuelogic.Clrm.Service.OrganizationRole;
-using Cuelogic.Clrm.Service.Skill;
-using Cuelogic.Clrm.Service.Employees;
-using Cuelogic.Clrm.Service.ProjectRole;
-using Cuelogic.Clrm.Service.ProjectType;
-using Cuelogic.Clrm.Service.Client;
-using Cuelogic.Clrm.Service.Projects;
-using Cuelogic.Clrm.Service.Allocations;
-using Cuelogic.Clrm.Service.Common;
-using Cuelogic.Clrm.Service.UserGroup;
 
 namespace Cuelogic.Clrm.Api
 {

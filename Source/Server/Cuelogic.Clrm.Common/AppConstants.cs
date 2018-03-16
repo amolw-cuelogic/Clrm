@@ -8,6 +8,7 @@ namespace Cuelogic.Clrm.Common
 {
     public class AppConstants
     {
+        public const string TargetDatabase = "TargetDatabase";
         public static class StoreProcedure
         {
             #region COMMON 
@@ -206,6 +207,16 @@ namespace Cuelogic.Clrm.Common
             public const int Read = 1;
             public const int Write = 2;
             public const int Delete = 3;
+        }
+
+        public static class DatabaseType
+        {
+            public const string MySql = "MySql";
+        }
+        
+        public static class CustomError
+        {
+            public const string DbConcreteImplementation = "Concrete implentation not available for given database";
         }
     }
 }

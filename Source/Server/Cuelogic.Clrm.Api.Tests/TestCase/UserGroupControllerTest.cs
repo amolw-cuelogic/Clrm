@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cuelogic.Clrm.Service.Group;
-using Cuelogic.Clrm.Service.UserGroup;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Cuelogic.Clrm.Api.Controllers;
 using System.Web.Http;
@@ -13,6 +10,7 @@ using System.Collections.Generic;
 using Cuelogic.Clrm.Common;
 using System.Security.Claims;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Api.Tests.TestCase
 {

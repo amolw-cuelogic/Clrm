@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
     <Compile Include="AppLogManager.cs" />
+    <Compile Include="AppUtillity.cs" />
     <Compile Include="DataAccessHelper.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Helper.cs" />

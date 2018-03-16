@@ -1,20 +1,18 @@
 ﻿using System;
 using Cuelogic.Clrm.Api.Controllers;
 using System.Web.Http.Results;
-using Cuelogic.Clrm.Service.Allocations;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using System.Security.Claims;
 using System.Web.Http;
 using Cuelogic.Clrm.Common;
 using Moq;
 using Cuelogic.Clrm.Model.CommonModel;
-using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using System.Collections.Generic;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Api.Tests.TestCase
 {

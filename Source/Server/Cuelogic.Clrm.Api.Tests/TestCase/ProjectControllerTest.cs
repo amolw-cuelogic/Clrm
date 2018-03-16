@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cuelogic.Clrm.Service.Projects;
 using Cuelogic.Clrm.Api.Controllers;
 using System.Web.Http.Results;
 using Cuelogic.Clrm.Model.DatabaseModel;
@@ -12,6 +11,7 @@ using Cuelogic.Clrm.Model.CommonModel;
 using System.Threading;
 using System.Net;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Api.Tests.TestCase
 {

@@ -6,12 +6,12 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
 using System.Security.Claims;
 using System.Web.Http;
-using Cuelogic.Clrm.Service.Skill;
 using Cuelogic.Clrm.Common;
 using Moq;
 using System.Threading;
 using System.Net;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Api.Tests.TestCase
 {

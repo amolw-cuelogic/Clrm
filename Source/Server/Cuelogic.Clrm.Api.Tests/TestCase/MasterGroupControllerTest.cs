@@ -2,7 +2,6 @@
 using Cuelogic.Clrm.Api.Controllers;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
-using Cuelogic.Clrm.Service.Group;
 using System.Web.Http;
 using System.Web.Http.Results;
 using System.Net;
@@ -12,6 +11,7 @@ using Cuelogic.Clrm.Common;
 using System.Security.Claims;
 using System;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Service.Interface;
 
 namespace Cuelogic.Clrm.Api.Tests.TestCase
 {

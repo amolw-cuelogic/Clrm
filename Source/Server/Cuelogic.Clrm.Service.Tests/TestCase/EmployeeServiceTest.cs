@@ -1,13 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cuelogic.Clrm.Repository.Employees;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Cuelogic.Clrm.Service.Employees;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
 using System.Data;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Repository.Interface;
 
 namespace Cuelogic.Clrm.Service.Tests.TestCase
 {

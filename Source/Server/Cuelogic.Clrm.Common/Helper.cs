@@ -74,8 +74,9 @@ namespace Cuelogic.Clrm.Common
                             ColumnsName.Add(ColumnsNameString);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
+
                         throw new Exception(string.Format("Error Parsing Column Name : {0}", ColumnsNameData));
                     }
                 }
@@ -98,7 +99,7 @@ namespace Cuelogic.Clrm.Common
                         string RowDataString = rowData.Substring(idx + 1).Replace("\"", "");
                         nr[RowColumns] = RowDataString;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         continue;
                     }

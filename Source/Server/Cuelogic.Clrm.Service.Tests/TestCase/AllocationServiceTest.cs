@@ -1,13 +1,12 @@
-﻿using Cuelogic.Clrm.Service.Allocations;
-using Cuelogic.Clrm.Model.DatabaseModel;
+﻿using Cuelogic.Clrm.Model.DatabaseModel;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Cuelogic.Clrm.Repository.Allocations;
 using Cuelogic.Clrm.Model.CommonModel;
 using System.Data;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.MockData;
+using Cuelogic.Clrm.Repository.Interface;
 
 namespace Cuelogic.Clrm.Service.Tests.TestCase
 {

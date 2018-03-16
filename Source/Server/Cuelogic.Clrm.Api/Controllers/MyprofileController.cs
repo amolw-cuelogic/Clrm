@@ -1,12 +1,6 @@
 ﻿using Cuelogic.Clrm.Model.DatabaseModel;
-using Cuelogic.Clrm.Service.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using Cuelogic.Clrm.Service.Interface;
 using System.Runtime.CompilerServices;
-using System.Web.Helpers;
 using System.Web.Http;
 using static Cuelogic.Clrm.Api.Filter.CustomFilter;
 using static Cuelogic.Clrm.Common.AppConstants;

@@ -1,17 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cuelogic.Clrm.Repository.Skill;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Cuelogic.Clrm.Service.Skill;
 using Cuelogic.Clrm.MockData;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Common;
 using System.Data;
+using Cuelogic.Clrm.Repository.Interface;
 
 namespace Cuelogic.Clrm.Service.Tests.TestCase
 {
-    
+
     [TestClass]
     public class MasterSkillServiceTest
     {

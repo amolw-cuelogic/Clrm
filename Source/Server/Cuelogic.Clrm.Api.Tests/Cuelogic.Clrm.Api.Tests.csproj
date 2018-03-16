@@ -177,9 +177,9 @@
       <Project>{52F6A540-2454-42C5-AB55-857B19026DAF}</Project>
       <Name>Cuelogic.Clrm.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccessLayer.csproj">
+    <ProjectReference Include="..\Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccess.MySql.csproj">
       <Project>{07d0b68a-d234-4a2f-ad9b-c7d5dbe687ee}</Project>
-      <Name>Cuelogic.Clrm.DataAccessLayer</Name>
+      <Name>Cuelogic.Clrm.DataAccess.MySql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cuelogic.Clrm.MockData\Cuelogic.Clrm.MockData.csproj">
       <Project>{94a9ba6e-7229-46cf-bb9a-0bd2293c7e83}</Project>
@@ -192,6 +192,10 @@
     <ProjectReference Include="..\Cuelogic.Clrm.Repository\Cuelogic.Clrm.Repository.csproj">
       <Project>{8b5c7274-1f0e-41cf-97bf-e161a46c64ec}</Project>
       <Name>Cuelogic.Clrm.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cuelogic.Clrm.Service.Interface\Cuelogic.Clrm.Service.Interface.csproj">
+      <Project>{95D98DDE-B512-4986-911D-95755F37639A}</Project>
+      <Name>Cuelogic.Clrm.Service.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cuelogic.Clrm.Service\Cuelogic.Clrm.Service.csproj">
       <Project>{890a491f-7e3f-470a-ab5d-af552e99c869}</Project>
