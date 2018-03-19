@@ -20,7 +20,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterOrganizationRoleDelete()
+        public void TestMasterOrganizationRoleServiceDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterOrganizationRoleGetItem()
+        public void TestMasterOrganizationRoleServiceGetItem()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -57,7 +57,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterOrganizationRoleGetList()
+        public void TestMasterOrganizationRoleServiceGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -81,7 +81,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterOrganizationRoleSave()
+        public void TestMasterOrganizationRoleServiceSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -103,7 +103,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterOrganizationRoleUpdate()
+        public void TestMasterOrganizationRoleServiceUpdate()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

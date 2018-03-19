@@ -19,7 +19,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeDelete()
+        public void TestMasterProjectTypeServiceDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -37,7 +37,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeGetItem()
+        public void TestMasterProjectTypeServiceGetItem()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -56,11 +56,11 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeGetList()
+        public void TestMasterProjectTypeServiceGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectTypeDataset();
+            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectTypeListDataset();
             mockService.Setup(m => m.GetMasterProjectTypeList(It.IsAny<SearchParam>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
@@ -80,7 +80,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeSave()
+        public void TestMasterProjectTypeServiceSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

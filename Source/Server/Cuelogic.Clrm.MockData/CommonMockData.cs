@@ -2,6 +2,7 @@
 using Cuelogic.Clrm.Model.DatabaseModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -34,6 +35,34 @@ namespace Cuelogic.Clrm.MockData
             data.UserId = 1;
             data.UserName = "Amol Wabale";
             data.Rights = Helper.XmlToObject(strRight, typeof(List<IdentityGroupRight>)) as List<IdentityGroupRight>;
+            return data;
+        }
+
+        public static DataSet GetMasterCurrencyDataSet()
+        {
+            var ds = new DataSet();
+            var data = GetMasterCurrency();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+        public static List<MasterCurrency> GetMasterCurrency()
+        {
+            var data = new List<MasterCurrency>();
+
+            var obj1 = new MasterCurrency();
+            obj1.Id = 1;
+            obj1.CountryId = 1;
+            obj1.Currency = "Dollar";
+            data.Add(obj1);
+
+            var obj2 = new MasterCurrency();
+            obj2.Id = 1;
+            obj2.CountryId = 2;
+            obj2.Currency = "Rupee";
+            data.Add(obj2);
+
             return data;
         }
     }

@@ -16,10 +16,20 @@ namespace Cuelogic.Clrm.MockData
             return "[{'Id':13,'Role':'Developer','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':1,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':14,'Role':'Product Developer','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':15,'Role':'Technical Analyst','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':1,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':16,'Role':'Ui Engineer','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':17,'Role':'Backend Developer','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':1,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':18,'Role':'Trainee Develop','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/03/12','UpdatedBy':1,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'}]";
         }
 
-        public static DataSet GetMockDataMasterProjectRoleDataset()
+        public static DataSet GetMockDataMasterProjectRoleListDataset()
         {
             var ds = new DataSet();
             var jsonString = GetMockDataMasterProjectRoleList();
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
+        public static DataSet GetMockDataMasterProjectRoleDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterProjectRole();
+            var jsonString = Helper.ObjectToJson(data);
             var dt = Helper.JsonStringToDatatable(jsonString);
             ds.Tables.Add(dt);
             return ds;

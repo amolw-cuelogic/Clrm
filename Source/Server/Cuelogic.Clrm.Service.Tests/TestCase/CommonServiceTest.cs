@@ -20,7 +20,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestCommonGetEmployeeAllocationList()
+        public void TestCommonServiceGetEmployeeAllocationList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -42,7 +42,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestCommonGetEmployeeByEmail()
+        public void TestCommonServiceGetEmployeeByEmail()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -61,7 +61,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestCommonGetEmployeeById()
+        public void TestCommonServiceGetEmployeeById()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -84,7 +84,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestCommonGetEmployeeRights()
+        public void TestCommonServiceGetEmployeeRights()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -103,7 +103,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestCommonLogLoginTime()
+        public void TestCommonServiceLogLoginTime()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -121,7 +121,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestCommonSave()
+        public void TestCommonServiceSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

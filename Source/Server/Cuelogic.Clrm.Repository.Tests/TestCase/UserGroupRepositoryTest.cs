@@ -6,24 +6,25 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.DataAccess.Interface;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
-    public class UserGroupServiceTest
+    public class UserGroupRepositoryTest
     {
-        private Mock<IUserGroupRepository> mockService = new Mock<IUserGroupRepository>();
-        private UserGroupService serviceObject = new UserGroupService();
-        private string _dependencyField = "_userGroupRepository";
-        private const string _testCategory = "Service - User Group";
+        private Mock<IUserGroupDataAccess> mockService = new Mock<IUserGroupDataAccess>();
+        private UserGroupRepository serviceObject = new UserGroupRepository();
+        private string _dependencyField = "_userGroupDataAcces";
+        private const string _testCategory = "Repository - User Group";
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupGetEmployeeList()
+        public void TestUserGroupRepositoryGetEmployeeList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetEmployeeList();
+            var mockData = EmployeeMockData.GetMockDataEmployeeListDataset();
             mockService.Setup(m => m.GetEmployeeList()).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -38,11 +39,11 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupGetGroupList()
+        public void TestUserGroupRepositoryGetGroupList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetGroupList();
+            var mockData = MasterGroupMockData.GetMockDataMasterGroupListDataset();
             mockService.Setup(m => m.GetGroupList()).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -57,11 +58,11 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupGetIdentityGroupMembers()
+        public void TestUserGroupRepositoryGetIdentityGroupMembers()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetIdentityGroupMemberList();
+            var mockData = EmployeeMockData.GetMockDataEmployeeListDataset();
             mockService.Setup(m => m.GetIdentityGroupMembers(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -76,21 +77,21 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupInsertGroupUsers()
+        public void TestUserGroupRepositoryInsertGroupUsers()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = UserGroupMockData.GetIdentityEmployeeGroupList();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.InsertGroupUsers(It.IsAny<List<IdentityEmployeeGroup>>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.InsertGroupUsers(It.IsAny<string>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.InsertGroupUsers(mockData, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<List<IdentityEmployeeGroup>>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<List<IdentityEmployeeGroup>>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<string>()));
+            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<string>()), Times.Once);
             mockService.VerifyAll();
         }
     }

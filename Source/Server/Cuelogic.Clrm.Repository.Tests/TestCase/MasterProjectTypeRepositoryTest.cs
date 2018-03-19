@@ -7,20 +7,21 @@ using Cuelogic.Clrm.Common;
 using System.Data;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.DataAccess.Interface;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
-    public class MasterProjectTypeServiceTest
+    public class MasterProjectTypeRepositoryTest
     {
-        private Mock<IMasterProjectTypeRepository> mockService = new Mock<IMasterProjectTypeRepository>();
-        private MasterProjectTypeService serviceObject = new MasterProjectTypeService();
-        private string _dependencyField = "_masterProjectTypeRepository";
-        private const string _testCategory = "Service - Master Project Type";
+        private Mock<IMasterProjectTypeDataAccess> mockService = new Mock<IMasterProjectTypeDataAccess>();
+        private MasterProjectTypeRepository serviceObject = new MasterProjectTypeRepository();
+        private string _dependencyField = "_masterProjectTypeDataAccess";
+        private const string _testCategory = "Repository - Master Project Type";
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeDelete()
+        public void TestMasterProjectTypeRepositoryMarkMasterProjectTypeInvalid()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -28,7 +29,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Delete(1, 1);
+            serviceObject.MarkMasterProjectTypeInvalid(1, 1);
 
             //ASSERT
             mockService.Verify(m => m.MarkMasterProjectTypeInvalid(It.IsAny<int>(), It.IsAny<int>()));
@@ -38,16 +39,16 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeGetItem()
+        public void TestMasterProjectTypeRepositoryGetMasterProjectType()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectType();
+            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectTypeDataset();
             mockService.Setup(m => m.GetMasterProjectType(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetItem(1);
+            var data = serviceObject.GetMasterProjectType(1);
 
             //ASSERT
             Assert.IsNotNull(data);
@@ -57,7 +58,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeGetList()
+        public void TestMasterProjectTypeRepositoryGetMasterProjectTypeList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -65,37 +66,62 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             mockService.Setup(m => m.GetMasterProjectTypeList(It.IsAny<SearchParam>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
-            var expectedResult = MasterProjectTypeMockData.GetMockDataMasterProjectTypeList();
 
             //ACT
-            var data = serviceObject.GetList(searchParam);
-            var dt = Helper.JsonStringToDatatable(data);
+            var data = serviceObject.GetMasterProjectTypeList(searchParam);
+            var dt = data.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsTrue(data != "");
-            Assert.IsInstanceOfType(data, typeof(string));
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
             Assert.IsTrue(dt.Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterProjectTypeSave()
+        public void TestMasterProjectTypeRepositoryGetMasterProjectTypeValidList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectTypeDataset();
+            mockService.Setup(m => m.GetMasterProjectTypeValidList()).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var data = serviceObject.GetMasterProjectTypeValidList();
+            var dt = data.Tables[0];
+            var jsonString = dt.ToJsonString();
+
+            //ASSERT
+            Assert.IsNotNull(data);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(dt.Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterProjectTypeRepositoryAddOrUpdateMasterProjectType()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterProjectTypeMockData.GetMockDataMasterProjectType();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Save(mockdata, mockDataUserContext);
+            serviceObject.AddOrUpdateMasterProjectType(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>()));
+            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>()), Times.Once);
             mockService.VerifyAll();
         }
     }

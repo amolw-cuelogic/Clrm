@@ -19,7 +19,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestProjectDelete()
+        public void TestProjectServiceDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -37,7 +37,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestProjectGetItem()
+        public void TestProjectServiceGetItem()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -56,7 +56,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestProjectGetList()
+        public void TestProjectServiceGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -80,7 +80,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterSkillSave()
+        public void TestProjectServiceSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

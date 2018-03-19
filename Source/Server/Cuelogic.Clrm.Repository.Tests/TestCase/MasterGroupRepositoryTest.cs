@@ -145,7 +145,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterClientServiceMarkGroupInvalid()
+        public void TestMasterGroupServiceMarkGroupInvalid()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

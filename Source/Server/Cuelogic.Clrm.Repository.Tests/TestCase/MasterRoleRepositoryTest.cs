@@ -7,20 +7,21 @@ using Cuelogic.Clrm.Common;
 using System.Data;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.DataAccess.Interface;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
-    public class MasterRoleServiceTest
+    public class MasterRoleRepositoryTest
     {
-        private Mock<IMasterRoleRepository> mockService = new Mock<IMasterRoleRepository>();
-        private MasterRoleService serviceObject = new MasterRoleService();
-        private string _dependencyField = "_projectRoleRepository";
-        private const string _testCategory = "Service - Master Role";
+        private Mock<IMasterRoleDataAccess> mockService = new Mock<IMasterRoleDataAccess>();
+        private MasterRoleRepository serviceObject = new MasterRoleRepository();
+        private string _dependencyField = "_masterProjectRoleDataAccess";
+        private const string _testCategory = "Repository - Master Role";
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleDelete()
+        public void TestMasterRoleRepositoryMarkMasterProjectRoleInvalid()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -28,7 +29,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Delete(1, 1);
+            serviceObject.MarkMasterProjectRoleInvalid(1, 1);
 
             //ASSERT
             mockService.Verify(m => m.MarkMasterProjectRoleInvalid(It.IsAny<int>(), It.IsAny<int>()));
@@ -38,16 +39,16 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleGetItem()
+        public void TestMasterRoleRepositoryGetMasterProjectRole()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterRoleMockData.GetMockDataMasterProjectRole();
+            var mockData = MasterRoleMockData.GetMockDataMasterProjectRoleDataset();
             mockService.Setup(m => m.GetMasterProjectRole(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetItem(1);
+            var data = serviceObject.GetMasterProjectRole(1);
 
             //ASSERT
             Assert.IsNotNull(data);
@@ -57,7 +58,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleGetList()
+        public void TestMasterRoleRepositoryGetMasterProjectRoleList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -68,34 +69,36 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var expectedResult = MasterRoleMockData.GetMockDataMasterProjectRoleList();
 
             //ACT
-            var data = serviceObject.GetList(searchParam);
-            var dt = Helper.JsonStringToDatatable(data);
+            var data = serviceObject.GetMasterProjectRoleList(searchParam);
+            var dt = data.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsTrue(data != "");
-            Assert.IsInstanceOfType(data, typeof(string));
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
             Assert.IsTrue(dt.Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleSave()
+        public void TestMasterRoleRepositoryAddOrUpdateMasterProjectRole()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterRoleMockData.GetMockDataMasterProjectRole();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Save(mockdata, mockDataUserContext);
+            serviceObject.AddOrUpdateMasterProjectRole(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>()));
+            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>()), Times.Once);
             mockService.VerifyAll();
         }
 

@@ -7,21 +7,22 @@ using Cuelogic.Clrm.Common;
 using System.Data;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.DataAccess.Interface;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
 
     [TestClass]
-    public class MasterSkillServiceTest
+    public class MasterSkillRepositoryTest
     {
-        private Mock<IMasterSkillRepository> mockService = new Mock<IMasterSkillRepository>();
-        private MasterSkillService serviceObject = new MasterSkillService();
-        private string _dependencyField = "_IMasterSkillRepository";
-        private const string _testCategory = "Service - Master Skill";
+        private Mock<IMasterSkillDataAccess> mockService = new Mock<IMasterSkillDataAccess>();
+        private MasterSkillRepository serviceObject = new MasterSkillRepository();
+        private string _dependencyField = "_masterSkillDataAccess";
+        private const string _testCategory = "Repository - Master Skill";
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterSkillDelete()
+        public void TestMasterSkillRepositoryMarkMasterSkillInvalid()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -29,7 +30,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Delete(1, 1);
+            serviceObject.MarkMasterSkillInvalid(1, 1);
 
             //ASSERT
             mockService.Verify(m => m.MarkMasterSkillInvalid(It.IsAny<int>(), It.IsAny<int>()));
@@ -39,16 +40,16 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterSkillGetItem()
+        public void TestMasterSkillRepositoryGetMasterSkill()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterSkillMockData.GetMockDataMasterSkill();
+            var mockData = MasterSkillMockData.GetMockDataMasterSkillDataset();
             mockService.Setup(m => m.GetMasterSkill(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetItem(1);
+            var data = serviceObject.GetMasterSkill(1);
 
             //ASSERT
             Assert.IsNotNull(data);
@@ -58,7 +59,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterSkillGetList()
+        public void TestMasterSkillRepositoryGetMasterSkillList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -69,57 +70,59 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var expectedResult = MasterSkillMockData.GetMockDataMasterSkillList();
 
             //ACT
-            var data = serviceObject.GetList(searchParam);
-            var dt = Helper.JsonStringToDatatable(data);
+            var data = serviceObject.GetMasterSkillList(searchParam);
+            var dt = data.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsTrue(data != "");
-            Assert.IsInstanceOfType(data, typeof(string));
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
             Assert.IsTrue(dt.Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterSkillSave()
+        public void TestMasterSkillRepositorySaveMasterSkill()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterSkillMockData.GetMockDataMasterSkill();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.SaveMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.InsertMasterSkill(It.IsAny<MasterSkill>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             mockdata.Id = 0;
-            serviceObject.Save(mockdata, mockDataUserContext);
+            serviceObject.SaveMasterSkill(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.SaveMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.SaveMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>()), Times.Never);
+            mockService.Verify(m => m.InsertMasterSkill(It.IsAny<MasterSkill>()));
+            mockService.Verify(m => m.InsertMasterSkill(It.IsAny<MasterSkill>()), Times.Once);
             mockService.VerifyAll();
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterSkillUpdate()
+        public void TestMasterSkillRepositoryUpdateMasterSkill()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterSkillMockData.GetMockDataMasterSkill();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Save(mockdata, mockDataUserContext);
+            serviceObject.UpdateMasterSkill(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.SaveMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.InsertMasterSkill(It.IsAny<MasterSkill>()), Times.Never);
+            mockService.Verify(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>()));
+            mockService.Verify(m => m.UpdateMasterSkill(It.IsAny<MasterSkill>()), Times.Once);
             mockService.VerifyAll();
         }
     }

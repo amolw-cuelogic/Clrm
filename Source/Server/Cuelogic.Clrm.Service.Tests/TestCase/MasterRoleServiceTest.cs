@@ -19,7 +19,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleDelete()
+        public void TestMasterRoleServiceDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -37,7 +37,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleGetItem()
+        public void TestMasterRoleServiceGetItem()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -56,11 +56,11 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleGetList()
+        public void TestMasterRoleServiceGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterRoleMockData.GetMockDataMasterProjectRoleDataset();
+            var mockData = MasterRoleMockData.GetMockDataMasterProjectRoleListDataset();
             mockService.Setup(m => m.GetMasterProjectRoleList(It.IsAny<SearchParam>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
@@ -80,7 +80,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterRoleSave()
+        public void TestMasterRoleServiceSave()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

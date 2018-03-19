@@ -25,6 +25,16 @@ namespace Cuelogic.Clrm.MockData
             return ds;
         }
 
+        public static DataSet GetMockDataMasterOrganizationRoleDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterOrganizationRole();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
         public static MasterOrganizationRole GetMockDataMasterOrganizationRole()
         {
             var data = new MasterOrganizationRole();

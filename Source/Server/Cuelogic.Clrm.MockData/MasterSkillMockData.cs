@@ -24,6 +24,17 @@ namespace Cuelogic.Clrm.MockData
             ds.Tables.Add(dt);
             return ds;
         }
+
+        public static DataSet GetMockDataMasterSkillDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterSkill();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
         public static MasterSkill GetMockDataMasterSkill()
         {
             var data = new MasterSkill();

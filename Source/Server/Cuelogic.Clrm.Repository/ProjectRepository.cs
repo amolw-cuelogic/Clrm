@@ -15,8 +15,11 @@ namespace Cuelogic.Clrm.Repository
     public class ProjectRepository : IProjectRepository
     {
         private readonly IProjectDataAccess _projectDataAccess;
+        private readonly IMasterProjectTypeRepository _masterProjectTypeRepository;
         public ProjectRepository()
         {
+            _masterProjectTypeRepository = new MasterProjectTypeRepository();
+
             var databaseType = AppUtillity.GetTargetDatabase();
             if (databaseType == DatabaseType.MySql)
                 _projectDataAccess = new ProjectDataAccessMySql();
@@ -75,7 +78,7 @@ namespace Cuelogic.Clrm.Repository
             project.MasterRoleList = masterRoleList;
             var masterCurrencyList = masterClientDs.Tables[AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterCurrency].ToList<MasterCurrency>();
             project.MasterCurrencyList = masterCurrencyList;
-            IMasterProjectTypeRepository _masterProjectTypeRepository = new MasterProjectTypeRepository();
+
             var masterProjectTypeDs = _masterProjectTypeRepository.GetMasterProjectTypeValidList();
             project.ProjectTypeList = masterProjectTypeDs.Tables[0].ToList<MasterProjectType>();
 

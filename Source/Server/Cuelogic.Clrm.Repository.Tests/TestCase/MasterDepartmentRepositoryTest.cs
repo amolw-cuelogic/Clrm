@@ -58,7 +58,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentRepositoryGetList()
+        public void TestMasterDepartmentRepositoryGetMasterDepartmentList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

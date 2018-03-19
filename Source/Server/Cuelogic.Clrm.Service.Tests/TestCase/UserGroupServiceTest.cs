@@ -18,7 +18,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupGetEmployeeList()
+        public void TestUserGroupServiceGetEmployeeList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -37,7 +37,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupGetGroupList()
+        public void TestUserGroupServiceGetGroupList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -56,7 +56,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupGetIdentityGroupMembers()
+        public void TestUserGroupServiceGetIdentityGroupMembers()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -75,7 +75,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestUserGroupInsertGroupUsers()
+        public void TestUserGroupServiceInsertGroupUsers()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
