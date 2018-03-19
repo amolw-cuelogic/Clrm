@@ -30,8 +30,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             serviceObject.Delete(1, 1);
 
             //ASSERT
-            //AS IT IS VOID TYPE IT DOES NOT RETURN ANYTHING
-            //If error occurs test will fail automatically
+            mockService.Verify(m => m.MarkMasterProjectRoleInvalid(It.IsAny<int>(), It.IsAny<int>()));
+            mockService.Verify(m => m.MarkMasterProjectRoleInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            mockService.VerifyAll();
         }
 
         [TestMethod]
@@ -92,8 +93,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            //AS IT IS VOID TYPE IT DOES NOT RETURN ANYTHING
-            //If error occurs test will fail automatically
+            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
+            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.VerifyAll();
         }
 
     }
