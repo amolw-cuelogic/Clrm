@@ -82,7 +82,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = AllocationMockData.GetMockDataAllocationDataset();
+            var mockdata = AllocationMockData.GetMockDataAllocationListDataset();
             mockService.Setup(m => m.GetAllocationList(It.IsAny<SearchParam>())).Returns(mockdata);
             privateObject.SetField(dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };

@@ -14,12 +14,16 @@ namespace Cuelogic.Clrm.Repository
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly IEmployeeDataAccess _employeeDataAccess;
+        private readonly ICommonDataAccess _commonDataAccess;
 
         public EmployeeRepository()
         {
             var databaseType = AppUtillity.GetTargetDatabase();
             if (databaseType == DatabaseType.MySql)
+            {
                 _employeeDataAccess = new EmployeeDataAccessMySql();
+                _commonDataAccess = new CommonDataAccessMySql();
+            }
             else
                 throw new Exception(CustomError.DbConcreteImplementation);
 
@@ -62,22 +66,21 @@ namespace Cuelogic.Clrm.Repository
 
         public void AddOrUpdateEmployee(EmployeeVm employeeVm, UserContext userContext)
         {
-            ICommonDataAccess commonDataAccess = new CommonDataAccessMySql();
             if (employeeVm.Employee.Id == 0)
             {
-                var detailsByEmailId = commonDataAccess.GetEmployeeDetailsByEmailId(employeeVm.Employee.Email);
+                var detailsByEmailId = _commonDataAccess.GetEmployeeDetailsByEmailId(employeeVm.Employee.Email);
                 if (detailsByEmailId.Tables[0].Rows.Count > 0)
                     throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Email Id already exist, please enter different email."));
-                var detailsByOrgEmpId = commonDataAccess.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
+                var detailsByOrgEmpId = _commonDataAccess.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
                 if (detailsByOrgEmpId.Tables[0].Rows.Count > 0)
                     throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee Id already exist, please enter different Employee Id."));
             }
             else
             {
-                var detailsByEmailId = commonDataAccess.GetEmployeeDetailsByEmailId(employeeVm.Employee.Email);
+                var detailsByEmailId = _commonDataAccess.GetEmployeeDetailsByEmailId(employeeVm.Employee.Email);
                 if (detailsByEmailId.Tables[0].Rows.Count > 1)
                     throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Email Id already exist, please enter different email."));
-                var detailsByOrgEmpId = commonDataAccess.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
+                var detailsByOrgEmpId = _commonDataAccess.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
                 if (detailsByOrgEmpId.Tables[0].Rows.Count > 1)
                     throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee Id already exist, please enter different Employee Id."));
             }

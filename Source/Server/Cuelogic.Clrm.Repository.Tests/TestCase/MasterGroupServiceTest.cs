@@ -6,8 +6,9 @@ using Cuelogic.Clrm.Common;
 using System.Data;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
+using Cuelogic.Clrm.Service;
 
-namespace Cuelogic.Clrm.Service.Tests.TestCase
+namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
     public class MasterGroupServiceTest

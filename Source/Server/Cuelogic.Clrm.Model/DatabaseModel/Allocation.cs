@@ -46,7 +46,7 @@ namespace Cuelogic.Clrm.Model.DatabaseModel
         public string UpdatedOn { get; set; }
 
         #region METADATA
-        public Decimal ExistingAllocation { get; set; }
+        public int ExistingAllocation { get; set; }
         public string CreatedByName { get; set; }
         public string UpdatedByName { get; set; }
         public List<Employee> SelectListEmployee { get; set;}

@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common Layer", "Common Laye
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataModel Layer", "DataModel Layer", "{06108B4B-B8D3-402E-9418-7552629C26C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.Repository.Tests", "Cuelogic.Clrm.Repository.Tests\Cuelogic.Clrm.Repository.Tests.csproj", "{49984806-3D75-4329-902A-84BA991DC7FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{95D98DDE-B512-4986-911D-95755F37639A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95D98DDE-B512-4986-911D-95755F37639A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95D98DDE-B512-4986-911D-95755F37639A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49984806-3D75-4329-902A-84BA991DC7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49984806-3D75-4329-902A-84BA991DC7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49984806-3D75-4329-902A-84BA991DC7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49984806-3D75-4329-902A-84BA991DC7FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,5 +116,6 @@ Global
 		{10DB47BA-957A-4B83-A7DC-FC7B6FC97CA3} = {7F4CE72E-FACD-44E4-846A-C20A60458224}
 		{C735FDB2-0C23-499B-9E4A-EF308F057107} = {0822F4C9-F59D-482F-B8DD-D564FACFA0CC}
 		{95D98DDE-B512-4986-911D-95755F37639A} = {E21CC870-5FF0-4276-8109-A9938BA25B5F}
+		{49984806-3D75-4329-902A-84BA991DC7FD} = {0822F4C9-F59D-482F-B8DD-D564FACFA0CC}
 	EndGlobalSection
 EndGlobal

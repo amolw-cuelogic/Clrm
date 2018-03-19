@@ -16,10 +16,42 @@ namespace Cuelogic.Clrm.MockData
             return "[{'Id':15,'ClientName':'Abbott Laboratories','CountryName':'USA','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':16,'ClientName':'Aarons, Inc','CountryName':'USA','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':17,'ClientName':'Walmart','CountryName':'USA','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':18,'ClientName':'ExxonMobil','CountryName':'USA','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'}]";
         }
 
-        public static DataSet GetMockDataMasterClientDataset()
+        public static DataSet GetMockDataMasterClientListDataset()
         {
             var ds = new DataSet();
             var jsonString = GetMockDataMasterClientList();
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
+        public static DataSet GetMockDataMasterClientDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterClient();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            dt.Columns.Remove("MasterCountryList");
+            dt.Columns.Remove("MasterCityList");
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
+        public static DataSet GetMockDataCityListDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterCity();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
+        public static DataSet GetMockDataCountryListDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterCountry();
+            var jsonString = Helper.ObjectToJson(data);
             var dt = Helper.JsonStringToDatatable(jsonString);
             ds.Tables.Add(dt);
             return ds;
@@ -50,6 +82,23 @@ namespace Cuelogic.Clrm.MockData
             obj2.Id = 1;
             obj2.CountryId = 1;
             obj2.CityName = "Houstan";
+            data.Add(obj2);
+
+            return data;
+        }
+
+        public static List<MasterCountry> GetMockDataMasterCountry()
+        {
+            var data = new List<MasterCountry>();
+
+            var obj1 = new MasterCountry();
+            obj1.Id = 1;
+            obj1.CountryName = "USA";
+            data.Add(obj1);
+
+            var obj2 = new MasterCountry();
+            obj2.Id = 1;
+            obj2.CountryName = "India";
             data.Add(obj2);
 
             return data;

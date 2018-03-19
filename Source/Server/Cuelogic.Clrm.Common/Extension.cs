@@ -92,12 +92,22 @@ namespace Cuelogic.Clrm.Common
                     {
                         if (property.PropertyType.FullName == "System.Boolean")
                         {
-                            var boolean = Convert.ToBoolean(Convert.ToInt16(row[property.Name].ToString()));
-                            property.SetValue(item, boolean, null);
+                            var rowData = row[property.Name].ToString();
+                            if (rowData == "1" || rowData == "true")
+                                property.SetValue(item, true);
+                            else
+                                property.SetValue(item, false);
                         }
                         else if (row[property.Name] is DateTime)
                         {
                             var data = (row[property.Name] != null) ? DateTime.Parse(row[property.Name].ToString()).ToMySqlDateString() : "";
+                            property.SetValue(item, data, null);
+                        }
+                        else if (property.PropertyType.FullName == "System.Int32" || property.PropertyType.FullName == "System.Decimal")
+                        {
+                            if (row[property.Name].ToString().ToLower() == "null" || row[property.Name].ToString().ToLower() == "")
+                                row[property.Name] = 0;
+                            var data = (!string.IsNullOrEmpty(row[property.Name].ToString())) ? int.Parse(row[property.Name].ToString()) : 0;
                             property.SetValue(item, data, null);
                         }
                         else

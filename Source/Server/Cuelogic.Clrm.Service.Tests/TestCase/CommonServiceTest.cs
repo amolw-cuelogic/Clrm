@@ -88,7 +88,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterGroupMockData.GetMockDataIdentityGroupRight();
+            var mockData = MasterGroupMockData.GetMockDataIdentityGroupRightList();
             mockService.Setup(m => m.GetGroupRights(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 

@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.MockData
             return "[{'Id':20,'DepartmentName':'Delivery','DepartmentHead':'Vivek Phadke','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':21,'DepartmentName':'HR','DepartmentHead':'Uma Ramani','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':22,'DepartmentName':'Sales','DepartmentHead':'Neel Vartikar','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':23,'DepartmentName':'Management','DepartmentHead':'Nikhil Ambekar','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':24,'DepartmentName':'Technical','DepartmentHead':'Vikrant Labde','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/01/01','UpdatedBy':null,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'},{'Id':25,'DepartmentName':'Admin','DepartmentHead':'Admin','IsValid':'Yes','CreatedBy':1,'CreatedOn':'2018/03/06','UpdatedBy':1,'UpdatedBy1':null,'CreatedByName':'Amol Wabale'}]";
         }
 
-        public static DataSet GetMockDataMasterDepartmentDataset()
+        public static DataSet GetMockDataMasterDepartmentListDataset()
         {
             var ds = new DataSet();
             var jsonString = GetMockDataMasterDepartmentList();
