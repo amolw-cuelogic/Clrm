@@ -7,20 +7,21 @@ using Cuelogic.Clrm.Common;
 using System.Data;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
+using Cuelogic.Clrm.DataAccess.Interface;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
-    public class MasterDepartmentServiceTest
+    public class MasterDepartmentRepositoryTest
     {
-        private Mock<IMasterDepartmentRepository> mockService = new Mock<IMasterDepartmentRepository>();
-        private MasterDepartmentService serviceObject = new MasterDepartmentService();
-        private string dependencyField = "_masterDepartmentRepository";
-        private const string _testCategory = "Service - Master Department";
+        private Mock<IMasterDepartmentDataAccess> mockService = new Mock<IMasterDepartmentDataAccess>();
+        private MasterDepartmentRepository serviceObject = new MasterDepartmentRepository();
+        private string dependencyField = "_masterDepartmentDataAccess";
+        private const string _testCategory = "Repository - Master Department";
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterClientServiceDelete()
+        public void TestMasterDepartmentRepositoryMarkMasterDepartmentInvalid()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -28,7 +29,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Delete(1, 1);
+            serviceObject.MarkMasterDepartmentInvalid(1, 1);
 
             //ASSERT
             mockService.Verify(m => m.MarkMasterDepartmentInvalid(It.IsAny<int>(), It.IsAny<int>()));
@@ -38,16 +39,16 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceGetItem()
+        public void TestMasterDepartmentRepositoryGetMasterDepartment()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartment();
+            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartmentDataset();
             mockService.Setup(m => m.GetMasterDepartment(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetItem(1);
+            var data = serviceObject.GetMasterDepartment(1);
 
             //ASSERT
             Assert.IsNotNull(data);
@@ -57,7 +58,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceGetList()
+        public void TestMasterDepartmentRepositoryGetList()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
@@ -65,60 +66,61 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             mockService.Setup(m => m.GetMasterDepartmentList(It.IsAny<SearchParam>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
-            var expectedResult = EmployeeMockData.GetMockDataemployeeList();
 
             //ACT
-            var data = serviceObject.GetList(searchParam);
-            var dt = Helper.JsonStringToDatatable(data);
+            var data = serviceObject.GetMasterDepartmentList(searchParam);
+            var dt = data.Tables[0];
+            var jsonStr = dt.ToJsonString();
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsTrue(data != "");
-            Assert.IsInstanceOfType(data, typeof(string));
+            Assert.IsTrue(jsonStr != "");
+            Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonStr, typeof(string));
             Assert.IsTrue(dt.Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceSave()
+        public void TestMasterDepartmentRepositorySaveMasterDepartment()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.SaveMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             mockdata.Id = 0;
-            serviceObject.Save(mockdata, mockDataUserContext);
+            serviceObject.SaveMasterDepartment(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.SaveMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.SaveMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()), Times.Never);
+            mockService.Verify(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()));
+            mockService.Verify(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()), Times.Once);
             mockService.VerifyAll();
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterDepartmentServiceUpdate()
+        public void TestMasterDepartmentRepositoryUpdateMasterDepartment()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.Save(mockdata, mockDataUserContext);
+            serviceObject.UpdateMasterDepartment(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.SaveMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()), Times.Never);
+            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()));
+            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()), Times.Once);
             mockService.VerifyAll();
         }
     }

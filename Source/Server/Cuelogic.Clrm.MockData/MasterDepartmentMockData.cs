@@ -25,6 +25,16 @@ namespace Cuelogic.Clrm.MockData
             return ds;
         }
 
+        public static DataSet GetMockDataMasterDepartmentDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterDepartment();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
         public static MasterDepartment GetMockDataMasterDepartment()
         {
             var data = new MasterDepartment();

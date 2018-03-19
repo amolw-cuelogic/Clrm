@@ -19,7 +19,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterClientServiceDelete()
+        public void TestMasterDepartmentServiceDelete()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);

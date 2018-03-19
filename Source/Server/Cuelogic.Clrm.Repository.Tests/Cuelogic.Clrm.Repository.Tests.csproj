@@ -153,8 +153,8 @@
     <Compile Include="TestCase\CommonRepositoryTest.cs" />
     <Compile Include="TestCase\EmployeeRepositoryTest.cs" />
     <Compile Include="TestCase\MasterClientRepositoryTest.cs" />
-    <Compile Include="TestCase\MasterDepartmentServiceTest.cs" />
-    <Compile Include="TestCase\MasterGroupServiceTest.cs" />
+    <Compile Include="TestCase\MasterDepartmentRepositoryTest.cs" />
+    <Compile Include="TestCase\MasterGroupRepositoryTest.cs" />
     <Compile Include="TestCase\MasterOrganizationRoleServiceTest.cs" />
     <Compile Include="TestCase\MasterProjectTypeServiceTest.cs" />
     <Compile Include="TestCase\MasterRoleServiceTest.cs" />
