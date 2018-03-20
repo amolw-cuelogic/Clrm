@@ -12,7 +12,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public void AddOrUpdateAllocation(Allocation allocation)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@aId", allocation.Id),
@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetAllocation(int allocationId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_Get;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@aId", allocationId)
@@ -48,7 +48,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
             var recordFrom = searchParam.Page * searchParam.Show;
             var show = searchParam.Show;
 
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
@@ -61,10 +61,10 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetAllocationSelectList()
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetSelectList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(), null, new List<string> {
-                AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Employee,
+                TableName.Employee,
                 AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Project
             });
             return ds;
@@ -72,7 +72,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetAllocationSum(int employeeId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetAllocationSum;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
@@ -83,7 +83,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetProjectRolebyId(int projectId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetRoleByProject;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@aProjectId", projectId)
@@ -94,7 +94,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void MarkAllocationInvalid(int allocationId, int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@aId", allocationId),

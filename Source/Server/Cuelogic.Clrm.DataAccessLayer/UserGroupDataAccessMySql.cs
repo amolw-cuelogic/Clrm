@@ -10,7 +10,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public DataSet GetEmployeeList()
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetEmployees;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
@@ -18,7 +18,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetGroupList()
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetIdentityGroup;
             var ds = DataAccessHelper.ExecuteQuery(sqlparam.ToSqlCommand());
             return ds;
@@ -26,7 +26,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetIdentityGroupMembers(int gId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetIdentityGroupMembers;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@gId", gId)
@@ -37,7 +37,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void InsertGroupUsers(string xmlString)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_InsertGroupUser;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmlText", xmlString)

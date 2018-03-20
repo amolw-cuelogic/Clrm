@@ -73,9 +73,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(int));
-            Assert.IsTrue(data > 0);
-            Assert.IsTrue(data <= 100);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
 
         }
         
@@ -105,8 +104,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(Allocation));
-            Assert.IsTrue(data.Id == 1);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
 
         }
 
@@ -148,8 +147,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<MasterRole>));
-            Assert.IsTrue(data.Count > 0);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]

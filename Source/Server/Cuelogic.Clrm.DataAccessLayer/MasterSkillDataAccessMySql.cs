@@ -11,7 +11,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public DataSet GetMasterSkill(int masterSkillId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterSkillId", masterSkillId)
@@ -25,7 +25,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
             var recordFrom = searchParam.Page * searchParam.Show;
             var show = searchParam.Show;
 
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@FilterText", searchParam.FilterText),
@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void InsertMasterSkill(MasterSkill masterSkill)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Insert;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@skill", masterSkill.Skill),
@@ -52,7 +52,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void MarkMasterSkillInvalid(int masterSkillId, int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterSkillId", masterSkillId),
@@ -64,7 +64,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void UpdateMasterSkill(MasterSkill masterSkill)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Update;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterSkillId", masterSkill.Id),

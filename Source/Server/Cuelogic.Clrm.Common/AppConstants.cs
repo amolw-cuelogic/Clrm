@@ -9,6 +9,13 @@ namespace Cuelogic.Clrm.Common
     public class AppConstants
     {
         public const string TargetDatabase = "TargetDatabase";
+
+        public static class TableName
+        {
+            public const string Employee = "Employee";
+            public const string MasterRole = "MasterRole";
+            public const string Project = "Project";
+        }
         public static class StoreProcedure
         {
             #region COMMON 
@@ -75,14 +82,7 @@ namespace Cuelogic.Clrm.Common
             public const string Allocation_MarkInvalid = "Allocation_MarkInvalid";
             public const string Allocation_GetAllocationSum = "Allocation_GetAllocationSum";
             public const string Allocation_GetRoleByProject = "Allocation_GetRoleByProject";
-
-            public class Allocation_GetSelectList_Tables
-            {
-                public const string Employee = "Employee";
-                public const string MasterRole = "MasterRole";
-                public const string Project = "Project";
-            }
-
+            
             #endregion
 
             #region USER GROUP 

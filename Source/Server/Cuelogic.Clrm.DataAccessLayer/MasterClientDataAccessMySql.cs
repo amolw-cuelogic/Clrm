@@ -11,7 +11,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public void AddOrUpdateMasterClient(MasterClient masterClient)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClient.Id),
@@ -29,7 +29,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetCityList(int countryId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetCityList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcCountryId", countryId)
@@ -40,7 +40,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetCountryList()
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetCountryList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
@@ -48,7 +48,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetMasterClient(int masterClientId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClientId)
@@ -62,7 +62,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
             var recordFrom = searchParam.Page * searchParam.Show;
             var show = searchParam.Show;
 
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
@@ -75,7 +75,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void MarkMasterClientInvalid(int masterClientId, int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mcId", masterClientId),

@@ -9,105 +9,102 @@ using static Cuelogic.Clrm.Common.AppConstants;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.DataAccess.Interface;
 using Cuelogic.Clrm.DataAccess.MySql;
-using System.Configuration;
 
 namespace Cuelogic.Clrm.Repository
 {
     public class AllocationRepository : IAllocationRepository
     {
-        private readonly IAllocationDataAccess _allocationDataAccess;
+        private readonly IDataAccess _dataAccess;
+
         public AllocationRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _allocationDataAccess = new AllocationDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
+            _dataAccess = new MySqlDataAccess();
         }
         public void AddOrUpdateAllocation(Allocation allocation, UserContext userContext)
         {
-            if (allocation.IsValid)
-            {
-                var previousState = GetAllocation(allocation.Id);
-                if(!previousState.IsValid)
-                {
-                    var sum = GetAllocationSum(allocation.EmployeeId);
-                    var total = sum + allocation.PercentageAllocation;
-                    if (total > 100)
-                        throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee has been already occupied 100%, please check the allocation list."));
-                }
-            }
-            allocation.UpdatedBy = userContext.UserId;
-            allocation.CreatedBy = userContext.UserId;
-            allocation.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            allocation.CreatedOn = DateTime.Now.ToMySqlDateString();
-            _allocationDataAccess.AddOrUpdateAllocation(allocation);
+            var sqlparam = new DataAccessParameter();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_AddOrUpdate;
+            sqlparam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramId", Value= allocation.Id },
+                    new Param() { Key="@paramEmployeeId", Value= allocation.EmployeeId },
+                    new Param() { Key="@paramProjectRoleId", Value= allocation.ProjectRoleId },
+                    new Param() { Key="@paramProjectId", Value= allocation.ProjectId},
+                    new Param() { Key="@paramIsBillable", Value= allocation.IsBillable},
+                    new Param() { Key="@paramPercentageAllocation", Value= allocation.PercentageAllocation},
+                    new Param() { Key="@paramStartDate", Value= allocation.StartDate },
+                    new Param() { Key="@paramEndDate", Value= allocation.EndDate },
+                    new Param() { Key="@paramIsValid", Value= allocation.IsValid},
+                    new Param() { Key="@paramUpdatedBy", Value= allocation.UpdatedBy},
+                    new Param() { Key="@paramCreatedBy", Value= allocation.CreatedBy},
+                    new Param() { Key="@paramUpdatedOn", Value= allocation.UpdatedOn},
+                    new Param() { Key="@paramCreatedOn", Value= allocation.CreatedOn}
+                });
+            _dataAccess.ExecuteNonQuery(sqlparam);
         }
 
-        public Allocation GetAllocation(int allocationId)
+        public DataSet GetAllocation(int allocationId)
         {
-            var allocation = new Allocation();
-            if (allocationId != 0)
-            {
-                var allocationDs = _allocationDataAccess.GetAllocation(allocationId);
-                allocation = allocationDs.Tables[0].ToModel<Allocation>();
-                if (allocation.IsValid)
-                    allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId) - allocation.PercentageAllocation;
-                else
-                    allocation.ExistingAllocation = GetAllocationSum(allocation.EmployeeId);
-
-                var masterRoleList = new List<MasterRole>();
-                var projectRoleDs = _allocationDataAccess.GetProjectRolebyId(allocation.ProjectId);
-                if (projectRoleDs.Tables[0].Rows.Count > 0)
-                    masterRoleList = projectRoleDs.Tables[0].ToList<MasterRole>();
-                allocation.SelectListMasterRole = masterRoleList;
-            }
-
-            var ds = _allocationDataAccess.GetAllocationSelectList();
-            allocation.SelectListEmployee = ds.Tables[AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Employee].ToList<Employee>();
-            allocation.SelectListProject = ds.Tables[AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Project].ToList<Project>();
-
-            return allocation;
+            var sqlparam = new DataAccessParameter();
+            sqlparam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_Get;
+            sqlparam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramId", Value= allocationId } });
+            var ds = _dataAccess.ExecuteQuery(sqlparam);
+            return ds;
         }
 
         public DataSet GetAllocationList(SearchParam searchParam)
         {
-            var ds = _allocationDataAccess.GetAllocationList(searchParam);
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = StoreProcedure.Allocation_GetList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@filterText", Value=searchParam.FilterText },
+                    new Param() { Key="@recordFrom", Value= recordFrom },
+                    new Param() { Key="@recordTill", Value= show } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;
         }
 
-        public int GetAllocationSum(int employeeId)
+        public DataSet GetAllocationSum(int employeeId)
         {
-            var ds = _allocationDataAccess.GetAllocationSum(employeeId);
-            int id = 0;
-            if (ds.Tables[0].Rows.Count > 0)
-                id = ds.Tables[0].ToId();
-            return id;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetAllocationSum;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramEmployeeId", Value=employeeId } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public List<MasterRole> GetProjectRolebyId(int projectId)
+        public DataSet GetProjectRolebyId(int projectId)
         {
-            var masterRoleList = new List<MasterRole>();
-            var ds = _allocationDataAccess.GetProjectRolebyId(projectId);
-            if (ds.Tables[0].Rows.Count > 0)
-                masterRoleList = ds.Tables[0].ToList<MasterRole>();
-            return masterRoleList;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetRoleByProject;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramProjectId", Value=projectId } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
         public void MarkAllocationInvalid(int allocationId, int employeeId)
         {
-            var previousState = GetAllocation(allocationId);
-            if (!previousState.IsValid)
-            {
-                var sum = GetAllocationSum(previousState.EmployeeId);
-                if (sum >= 100)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)"));
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_MarkInvalid;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramId", Value=allocationId },
+                    new Param() { Key="@paramEmployeeId", Value=employeeId }});
+            _dataAccess.ExecuteNonQuery(sqlParam);
+        }
 
-                var total = sum + previousState.PercentageAllocation;
-                if (total > 100)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)"));
-            }
-            _allocationDataAccess.MarkAllocationInvalid(allocationId, employeeId);
+        public DataSet GetAllocationSelectList()
+        {
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Allocation_GetSelectList;
+            sqlParam.TableName = new List<string> {
+                TableName.Employee, TableName.Project
+            };
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_AddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mptId", masterProjectType.Id),
@@ -28,7 +28,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetMasterProjectType(int masterProjectTypeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mptId", masterProjectTypeId)
@@ -42,7 +42,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
             var recordFrom = searchParam.Page * searchParam.Show;
             var show = searchParam.Show;
 
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
@@ -55,7 +55,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetMasterProjectTypeValidList()
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_GetValidList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
@@ -63,7 +63,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void MarkMasterProjectTypeInvalid(int masterProjectTypeId, int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterProjectType_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@mptId", masterProjectTypeId),

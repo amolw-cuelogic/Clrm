@@ -11,7 +11,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public DataSet GetMasterDepartment(int masterDepartmentId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_Get;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterDepartmentId", masterDepartmentId)
@@ -25,7 +25,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
             var recordFrom = searchParam.Page * searchParam.Show;
             var show = searchParam.Show;
 
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@FilterText", searchParam.FilterText),
@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void InsertMasterDepartment(MasterDepartment masterDepartment)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_Insert;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@departmentName", masterDepartment.DepartmentName),
@@ -53,7 +53,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void UpdateMasterDepartment(MasterDepartment masterDepartment)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_Update;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@departmentId", masterDepartment.Id),
@@ -69,7 +69,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void MarkMasterDepartmentInvalid(int masterDepartmentId, int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@MasterDepartmentId", masterDepartmentId),

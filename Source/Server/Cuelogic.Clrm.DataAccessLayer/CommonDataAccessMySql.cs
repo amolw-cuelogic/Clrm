@@ -10,7 +10,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
     {
         public DataSet GetEmployeeAllocationList(int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeAllocation_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
@@ -21,7 +21,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetEmployeeDetailsByEmailId(string emailId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByEmailId;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@EmailId", emailId)
@@ -32,7 +32,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetEmployeeDetailsByOrgEmpId(string OrgEmpId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByOrgEmpId;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@eOrgEmpId", OrgEmpId)
@@ -43,7 +43,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetEmployeeRightList(int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeRights_Get;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
@@ -54,7 +54,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void LogLoginTime(int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Common_LogLoginTime;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)

@@ -40,6 +40,7 @@
       <HintPath>..\packages\MySql\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,7 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllocationDataAccessMySql.cs" />
+    <Compile Include="MySqlDataAccess.cs" />
+    <Compile Include="IDataAccess.cs" />
     <Compile Include="MasterClientDataAccessMySql.cs" />
     <Compile Include="CommonDataAccessMySql.cs" />
     <Compile Include="MasterDepartmentDataAccessMySql.cs" />

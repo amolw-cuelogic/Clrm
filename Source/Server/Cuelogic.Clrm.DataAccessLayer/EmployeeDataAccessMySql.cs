@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetEmployee(int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetById;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employeeId)
@@ -28,7 +28,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
             var recordFrom = searchParam.Page * searchParam.Show;
             var show = searchParam.Show;
 
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@filterText", searchParam.FilterText),
@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetMasterListForEmployees()
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetMasterValidList;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand(),null,new List<string> {
                 AppConstants.StoreProcedure.Employee_GetMasterValidList_Tables.IdentityGroup,
@@ -54,7 +54,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetChildListForEmployees(int masterEmployeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetChildValidList;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterEmployeeId", masterEmployeeId)
@@ -65,7 +65,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public DataSet GetLatestId()
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetLatestId;
             var ds = DataAccessHelper.ExecuteQuery(sqlParam.ToSqlCommand());
             return ds;
@@ -77,7 +77,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void AddOrUpdateEmployee(Employee employee)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_AddOrUpdate;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@employeeId", employee.Id),
@@ -100,7 +100,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void AddOrUpdateEmployeeSkill(string xmlString, int userId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeSkill_BulkAddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmltext", xmlString),
@@ -112,7 +112,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void AddOrUpdateEmployeeDepartment(string xmlString, int userId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeDepartment_BulkAddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmltext", xmlString),
@@ -124,7 +124,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void AddOrUpdateEmployeeOrganizationRole(string xmlString, int userId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeOrganizationRole_BulkAddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmltext", xmlString),
@@ -136,7 +136,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void AddOrUpdateEmployeeGroup(string xmlString, int userId)
         {
-            var sqlparam = new MySqlSpParam();
+            var sqlparam = new DataAccessParameter();
             sqlparam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeGroup_BulkAddOrUpdate;
             sqlparam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@xmltext", xmlString),
@@ -152,7 +152,7 @@ namespace Cuelogic.Clrm.DataAccess.MySql
 
         public void MarkEmployeeInvalid(int masterEmployeeId, int employeeId)
         {
-            var sqlParam = new MySqlSpParam();
+            var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_MarkInvalid;
             sqlParam.StoreProcedureParam = new MySqlParameter[] {
                     new MySqlParameter("@masterEmployeeId", masterEmployeeId),

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.MockData
 {
@@ -48,12 +49,12 @@ namespace Cuelogic.Clrm.MockData
             var ds = new DataSet();
             var jsonString1 = EmployeeMockData.GetMockDataemployeeList();
             var dt1 = Helper.JsonStringToDatatable(jsonString1);
-            dt1.TableName = AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Employee;
+            dt1.TableName = TableName.Employee;
             ds.Tables.Add(dt1);
 
             var jsonString2 = ProjectMockData.GetMockDataProjectList();
             var dt2 = Helper.JsonStringToDatatable(jsonString2);
-            dt2.TableName = AppConstants.StoreProcedure.Allocation_GetSelectList_Tables.Project;
+            dt2.TableName = TableName.Project;
             ds.Tables.Add(dt2);
 
             return ds;

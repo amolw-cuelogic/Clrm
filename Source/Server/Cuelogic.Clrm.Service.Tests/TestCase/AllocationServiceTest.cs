@@ -42,7 +42,8 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(100);
+            var mockData = AllocationMockData.GetMockDataAllocationIdDataset();
+            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -62,7 +63,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = AllocationMockData.GetMockDataAllocation();
+            var mockdata = AllocationMockData.GetMockDataAllocationDataset();
             mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdata);
             privateObject.SetField(dependencyField, mockService.Object);
 
@@ -106,7 +107,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = AllocationMockData.GetMockDataMasterRoleList();
+            var mockdata = AllocationMockData.GetMockDataMasterRoleListDataset();
             mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockdata);
             privateObject.SetField(dependencyField, mockService.Object);
 

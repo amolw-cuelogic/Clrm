@@ -10,9 +10,10 @@ namespace Cuelogic.Clrm.Repository.Interface
     {
         void AddOrUpdateAllocation(Allocation allocation, UserContext userContext);
         DataSet GetAllocationList(SearchParam searchParam);
-        Allocation GetAllocation(int allocationId);
+        DataSet GetAllocation(int allocationId);
         void MarkAllocationInvalid(int allocationId, int employeeId);
-        int GetAllocationSum(int employeeId);
-        List<MasterRole> GetProjectRolebyId(int projectId);
+        DataSet GetAllocationSum(int employeeId);
+        DataSet GetProjectRolebyId(int projectId);
+        DataSet GetAllocationSelectList();
     }
 }
