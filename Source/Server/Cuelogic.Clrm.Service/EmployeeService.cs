@@ -29,20 +29,20 @@ namespace Cuelogic.Clrm.Service
         {
             var employeeVm = new EmployeeVm();
             var employeeVmDs = _employeeRepository.GetMasterListForEmployees();
-            employeeVm.IdentityGroupList = employeeVmDs.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.IdentityGroup].ToList<IdentityGroup>(); 
-            employeeVm.MasterDepartmentList = employeeVmDs.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.MasterDepartment].ToList<MasterDepartment>();
-            employeeVm.MasterSkillList = employeeVmDs.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.MasterSkill].ToList<MasterSkill>();
-            employeeVm.MasterOrganizationRoleList = employeeVmDs.Tables[StoreProcedure.Employee_GetMasterValidList_Tables.MasterOrganizationRole].ToList<MasterOrganizationRole>();
+            employeeVm.IdentityGroupList = employeeVmDs.Tables[TableName.IdentityGroup].ToList<IdentityGroup>(); 
+            employeeVm.MasterDepartmentList = employeeVmDs.Tables[TableName.MasterDepartment].ToList<MasterDepartment>();
+            employeeVm.MasterSkillList = employeeVmDs.Tables[TableName.MasterSkill].ToList<MasterSkill>();
+            employeeVm.MasterOrganizationRoleList = employeeVmDs.Tables[TableName.MasterOrganizationRole].ToList<MasterOrganizationRole>();
 
             if (employeeId != 0)
             {
                 var employeeDs = _employeeRepository.GetEmployee(employeeId);
                 employeeVm.Employee = employeeDs.Tables[0].ToModel<Employee>();
                 var ds = _employeeRepository.GetChildListForEmployees(employeeId);
-                employeeVm.Employee.EmployeeSkillList = ds.Tables[2].ToList<EmployeeSkill>();
-                employeeVm.Employee.EmployeeDepartmentList = ds.Tables[1].ToList<EmployeeDepartment>();
-                employeeVm.Employee.EmployeeOrganizationRoleList = ds.Tables[3].ToList<EmployeeOrganizationRole>();
-                employeeVm.Employee.IdentityEmployeeGroupList = ds.Tables[0].ToList<IdentityEmployeeGroup>();
+                employeeVm.Employee.EmployeeSkillList = ds.Tables[TableName.EmployeeSkill].ToList<EmployeeSkill>();
+                employeeVm.Employee.EmployeeDepartmentList = ds.Tables[TableName.EmployeeDepartment].ToList<EmployeeDepartment>();
+                employeeVm.Employee.EmployeeOrganizationRoleList = ds.Tables[TableName.EmployeeOrganizationRole].ToList<EmployeeOrganizationRole>();
+                employeeVm.Employee.IdentityEmployeeGroupList = ds.Tables[TableName.IdentityEmployeeGroup].ToList<IdentityEmployeeGroup>();
             }
 
             return employeeVm;

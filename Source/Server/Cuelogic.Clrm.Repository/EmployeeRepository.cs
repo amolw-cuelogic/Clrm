@@ -27,6 +27,12 @@ namespace Cuelogic.Clrm.Repository
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetChildValidList;
             sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
                     new Param() { Key="@paramEmployeeId", Value=employeeId } });
+            sqlParam.TableName = new List<string> {
+                TableName.IdentityEmployeeGroup,
+                TableName.EmployeeDepartment,
+                TableName.EmployeeSkill,
+                TableName.EmployeeOrganizationRole
+            };
             var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;
         }
@@ -63,10 +69,10 @@ namespace Cuelogic.Clrm.Repository
             var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetMasterValidList;
             sqlParam.TableName = new List<string> {
-                AppConstants.StoreProcedure.Employee_GetMasterValidList_Tables.IdentityGroup,
-                AppConstants.StoreProcedure.Employee_GetMasterValidList_Tables.MasterDepartment,
-                AppConstants.StoreProcedure.Employee_GetMasterValidList_Tables.MasterSkill,
-                AppConstants.StoreProcedure.Employee_GetMasterValidList_Tables.MasterOrganizationRole
+                TableName.IdentityGroup,
+                TableName.MasterDepartment,
+                TableName.MasterSkill,
+                TableName.MasterOrganizationRole
             };
             var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;

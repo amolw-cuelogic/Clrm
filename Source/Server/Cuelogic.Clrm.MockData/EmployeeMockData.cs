@@ -42,22 +42,22 @@ namespace Cuelogic.Clrm.MockData
             var jsonString = Helper.ObjectToJson(data);
             var dt = Helper.JsonStringToDatatable(jsonString);
             dt.Columns.Remove("BooleanRight");
-            dt.TableName = StoreProcedure.Employee_GetMasterValidList_Tables.IdentityGroup;
+            dt.TableName = TableName.IdentityGroup;
             ds.Tables.Add(dt);
 
             var jsonString1 = MasterDepartmentMockData.GetMockDataMasterDepartmentList();
             var dt1 = Helper.JsonStringToDatatable(jsonString1);
-            dt1.TableName = StoreProcedure.Employee_GetMasterValidList_Tables.MasterDepartment;
+            dt1.TableName = TableName.MasterDepartment;
             ds.Tables.Add(dt1);
 
             var jsonString2 = MasterSkillMockData.GetMockDataMasterSkillList();
             var dt2 = Helper.JsonStringToDatatable(jsonString2);
-            dt2.TableName = StoreProcedure.Employee_GetMasterValidList_Tables.MasterSkill;
+            dt2.TableName = TableName.MasterSkill;
             ds.Tables.Add(dt2);
 
             var jsonString3 = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRoleList();
             var dt3 = Helper.JsonStringToDatatable(jsonString3);
-            dt3.TableName = StoreProcedure.Employee_GetMasterValidList_Tables.MasterOrganizationRole;
+            dt3.TableName = TableName.MasterOrganizationRole;
             ds.Tables.Add(dt3);
             
             return ds;

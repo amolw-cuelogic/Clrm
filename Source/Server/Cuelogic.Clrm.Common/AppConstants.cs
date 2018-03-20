@@ -15,6 +15,14 @@ namespace Cuelogic.Clrm.Common
             public const string Employee = "Employee";
             public const string MasterRole = "MasterRole";
             public const string Project = "Project";
+            public const string IdentityGroup = "IdentityGroup";
+            public const string MasterDepartment = "MasterDepartment";
+            public const string MasterSkill = "MasterSkill";
+            public const string MasterOrganizationRole = "MasterOrganizationRole";
+            public const string IdentityEmployeeGroup = "IdentityEmployeeGroup";
+            public const string EmployeeDepartment = "EmployeeDepartment";
+            public const string EmployeeSkill = "EmployeeSkill";
+            public const string EmployeeOrganizationRole = "EmployeeOrganizationRole";
         }
         public static class StoreProcedure
         {
@@ -41,15 +49,7 @@ namespace Cuelogic.Clrm.Common
             public const string EmployeeGroup_BulkAddOrUpdate = "EmployeeGroup_BulkAddOrUpdate";
             public const string Employee_GetLatestId = "Employee_GetLatestId";
             public const string Employee_MarkInvalid = "Employee_MarkInvalid";
-
-            public static class Employee_GetMasterValidList_Tables
-            {
-                public const string IdentityGroup = "IdentityGroup";
-                public const string MasterDepartment = "MasterDepartment";
-                public const string MasterSkill = "MasterSkill";
-                public const string MasterOrganizationRole = "MasterOrganizationRole";
-            }
-
+            
             #endregion
 
             #region PROJECT
