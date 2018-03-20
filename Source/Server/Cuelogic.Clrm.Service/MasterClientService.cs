@@ -22,13 +22,25 @@ namespace Cuelogic.Clrm.Service
 
         public MasterClient GetItem(int masterClientId)
         {
-            var masterClient = _masterClientRepository.GetMasterClient(masterClientId);
+            var masterClient = new MasterClient();
+            if (masterClientId != 0)
+            {
+                var ds = _masterClientRepository.GetMasterClient(masterClientId);
+                masterClient = ds.Tables[0].ToModel<MasterClient>();
+
+                var masterCityDs = _masterClientRepository.GetCityList(masterClient.CountryId);
+                masterClient.MasterCityList = masterCityDs.Tables[0].ToList<MasterCity>();
+
+            }
+            var countryListDs = _masterClientRepository.GetCountryList();
+            masterClient.MasterCountryList = countryListDs.Tables[0].ToList<MasterCountry>();
             return masterClient;
         }
 
         public List<MasterCity> GetCityList(int countryId)
         {
-            var cityList = _masterClientRepository.GetCityList(countryId);
+            var ds = _masterClientRepository.GetCityList(countryId);
+            var cityList = ds.Tables[0].ToList<MasterCity>();
             return cityList;
         }
 

@@ -42,8 +42,12 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterClientMockData.GetMockDataMasterClient();
+            var mockData = MasterClientMockData.GetMockDataMasterClientDataset();
+            var mockDataCityList = MasterClientMockData.GetMockDataCityListDataset();
+            var mockDataCountryList = MasterClientMockData.GetMockDataCountryListDataset();
             mockService.Setup(m => m.GetMasterClient(It.IsAny<int>())).Returns(mockData);
+            mockService.Setup(m => m.GetCityList(It.IsAny<int>())).Returns(mockDataCityList);
+            mockService.Setup(m => m.GetCountryList()).Returns(mockDataCountryList);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -85,7 +89,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterClientMockData.GetMockDataMasterCity();
+            var mockData = MasterClientMockData.GetMockDataMasterCityDataset();
             mockService.Setup(m => m.GetCityList(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
 

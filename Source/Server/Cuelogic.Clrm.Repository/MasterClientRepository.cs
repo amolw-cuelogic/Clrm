@@ -14,14 +14,10 @@ namespace Cuelogic.Clrm.Repository
 {
     public class MasterClientRepository : IMasterClientRepository
     {
-        private readonly IMasterClientDataAccess _masterClientDataAccess;
+        private readonly IDataAccess _dataAccess;
         public MasterClientRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _masterClientDataAccess = new MasterClientDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
+            _dataAccess = new MySqlDataAccess();
         }
 
         public void AddOrUpdateMasterClient(MasterClient masterClient, UserContext userCtx)
@@ -30,42 +26,79 @@ namespace Cuelogic.Clrm.Repository
             masterClient.UpdatedBy = userCtx.UserId;
             masterClient.CreatedOn = DateTime.Now.ToMySqlDateString();
             masterClient.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterClientDataAccess.AddOrUpdateMasterClient(masterClient);
+
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_AddOrUpdate;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@mcId", Value=masterClient.Id },
+                    new Param() { Key="@mcClientName", Value=masterClient.ClientName },
+                    new Param() { Key="@mcCountryId", Value=masterClient.CountryId },
+                    new Param() { Key="@mcCityId", Value=masterClient.CityId },
+                    new Param() { Key="@mcIsValid", Value=masterClient.IsValid },
+                    new Param() { Key="@mcUpdatedBy", Value=masterClient.UpdatedBy },
+                    new Param() { Key="@mcCreatedBy", Value=masterClient.CreatedBy },
+                    new Param() { Key="@mcUpdatedOn", Value=masterClient.UpdatedOn },
+                    new Param() { Key="@mcCreatedOn", Value=masterClient.CreatedOn },
+
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
+            
         }
 
-        public List<MasterCity> GetCityList(int countryId)
+        public DataSet GetCityList(int countryId)
         {
-            var ds = _masterClientDataAccess.GetCityList(countryId);
-            var cityList = ds.Tables[0].ToList<MasterCity>();
-            return cityList;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetCityList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@mcCountryId", Value=countryId}
+            });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public MasterClient GetMasterClient(int masterClientId)
+        public DataSet GetMasterClient(int masterClientId)
         {
-            var masterClient = new MasterClient();
-            if (masterClientId != 0)
-            {
-                var ds = _masterClientDataAccess.GetMasterClient(masterClientId);
-                masterClient = ds.Tables[0].ToModel<MasterClient>();
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_Get;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@mcId", Value=masterClientId}
+            });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
+        }
 
-                var masterCityDs = _masterClientDataAccess.GetCityList(masterClient.CountryId);
-                masterClient.MasterCityList = masterCityDs.Tables[0].ToList<MasterCity>();
-
-            }
-            var countryListDs = _masterClientDataAccess.GetCountryList();
-            masterClient.MasterCountryList = countryListDs.Tables[0].ToList<MasterCountry>();
-            return masterClient;
+        public DataSet GetCountryList()
+        {
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetCountryList;
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
         public DataSet GetMasterClientList(SearchParam searchParam)
         {
-            var ds = _masterClientDataAccess.GetMasterClientList(searchParam);
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
+
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_GetList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@filterText", Value=searchParam.FilterText },
+                    new Param() { Key="@recordFrom", Value= recordFrom },
+                    new Param() { Key="@recordTill", Value= show } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;
         }
 
         public void MarkMasterClientInvalid(int masterClientId, int employeeId)
         {
-            _masterClientDataAccess.MarkMasterClientInvalid(masterClientId, employeeId);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterClient_MarkInvalid;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@mcId", Value=masterClientId },
+                    new Param() { Key="@employeeId", Value=employeeId }});
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
+        
     }
 }

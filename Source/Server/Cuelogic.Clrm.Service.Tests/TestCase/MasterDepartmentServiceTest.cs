@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartment();
+            var mockData = MasterDepartmentMockData.GetMockDataMasterDepartmentDataset();
             mockService.Setup(m => m.GetMasterDepartment(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
 

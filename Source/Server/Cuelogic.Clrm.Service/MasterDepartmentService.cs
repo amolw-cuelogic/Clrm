@@ -23,8 +23,17 @@ namespace Cuelogic.Clrm.Service
 
         public MasterDepartment GetItem(int departmentId)
         {
-            var masterDepartment = _masterDepartmentRepository.GetMasterDepartment(departmentId);
-            return masterDepartment;
+
+            if (departmentId != 0)
+            {
+                var masterDepartmentDs = _masterDepartmentRepository.GetMasterDepartment(departmentId);
+                var masterDepartment = masterDepartmentDs.Tables[0].ToModel<MasterDepartment>();
+                return masterDepartment;
+            }
+            else
+            {
+                return new MasterDepartment();
+            }
 
         }
 

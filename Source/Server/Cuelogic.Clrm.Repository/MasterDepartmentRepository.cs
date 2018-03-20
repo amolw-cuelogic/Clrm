@@ -7,59 +7,87 @@ using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.DataAccess.Interface;
 using Cuelogic.Clrm.DataAccess.MySql;
 using static Cuelogic.Clrm.Common.AppConstants;
+using System.Collections.Generic;
 
 namespace Cuelogic.Clrm.Repository
 {
     public class MasterDepartmentRepository : IMasterDepartmentRepository
     {
-        private readonly IMasterDepartmentDataAccess _masterDepartmentDataAccess;
-
+        private readonly IDataAccess _dataAccess;
         public MasterDepartmentRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _masterDepartmentDataAccess = new MasterDepartmentDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
-            
+            _dataAccess = new MySqlDataAccess();
         }
-        public MasterDepartment GetMasterDepartment(int masterDepartmentId)
+        public DataSet GetMasterDepartment(int masterDepartmentId)
         {
-            if (masterDepartmentId != 0)
-            {
-                var masterDepartmentDs = _masterDepartmentDataAccess.GetMasterDepartment(masterDepartmentId);
-                var masterDepartment = masterDepartmentDs.Tables[0].ToModel<MasterDepartment>();
-                return masterDepartment;
-            }
-            else
-            {
-                return new MasterDepartment();
-            }
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_Get;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@MasterDepartmentId", Value=masterDepartmentId }
+            });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
         public DataSet GetMasterDepartmentList(SearchParam searchParam)
         {
-            var ds = _masterDepartmentDataAccess.GetMasterDepartmentList(searchParam);
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
+
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_GetList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@filterText", Value=searchParam.FilterText },
+                    new Param() { Key="@recordFrom", Value= recordFrom },
+                    new Param() { Key="@recordTill", Value= show } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;
         }
 
         public void MarkMasterDepartmentInvalid(int masterDepartmentId, int employeeId)
         {
-            _masterDepartmentDataAccess.MarkMasterDepartmentInvalid(masterDepartmentId, employeeId);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_MarkInvalid;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@MasterDepartmentId", Value=masterDepartmentId },
+                    new Param() { Key="@employeeId", Value=employeeId }});
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
         public void SaveMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx)
         {
             masterDepartment.CreatedBy = userCtx.UserId;
             masterDepartment.CreatedOn = DateTime.Now.ToMySqlDateString();
-            _masterDepartmentDataAccess.InsertMasterDepartment(masterDepartment);
+
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_Insert;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramDepartmentName", Value=masterDepartment.DepartmentName },
+                    new Param() { Key="@paramDepartmentHead", Value=masterDepartment.DepartmentHead },
+                    new Param() { Key="@paramIsValid", Value=masterDepartment.IsValid },
+                    new Param() { Key="@paramCreatedBy", Value=masterDepartment.CreatedBy },
+                    new Param() { Key="@paramCreatedOn", Value=masterDepartment.CreatedOn }
+
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
         public void UpdateMasterDepartment(MasterDepartment masterDepartment, UserContext userCtx)
         {
             masterDepartment.UpdatedBy = userCtx.UserId;
             masterDepartment.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterDepartmentDataAccess.UpdateMasterDepartment(masterDepartment);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterDepartment_Update;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramDepartmentId", Value=masterDepartment.Id },
+                    new Param() { Key="@paramDepartmentName", Value=masterDepartment.DepartmentName },
+                    new Param() { Key="@paramDepartmentHead", Value=masterDepartment.DepartmentHead },
+                    new Param() { Key="@paramIsValid", Value=masterDepartment.IsValid },
+                    new Param() { Key="@paramUpdatedby", Value=masterDepartment.UpdatedBy },
+                    new Param() { Key="@paramUpdatedon", Value=masterDepartment.UpdatedOn }
+
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
     }
 }

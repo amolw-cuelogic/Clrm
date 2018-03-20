@@ -47,7 +47,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterGroupMockData.GetMockDataMasterGroup();
+            var mockData = MasterGroupMockData.GetMockDataMasterGroupDataSet();
             mockService.Setup(m => m.GetGroup(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(dependencyField, mockService.Object);
 
@@ -68,7 +68,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterGroupMockData.GetMockDataMasterGroup();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -76,9 +76,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
+            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()));
+            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -90,16 +90,16 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterGroupMockData.GetMockDataMasterGroup();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
+            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()));
+            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()), Times.Once);
             mockService.VerifyAll();
         }
 

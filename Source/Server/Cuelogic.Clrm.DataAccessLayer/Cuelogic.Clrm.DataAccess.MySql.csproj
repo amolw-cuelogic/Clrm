@@ -52,10 +52,6 @@
   <ItemGroup>
     <Compile Include="MySqlDataAccess.cs" />
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="MasterClientDataAccessMySql.cs" />
-    <Compile Include="MasterDepartmentDataAccessMySql.cs" />
-    <Compile Include="EmployeeDataAccessMySql.cs" />
-    <Compile Include="MasterGroupDataAccessMySql.cs" />
     <Compile Include="MasterOrganizationRoleDataAccessMySql.cs" />
     <Compile Include="MasterRoleDataAccessMySql.cs" />
     <Compile Include="MasterProjectTypeDataAccessMySql.cs" />

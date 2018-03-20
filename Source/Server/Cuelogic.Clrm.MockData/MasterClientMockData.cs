@@ -68,6 +68,16 @@ namespace Cuelogic.Clrm.MockData
             return data;
         }
 
+        public static DataSet GetMockDataMasterCityDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataMasterCity();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
         public static List<MasterCity> GetMockDataMasterCity()
         {
             var data = new List<MasterCity>();

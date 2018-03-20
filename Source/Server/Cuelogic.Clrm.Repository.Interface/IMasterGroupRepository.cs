@@ -9,11 +9,15 @@ namespace Cuelogic.Clrm.Repository.Interface
     {
         DataSet GetIdentityGroupList(SearchParam searchParam);
 
-        IdentityGroup GetGroup(int groupId);
+        DataSet GetGroup(int groupId);
+        DataSet GetIdentityGroupRights(int groupId);
+        DataSet GetIdentityRightList();
 
-        void SaveIdentityGroup(IdentityGroup identityGroup, UserContext userCtx);
+        DataSet SaveIdentityGroup(IdentityGroup identityGroup);
+        void SaveIdentityGroupRight(string xmlString);
 
-        void UpdateIdentityGroup(IdentityGroup identityGroup, UserContext userCtx);
+        void UpdateIdentityGroup(IdentityGroup identityGroup);
+        void UpdateIdentityGroupRight(string xmlString);
 
         void MarkGroupInvalid(int groupId, int employeeId);
     }

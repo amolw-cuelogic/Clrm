@@ -9,9 +9,10 @@ namespace Cuelogic.Clrm.Repository.Interface
     public interface IMasterClientRepository
     {
         DataSet GetMasterClientList(SearchParam searchParam);
-        MasterClient GetMasterClient(int masterClientId);
+        DataSet GetCountryList();
+        DataSet GetMasterClient(int masterClientId);
         void AddOrUpdateMasterClient(MasterClient masterClient, UserContext userCtx);
         void MarkMasterClientInvalid(int masterClientId, int employeeId);
-        List<MasterCity> GetCityList(int countryId);
+        DataSet GetCityList(int countryId);
     }
 }
