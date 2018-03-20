@@ -9,11 +9,11 @@ namespace Cuelogic.Clrm.Repository.Interface
     {
         DataSet GetMasterSkillList(SearchParam searchParam);
 
-        MasterSkill GetMasterSkill(int masterSkillId);
+        DataSet GetMasterSkill(int masterSkillId);
 
-        void SaveMasterSkill(MasterSkill masterSkill, UserContext userCtx);
+        void SaveMasterSkill(MasterSkill masterSkill);
 
-        void UpdateMasterSkill(MasterSkill masterSkill, UserContext userCtx);
+        void UpdateMasterSkill(MasterSkill masterSkill);
 
         void MarkMasterSkillInvalid(int masterSkillId, int employeeId);
     }

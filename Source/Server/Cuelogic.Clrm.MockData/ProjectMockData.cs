@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.MockData
 {
@@ -42,18 +43,18 @@ namespace Cuelogic.Clrm.MockData
 
             var jsonString = MasterClientMockData.GetMockDataMasterClientList();
             var dt = Helper.JsonStringToDatatable(jsonString);
-            dt.TableName = AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterClient;
+            dt.TableName = TableName.MasterClient;
             ds.Tables.Add(dt);
 
             jsonString = MasterRoleMockData.GetMockDataMasterProjectRoleList();
             dt = Helper.JsonStringToDatatable(jsonString);
-            dt.TableName = AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterRole;
+            dt.TableName = TableName.MasterRole;
             ds.Tables.Add(dt);
 
             var data  = CommonMockData.GetMasterCurrency();
             jsonString = Helper.ObjectToJson(data);
             dt = Helper.JsonStringToDatatable(jsonString);
-            dt.TableName = AppConstants.StoreProcedure.Project_GetSelectList_Tables.MasterCurrency;
+            dt.TableName = TableName.MasterCurrency;
             ds.Tables.Add(dt);
 
             return ds;
@@ -70,12 +71,12 @@ namespace Cuelogic.Clrm.MockData
             dt.Columns.Remove("MasterRoleList");
             dt.Columns.Remove("MasterCurrencyList");
             dt.Columns.Remove("ProjectRoleList");
-            dt.TableName = AppConstants.StoreProcedure.Project_GetSelectList_Tables.Project;
+            dt.TableName = TableName.Project;
             ds.Tables.Add(dt);
 
             jsonString = MasterRoleMockData.GetMockDataMasterProjectRoleList();
             dt = Helper.JsonStringToDatatable(jsonString);
-            dt.TableName = AppConstants.StoreProcedure.Project_GetSelectList_Tables.ProjectRole;
+            dt.TableName = TableName.ProjectRole;
             ds.Tables.Add(dt);
 
             return ds;

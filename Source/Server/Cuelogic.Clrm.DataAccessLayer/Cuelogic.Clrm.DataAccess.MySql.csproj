@@ -52,10 +52,7 @@
   <ItemGroup>
     <Compile Include="MySqlDataAccess.cs" />
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="MasterRoleDataAccessMySql.cs" />
-    <Compile Include="ProjectDataAccessMySql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MasterSkillDataAccessMySql.cs" />
     <Compile Include="UserGroupDataAccessMySql.cs" />
   </ItemGroup>
   <ItemGroup>

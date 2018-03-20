@@ -23,6 +23,9 @@ namespace Cuelogic.Clrm.Common
             public const string EmployeeDepartment = "EmployeeDepartment";
             public const string EmployeeSkill = "EmployeeSkill";
             public const string EmployeeOrganizationRole = "EmployeeOrganizationRole";
+            public const string ProjectRole = "ProjectRole";
+            public const string MasterClient = "MasterClient";
+            public const string MasterCurrency = "MasterCurrency";
         }
         public static class StoreProcedure
         {
@@ -61,15 +64,7 @@ namespace Cuelogic.Clrm.Common
             public const string Project_GetLatestId = "Project_GetLatestId";
             public const string Project_GetSelectList = "Project_GetSelectList";
             public const string Project_BulkInsertRoles = "Project_BulkInsertRoles";
-
-            public class Project_GetSelectList_Tables
-            {
-                public const string Project = "Project";
-                public const string ProjectRole = "ProjectRole";
-                public const string MasterClient = "MasterClient";
-                public const string MasterRole = "MasterRole";
-                public const string MasterCurrency = "MasterCurrency";
-            }
+            
 
             #endregion
 

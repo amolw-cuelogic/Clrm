@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = ProjectMockData.GetMockDataProject();
+            var mockData = ProjectMockData.GetMockDataProjectDataset();
             mockService.Setup(m => m.GetProject(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -86,15 +86,15 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = ProjectMockData.GetMockDataProject();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateProject(It.IsAny<Project>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.AddOrUpdateProject(It.IsAny<Project>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>()));
+            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>()), Times.Once);
             mockService.VerifyAll();
         }
 

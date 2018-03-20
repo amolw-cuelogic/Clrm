@@ -7,57 +7,78 @@ using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.DataAccess.Interface;
 using Cuelogic.Clrm.DataAccess.MySql;
 using static Cuelogic.Clrm.Common.AppConstants;
+using System.Collections.Generic;
 
 namespace Cuelogic.Clrm.Repository
 {
     public class MasterSkillRepository : IMasterSkillRepository
     {
-        private readonly IMasterSkillDataAccess _masterSkillDataAccess;
+        private readonly IDataAccess _dataAccess;
         public MasterSkillRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _masterSkillDataAccess = new MasterSkillDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
+            _dataAccess = new MySqlDataAccess();
         }
-        public MasterSkill GetMasterSkill(int masterSkillId)
+        public DataSet GetMasterSkill(int masterSkillId)
         {
-            if (masterSkillId != 0)
-            {
-                var masterSkillDs = _masterSkillDataAccess.GetMasterSkill(masterSkillId);
-                var masterSkill = masterSkillDs.Tables[0].ToModel<MasterSkill>();
-                return masterSkill;
-            }
-            else
-            {
-                return new MasterSkill();
-            }
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Get;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@MasterSkillId", Value = masterSkillId }
+            });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
         public DataSet GetMasterSkillList(SearchParam searchParam)
         {
-            var ds = _masterSkillDataAccess.GetMasterSkillList(searchParam);
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
+
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_GetList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@filterText", Value=searchParam.FilterText },
+                    new Param() { Key="@recordFrom", Value= recordFrom },
+                    new Param() { Key="@recordTill", Value= show } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;
         }
 
         public void MarkMasterSkillInvalid(int masterSkillId, int employeeId)
         {
-            _masterSkillDataAccess.MarkMasterSkillInvalid(masterSkillId, employeeId);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_MarkInvalid;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@MasterSkillId", Value = masterSkillId },
+                    new Param() { Key="@employeeId", Value=employeeId }});
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
-        public void SaveMasterSkill(MasterSkill masterSkill, UserContext userCtx)
+        public void SaveMasterSkill(MasterSkill masterSkill)
         {
-            masterSkill.CreatedBy = userCtx.UserId;
-            masterSkill.CreatedOn = DateTime.Now.ToMySqlDateString();
-            _masterSkillDataAccess.InsertMasterSkill(masterSkill);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Insert;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramSkill", Value=masterSkill.Skill },
+                    new Param() { Key="@paramIsValid", Value=masterSkill.IsValid },
+                    new Param() { Key="@paramCreatedBy", Value=masterSkill.CreatedBy },
+                    new Param() { Key="@paramCreatedOn", Value=masterSkill.CreatedOn }
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
-        public void UpdateMasterSkill(MasterSkill masterSkill, UserContext userCtx)
+        public void UpdateMasterSkill(MasterSkill masterSkill)
         {
-            masterSkill.UpdatedBy = userCtx.UserId;
-            masterSkill.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterSkillDataAccess.UpdateMasterSkill(masterSkill);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterSkill_Update;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramMasterSkillId", Value=masterSkill.Id },
+                    new Param() { Key="@paramSkill", Value=masterSkill.Skill },
+                    new Param() { Key="@paramIsValid", Value=masterSkill.IsValid },
+                    new Param() { Key="@paramCreatedBy", Value=masterSkill.UpdatedBy },
+                    new Param() { Key="@paramCreatedOn", Value=masterSkill.UpdatedOn }
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
     }
 }

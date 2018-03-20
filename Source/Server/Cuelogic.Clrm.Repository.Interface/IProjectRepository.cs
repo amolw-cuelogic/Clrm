@@ -7,9 +7,13 @@ namespace Cuelogic.Clrm.Repository.Interface
 {
     public interface IProjectRepository
     {
-        Project GetProject(int projectId);
+        DataSet GetProject(int projectId);
         DataSet GetProjectList(SearchParam searchParam);
-        void AddOrUpdateProject(Project project, UserContext userContext);
+        DataSet GetProjectSelectList();
+        DataSet GetMasterProjectTypeValidList();
+        DataSet AddOrUpdateProject(Project project);
+        void AddProjectRoles(string xmlString, int userId);
+        DataSet GetLatestId();
         void MarkProjectInvalid(int projectId, int employeeId);
     }
 }
