@@ -96,6 +96,16 @@ namespace Cuelogic.Clrm.MockData
             return data;
         }
 
+        public static DataSet GetMockDataEmployeeVmDataset()
+        {
+            var ds = new DataSet();
+            var data = GetMockDataEmployeeVm();
+            var jsonString = Helper.ObjectToJson(data);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
         public static EmployeeVm GetMockDataEmployeeVm()
         {
             var employeeVm = new EmployeeVm();

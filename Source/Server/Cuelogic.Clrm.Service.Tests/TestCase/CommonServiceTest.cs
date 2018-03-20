@@ -24,7 +24,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = AllocationMockData.GetMockDataAllocationList();
+            var mockData = AllocationMockData.GetMockDataAllocationListDataset();
             mockService.Setup(m => m.GetEmployeeAllocationList(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -46,7 +46,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = EmployeeMockData.GetMockDataEmployee();
+            var mockData = EmployeeMockData.GetMockDataEmployeeDataset();
             mockService.Setup(m => m.GetEmployeeDetails(It.IsAny<string>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -88,7 +88,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterGroupMockData.GetMockDataIdentityGroupRightList();
+            var mockData = MasterGroupMockData.GetMockDataEmployeeGroupRightDataset();
             mockService.Setup(m => m.GetGroupRights(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 

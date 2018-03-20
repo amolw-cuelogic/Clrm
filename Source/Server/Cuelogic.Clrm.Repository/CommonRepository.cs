@@ -1,10 +1,12 @@
 ﻿using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.DataAccess.Interface;
 using Cuelogic.Clrm.DataAccess.MySql;
+using Cuelogic.Clrm.Model.CommonModel;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using static Cuelogic.Clrm.Common.AppConstants;
 
@@ -12,46 +14,61 @@ namespace Cuelogic.Clrm.Repository
 {
     public class CommonRepository : ICommonRepository
     {
-        private readonly ICommonDataAccess _commonDataAccess;
+        private readonly IDataAccess _dataAccess;
         public CommonRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _commonDataAccess = new CommonDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
+            _dataAccess = new MySqlDataAccess();
         }
 
-        public string GetEmployeeAllocationList(int employeeId)
+        public DataSet GetEmployeeAllocationList(int employeeId)
         {
-            var ds = _commonDataAccess.GetEmployeeAllocationList(employeeId);
-            string jsonString = "";
-            if (ds.Tables[0].Rows.Count == 0)
-                jsonString = "[]";
-            else
-                jsonString = ds.Tables[0].ToJsonString();
-            return jsonString;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeAllocation_GetList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramEmployeeId", Value=employeeId } });
+
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public Employee GetEmployeeDetails(string emailId)
+        public DataSet GetEmployeeDetails(string emailId)
         {
-            var userContextDs = _commonDataAccess.GetEmployeeDetailsByEmailId(emailId);
-            var employee = new Employee();
-            if (userContextDs.Tables[0].Rows.Count > 0)
-                employee = userContextDs.Tables[0].ToModel<Employee>();
-            return employee;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByEmailId;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramEmailId", Value=emailId } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public List<IdentityGroupRight> GetGroupRights(int employeeId)
+        public DataSet GetEmployeeDetailsByOrgEmpId(string orgEmpId)
         {
-            var ds = _commonDataAccess.GetEmployeeRightList(employeeId);
-            var list = ds.Tables[0].ToList<IdentityGroupRight>();
-            return list;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Employee_GetByOrgEmpId;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramOrgEmpId", Value=orgEmpId } });
+
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
+        }
+
+        public DataSet GetGroupRights(int employeeId)
+        {
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.EmployeeRights_Get;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramEmployeeId", Value=employeeId } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
         public void LogLoginTime(int employeeId)
         {
-            _commonDataAccess.LogLoginTime(employeeId);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.Common_LogLoginTime;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@paramEmployeeId", Value=employeeId } });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
     }
 }

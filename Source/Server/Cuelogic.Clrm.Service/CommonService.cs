@@ -20,13 +20,22 @@ namespace Cuelogic.Clrm.Service
 
         public string GetEmployeeAllocationList(int employeeId)
         {
-            return _commonRepository.GetEmployeeAllocationList(employeeId);
+            var ds = _commonRepository.GetEmployeeAllocationList(employeeId);
+            string jsonString = "";
+            if (ds.Tables[0].Rows.Count == 0)
+                jsonString = "[]";
+            else
+                jsonString = ds.Tables[0].ToJsonString();
+            return jsonString;
         }
 
         public Employee GetEmployeeByEmail(string emailId)
         {
-            var data = _commonRepository.GetEmployeeDetails(emailId);
-            return data;
+            var ds = _commonRepository.GetEmployeeDetails(emailId);
+            var employee = new Employee();
+            if (ds.Tables[0].Rows.Count > 0)
+                employee = ds.Tables[0].ToModel<Employee>();
+            return employee;
         }
 
         public EmployeeVm GetEmployeeById(int employeeId)
@@ -37,7 +46,8 @@ namespace Cuelogic.Clrm.Service
 
         public List<IdentityGroupRight> GetEmployeeRights(int employeeId)
         {
-            var duplicateList = _commonRepository.GetGroupRights(employeeId);
+            var ds = _commonRepository.GetGroupRights(employeeId);
+            var duplicateList = ds.Tables[0].ToList<IdentityGroupRight>();
             
             var distinctList = new List<IdentityGroupRight>();
             foreach (var item in duplicateList)
@@ -53,7 +63,6 @@ namespace Cuelogic.Clrm.Service
                     item.SetBooleanRights(item.Action);
                     distinctList.Add(item);
                 }
-
             }
             return distinctList;
         }

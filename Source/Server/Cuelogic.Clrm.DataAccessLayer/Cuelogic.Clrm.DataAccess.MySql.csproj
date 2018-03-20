@@ -53,7 +53,6 @@
     <Compile Include="MySqlDataAccess.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="MasterClientDataAccessMySql.cs" />
-    <Compile Include="CommonDataAccessMySql.cs" />
     <Compile Include="MasterDepartmentDataAccessMySql.cs" />
     <Compile Include="EmployeeDataAccessMySql.cs" />
     <Compile Include="MasterGroupDataAccessMySql.cs" />

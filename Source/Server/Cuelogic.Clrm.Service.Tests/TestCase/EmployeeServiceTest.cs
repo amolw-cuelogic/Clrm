@@ -41,8 +41,8 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockDataEmployeeVm = EmployeeMockData.GetMockDataEmployeeVm();
-            var mockDataEmployee = EmployeeMockData.GetMockDataEmployee();
+            var mockDataEmployeeVm = EmployeeMockData.GetMockDataEmployeeVmDataset();
+            var mockDataEmployee = EmployeeMockData.GetMockDataEmployeeDataset();
             mockService.Setup(m => m.GetMasterListForEmployees()).Returns(mockDataEmployeeVm);
             mockService.Setup(m => m.GetEmployee(It.IsAny<int>())).Returns(mockDataEmployee);
             mockService.Setup(m => m.GetChildListForEmployees(It.IsAny<int>())).Returns(mockDataEmployee);
@@ -94,7 +94,14 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var mockdata = EmployeeMockData.GetMockDataEmployeeVm();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
             mockService.Setup(m => m.AddOrUpdateEmployee(It.IsAny<EmployeeVm>(), It.IsAny<UserContext>()));
+
+            var mockData2 = EmployeeMockData.GetMockDataEmployeeDataset();
+            Mock<ICommonRepository> mockService1 = new Mock<ICommonRepository>();
+            mockService1.Setup(m => m.GetEmployeeDetails(It.IsAny<string>())).Returns(mockData2);
+            mockService1.Setup(m => m.GetEmployeeDetailsByOrgEmpId(It.IsAny<string>())).Returns(mockData2);
+
             privateObject.SetField(dependencyField, mockService.Object);
+            privateObject.SetField("_commonRepository", mockService1.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);

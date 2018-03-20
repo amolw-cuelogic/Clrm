@@ -75,8 +75,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(Employee));
-            Assert.IsTrue(data.Id == 1);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -94,11 +94,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(EmployeeVm));
-            Assert.IsTrue(data.IdentityGroupList.Count > 0);
-            Assert.IsTrue(data.MasterDepartmentList.Count > 0);
-            Assert.IsTrue(data.MasterOrganizationRoleList.Count > 0);
-            Assert.IsTrue(data.MasterSkillList.Count > 0);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -116,11 +113,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(Employee));
-            Assert.IsTrue(data.IdentityEmployeeGroupList.Count > 0);
-            Assert.IsTrue(data.EmployeeDepartmentList.Count > 0);
-            Assert.IsTrue(data.EmployeeOrganizationRoleList.Count > 0);
-            Assert.IsTrue(data.EmployeeSkillList.Count > 0);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]

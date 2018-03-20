@@ -32,14 +32,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ACT
             var data = serviceObject.GetEmployeeAllocationList(1);
-            var dt = Helper.JsonStringToDatatable(data);
+            var jsonString = data.Tables[0].ToJsonString();
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsTrue(data != "");
-            Assert.IsInstanceOfType(data, typeof(string));
-            Assert.IsInstanceOfType(dt, typeof(DataTable));
-            Assert.IsTrue(dt.Rows.Count > 0);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsInstanceOfType(data, typeof(DataTable));
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -57,8 +58,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(Employee));
-            Assert.IsTrue(data.Email == "john.doe@cuelogic.com");
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
         
         [TestMethod]
@@ -76,8 +77,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             //ASSERT
             Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<IdentityGroupRight>));
-            Assert.IsTrue(data.Count > 0);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
