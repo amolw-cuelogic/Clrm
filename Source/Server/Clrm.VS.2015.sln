@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.Model", "Cuelogic.Clrm.Model\Cuelogic.Clrm.Model.csproj", "{3E12EEED-CBE7-40AB-B78D-0DF7A32ECB81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.DataAccess.MySql", "Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccess.MySql.csproj", "{07D0B68A-D234-4A2F-AD9B-C7D5DBE687EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.DataAccess", "Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccess.csproj", "{07D0B68A-D234-4A2F-AD9B-C7D5DBE687EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.Repository", "Cuelogic.Clrm.Repository\Cuelogic.Clrm.Repository.csproj", "{8B5C7274-1F0E-41CF-97BF-E161A46C64EC}"
 EndProject

@@ -1,16 +1,13 @@
 ﻿using Cuelogic.Clrm.Common;
+using Cuelogic.Clrm.DataAccess.Interface;
 using Cuelogic.Clrm.Model.CommonModel;
 using log4net;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Cuelogic.Clrm.DataAccess.MySql
+namespace Cuelogic.Clrm.DataAccess
 {
     public class MySqlDataAccess : IDataAccess
     {

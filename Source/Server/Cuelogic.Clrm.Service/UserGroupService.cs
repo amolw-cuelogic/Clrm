@@ -4,6 +4,7 @@ using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
+using System;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -16,25 +17,42 @@ namespace Cuelogic.Clrm.Service
         }
         public List<Employee> GetEmployeeList()
         {
-            var data = _userGroupRepository.GetEmployeeList();
-            return data;
+            var list = new List<Employee>();
+            var ds = _userGroupRepository.GetEmployeeList();
+            if (ds.Tables[0].Rows.Count > 0)
+                list = ds.Tables[0].ToList<Employee>();
+            return list;
         }
 
         public List<IdentityGroup> GetGroupList()
         {
-            var data = _userGroupRepository.GetGroupList();
-            return data;
+            var list = new List<IdentityGroup>();
+            var ds = _userGroupRepository.GetGroupList();
+            if (ds.Tables[0].Rows.Count > 0)
+                list = ds.Tables[0].ToList<IdentityGroup>();
+            return list;
         }
 
         public List<Employee> GetIdentityGroupMembers(int gId)
         {
-            var data = _userGroupRepository.GetIdentityGroupMembers(gId);
-            return data;
+            var list = new List<Employee>();
+            var ds = _userGroupRepository.GetIdentityGroupMembers(gId);
+            if (ds.Tables[0].Rows.Count > 0)
+                list = ds.Tables[0].ToList<Employee>();
+            return list;
         }
 
         public void InsertGroupUsers(List<IdentityEmployeeGroup> identityEmployeeGroup, UserContext userContext)
         {
-            _userGroupRepository.InsertGroupUsers(identityEmployeeGroup, userContext);
+            foreach (var item in identityEmployeeGroup)
+            {
+                item.CreatedBy = userContext.UserId;
+                item.UpdatedBy = userContext.UserId;
+                item.CreatedOn = DateTime.Now.ToMySqlDateString();
+                item.UpdatedOn = DateTime.Now.ToMySqlDateString();
+            }
+            var xmlString = Helper.ObjectToXml(identityEmployeeGroup);
+            _userGroupRepository.InsertGroupUsers(xmlString);
         }
     }
 }

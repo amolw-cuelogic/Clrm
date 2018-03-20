@@ -7,8 +7,8 @@
     <ProjectGuid>{07D0B68A-D234-4A2F-AD9B-C7D5DBE687EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cuelogic.Clrm.DataAccess.MySql</RootNamespace>
-    <AssemblyName>Cuelogic.Clrm.DataAccess.MySql</AssemblyName>
+    <RootNamespace>Cuelogic.Clrm.DataAccess</RootNamespace>
+    <AssemblyName>Cuelogic.Clrm.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,9 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MySqlDataAccess.cs" />
-    <Compile Include="IDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserGroupDataAccessMySql.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cuelogic.Clrm.Common\Cuelogic.Clrm.Common.csproj">

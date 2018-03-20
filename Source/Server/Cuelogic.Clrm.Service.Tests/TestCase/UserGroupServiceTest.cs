@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetEmployeeList();
+            var mockData = UserGroupMockData.GetEmployeeListDataset();
             mockService.Setup(m => m.GetEmployeeList()).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetGroupList();
+            var mockData = UserGroupMockData.GetGroupListDataset();
             mockService.Setup(m => m.GetGroupList()).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -60,7 +60,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetIdentityGroupMemberList();
+            var mockData = UserGroupMockData.GetIdentityGroupMemberListDataset();
             mockService.Setup(m => m.GetIdentityGroupMembers(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -81,15 +81,15 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockData = UserGroupMockData.GetIdentityEmployeeGroupList();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.InsertGroupUsers(It.IsAny<List<IdentityEmployeeGroup>>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.InsertGroupUsers(It.IsAny<string>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.InsertGroupUsers(mockData, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<List<IdentityEmployeeGroup>>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<List<IdentityEmployeeGroup>>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<string>()));
+            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<string>()), Times.Once);
             mockService.VerifyAll();
         }
     }

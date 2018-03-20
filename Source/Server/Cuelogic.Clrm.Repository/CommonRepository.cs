@@ -1,14 +1,10 @@
 ﻿using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.DataAccess.Interface;
-using Cuelogic.Clrm.DataAccess.MySql;
+using Cuelogic.Clrm.DataAccess;
 using Cuelogic.Clrm.Model.CommonModel;
-using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Repository
 {

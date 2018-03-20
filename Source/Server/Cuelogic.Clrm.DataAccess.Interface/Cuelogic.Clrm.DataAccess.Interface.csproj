@@ -40,18 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAllocationDataAccess.cs" />
-    <Compile Include="ICommonDataAccess.cs" />
-    <Compile Include="IEmployeeDataAccess.cs" />
-    <Compile Include="IMasterClientDataAccess.cs" />
-    <Compile Include="IMasterDepartmentDataAccess.cs" />
-    <Compile Include="IMasterGroupDataAccess.cs" />
-    <Compile Include="IMasterOrganizationRoleDataAccess.cs" />
-    <Compile Include="IMasterProjectTypeDataAccess.cs" />
-    <Compile Include="IMasterRoleDataAccess.cs" />
-    <Compile Include="IMasterSkillDataAccess.cs" />
-    <Compile Include="IProjectDataAccess.cs" />
-    <Compile Include="IUserGroupDataAccess.cs" />
+    <Compile Include="IDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

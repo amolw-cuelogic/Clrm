@@ -1,66 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Cuelogic.Clrm.Model.DatabaseModel;
+﻿using System.Collections.Generic;
 using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.DataAccess.Interface;
-using Cuelogic.Clrm.DataAccess.MySql;
-using static Cuelogic.Clrm.Common.AppConstants;
+using Cuelogic.Clrm.DataAccess;
+using System.Data;
+using Cuelogic.Clrm.Model.CommonModel;
 
 namespace Cuelogic.Clrm.Repository
 {
     public class UserGroupRepository : IUserGroupRepository
     {
-        private readonly IUserGroupDataAccess _userGroupDataAcces;
+        private readonly IDataAccess _dataAccess;
 
         public UserGroupRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _userGroupDataAcces = new UserGroupDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
+            _dataAccess = new MySqlDataAccess();
 
         }
-        public List<Employee> GetEmployeeList()
+        public DataSet GetEmployeeList()
         {
-            var ds = _userGroupDataAcces.GetEmployeeList();
-            List<Employee> list = new List<Employee>();
-            if (ds.Tables[0].Rows.Count > 0)
-                list = ds.Tables[0].ToList<Employee>();
-            return list;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetEmployees;
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public List<IdentityGroup> GetGroupList()
+        public DataSet GetGroupList()
         {
-            var ds = _userGroupDataAcces.GetGroupList();
-            List<IdentityGroup> list = new List<IdentityGroup>();
-            if (ds.Tables[0].Rows.Count > 0)
-                list = ds.Tables[0].ToList<IdentityGroup>();
-            return list;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetIdentityGroup;
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public List<Employee> GetIdentityGroupMembers(int gId)
+        public DataSet GetIdentityGroupMembers(int gId)
         {
-            var ds = _userGroupDataAcces.GetIdentityGroupMembers(gId);
-            List<Employee> list = new List<Employee>();
-            if (ds.Tables[0].Rows.Count > 0)
-                list = ds.Tables[0].ToList<Employee>();
-            return list;
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_GetIdentityGroupMembers;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@gId", Value= gId },
+            });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
-        public void InsertGroupUsers(List<IdentityEmployeeGroup> identityEmployeeGroup, UserContext userContext)
+        public void InsertGroupUsers(string xmlString)
         {
-            foreach (var item in identityEmployeeGroup)
-            {
-                item.CreatedBy = userContext.UserId;
-                item.UpdatedBy = userContext.UserId;
-                item.CreatedOn = DateTime.Now.ToMySqlDateString();
-                item.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            }
-            var xmlString = Helper.ObjectToXml(identityEmployeeGroup);
-            _userGroupDataAcces.InsertGroupUsers(xmlString);
+            
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.UserGroup_InsertGroupUser;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@xmlText", Value= xmlString },
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
     }
 }
