@@ -217,6 +217,7 @@ namespace Cuelogic.Clrm.Common
         public static class CustomError
         {
             public const string DbConcreteImplementation = "Concrete implentation not available for given database";
+            public const string InValidId = "In Valid Id";
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult GetIdentityGroupMembers(int id)
         {
             if (id < 0)
-                throw new Exception("Negative id now allowed");
+                throw new Exception(CustomError.InValidId);
             var data = _userGroupService.GetIdentityGroupMembers(id);
             return Ok(data);
         }

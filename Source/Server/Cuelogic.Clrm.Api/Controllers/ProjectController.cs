@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Get(int show, int page, string filterText)
         {
             if (show < 0 || page < 0)
-                throw new Exception("Negative values not allowed");
+                throw new Exception(CustomError.InValidId);
             var searchParam = new SearchParam();
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
@@ -36,7 +36,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Get(int id)
         {
             if (id < 0)
-                throw new Exception("Negative id now allowed");
+                throw new Exception(CustomError.InValidId);
             var project = _projectService.GetItem(id);
             return Ok(project);
         }
@@ -55,7 +55,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Delete(int id)
         {
             if (id < 0)
-                throw new Exception("Negative id now allowed");
+                throw new Exception(CustomError.InValidId);
             var userCtx = base.GetUserContext();
             _projectService.Delete(id, userCtx.UserId);
             return Ok();
