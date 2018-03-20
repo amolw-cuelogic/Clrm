@@ -8,8 +8,8 @@ namespace Cuelogic.Clrm.Repository.Interface
     public interface IMasterRoleRepository
     {
         DataSet GetMasterProjectRoleList(SearchParam searchParam);
-        MasterRole GetMasterProjectRole(int masterProjectRoleId);
-        void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole, UserContext userCtx);
+        DataSet GetMasterProjectRole(int masterProjectRoleId);
+        void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole);
         void MarkMasterProjectRoleInvalid(int masterProjectRoleId, int employeeId);
     }
 }

@@ -4,6 +4,7 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
+using System;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -21,8 +22,17 @@ namespace Cuelogic.Clrm.Service
 
         public MasterRole GetItem(int masterProjectRoleId)
         {
-            var masterProjectRole = _projectRoleRepository.GetMasterProjectRole(masterProjectRoleId);
-            return masterProjectRole;
+
+            if (masterProjectRoleId != 0)
+            {
+                var ds = _projectRoleRepository.GetMasterProjectRole(masterProjectRoleId);
+                var masterProjectRole = ds.Tables[0].ToModel<MasterRole>();
+                return masterProjectRole;
+            }
+            else
+            {
+                return new MasterRole();
+            }
         }
 
         public string GetList(SearchParam searchParam)
@@ -34,7 +44,11 @@ namespace Cuelogic.Clrm.Service
 
         public void Save(MasterRole masterProjectRole, UserContext userCtx)
         {
-            _projectRoleRepository.AddOrUpdateMasterProjectRole(masterProjectRole, userCtx);
+            masterProjectRole.CreatedBy = userCtx.UserId;
+            masterProjectRole.UpdatedBy = userCtx.UserId;
+            masterProjectRole.CreatedOn = DateTime.Now.ToMySqlDateString();
+            masterProjectRole.UpdatedOn = DateTime.Now.ToMySqlDateString();
+            _projectRoleRepository.AddOrUpdateMasterProjectRole(masterProjectRole);
         }
     }
 }

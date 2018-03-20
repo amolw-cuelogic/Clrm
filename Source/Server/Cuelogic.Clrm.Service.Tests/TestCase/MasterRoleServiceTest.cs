@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterRoleMockData.GetMockDataMasterProjectRole();
+            var mockData = MasterRoleMockData.GetMockDataMasterProjectRoleDataset();
             mockService.Setup(m => m.GetMasterProjectRole(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -86,15 +86,15 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterRoleMockData.GetMockDataMasterProjectRole();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>()));
+            mockService.Verify(m => m.AddOrUpdateMasterProjectRole(It.IsAny<MasterRole>()), Times.Once);
             mockService.VerifyAll();
         }
 

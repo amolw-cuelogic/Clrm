@@ -9,7 +9,7 @@ namespace Cuelogic.Clrm.Repository.Interface
     {
         DataSet GetMasterOrganizationRoleList(SearchParam searchParam);
 
-        MasterOrganizationRole GetMasterOrganizationRole(int masterOrganizationRoleId);
+        DataSet GetMasterOrganizationRole(int masterOrganizationRoleId);
 
         void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
 

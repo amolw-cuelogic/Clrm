@@ -4,6 +4,7 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
+using System;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -21,8 +22,17 @@ namespace Cuelogic.Clrm.Service
 
         public MasterProjectType GetItem(int masterProjectTypeId)
         {
-            var masterProjectType = _masterProjectTypeRepository.GetMasterProjectType(masterProjectTypeId);
-            return masterProjectType;
+
+            if (masterProjectTypeId != 0)
+            {
+                var ds = _masterProjectTypeRepository.GetMasterProjectType(masterProjectTypeId);
+                var masterProjecType = ds.Tables[0].ToModel<MasterProjectType>();
+                return masterProjecType;
+            }
+            else
+            {
+                return new MasterProjectType();
+            }
         }
 
         public string GetList(SearchParam searchParam)
@@ -34,7 +44,12 @@ namespace Cuelogic.Clrm.Service
 
         public void Save(MasterProjectType masterProjectType, UserContext userCtx)
         {
-            _masterProjectTypeRepository.AddOrUpdateMasterProjectType(masterProjectType, userCtx);
+
+            masterProjectType.CreatedBy = userCtx.UserId;
+            masterProjectType.UpdatedBy = userCtx.UserId;
+            masterProjectType.CreatedOn = DateTime.Now.ToMySqlDateString();
+            masterProjectType.UpdatedOn = DateTime.Now.ToMySqlDateString();
+            _masterProjectTypeRepository.AddOrUpdateMasterProjectType(masterProjectType);
         }
     }
 }

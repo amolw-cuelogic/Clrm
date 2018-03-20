@@ -5,6 +5,7 @@ using System.Data;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
+using System;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -23,8 +24,17 @@ namespace Cuelogic.Clrm.Service
 
         public MasterOrganizationRole GetItem(int masterOrganizationRoleId)
         {
-            var masterOrganizationRole = _masterOrganizationRoleRepository.GetMasterOrganizationRole(masterOrganizationRoleId);
-            return masterOrganizationRole;
+
+            if (masterOrganizationRoleId != 0)
+            {
+                var masterOrganizationRoleDs = _masterOrganizationRoleRepository.GetMasterOrganizationRole(masterOrganizationRoleId);
+                var masterDepartment = masterOrganizationRoleDs.Tables[0].ToModel<MasterOrganizationRole>();
+                return masterDepartment;
+            }
+            else
+            {
+                return new MasterOrganizationRole();
+            }
         }
 
         public string GetList(SearchParam searchParam)
@@ -37,9 +47,17 @@ namespace Cuelogic.Clrm.Service
         public void Save(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)
         {
             if (masterOrganizationRole.Id == 0)
+            {
+                masterOrganizationRole.CreatedBy = userCtx.UserId;
+                masterOrganizationRole.CreatedOn = DateTime.Now.ToMySqlDateString();
                 _masterOrganizationRoleRepository.SaveMasterOrganizationRole(masterOrganizationRole, userCtx);
+            }
             else
+            {
+                masterOrganizationRole.UpdatedBy = userCtx.UserId;
+                masterOrganizationRole.UpdatedOn = DateTime.Now.ToMySqlDateString();
                 _masterOrganizationRoleRepository.UpdateMasterOrganizationRole(masterOrganizationRole, userCtx);
+            }
         }
     }
 }

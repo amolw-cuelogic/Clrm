@@ -41,7 +41,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectType();
+            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectTypeDataset();
             mockService.Setup(m => m.GetMasterProjectType(It.IsAny<int>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
@@ -86,15 +86,15 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterProjectTypeMockData.GetMockDataMasterProjectType();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>()));
+            mockService.Verify(m => m.AddOrUpdateMasterProjectType(It.IsAny<MasterProjectType>()), Times.Once);
             mockService.VerifyAll();
         }
     }

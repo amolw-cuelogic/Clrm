@@ -8,9 +8,9 @@ namespace Cuelogic.Clrm.Repository.Interface
     public interface IMasterProjectTypeRepository
     {
         DataSet GetMasterProjectTypeList(SearchParam searchParam);
-        MasterProjectType GetMasterProjectType(int masterProjectTypeId);
+        DataSet GetMasterProjectType(int masterProjectTypeId);
         DataSet GetMasterProjectTypeValidList();
-        void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType, UserContext userCtx);
+        void AddOrUpdateMasterProjectType(MasterProjectType masterProjectType);
         void MarkMasterProjectTypeInvalid(int masterProjectTypeId, int employeeId);
     }
 }

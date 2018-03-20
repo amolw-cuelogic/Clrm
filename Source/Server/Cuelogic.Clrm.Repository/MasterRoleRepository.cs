@@ -7,53 +7,67 @@ using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.DataAccess.Interface;
 using Cuelogic.Clrm.DataAccess.MySql;
 using static Cuelogic.Clrm.Common.AppConstants;
+using System.Collections.Generic;
 
 namespace Cuelogic.Clrm.Repository
 {
     public class MasterRoleRepository : IMasterRoleRepository
     {
-        private readonly IMasterRoleDataAccess _masterProjectRoleDataAccess;
+        private readonly IDataAccess _dataAccess;
         public MasterRoleRepository()
         {
-            var databaseType = AppUtillity.GetTargetDatabase();
-            if (databaseType == DatabaseType.MySql)
-                _masterProjectRoleDataAccess = new MasterRoleDataAccessMySql();
-            else
-                throw new Exception(CustomError.DbConcreteImplementation);
-
+            _dataAccess = new MySqlDataAccess();
         }
-        public void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole, UserContext userCtx)
+        public void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole)
         {
-            masterProjectRole.CreatedBy = userCtx.UserId;
-            masterProjectRole.UpdatedBy = userCtx.UserId;
-            masterProjectRole.CreatedOn = DateTime.Now.ToMySqlDateString();
-            masterProjectRole.UpdatedOn = DateTime.Now.ToMySqlDateString();
-            _masterProjectRoleDataAccess.AddOrUpdateMasterProjectRole(masterProjectRole);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_AddOrUpdate;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@mpId", Value=masterProjectRole.Id },
+                    new Param() { Key="@mpRole", Value=masterProjectRole.Role },
+                    new Param() { Key="@mpIsValid", Value=masterProjectRole.IsValid },
+                    new Param() { Key="@mpUpdatedBy", Value=masterProjectRole.UpdatedBy },
+                    new Param() { Key="@mpCreatedBy", Value=masterProjectRole.CreatedBy },
+                    new Param() { Key="@mpUpdatedOn", Value=masterProjectRole.UpdatedOn },
+                    new Param() { Key="@mpCreatedOn", Value=masterProjectRole.CreatedOn },
+            });
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
-        public MasterRole GetMasterProjectRole(int masterProjectRoleId)
+        public DataSet GetMasterProjectRole(int masterProjectRoleId)
         {
-            if (masterProjectRoleId != 0)
-            {
-                var ds = _masterProjectRoleDataAccess.GetMasterProjectRole(masterProjectRoleId);
-                var masterProjectRole = ds.Tables[0].ToModel<MasterRole>();
-                return masterProjectRole;
-            }
-            else
-            {
-                return new MasterRole();
-            }
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_Get;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@mpId", Value = masterProjectRoleId }
+            });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
+            return ds;
         }
 
         public DataSet GetMasterProjectRoleList(SearchParam searchParam)
         {
-            var ds = _masterProjectRoleDataAccess.GetMasterProjectRoleList(searchParam);
+            var recordFrom = searchParam.Page * searchParam.Show;
+            var show = searchParam.Show;
+
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_GetList;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@filterText", Value=searchParam.FilterText },
+                    new Param() { Key="@recordFrom", Value= recordFrom },
+                    new Param() { Key="@recordTill", Value= show } });
+            var ds = _dataAccess.ExecuteQuery(sqlParam);
             return ds;
         }
 
         public void MarkMasterProjectRoleInvalid(int masterProjectRoleId, int employeeId)
         {
-            _masterProjectRoleDataAccess.MarkMasterProjectRoleInvalid(masterProjectRoleId, employeeId);
+            var sqlParam = new DataAccessParameter();
+            sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterRole_MarkInvalid;
+            sqlParam.StoreProcedureParameter.AddRange(new List<Param>() {
+                    new Param() { Key="@masterProjectRoleId", Value = masterProjectRoleId },
+                    new Param() { Key="@employeeId", Value=employeeId }});
+            _dataAccess.ExecuteNonQuery(sqlParam);
         }
     }
 }
