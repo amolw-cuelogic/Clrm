@@ -181,7 +181,7 @@
       <Project>{10db47ba-957a-4b83-a7dc-fc7b6fc97ca3}</Project>
       <Name>Cuelogic.Clrm.DataAccess.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccess.MySql.csproj">
+    <ProjectReference Include="..\Cuelogic.Clrm.DataAccessLayer\Cuelogic.Clrm.DataAccess.csproj">
       <Project>{07d0b68a-d234-4a2f-ad9b-c7d5dbe687ee}</Project>
       <Name>Cuelogic.Clrm.DataAccess.MySql</Name>
     </ProjectReference>

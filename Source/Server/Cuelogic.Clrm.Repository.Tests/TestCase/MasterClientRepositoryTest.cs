@@ -15,9 +15,9 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
     [TestClass]
     public class MasterClientRepositoryTest
     {
-        private Mock<IMasterClientDataAccess> mockService = new Mock<IMasterClientDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private MasterClientRepository serviceObject = new MasterClientRepository();
-        private string dependencyField = "_masterClientDataAccess";
+        private string _dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - Master Client";
 
         [TestMethod]
@@ -26,15 +26,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.MarkMasterClientInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.MarkMasterClientInvalid(1, 1);
 
             //ASSERT
-            mockService.Verify(m => m.MarkMasterClientInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            mockService.Verify(m => m.MarkMasterClientInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -45,25 +45,25 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterClientMockData.GetMockDataMasterClientDataset();
-            mockService.Setup(m => m.GetMasterClient(It.IsAny<int>())).Returns(mockData);
-            var mockData1 = MasterClientMockData.GetMockDataCityListDataset();
-            mockService.Setup(m => m.GetCityList(It.IsAny<int>())).Returns(mockData1);
-            var mockData2 = MasterClientMockData.GetMockDataCountryListDataset();
-            mockService.Setup(m => m.GetCountryList()).Returns(mockData2);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetMasterClient(1);
+            var ds = serviceObject.GetMasterClient(1);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(MasterClient));
-            Assert.IsTrue(data.Id == 1);
-            mockService.Verify(m => m.GetCityList(It.IsAny<int>()));
-            mockService.Verify(m => m.GetCityList(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetCountryList());
-            mockService.Verify(m => m.GetCountryList(), Times.Once);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
+            
         }
 
         [TestMethod]
@@ -73,19 +73,22 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterClientMockData.GetMockDataMasterClientDataset();
-            mockService.Setup(m => m.GetMasterClientList(It.IsAny<SearchParam>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
 
             //ACT
-            var data = serviceObject.GetMasterClientList(searchParam);
-            var dt = data.Tables[0];
+            var ds = serviceObject.GetMasterClientList(searchParam);
+            var dt = ds.Tables[0];
             var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
             Assert.IsTrue(jsonString != "");
-            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
             Assert.IsInstanceOfType(jsonString, typeof(string));
             Assert.IsTrue(dt.Rows.Count > 0);
@@ -98,16 +101,51 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterClientMockData.GetMockDataCityListDataset();
-            mockService.Setup(m => m.GetCityList(It.IsAny<int>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetCityList(1);
+            var ds = serviceObject.GetCityList(1);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<MasterCity>));
-            Assert.IsTrue(data.Count > 1);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(dt.Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterClientRepositoryGetCountryList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = MasterClientMockData.GetMockDataCountryListDataset();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var ds = serviceObject.GetCountryList();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(dt.Rows.Count > 0);
         }
 
         [TestMethod]
@@ -118,15 +156,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterClientMockData.GetMockDataMasterClient();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateMasterClient(It.IsAny<MasterClient>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.AddOrUpdateMasterClient(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.AddOrUpdateMasterClient(It.IsAny<MasterClient>()));
-            mockService.Verify(m => m.AddOrUpdateMasterClient(It.IsAny<MasterClient>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 

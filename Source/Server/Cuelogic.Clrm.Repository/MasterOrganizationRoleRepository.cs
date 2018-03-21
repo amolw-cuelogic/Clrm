@@ -53,7 +53,7 @@ namespace Cuelogic.Clrm.Repository
             _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
-        public void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)
+        public void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole)
         {
             var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_Insert;
@@ -66,7 +66,7 @@ namespace Cuelogic.Clrm.Repository
             _dataAccess.ExecuteNonQuery(sqlParam);
         }
 
-        public void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx)
+        public void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole)
         {
             var sqlParam = new DataAccessParameter();
             sqlParam.StoreProcedureName = AppConstants.StoreProcedure.MasterOrganizationRole_Update;

@@ -14,9 +14,9 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
     [TestClass]
     public class ProjectRepositoryTest
     {
-        private Mock<IProjectDataAccess> mockService = new Mock<IProjectDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private ProjectRepository serviceObject = new ProjectRepository();
-        private string _dependencyField = "_projectDataAccess";
+        private string _dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - Project";
 
         [TestMethod]
@@ -25,15 +25,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.MarkProjectInvalid(It.IsAny<int>(), It.IsAny<int>()));
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.MarkProjectInvalid(1, 1);
 
             //ASSERT
-            mockService.Verify(m => m.MarkProjectInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            mockService.Verify(m => m.MarkProjectInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -44,34 +44,105 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = ProjectMockData.GetMockDataProjectDataset();
-            var mockData1 = ProjectMockData.GetMockDataMasterList();
-            mockService.Setup(m => m.GetProject(It.IsAny<int>())).Returns(mockData);
-            mockService.Setup(m => m.GetProjectSelectList()).Returns(mockData1);
-
-            Mock<IMasterProjectTypeRepository> mockService1 = new Mock<IMasterProjectTypeRepository>();
-            var mockData2 = MasterProjectTypeMockData.GetMockDataMasterProjectTypeListDataset();
-            mockService1.Setup(m => m.GetMasterProjectTypeValidList()).Returns(mockData2);
-
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
-            privateObject.SetField("_masterProjectTypeRepository", mockService1.Object);
 
             //ACT
-            var data = serviceObject.GetProject(1);
+            var ds = serviceObject.GetProject(1);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(Project));
-            Assert.IsTrue(data.Id == 1);
-            Assert.IsTrue(data.MasterCurrencyList.Count > 0);
-            Assert.IsTrue(data.MasterRoleList.Count > 0);
-            Assert.IsTrue(data.ProjectMasterClientList.Count > 0);
-            mockService.Verify(m => m.GetProject(It.IsAny<int>()));
-            mockService.Verify(m => m.GetProject(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetProjectSelectList());
-            mockService.Verify(m => m.GetProjectSelectList(), Times.Once);
-            mockService1.Verify(m => m.GetMasterProjectTypeValidList());
-            mockService1.Verify(m => m.GetMasterProjectTypeValidList(), Times.Once);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestProjectRepositoryGetLatestId()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = ProjectMockData.GetLatestId();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var ds = serviceObject.GetLatestId();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestProjectRepositoryGetProjectSelectList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = ProjectMockData.GetMockDataMasterListDataSet();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var ds = serviceObject.GetProjectSelectList();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestProjectRepositoryGetMasterProjectTypeValidList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = MasterProjectTypeMockData.GetMockDataMasterProjectTypeListDataset();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var ds = serviceObject.GetMasterProjectTypeValidList();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -81,74 +152,75 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = ProjectMockData.GetMockDataProjectDataset();
-            mockService.Setup(m => m.GetProjectList(It.IsAny<SearchParam>())).Returns(mockData);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
             var expectedResult = ProjectMockData.GetMockDataProjectList();
 
             //ACT
-            var data = serviceObject.GetProjectList(searchParam);
-            var dt = data.Tables[0];
+            var ds = serviceObject.GetProjectList(searchParam);
+            var dt = ds.Tables[0];
             var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
             Assert.IsTrue(jsonString != "");
-            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
             Assert.IsInstanceOfType(jsonString, typeof(string));
-            Assert.IsTrue(dt.Rows.Count > 0);
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestProjectRepositoryAddOrUpdateProject_Condition1()
+        public void TestProjectRepositoryAddOrUpdateProject()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = ProjectMockData.GetMockDataProject();
+            var mockDataProject = ProjectMockData.GetMockDataProject();
+            var mockDataLatestId = ProjectMockData.GetLatestId();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateProject(It.IsAny<Project>()));
-            mockService.Setup(m => m.AddProjectRoles(It.IsAny<string>(), It.IsAny<int>()));
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockDataLatestId);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.AddOrUpdateProject(mockdata, mockDataUserContext);
+            var ds = serviceObject.AddOrUpdateProject(mockDataProject);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            mockService.Verify(m => m.GetLatestId(), Times.Never);
-            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>()));
-            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>()), Times.Once);
-            mockService.Verify(m => m.AddProjectRoles(It.IsAny<string>(), It.IsAny<int>()));
-            mockService.Verify(m => m.AddProjectRoles(It.IsAny<string>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestProjectRepositoryAddOrUpdateProject_Condition2()
+        public void TestProjectRepositoryAddProjectRoles()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = ProjectMockData.GetMockDataProject();
+            var mockdata = Helper.ObjectToXml(MasterRoleMockData.GetMockDataMasterProjectRoleList());
             var mockdata1 = ProjectMockData.GetLatestId();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateProject(It.IsAny<Project>()));
-            mockService.Setup(m => m.AddProjectRoles(It.IsAny<string>(), It.IsAny<int>()));
-            mockService.Setup(m => m.GetLatestId()).Returns(mockdata1);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            mockdata.Id = 0;
-            serviceObject.AddOrUpdateProject(mockdata, mockDataUserContext);
+            serviceObject.AddProjectRoles(mockdata, 1);
 
             //ASSERT
-            mockService.Verify(m => m.GetLatestId());
-            mockService.Verify(m => m.GetLatestId(), Times.Once);
-            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>()));
-            mockService.Verify(m => m.AddOrUpdateProject(It.IsAny<Project>()), Times.Once);
-            mockService.Verify(m => m.AddProjectRoles(It.IsAny<string>(), It.IsAny<int>()));
-            mockService.Verify(m => m.AddProjectRoles(It.IsAny<string>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 

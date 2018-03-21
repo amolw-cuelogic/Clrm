@@ -11,9 +11,9 @@ namespace Cuelogic.Clrm.Repository.Interface
 
         DataSet GetMasterOrganizationRole(int masterOrganizationRoleId);
 
-        void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
+        void SaveMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole);
 
-        void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole, UserContext userCtx);
+        void UpdateMasterOrganizationRole(MasterOrganizationRole masterOrganizationRole);
 
         void MarkMasterOrganizationRoleInvalid(int masterOrganizationRoleId, int employeeId);
     }

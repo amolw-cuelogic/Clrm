@@ -7,15 +7,17 @@ using Cuelogic.Clrm.Common;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
 using Cuelogic.Clrm.DataAccess.Interface;
+using Cuelogic.Clrm.Model.CommonModel;
+using System.Data;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
     public class UserGroupRepositoryTest
     {
-        private Mock<IUserGroupDataAccess> mockService = new Mock<IUserGroupDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private UserGroupRepository serviceObject = new UserGroupRepository();
-        private string _dependencyField = "_userGroupDataAcces";
+        private string _dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - User Group";
 
         [TestMethod]
@@ -25,16 +27,24 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = EmployeeMockData.GetMockDataEmployeeListDataset();
-            mockService.Setup(m => m.GetEmployeeList()).Returns(mockData);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetEmployeeList();
+            var ds = serviceObject.GetEmployeeList();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<Employee>));
-            Assert.IsTrue(data.Count > 0);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -44,16 +54,24 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterGroupMockData.GetMockDataMasterGroupListDataset();
-            mockService.Setup(m => m.GetGroupList()).Returns(mockData);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetGroupList();
+            var ds = serviceObject.GetGroupList();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<IdentityGroup>));
-            Assert.IsTrue(data.Count > 0);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -63,16 +81,24 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = EmployeeMockData.GetMockDataEmployeeListDataset();
-            mockService.Setup(m => m.GetIdentityGroupMembers(It.IsAny<int>())).Returns(mockData);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetIdentityGroupMembers(1);
+            var ds = serviceObject.GetIdentityGroupMembers(1);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(List<Employee>));
-            Assert.IsTrue(data.Count > 0);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -81,17 +107,17 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = UserGroupMockData.GetIdentityEmployeeGroupList();
+            var mockData = Helper.ObjectToXml(UserGroupMockData.GetIdentityEmployeeGroupList());
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.InsertGroupUsers(It.IsAny<string>()));
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.InsertGroupUsers(mockData, mockDataUserContext);
+            serviceObject.InsertGroupUsers(mockData);
 
             //ASSERT
-            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<string>()));
-            mockService.Verify(m => m.InsertGroupUsers(It.IsAny<string>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
     }

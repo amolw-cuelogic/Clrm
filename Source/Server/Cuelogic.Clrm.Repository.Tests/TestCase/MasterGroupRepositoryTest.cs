@@ -14,9 +14,9 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
     [TestClass]
     public class MasterGroupRepositoryTest
     {
-        private Mock<IMasterGroupDataAccess> mockService = new Mock<IMasterGroupDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private MasterGroupRepository serviceObject = new MasterGroupRepository();
-        private string dependencyField = "_masterGroupDataAccess";
+        private string _dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - Master Group";
 
         [TestMethod]
@@ -26,67 +26,106 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterGroupMockData.GetMockDataMasterGroupListDataset();
-            mockService.Setup(m => m.GetIdentityGroupList(It.IsAny<SearchParam>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
 
             //ACT
-            var data = serviceObject.GetIdentityGroupList(searchParam);
-            var dt = data.Tables[0];
-            var jsonStr = dt.ToJsonString();
+            var ds = serviceObject.GetIdentityGroupList(searchParam);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsTrue(jsonStr != "");
-            Assert.IsInstanceOfType(data, typeof(DataSet));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
-            Assert.IsInstanceOfType(jsonStr, typeof(string));
-            Assert.IsTrue(dt.Rows.Count > 0);
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterGroupRepositoryGetGroup_Condition1()
+        public void TestMasterGroupRepositoryGetGroup()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterGroupMockData.GetMockDataMasterGroupDataSet();
-            mockService.Setup(m => m.GetIdentityGroup(It.IsAny<int>())).Returns(mockData);
-            var mockData2 = MasterGroupMockData.GetMockDataEmployeeGroupRightDataset();
-            mockService.Setup(m => m.GetIdentityGroupRights(It.IsAny<int>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetGroup(1);
+            var ds = serviceObject.GetGroup(1);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            mockService.Verify(m => m.GetIdentityRightList(), Times.Never);
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(IdentityGroup));
-            Assert.IsTrue(data.Id == 1);
-            Assert.IsTrue(data.GroupRight.Count > 0);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterGroupRepositoryGetGroup_Condition2()
+        public void TestMasterGroupRepositoryGetIdentityGroupRights()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterGroupMockData.GetMockDataIdentityRightListDataSet();
-            mockService.Setup(m => m.GetIdentityRightList()).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetGroup(0);
+            var ds = serviceObject.GetIdentityGroupRights(0);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            mockService.Verify(m => m.GetIdentityGroup(It.IsAny<int>()), Times.Never);
-            mockService.Verify(m => m.GetIdentityGroupRights(It.IsAny<int>()), Times.Never);
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(IdentityGroup));
-            Assert.IsTrue(data.Id == 0);
-            Assert.IsTrue(data.GroupRight.Count > 0);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterGroupRepositoryGetIdentityRightList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = MasterGroupMockData.GetMockDataIdentityRightListDataSet();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var ds = serviceObject.GetIdentityRightList();
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -98,21 +137,43 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var mockdata = MasterGroupMockData.GetMockDataMasterGroup();
             var mockdata1 = MasterGroupMockData.GetMockDataGetLatestId();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.InsertIdentityGroup(It.IsAny<IdentityGroup>())).Returns(mockdata1);
-            mockService.Setup(m => m.InsertIdentityGroupRight(It.IsAny<string>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockdata1);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            mockdata.Id = 0;
-            serviceObject.SaveIdentityGroup(mockdata, mockDataUserContext);
+            var ds = serviceObject.SaveIdentityGroup(mockdata);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
-            mockService.Verify(m => m.UpdateIdentityGroupRight(It.IsAny<string>()), Times.Never);
-            mockService.Verify(m => m.InsertIdentityGroup(It.IsAny<IdentityGroup>()));
-            mockService.Verify(m => m.InsertIdentityGroup(It.IsAny<IdentityGroup>()), Times.Once);
-            mockService.Verify(m => m.InsertIdentityGroupRight(It.IsAny<string>()));
-            mockService.Verify(m => m.InsertIdentityGroupRight(It.IsAny<string>()), Times.Once);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterGroupRepositorySaveIdentityGroupRight()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockdata = Helper.ObjectToXml(MasterGroupMockData.GetMockDataIdentityGroupRightList());
+            var mockDataUserContext = CommonMockData.GetMockDataUserContext();
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            serviceObject.SaveIdentityGroupRight(mockdata);
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -122,26 +183,38 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockdata = MasterGroupMockData.GetMockDataMasterGroup();
-            var mockdata1 = MasterGroupMockData.GetMockDataGetLatestId();
-            var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()));
-            mockService.Setup(m => m.UpdateIdentityGroupRight(It.IsAny<string>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            var mockData = MasterGroupMockData.GetMockDataMasterGroup();
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            serviceObject.UpdateIdentityGroup(mockdata, mockDataUserContext);
+            serviceObject.UpdateIdentityGroup(mockData);
 
             //ASSERT
-            mockService.Verify(m => m.InsertIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
-            mockService.Verify(m => m.InsertIdentityGroupRight(It.IsAny<string>()), Times.Never);
-            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()));
-            mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()), Times.Once);
-            mockService.Verify(m => m.UpdateIdentityGroupRight(It.IsAny<string>()));
-            mockService.Verify(m => m.UpdateIdentityGroupRight(It.IsAny<string>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterGroupRepositoryUpdateIdentityGroupRight()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockdata = Helper.ObjectToXml(MasterGroupMockData.GetMockDataIdentityGroupRightList());
+            var mockDataUserContext = CommonMockData.GetMockDataUserContext();
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            serviceObject.UpdateIdentityGroupRight(mockdata);
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+        }
 
         [TestMethod]
         [TestCategory(_testCategory)]
@@ -149,15 +222,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.MarkGroupInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.MarkGroupInvalid(1, 1);
 
             //ASSERT
-            mockService.Verify(m => m.MarkGroupInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            mockService.Verify(m => m.MarkGroupInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 

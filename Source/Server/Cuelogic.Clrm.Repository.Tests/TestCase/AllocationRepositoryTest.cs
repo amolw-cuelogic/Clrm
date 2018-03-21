@@ -13,9 +13,9 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
     [TestClass]
     public class AllocationRepositoryTest
     {
-        private Mock<IAllocationDataAccess> mockService = new Mock<IAllocationDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private AllocationRepository serviceObject = new AllocationRepository();
-        private string dependencyField = "_allocationDataAccess";
+        private string dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - Allocation";
 
         [TestMethod]
@@ -24,37 +24,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-
-            mockService.Setup(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            
-            var mockdata1 = AllocationMockData.GetMockDataAllocationDataset();
-            mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdata1);
-
-            var mockdata = AllocationMockData.GetMockDataAllocationIdDataset();
-            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockdata);
-            
-            var mockdata2 = AllocationMockData.GetMockDataMasterRoleListDataset();
-            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockdata2);
-
-            var mockdata3 = AllocationMockData.GetMockDataAllocationSelectListDataset();
-            mockService.Setup(m => m.GetAllocationSelectList()).Returns(mockdata3);
-
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.MarkAllocationInvalid(1,1);
 
             //ASSERT
-            mockService.Verify(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            mockService.Verify(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()));
-            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()));
-            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()));
-            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetAllocationSelectList());
-            mockService.Verify(m => m.GetAllocationSelectList(), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -65,7 +43,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocationIdDataset();
-            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockdata);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockdata);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -85,17 +63,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
 
-            var mockdata1 = AllocationMockData.GetMockDataAllocationDataset();
-            mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdata1);
-
-            var mockdata = AllocationMockData.GetMockDataAllocationIdDataset();
-            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockdata);
-
-            var mockdata2 = AllocationMockData.GetMockDataMasterRoleListDataset();
-            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockdata2);
-
-            var mockdata3 = AllocationMockData.GetMockDataAllocationSelectListDataset();
-            mockService.Setup(m => m.GetAllocationSelectList()).Returns(mockdata3);
+            var mockdata = AllocationMockData.GetMockDataAllocationDataset();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockdata);
 
             privateObject.SetField(dependencyField, mockService.Object);
 
@@ -116,7 +85,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocationListDataset();
-            mockService.Setup(m => m.GetAllocationList(It.IsAny<SearchParam>())).Returns(mockdata);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockdata);
             privateObject.SetField(dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
 
@@ -139,7 +108,7 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataMasterRoleListDataset();
-            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockdata);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockdata);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -160,40 +129,38 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
 
             var mockdata = AllocationMockData.GetMockDataAllocation();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>()));
-
-            var mockdata1 = AllocationMockData.GetMockDataAllocationDataset();
-            mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdata1);
-            
-            var mockdata2 = AllocationMockData.GetMockDataMasterRoleListDataset();
-            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockdata2);
-
-            var mockdata3 = AllocationMockData.GetMockDataAllocationSelectListDataset();
-            mockService.Setup(m => m.GetAllocationSelectList()).Returns(mockdata3);
-
-            var mockdata4 = AllocationMockData.GetMockDataAllocationIdDataset();
-            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockdata4);
-
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.AddOrUpdateAllocation(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()));
-            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()));
-            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()));
-            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()), Times.Once);
-            mockService.Verify(m => m.GetAllocationSelectList());
-            mockService.Verify(m => m.GetAllocationSelectList(), Times.Once);
-            mockService.Verify(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>()));
-            mockService.Verify(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
 
         }
-        
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestAllocationRepositoryGetAllocationSelectList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockdata = AllocationMockData.GetMockDataAllocationSelectListDataset();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockdata);
+            privateObject.SetField(dependencyField, mockService.Object);
+
+            //ACT
+            var data = serviceObject.GetAllocationSelectList();
+
+            //ASSERT
+            Assert.IsNotNull(data);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
+        }
+
     }
 
 }

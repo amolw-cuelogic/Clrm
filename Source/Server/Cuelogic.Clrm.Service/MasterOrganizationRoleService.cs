@@ -50,13 +50,13 @@ namespace Cuelogic.Clrm.Service
             {
                 masterOrganizationRole.CreatedBy = userCtx.UserId;
                 masterOrganizationRole.CreatedOn = DateTime.Now.ToMySqlDateString();
-                _masterOrganizationRoleRepository.SaveMasterOrganizationRole(masterOrganizationRole, userCtx);
+                _masterOrganizationRoleRepository.SaveMasterOrganizationRole(masterOrganizationRole);
             }
             else
             {
                 masterOrganizationRole.UpdatedBy = userCtx.UserId;
                 masterOrganizationRole.UpdatedOn = DateTime.Now.ToMySqlDateString();
-                _masterOrganizationRoleRepository.UpdateMasterOrganizationRole(masterOrganizationRole, userCtx);
+                _masterOrganizationRoleRepository.UpdateMasterOrganizationRole(masterOrganizationRole);
             }
         }
     }

@@ -14,9 +14,9 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
     [TestClass]
     public class MasterDepartmentRepositoryTest
     {
-        private Mock<IMasterDepartmentDataAccess> mockService = new Mock<IMasterDepartmentDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private MasterDepartmentRepository serviceObject = new MasterDepartmentRepository();
-        private string dependencyField = "_masterDepartmentDataAccess";
+        private string _dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - Master Department";
 
         [TestMethod]
@@ -25,15 +25,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.MarkMasterDepartmentInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.MarkMasterDepartmentInvalid(1, 1);
 
             //ASSERT
-            mockService.Verify(m => m.MarkMasterDepartmentInvalid(It.IsAny<int>(), It.IsAny<int>()));
-            mockService.Verify(m => m.MarkMasterDepartmentInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -44,16 +44,24 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterDepartmentMockData.GetMockDataMasterDepartmentDataset();
-            mockService.Setup(m => m.GetMasterDepartment(It.IsAny<int>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
-            var data = serviceObject.GetMasterDepartment(1);
+            var ds = serviceObject.GetMasterDepartment(1);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsInstanceOfType(data, typeof(MasterDepartment));
-            Assert.IsTrue(data.Id == 1);
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
+            Assert.IsInstanceOfType(dt, typeof(DataTable));
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -63,22 +71,25 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterDepartmentMockData.GetMockDataMasterDepartmentListDataset();
-            mockService.Setup(m => m.GetMasterDepartmentList(It.IsAny<SearchParam>())).Returns(mockData);
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
             var searchParam = new SearchParam() { FilterText = "", Page = 0, Show = 10 };
 
             //ACT
-            var data = serviceObject.GetMasterDepartmentList(searchParam);
-            var dt = data.Tables[0];
-            var jsonStr = dt.ToJsonString();
+            var ds = serviceObject.GetMasterDepartmentList(searchParam);
+            var dt = ds.Tables[0];
+            var jsonString = dt.ToJsonString();
 
             //ASSERT
-            Assert.IsNotNull(data);
-            Assert.IsTrue(jsonStr != "");
-            Assert.IsInstanceOfType(data, typeof(DataSet));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(ds);
+            Assert.IsTrue(jsonString != "");
+            Assert.IsInstanceOfType(ds, typeof(DataSet));
             Assert.IsInstanceOfType(dt, typeof(DataTable));
-            Assert.IsInstanceOfType(jsonStr, typeof(string));
-            Assert.IsTrue(dt.Rows.Count > 0);
+            Assert.IsInstanceOfType(jsonString, typeof(string));
+            Assert.IsTrue(ds.Tables[0].Rows.Count > 0);
         }
 
         [TestMethod]
@@ -89,17 +100,16 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             mockdata.Id = 0;
             serviceObject.SaveMasterDepartment(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()), Times.Never);
-            mockService.Verify(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()));
-            mockService.Verify(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -111,16 +121,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterDepartmentMockData.GetMockDataMasterDepartment();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()));
-            privateObject.SetField(dependencyField, mockService.Object);
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.UpdateMasterDepartment(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.InsertMasterDepartment(It.IsAny<MasterDepartment>()), Times.Never);
-            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()));
-            mockService.Verify(m => m.UpdateMasterDepartment(It.IsAny<MasterDepartment>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
     }

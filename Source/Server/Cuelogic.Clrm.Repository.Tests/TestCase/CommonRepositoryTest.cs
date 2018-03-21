@@ -9,15 +9,16 @@ using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service;
 using Cuelogic.Clrm.Service.Interface;
 using Cuelogic.Clrm.DataAccess.Interface;
+using Cuelogic.Clrm.Model.CommonModel;
 
 namespace Cuelogic.Clrm.Repository.Tests.TestCase
 {
     [TestClass]
     public class CommonRepositoryTest
     {
-        private Mock<ICommonDataAccess> mockService = new Mock<ICommonDataAccess>();
+        private Mock<IDataAccess> mockService = new Mock<IDataAccess>();
         private CommonRepository serviceObject = new CommonRepository();
-        private string _dependencyField = "_commonDataAccess";
+        private string _dependencyField = "_dataAccess";
         private const string _testCategory = "Repository - Common";
 
         [TestMethod]
@@ -26,8 +27,8 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            var mockData = AllocationMockData.GetMockDataAllocationSelectListDataset();
-            mockService.Setup(m => m.GetEmployeeAllocationList(It.IsAny<int>())).Returns(mockData);
+            var mockData = AllocationMockData.GetMockDataAllocationListDataset();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
@@ -35,10 +36,13 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             var jsonString = data.Tables[0].ToJsonString();
 
             //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
             Assert.IsNotNull(data);
             Assert.IsTrue(jsonString != "");
             Assert.IsInstanceOfType(jsonString, typeof(string));
-            Assert.IsInstanceOfType(data, typeof(DataTable));
+            Assert.IsInstanceOfType(data.Tables[0], typeof(DataTable));
             Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
@@ -50,18 +54,43 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = EmployeeMockData.GetMockDataEmployeeDataset();
-            mockService.Setup(m => m.GetEmployeeDetailsByEmailId(It.IsAny<string>())).Returns(mockData);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetEmployeeDetails("john.doe@cuelogic.com");
 
             //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsTrue(data.Tables[0].Rows.Count > 0);
         }
-        
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestCommonRepositoryGetEmployeeDetailsByOrgEmpId()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = EmployeeMockData.GetMockDataEmployeeDataset();
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
+            privateObject.SetField(_dependencyField, mockService.Object);
+
+            //ACT
+            var data = serviceObject.GetEmployeeDetails("CUE346");
+
+            //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
+            Assert.IsNotNull(data);
+            Assert.IsInstanceOfType(data, typeof(DataSet));
+            Assert.IsTrue(data.Tables[0].Rows.Count > 0);
+        }
+
         [TestMethod]
         [TestCategory(_testCategory)]
         public void TestCommonRepositoryGetGroupRights()
@@ -69,13 +98,16 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterGroupMockData.GetMockDataEmployeeGroupRightDataset();
-            mockService.Setup(m => m.GetEmployeeRightList(It.IsAny<int>())).Returns(mockData);
+            mockService.Setup(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>())).Returns(mockData);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetGroupRights(1);
 
             //ASSERT
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteQuery(It.IsAny<DataAccessParameter>()), Times.Once);
+            mockService.VerifyAll();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(DataSet));
             Assert.IsTrue(data.Tables[0].Rows.Count > 0);
@@ -87,15 +119,15 @@ namespace Cuelogic.Clrm.Repository.Tests.TestCase
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
-            mockService.Setup(m => m.LogLoginTime(It.IsAny<int>()));
+            mockService.Setup(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.LogLoginTime(1);
 
             //ASSERT
-            mockService.Verify(m => m.LogLoginTime(It.IsAny<int>()));
-            mockService.Verify(m => m.LogLoginTime(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()));
+            mockService.Verify(m => m.ExecuteNonQuery(It.IsAny<DataAccessParameter>()), Times.Once);
             mockService.VerifyAll();
         }
         

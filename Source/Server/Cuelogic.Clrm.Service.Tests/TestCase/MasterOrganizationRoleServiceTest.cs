@@ -93,7 +93,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRole();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
@@ -101,9 +101,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()), Times.Never);
+            mockService.Verify(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()));
+            mockService.Verify(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -115,16 +115,16 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterOrganizationRoleMockData.GetMockDataMasterOrganizationRole();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()));
+            mockService.Setup(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()));
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()), Times.Never);
-            mockService.Verify(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()));
-            mockService.Verify(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.SaveMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()), Times.Never);
+            mockService.Verify(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()));
+            mockService.Verify(m => m.UpdateMasterOrganizationRole(It.IsAny<MasterOrganizationRole>()), Times.Once);
             mockService.VerifyAll();
         }
 

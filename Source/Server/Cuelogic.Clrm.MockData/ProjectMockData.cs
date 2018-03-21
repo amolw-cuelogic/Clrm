@@ -34,9 +34,7 @@ namespace Cuelogic.Clrm.MockData
             ds.Tables.Add(dt);
             return ds;
         }
-
-
-
+        
         public static DataSet GetMockDataMasterListDataSet()
         {
             var ds = new DataSet();
