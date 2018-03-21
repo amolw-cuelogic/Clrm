@@ -34,7 +34,7 @@ namespace Cuelogic.Clrm.MockData
             return ds;
         }
 
-        public static DataSet GetMockDataDependentListDataset()
+        public static DataSet GetMockDataMasterDependentListDataset()
         {
             var ds = new DataSet();
 
@@ -60,6 +60,78 @@ namespace Cuelogic.Clrm.MockData
             dt3.TableName = TableName.MasterOrganizationRole;
             ds.Tables.Add(dt3);
             
+            return ds;
+        }
+
+        public static DataSet GetMockDataChildDependentListDataset()
+        {
+            var ds = new DataSet();
+
+            var listEmployeeGroup = new List<IdentityEmployeeGroup>();
+            var objEmplGrp1 = new IdentityEmployeeGroup();
+            objEmplGrp1.Id = 1;
+            objEmplGrp1.EmployeeId = 1;
+            objEmplGrp1.GroupId = 2;
+            objEmplGrp1.IsValid = true;
+            objEmplGrp1.CreatedBy = 1;
+            objEmplGrp1.CreatedOn = "2018-02-02";
+            listEmployeeGroup.Add(objEmplGrp1);
+            var jsonString = Helper.ObjectToJson(listEmployeeGroup);
+            var dt = Helper.JsonStringToDatatable(jsonString);
+            dt.TableName = TableName.IdentityEmployeeGroup;
+            ds.Tables.Add(dt);
+
+            var list0 = new List<EmployeeDepartment>();
+            var obj01 = new EmployeeDepartment();
+            obj01.Id = 1;
+            obj01.EmployeeId = 1;
+            obj01.DepartmentId = 2;
+            obj01.IsValid = true;
+            obj01.CreatedBy = 1;
+            obj01.CreatedOn = "2018-02-02";
+            list0.Add(obj01);
+            var jsonString1 = Helper.ObjectToJson(list0);
+            var dt1 = Helper.JsonStringToDatatable(jsonString1);
+            dt1.TableName = TableName.EmployeeDepartment;
+            ds.Tables.Add(dt1);
+
+
+            var list = new List<EmployeeSkill>();
+            var obj1 = new EmployeeSkill();
+            obj1.Id = 1;
+            obj1.EmployeeId = 1;
+            obj1.SkillId = 2;
+            obj1.IsValid = true;
+            obj1.CreatedBy = 1;
+            obj1.CreatedOn = "2018-02-02";
+            list.Add(obj1);
+            var obj2 = new EmployeeSkill();
+            obj2.Id = 2;
+            obj2.EmployeeId = 1;
+            obj2.SkillId = 4;
+            obj2.IsValid = true;
+            obj2.CreatedBy = 1;
+            obj2.CreatedOn = "2018-02-02";
+            list.Add(obj2);
+            var jsonString2 = Helper.ObjectToJson(list);
+            var dt2 = Helper.JsonStringToDatatable(jsonString2);
+            dt2.TableName = TableName.EmployeeSkill;
+            ds.Tables.Add(dt2);
+
+            var list02 = new List<EmployeeOrganizationRole>();
+            var obj11 = new EmployeeOrganizationRole();
+            obj11.Id = 1;
+            obj11.EmployeeId = 1;
+            obj11.RoleId = 2;
+            obj11.IsValid = true;
+            obj11.CreatedBy = 1;
+            obj11.CreatedOn = "2018-02-02";
+            list02.Add(obj11);
+            var jsonString3 = Helper.ObjectToJson(list02);
+            var dt3 = Helper.JsonStringToDatatable(jsonString3);
+            dt3.TableName = TableName.EmployeeOrganizationRole;
+            ds.Tables.Add(dt3);
+
             return ds;
         }
 

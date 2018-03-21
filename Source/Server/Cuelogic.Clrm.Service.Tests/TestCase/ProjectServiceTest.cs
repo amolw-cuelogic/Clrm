@@ -42,13 +42,24 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = ProjectMockData.GetMockDataProjectDataset();
+            var mockDataMasterList = ProjectMockData.GetMockDataMasterListDataSet();
+            var mockDataProjectType = MasterProjectTypeMockData.GetMockDataMasterProjectTypeListDataset();
             mockService.Setup(m => m.GetProject(It.IsAny<int>())).Returns(mockData);
+            mockService.Setup(m => m.GetProjectSelectList()).Returns(mockDataMasterList);
+            mockService.Setup(m => m.GetMasterProjectTypeValidList()).Returns(mockDataProjectType);
             privateObject.SetField(_dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetItem(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetProject(It.IsAny<int>()));
+            mockService.Verify(m => m.GetProject(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetProjectSelectList());
+            mockService.Verify(m => m.GetProjectSelectList(), Times.Once);
+            mockService.Verify(m => m.GetMasterProjectTypeValidList());
+            mockService.Verify(m => m.GetMasterProjectTypeValidList(), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(Project));
             Assert.IsTrue(data.Id == 1);
@@ -71,6 +82,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetProjectList(It.IsAny<SearchParam>()));
+            mockService.Verify(m => m.GetProjectList(It.IsAny<SearchParam>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));

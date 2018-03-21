@@ -15,7 +15,7 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
     {
         private Mock<IMasterSkillRepository> mockService = new Mock<IMasterSkillRepository>();
         private MasterSkillService serviceObject = new MasterSkillService();
-        private string _dependencyField = "_IMasterSkillRepository";
+        private string _dependencyField = "_masterSkillRepository";
         private const string _testCategory = "Service - Master Skill";
 
         [TestMethod]
@@ -50,6 +50,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetItem(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetMasterSkill(It.IsAny<int>()));
+            mockService.Verify(m => m.GetMasterSkill(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(MasterSkill));
             Assert.IsTrue(data.Id == 1);
@@ -72,6 +75,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetMasterSkillList(It.IsAny<SearchParam>()));
+            mockService.Verify(m => m.GetMasterSkillList(It.IsAny<SearchParam>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));

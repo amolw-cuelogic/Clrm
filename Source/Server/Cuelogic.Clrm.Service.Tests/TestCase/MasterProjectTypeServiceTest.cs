@@ -49,6 +49,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetItem(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetMasterProjectType(It.IsAny<int>()));
+            mockService.Verify(m => m.GetMasterProjectType(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(MasterProjectType));
             Assert.IsTrue(data.Id == 1);
@@ -71,6 +74,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetMasterProjectTypeList(It.IsAny<SearchParam>()));
+            mockService.Verify(m => m.GetMasterProjectTypeList(It.IsAny<SearchParam>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));

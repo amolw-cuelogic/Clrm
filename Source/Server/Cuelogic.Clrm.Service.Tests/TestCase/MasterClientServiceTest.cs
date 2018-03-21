@@ -54,6 +54,13 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetItem(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetCountryList());
+            mockService.Verify(m => m.GetCountryList(), Times.Once);
+            mockService.Verify(m => m.GetCityList(It.IsAny<int>()));
+            mockService.Verify(m => m.GetCityList(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetMasterClient(It.IsAny<int>()));
+            mockService.Verify(m => m.GetMasterClient(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(MasterClient));
             Assert.IsTrue(data.Id == 1);
@@ -76,6 +83,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetMasterClientList(It.IsAny<SearchParam>()));
+            mockService.Verify(m => m.GetMasterClientList(It.IsAny<SearchParam>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));
@@ -97,6 +107,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetCityList(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetCityList(It.IsAny<int>()));
+            mockService.Verify(m => m.GetCityList(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(List<MasterCity>));
             Assert.IsTrue(data.Count > 1);

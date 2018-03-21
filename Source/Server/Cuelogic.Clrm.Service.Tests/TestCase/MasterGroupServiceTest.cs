@@ -34,6 +34,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetIdentityGroupList(It.IsAny<SearchParam>()));
+            mockService.Verify(m => m.GetIdentityGroupList(It.IsAny<SearchParam>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));
@@ -43,18 +46,28 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterGroupServiceGetItem()
+        public void TestMasterGroupServiceGetItem_Condition1()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockData = MasterGroupMockData.GetMockDataMasterGroupDataSet();
+            var mockDataGroupRights = MasterGroupMockData.GetMockDataEmployeeGroupRightDataset();
+            var mockDataIdentityRightList = MasterGroupMockData.GetMockDataIdentityRightListDataSet();
             mockService.Setup(m => m.GetGroup(It.IsAny<int>())).Returns(mockData);
+            mockService.Setup(m => m.GetIdentityGroupRights(It.IsAny<int>())).Returns(mockDataGroupRights);
+            mockService.Setup(m => m.GetIdentityRightList()).Returns(mockDataIdentityRightList);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetItem(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetGroup(It.IsAny<int>()));
+            mockService.Verify(m => m.GetGroup(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetIdentityGroupRights(It.IsAny<int>()));
+            mockService.Verify(m => m.GetIdentityGroupRights(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetIdentityRightList(), Times.Never);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(IdentityGroup));
             Assert.IsTrue(data.Id == 1);
@@ -62,13 +75,43 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterGroupServiceSave()
+        public void TestMasterGroupServiceGetItem_Condition2()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockData = MasterGroupMockData.GetMockDataMasterGroupDataSet();
+            var mockDataGroupRights = MasterGroupMockData.GetMockDataEmployeeGroupRightDataset();
+            var mockDataIdentityRightList = MasterGroupMockData.GetMockDataIdentityRightListDataSet();
+            mockService.Setup(m => m.GetGroup(It.IsAny<int>())).Returns(mockData);
+            mockService.Setup(m => m.GetIdentityGroupRights(It.IsAny<int>())).Returns(mockDataGroupRights);
+            mockService.Setup(m => m.GetIdentityRightList()).Returns(mockDataIdentityRightList);
+            privateObject.SetField(dependencyField, mockService.Object);
+
+            //ACT
+            var data = serviceObject.GetItem(0);
+
+            //ASSERT
+            mockService.Verify(m => m.GetGroup(It.IsAny<int>()), Times.Never);
+            mockService.Verify(m => m.GetIdentityGroupRights(It.IsAny<int>()), Times.Never);
+            mockService.Verify(m => m.GetIdentityRightList());
+            mockService.Verify(m => m.GetIdentityRightList(), Times.Once);
+            mockService.Verify();
+            Assert.IsNotNull(data);
+            Assert.IsInstanceOfType(data, typeof(IdentityGroup));
+            Assert.IsTrue(data.Id == 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterGroupServiceSave_Condition1()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterGroupMockData.GetMockDataMasterGroup();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            mockService.Setup(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()));
+            var mockDataLatestId = MasterGroupMockData.GetMockDataGetLatestId();
+            mockService.Setup(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>())).Returns(mockDataLatestId);
+            mockService.Setup(m => m.SaveIdentityGroupRight(It.IsAny<string>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -77,29 +120,36 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
 
             //ASSERT
             mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
+            mockService.Verify(m => m.UpdateIdentityGroupRight(It.IsAny<string>()), Times.Never);
             mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()));
             mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()), Times.Once);
+            mockService.Verify(m => m.SaveIdentityGroupRight(It.IsAny<string>()));
+            mockService.Verify(m => m.SaveIdentityGroupRight(It.IsAny<string>()), Times.Once);
             mockService.VerifyAll();
         }
 
         [TestMethod]
         [TestCategory(_testCategory)]
-        public void TestMasterGroupServiceUpdate()
+        public void TestMasterGroupServiceSave_Condition2()
         {
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = MasterGroupMockData.GetMockDataMasterGroup();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
             mockService.Setup(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()));
+            mockService.Setup(m => m.UpdateIdentityGroupRight(It.IsAny<string>()));
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
 
             //ASSERT
-            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
             mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()));
             mockService.Verify(m => m.UpdateIdentityGroup(It.IsAny<IdentityGroup>()), Times.Once);
+            mockService.Verify(m => m.UpdateIdentityGroupRight(It.IsAny<string>()));
+            mockService.Verify(m => m.UpdateIdentityGroupRight(It.IsAny<string>()), Times.Once);
+            mockService.Verify(m => m.SaveIdentityGroup(It.IsAny<IdentityGroup>()), Times.Never);
+            mockService.Verify(m => m.SaveIdentityGroupRight(It.IsAny<string>()), Times.Never);
             mockService.VerifyAll();
         }
 

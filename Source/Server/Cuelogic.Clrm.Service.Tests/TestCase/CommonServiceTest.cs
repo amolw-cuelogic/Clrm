@@ -33,6 +33,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetEmployeeAllocationList(It.IsAny<int>()));
+            mockService.Verify(m => m.GetEmployeeAllocationList(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));
@@ -54,6 +57,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetEmployeeByEmail("john.doe@cuelogic.com");
 
             //ASSERT
+            mockService.Verify(m => m.GetEmployeeDetails(It.IsAny<string>()));
+            mockService.Verify(m => m.GetEmployeeDetails(It.IsAny<string>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(Employee));
             Assert.IsTrue(data.Email == "john.doe@cuelogic.com");
@@ -73,6 +79,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetEmployeeById(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetItem(It.IsAny<int>()));
+            mockService.Verify(m => m.GetItem(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(EmployeeVm));
             Assert.IsTrue(data.Employee.Email == "john.doe@cuelogic.com");
@@ -96,6 +105,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetEmployeeRights(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetGroupRights(It.IsAny<int>()));
+            mockService.Verify(m => m.GetGroupRights(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(List<IdentityGroupRight>));
             Assert.IsTrue(data.Count > 0);

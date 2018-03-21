@@ -25,6 +25,14 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             //ARRANGE
             var privateObject = new PrivateObject(serviceObject);
             mockService.Setup(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()));
+            var mockDataAllocation = AllocationMockData.GetMockDataAllocationDataset();
+            mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockDataAllocation);
+            var mockDataAllocationSum = AllocationMockData.GetMockDataAllocationIdDataset();
+            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockDataAllocationSum);
+            var mockDataProjectRole = AllocationMockData.GetMockDataMasterRoleListDataset();
+            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockDataProjectRole);
+            var mockDataAllocationSelectList = AllocationMockData.GetMockDataAllocationSelectListDataset();
+            mockService.Setup(m => m.GetAllocationSelectList()).Returns(mockDataAllocationSelectList);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
@@ -33,6 +41,14 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             //ASSERT
             mockService.Verify(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()));
             mockService.Verify(m => m.MarkAllocationInvalid(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()));
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocationSelectList());
+            mockService.Verify(m => m.GetAllocationSelectList(), Times.Once);
             mockService.VerifyAll();
         }
 
@@ -50,6 +66,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetAllocationSum(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(int));
             Assert.IsTrue(data > 0);
@@ -65,12 +84,27 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocationDataset();
             mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdata);
+            var mockDataAllocationSum = AllocationMockData.GetMockDataAllocationIdDataset();
+            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockDataAllocationSum);
+            var mockDataProjectRole = AllocationMockData.GetMockDataMasterRoleListDataset();
+            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockDataProjectRole);
+            var mockDataAllocationSelectList = AllocationMockData.GetMockDataAllocationSelectListDataset();
+            mockService.Setup(m => m.GetAllocationSelectList()).Returns(mockDataAllocationSelectList);
             privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             var data = serviceObject.GetItem(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()));
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocationSelectList());
+            mockService.Verify(m => m.GetAllocationSelectList(), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(Allocation));
             Assert.IsTrue(data.Id == 1);
@@ -94,6 +128,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var dt = Helper.JsonStringToDatatable(data);
 
             //ASSERT
+            mockService.Verify(m => m.GetAllocationList(It.IsAny<SearchParam>()));
+            mockService.Verify(m => m.GetAllocationList(It.IsAny<SearchParam>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsTrue(data != "");
             Assert.IsInstanceOfType(data, typeof(string));
@@ -115,6 +152,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetProjectRolebyId(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()));
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(List<MasterRole>));
             Assert.IsTrue(data.Count > 0);
@@ -128,8 +168,16 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var privateObject = new PrivateObject(serviceObject);
             var mockdata = AllocationMockData.GetMockDataAllocation();
             var mockDataUserContext = CommonMockData.GetMockDataUserContext();
-            privateObject.SetField(dependencyField, mockService.Object);
             mockService.Setup(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>(), It.IsAny<UserContext>()));
+            var mockdataAllocation = AllocationMockData.GetMockDataAllocationDataset();
+            mockService.Setup(m => m.GetAllocation(It.IsAny<int>())).Returns(mockdataAllocation);
+            var mockDataAllocationSum = AllocationMockData.GetMockDataAllocationIdDataset();
+            mockService.Setup(m => m.GetAllocationSum(It.IsAny<int>())).Returns(mockDataAllocationSum);
+            var mockDataProjectRole = AllocationMockData.GetMockDataMasterRoleListDataset();
+            mockService.Setup(m => m.GetProjectRolebyId(It.IsAny<int>())).Returns(mockDataProjectRole);
+            var mockDataAllocationSelectList = AllocationMockData.GetMockDataAllocationSelectListDataset();
+            mockService.Setup(m => m.GetAllocationSelectList()).Returns(mockDataAllocationSelectList);
+            privateObject.SetField(dependencyField, mockService.Object);
 
             //ACT
             serviceObject.Save(mockdata, mockDataUserContext);
@@ -137,6 +185,14 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             //ASSERT
             mockService.Verify(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>(), It.IsAny<UserContext>()));
             mockService.Verify(m => m.AddOrUpdateAllocation(It.IsAny<Allocation>(), It.IsAny<UserContext>()), Times.Once);
+            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocation(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()));
+            mockService.Verify(m => m.GetAllocationSum(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()));
+            mockService.Verify(m => m.GetProjectRolebyId(It.IsAny<int>()), Times.Once);
+            mockService.Verify(m => m.GetAllocationSelectList());
+            mockService.Verify(m => m.GetAllocationSelectList(), Times.Once);
             mockService.VerifyAll();
 
         }

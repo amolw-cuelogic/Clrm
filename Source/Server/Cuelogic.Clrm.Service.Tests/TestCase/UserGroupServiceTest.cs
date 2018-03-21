@@ -30,6 +30,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetEmployeeList();
 
             //ASSERT
+            mockService.Verify(m => m.GetEmployeeList());
+            mockService.Verify(m => m.GetEmployeeList(), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(List<Employee>));
             Assert.IsTrue(data.Count > 0);
@@ -49,6 +52,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetGroupList();
 
             //ASSERT
+            mockService.Verify(m => m.GetGroupList());
+            mockService.Verify(m => m.GetGroupList(), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(List<IdentityGroup>));
             Assert.IsTrue(data.Count > 0);
@@ -68,6 +74,9 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetIdentityGroupMembers(1);
 
             //ASSERT
+            mockService.Verify(m => m.GetIdentityGroupMembers(It.IsAny<int>()));
+            mockService.Verify(m => m.GetIdentityGroupMembers(It.IsAny<int>()), Times.Once);
+            mockService.Verify();
             Assert.IsNotNull(data);
             Assert.IsInstanceOfType(data, typeof(List<Employee>));
             Assert.IsTrue(data.Count > 0);

@@ -37,7 +37,7 @@ namespace Cuelogic.Clrm.MockData
 
 
 
-        public static DataSet GetMockDataMasterList()
+        public static DataSet GetMockDataMasterListDataSet()
         {
             var ds = new DataSet();
 

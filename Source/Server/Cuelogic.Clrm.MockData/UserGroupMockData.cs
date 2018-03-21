@@ -17,6 +17,10 @@ namespace Cuelogic.Clrm.MockData
             var data = GetEmployeeList();
             var jsonString = Helper.ObjectToJson(data);
             var dt = Helper.JsonStringToDatatable(jsonString);
+            dt.Columns.Remove("IdentityEmployeeGroupList");
+            dt.Columns.Remove("EmployeeDepartmentList");
+            dt.Columns.Remove("EmployeeOrganizationRoleList");
+            dt.Columns.Remove("EmployeeSkillList");
             ds.Tables.Add(dt);
             return ds;
         }
@@ -33,6 +37,7 @@ namespace Cuelogic.Clrm.MockData
             var data = GetGroupList();
             var jsonString = Helper.ObjectToJson(data);
             var dt = Helper.JsonStringToDatatable(jsonString);
+            dt.Columns.Remove("GroupRight");
             ds.Tables.Add(dt);
             return ds;
         }
@@ -49,6 +54,10 @@ namespace Cuelogic.Clrm.MockData
             var data = GetIdentityGroupMemberList();
             var jsonString = Helper.ObjectToJson(data);
             var dt = Helper.JsonStringToDatatable(jsonString);
+            dt.Columns.Remove("IdentityEmployeeGroupList");
+            dt.Columns.Remove("EmployeeDepartmentList");
+            dt.Columns.Remove("EmployeeOrganizationRoleList");
+            dt.Columns.Remove("EmployeeSkillList");
             ds.Tables.Add(dt);
             return ds;
         }
