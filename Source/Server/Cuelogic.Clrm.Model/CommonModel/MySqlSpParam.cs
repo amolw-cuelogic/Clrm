@@ -18,14 +18,16 @@ namespace Cuelogic.Clrm.Model.CommonModel
         {
             StoreProcedureParameter = new List<Param>();
             TableName = new List<string>();
+            StoreProcedureName = "";
+            SqlQuery = "";
         }
+        public string SqlQuery { get; set; }
         public string StoreProcedureName { get; set; }
-        public MySqlParameter[] StoreProcedureParam { get; set; }
 
         public List<Param> StoreProcedureParameter { get; set; }
         public List<string> TableName { get; set; }
 
-        public string ToSqlCommandd()
+        public string ToSqlCommand()
         {
             string sqlCmd = "";
             sqlCmd = "call " + StoreProcedureName + "(";
@@ -41,22 +43,6 @@ namespace Cuelogic.Clrm.Model.CommonModel
             sqlCmd += ")";
             return sqlCmd;
         }
-
-        public string ToSqlCommand()
-        {
-            string sqlCmd = "";
-            sqlCmd = "call " + StoreProcedureName + "(";
-            if (StoreProcedureParam != null)
-            {
-                for (var i = 0; i < StoreProcedureParam.Count(); i++)
-                {
-                    sqlCmd += StoreProcedureParam[i].ParameterName;
-                    if (i < StoreProcedureParam.Count() - 1)
-                        sqlCmd += ",";
-                }
-            }
-            sqlCmd += ")";
-            return sqlCmd;
-        }
+        
     }
 }
