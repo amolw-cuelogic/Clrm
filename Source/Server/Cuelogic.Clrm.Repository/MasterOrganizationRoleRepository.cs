@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.Repository
         private readonly IDataAccess _dataAccess;
         public MasterOrganizationRoleRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
         }
 
         public DataSet GetMasterOrganizationRole(int masterOrganizationRoleId)

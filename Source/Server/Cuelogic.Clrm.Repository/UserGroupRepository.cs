@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.Repository
 
         public UserGroupRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
 
         }
         public DataSet GetEmployeeList()

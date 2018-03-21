@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.Repository
 
         public AllocationRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
         }
         public void AddOrUpdateAllocation(Allocation allocation, UserContext userContext)
         {

@@ -16,7 +16,7 @@ namespace Cuelogic.Clrm.Repository
         
         public EmployeeRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
         }
 
         public DataSet GetChildListForEmployees(int employeeId)

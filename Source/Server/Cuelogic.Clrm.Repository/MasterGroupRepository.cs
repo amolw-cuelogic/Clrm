@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.Repository
         private readonly IDataAccess _dataAccess;
         public MasterGroupRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
         }
         public DataSet GetIdentityGroupList(SearchParam searchParam)
         {

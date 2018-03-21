@@ -15,7 +15,7 @@ namespace Cuelogic.Clrm.Repository
         private readonly IDataAccess _dataAccess;
         public MasterClientRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
         }
 
         public void AddOrUpdateMasterClient(MasterClient masterClient, UserContext userCtx)

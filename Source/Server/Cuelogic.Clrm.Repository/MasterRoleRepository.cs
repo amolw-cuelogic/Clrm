@@ -14,7 +14,7 @@ namespace Cuelogic.Clrm.Repository
         private readonly IDataAccess _dataAccess;
         public MasterRoleRepository()
         {
-            _dataAccess = new MySqlDataAccess();
+            _dataAccess = DataAccessFactory.GetDataAccess();
         }
         public void AddOrUpdateMasterProjectRole(MasterRole masterProjectRole)
         {
