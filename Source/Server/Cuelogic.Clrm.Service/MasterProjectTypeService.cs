@@ -23,7 +23,7 @@ namespace Cuelogic.Clrm.Service
         public MasterProjectType GetItem(int masterProjectTypeId)
         {
 
-            if (masterProjectTypeId != 0)
+            if (masterProjectTypeId > 0)
             {
                 var ds = _masterProjectTypeRepository.GetMasterProjectType(masterProjectTypeId);
                 var masterProjecType = ds.Tables[0].ToModel<MasterProjectType>();

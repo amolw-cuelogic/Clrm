@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Cuelogic.Clrm.Common.AppConstants;
+using static Cuelogic.Clrm.Common.CustomException;
 
 namespace Cuelogic.Clrm.DataAccess
 {
@@ -21,9 +22,7 @@ namespace Cuelogic.Clrm.DataAccess
                     dataAccess = new MySqlDataAccess();
                     break;
                 default:
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Error, 
-                        CustomError.NoConcreteImplementation));
-                    break;
+                    throw new ClientWarning(CustomError.NoConcreteImplementation);
             }
             return dataAccess;
         }

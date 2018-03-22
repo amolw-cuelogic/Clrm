@@ -160,6 +160,7 @@
     <Compile Include="TestCase\AllocationControllerTest.cs" />
     <Compile Include="TestCase\MyProfileControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCase\ApiBaseControllerTest.cs" />
     <Compile Include="TestCase\UserGroupControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -213,6 +213,8 @@ namespace Cuelogic.Clrm.Common
         {
             public const string NoConcreteImplementation = "Concrete implentation not implemented for given database";
             public const string InValidId = "In Valid Id";
+            public const string NoRecordFound = "No record found";
+            
         }
     }
 }

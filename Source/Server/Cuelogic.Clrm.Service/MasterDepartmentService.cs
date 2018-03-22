@@ -18,13 +18,11 @@ namespace Cuelogic.Clrm.Service
         public void Delete(int DepartmentId, int employeeId)
         {
             _masterDepartmentRepository.MarkMasterDepartmentInvalid(DepartmentId, employeeId);
-
         }
 
         public MasterDepartment GetItem(int departmentId)
         {
-
-            if (departmentId != 0)
+            if (departmentId > 0)
             {
                 var masterDepartmentDs = _masterDepartmentRepository.GetMasterDepartment(departmentId);
                 var masterDepartment = masterDepartmentDs.Tables[0].ToModel<MasterDepartment>();
@@ -34,7 +32,6 @@ namespace Cuelogic.Clrm.Service
             {
                 return new MasterDepartment();
             }
-
         }
 
         public string GetList(SearchParam searchParam)
@@ -42,7 +39,6 @@ namespace Cuelogic.Clrm.Service
             DataSet ds = _masterDepartmentRepository.GetMasterDepartmentList(searchParam);
             var masterDepartmentJson = ds.Tables[0].ToJsonString();
             return masterDepartmentJson;
-
         }
 
         public void Save(MasterDepartment masterDepartment, UserContext userCtx)
@@ -51,7 +47,6 @@ namespace Cuelogic.Clrm.Service
                 _masterDepartmentRepository.SaveMasterDepartment(masterDepartment, userCtx);
             else
                 _masterDepartmentRepository.UpdateMasterDepartment(masterDepartment, userCtx);
-
         }
     }
 }

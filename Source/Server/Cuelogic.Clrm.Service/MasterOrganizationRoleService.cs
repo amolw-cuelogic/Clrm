@@ -25,7 +25,7 @@ namespace Cuelogic.Clrm.Service
         public MasterOrganizationRole GetItem(int masterOrganizationRoleId)
         {
 
-            if (masterOrganizationRoleId != 0)
+            if (masterOrganizationRoleId > 0)
             {
                 var masterOrganizationRoleDs = _masterOrganizationRoleRepository.GetMasterOrganizationRole(masterOrganizationRoleId);
                 var masterDepartment = masterOrganizationRoleDs.Tables[0].ToModel<MasterOrganizationRole>();

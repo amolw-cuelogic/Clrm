@@ -7,6 +7,7 @@ using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
 using static Cuelogic.Clrm.Common.AppConstants;
 using System;
+using static Cuelogic.Clrm.Common.CustomException;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -34,7 +35,7 @@ namespace Cuelogic.Clrm.Service
             employeeVm.MasterSkillList = employeeVmDs.Tables[TableName.MasterSkill].ToList<MasterSkill>();
             employeeVm.MasterOrganizationRoleList = employeeVmDs.Tables[TableName.MasterOrganizationRole].ToList<MasterOrganizationRole>();
 
-            if (employeeId != 0)
+            if (employeeId > 0)
             {
                 var employeeDs = _employeeRepository.GetEmployee(employeeId);
                 employeeVm.Employee = employeeDs.Tables[0].ToModel<Employee>();
@@ -44,7 +45,8 @@ namespace Cuelogic.Clrm.Service
                 employeeVm.Employee.EmployeeOrganizationRoleList = ds.Tables[TableName.EmployeeOrganizationRole].ToList<EmployeeOrganizationRole>();
                 employeeVm.Employee.IdentityEmployeeGroupList = ds.Tables[TableName.IdentityEmployeeGroup].ToList<IdentityEmployeeGroup>();
             }
-
+            if (employeeId < 0)
+                throw new BadRequest(CustomError.InValidId);
             return employeeVm;
         }
 
@@ -61,19 +63,19 @@ namespace Cuelogic.Clrm.Service
             {
                 var detailsByEmailId = _commonRepository.GetEmployeeDetails(employeeVm.Employee.Email);
                 if (detailsByEmailId.Tables[0].Rows.Count > 0)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Email Id already exist, please enter different email."));
+                    throw new ClientWarning("Email Id already exist, please enter different email.");
                 var detailsByOrgEmpId = _commonRepository.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
                 if (detailsByOrgEmpId.Tables[0].Rows.Count > 0)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee Id already exist, please enter different Employee Id."));
+                    throw new ClientWarning("Employee Id already exist, please enter different Employee Id.");
             }
             else
             {
                 var detailsByEmailId = _commonRepository.GetEmployeeDetails(employeeVm.Employee.Email);
                 if (detailsByEmailId.Tables[0].Rows.Count > 1)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Email Id already exist, please enter different email."));
+                    throw new ClientWarning("Email Id already exist, please enter different email.");
                 var detailsByOrgEmpId = _commonRepository.GetEmployeeDetailsByOrgEmpId(employeeVm.Employee.OrgEmpId);
                 if (detailsByOrgEmpId.Tables[0].Rows.Count > 1)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee Id already exist, please enter different Employee Id."));
+                    throw new ClientWarning("Employee Id already exist, please enter different Employee Id.");
             }
 
             employeeVm.Employee.UpdatedBy = userContext.UserId;

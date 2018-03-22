@@ -27,12 +27,6 @@ namespace Cuelogic.Clrm.Api.Controllers
             ObjUserContext.Rights = Helper.XmlToObject(right, t) as List<IdentityGroupRight>;
             return ObjUserContext;
         }
-
-        public HttpResponseMessage MessageClient(string messageType,string message)
-        {
-            var composedMessage = Helper.ComposeClientMessage(messageType, message);
-            throw new Exception(composedMessage);
-        }
-
+        
     }
 }

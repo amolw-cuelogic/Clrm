@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using static Cuelogic.Clrm.Common.AppConstants;
+using static Cuelogic.Clrm.Common.CustomException;
 
 namespace Cuelogic.Clrm.Common
 {
@@ -31,7 +32,7 @@ namespace Cuelogic.Clrm.Common
         {
             IList<PropertyInfo> properties = typeof(T).GetProperties().ToList();
             if (table.Rows.Count == 0)
-                throw new Exception(Helper.ComposeClientMessage(MessageType.Warning,"No record found"));
+                throw new NoContentFound(CustomError.NoRecordFound);
             var item = CreateItemFromRow<T>((DataRow)table.Rows[0], properties);
             return item;
         }

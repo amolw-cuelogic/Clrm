@@ -7,6 +7,7 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using static Cuelogic.Clrm.Common.AppConstants;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Service.Interface;
+using static Cuelogic.Clrm.Common.CustomException;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -28,7 +29,7 @@ namespace Cuelogic.Clrm.Service
         public IdentityGroup GetItem(int groupId)
         {
             var identityGroup = new IdentityGroup();
-            if (groupId != 0)
+            if (groupId > 0)
             {
                 var GroupDs = _masterGroupRepository.GetGroup(groupId);
                 var GroupRightDs = _masterGroupRepository.GetIdentityGroupRights(groupId);
@@ -83,7 +84,7 @@ namespace Cuelogic.Clrm.Service
                 if (userCtx.Rights.Count > 0 && identityGroup.GroupRight.Count > 0)
                 {
                     if (userCtx.Rights[0].GroupId == identityGroup.GroupRight[0].GroupId)
-                        throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "You cannot edit your own rights, please contact Super Admin or database expert"));
+                        throw new ClientWarning("You cannot edit your own rights, please contact Super Admin or database expert");
                 }
                 identityGroup.UpdatedBy = userCtx.UserId;
                 identityGroup.UpdatedOn = DateTime.Now.ToMySqlDateString();

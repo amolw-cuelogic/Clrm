@@ -2,9 +2,11 @@
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Service.Interface;
 using System;
+using System.Net;
 using System.Web.Http;
 using static Cuelogic.Clrm.Api.Filter.CustomFilter;
 using static Cuelogic.Clrm.Common.AppConstants;
+using static Cuelogic.Clrm.Common.CustomException;
 
 namespace Cuelogic.Clrm.Api.Controllers
 {
@@ -22,7 +24,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Get(int show, int page, string filterText)
         {
             if (show < 0 || page < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var searchParam = new SearchParam();
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
@@ -36,7 +38,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Get(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var allocation = _allocationService.GetItem(id);
             return Ok(allocation);
         }
@@ -46,7 +48,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult GetAllocation(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var allocation = _allocationService.GetAllocationSum(id);
             return Ok(allocation);
         }
@@ -56,7 +58,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult GetProjectRole(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var masterRolelist = _allocationService.GetProjectRolebyId(id);
             return Ok(masterRolelist);
         }
@@ -75,7 +77,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Delete(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var userContext = base.GetUserContext();
             _allocationService.Delete(id, userContext.UserId);
             return Ok();

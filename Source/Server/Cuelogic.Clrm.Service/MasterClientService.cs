@@ -5,6 +5,8 @@ using Cuelogic.Clrm.Model.DatabaseModel;
 using Cuelogic.Clrm.Repository.Interface;
 using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
+using static Cuelogic.Clrm.Common.CustomException;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -23,7 +25,7 @@ namespace Cuelogic.Clrm.Service
         public MasterClient GetItem(int masterClientId)
         {
             var masterClient = new MasterClient();
-            if (masterClientId != 0)
+            if (masterClientId > 0)
             {
                 var ds = _masterClientRepository.GetMasterClient(masterClientId);
                 masterClient = ds.Tables[0].ToModel<MasterClient>();
@@ -32,6 +34,8 @@ namespace Cuelogic.Clrm.Service
                 masterClient.MasterCityList = masterCityDs.Tables[0].ToList<MasterCity>();
 
             }
+            if (masterClientId < 0)
+                throw new BadRequest(CustomError.InValidId);
             var countryListDs = _masterClientRepository.GetCountryList();
             masterClient.MasterCountryList = countryListDs.Tables[0].ToList<MasterCountry>();
             return masterClient;

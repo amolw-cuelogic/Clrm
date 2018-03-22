@@ -25,7 +25,7 @@ namespace Cuelogic.Clrm.Common
             catch (Exception ex)
             {
                 applogManager.Error(ex);
-                throw ex;
+                throw;
             }
         }
 
@@ -38,19 +38,21 @@ namespace Cuelogic.Clrm.Common
                 if (commandParameters == null)
                     commandParameters = new MySqlParameter[] { new MySqlParameter() };
                 using (var connection = new MySqlConnection(connectionString))
-                using (var command = new MySqlCommand(commandText, connection))
                 {
-                    command.CommandType = commandType;
-                    command.Parameters.AddRange(commandParameters.ToArray());
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    using (var command = new MySqlCommand(commandText, connection))
+                    {
+                        command.CommandType = commandType;
+                        command.Parameters.AddRange(commandParameters.ToArray());
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
                 }
             }
             catch (Exception ex)
             {
                 applogManager.Error(ex);
-                throw ex;
+                throw;
             }
         }
 

@@ -12,6 +12,7 @@ using System.Threading;
 using System.Net;
 using Cuelogic.Clrm.MockData;
 using Cuelogic.Clrm.Service.Interface;
+using static Cuelogic.Clrm.Common.AppConstants;
 
 namespace Cuelogic.Clrm.Api.Tests.TestCase
 {
@@ -40,6 +41,8 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(idResponse);
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
@@ -66,11 +69,12 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(idResponse);
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
             Assert.IsInstanceOfType(contentResult.Content, typeof(MasterRole));
-            Assert.AreEqual(id, contentResult.Content.Id);
         }
         
         [TestMethod]
@@ -94,6 +98,8 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(idResponse);
             Assert.IsNull(contentResult);
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
@@ -118,9 +124,86 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(idResponse);
             Assert.IsNull(contentResult);
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterRoleGet_InValidId()
+        {
+            //ARRANGE
+            MasterRoleController controller = new MasterRoleController(mockService.Object)
+            {
+                Request = new System.Net.Http.HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //ACT
+            IHttpActionResult response = controller.Get(-1, 1, "text");
+            var contentResult = response as BadRequestErrorMessageResult;
+            var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
+
+            //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(idResponse);
+            Assert.IsFalse(idResponse.IsSuccessStatusCode);
+            Assert.AreEqual(HttpStatusCode.BadRequest, idResponse.StatusCode);
+            Assert.AreEqual(contentResult.Message, CustomError.InValidId);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterRoleGetPerId_InValidId()
+        {
+            //ARRANGE
+            MasterRoleController controller = new MasterRoleController(mockService.Object)
+            {
+                Request = new System.Net.Http.HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //ACT
+            IHttpActionResult response = controller.Get(-1);
+            var contentResult = response as BadRequestErrorMessageResult;
+            var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
+
+            //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(idResponse);
+            Assert.IsFalse(idResponse.IsSuccessStatusCode);
+            Assert.AreEqual(HttpStatusCode.BadRequest, idResponse.StatusCode);
+            Assert.AreEqual(contentResult.Message, CustomError.InValidId);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestMasterRoleDelete_InValidId()
+        {
+            //ARRANGE
+            MasterRoleController controller = new MasterRoleController(mockService.Object)
+            {
+                Request = new System.Net.Http.HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //ACT
+            IHttpActionResult response = controller.Delete(-1);
+            var contentResult = response as BadRequestErrorMessageResult;
+            var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
+
+            //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(idResponse);
+            Assert.IsFalse(idResponse.IsSuccessStatusCode);
+            Assert.AreEqual(HttpStatusCode.BadRequest, idResponse.StatusCode);
+            Assert.AreEqual(contentResult.Message, CustomError.InValidId);
         }
     }
 }

@@ -7,6 +7,7 @@ using Cuelogic.Clrm.Repository;
 using Cuelogic.Clrm.Service.Interface;
 using System;
 using static Cuelogic.Clrm.Common.AppConstants;
+using static Cuelogic.Clrm.Common.CustomException;
 
 namespace Cuelogic.Clrm.Service
 {
@@ -25,11 +26,11 @@ namespace Cuelogic.Clrm.Service
             {
                 var sum = GetAllocationSum(previousState.EmployeeId);
                 if (sum >= 100)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)"));
+                    throw new ClientWarning("Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)");
 
                 var total = sum + previousState.PercentageAllocation;
                 if (total > 100)
-                    throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)"));
+                    throw new ClientWarning("Allocation cannot exceed 100% (Making this record valid will cause allocation to exceed 100%.)");
             }
             _allocationRepository.MarkAllocationInvalid(allocationId, employeeId);
         }
@@ -46,7 +47,7 @@ namespace Cuelogic.Clrm.Service
         public Allocation GetItem(int allocationId)
         {
             var allocation = new Allocation();
-            if (allocationId != 0)
+            if (allocationId > 0)
             {
                 var allocationDs = _allocationRepository.GetAllocation(allocationId);
                 allocation = allocationDs.Tables[0].ToModel<Allocation>();
@@ -61,7 +62,8 @@ namespace Cuelogic.Clrm.Service
                     masterRoleList = projectRoleDs.Tables[0].ToList<MasterRole>();
                 allocation.SelectListMasterRole = masterRoleList;
             }
-
+            if (allocationId < 0)
+                throw new BadRequest(CustomError.InValidId);
             var ds = _allocationRepository.GetAllocationSelectList();
             allocation.SelectListEmployee = ds.Tables[TableName.Employee].ToList<Employee>();
             allocation.SelectListProject = ds.Tables[TableName.Project].ToList<Project>();
@@ -95,7 +97,7 @@ namespace Cuelogic.Clrm.Service
                     var sum = GetAllocationSum(allocation.EmployeeId);
                     var total = sum + allocation.PercentageAllocation;
                     if (total > 100)
-                        throw new Exception(Helper.ComposeClientMessage(MessageType.Warning, "Employee has been already occupied 100%, please check the allocation list."));
+                        throw new ClientWarning("Employee has been already occupied 100%, please check the allocation list.");
                 }
             }
             allocation.UpdatedBy = userContext.UserId;

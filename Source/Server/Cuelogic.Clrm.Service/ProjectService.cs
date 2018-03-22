@@ -27,7 +27,7 @@ namespace Cuelogic.Clrm.Service
         {
             var project = new Project();
 
-            if (projectId != 0)
+            if (projectId > 0)
             {
                 var projectDs = _projectRepository.GetProject(projectId);
                 project = projectDs.Tables[TableName.Project].ToModel<Project>();

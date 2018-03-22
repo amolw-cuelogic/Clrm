@@ -23,7 +23,7 @@ namespace Cuelogic.Clrm.Service
         public MasterRole GetItem(int masterProjectRoleId)
         {
 
-            if (masterProjectRoleId != 0)
+            if (masterProjectRoleId > 0)
             {
                 var ds = _projectRoleRepository.GetMasterProjectRole(masterProjectRoleId);
                 var masterProjectRole = ds.Tables[0].ToModel<MasterRole>();

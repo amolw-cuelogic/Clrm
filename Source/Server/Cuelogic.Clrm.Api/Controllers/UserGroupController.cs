@@ -38,7 +38,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult GetIdentityGroupMembers(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var data = _userGroupService.GetIdentityGroupMembers(id);
             return Ok(data);
         }
@@ -47,8 +47,6 @@ namespace Cuelogic.Clrm.Api.Controllers
         [AuthorizeUserRights(IdentityRights.AdminUserGroup, AuthorizeFlag.Write)]
         public IHttpActionResult Post([FromBody]List<IdentityEmployeeGroup> identityEmployeeGroup)
         {
-            if(identityEmployeeGroup == null)
-                throw new Exception("Null object not allowed");
             var userContext = base.GetUserContext();
             _userGroupService.InsertGroupUsers(identityEmployeeGroup, userContext);
             return Ok();

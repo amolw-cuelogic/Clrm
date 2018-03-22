@@ -64,6 +64,8 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
             var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
 
             //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(idResponse);
             Assert.IsNull(contentResult);
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);

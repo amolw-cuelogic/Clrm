@@ -22,7 +22,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Get(int show, int page, string filterText)
         {
             if (show < 0 || page < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var searchParam = new SearchParam();
             searchParam.FilterText = filterText ?? "";
             searchParam.Page = page;
@@ -36,7 +36,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Get(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var masterClient = _masterClientService.GetItem(id);
             return Ok(masterClient);
         }
@@ -46,8 +46,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult GetCities(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
-            
+                return BadRequest(CustomError.InValidId);
             var cityList = _masterClientService.GetCityList(id);
             return Ok(cityList);
         }
@@ -66,7 +65,7 @@ namespace Cuelogic.Clrm.Api.Controllers
         public IHttpActionResult Delete(int id)
         {
             if (id < 0)
-                throw new Exception(CustomError.InValidId);
+                return BadRequest(CustomError.InValidId);
             var userContext = base.GetUserContext();
             _masterClientService.Delete(id, userContext.UserId);
             return Ok();
