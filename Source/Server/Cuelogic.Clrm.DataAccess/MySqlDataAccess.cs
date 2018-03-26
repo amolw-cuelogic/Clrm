@@ -19,7 +19,14 @@ namespace Cuelogic.Clrm.DataAccess
             try
             {
                 if (string.IsNullOrEmpty(connectionString))
+                {
+#if DEBUG
                     connectionString = ConfigurationManager.ConnectionStrings["MySqlConnectionString"].ConnectionString;
+#else
+                    connectionString = ConfigurationManager.ConnectionStrings["MySqlConnectionStringDev"].ConnectionString;
+#endif
+
+                }
 
             }
             catch (Exception ex)
