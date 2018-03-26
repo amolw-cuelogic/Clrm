@@ -14,6 +14,7 @@ using static Cuelogic.Clrm.Common.AppConstants;
 using Cuelogic.Clrm.Model.DatabaseModel;
 using Newtonsoft.Json.Linq;
 using static Cuelogic.Clrm.Common.CustomException;
+using System.Net.Http.Headers;
 
 namespace Cuelogic.Clrm.Api.Filter
 {
@@ -73,6 +74,21 @@ namespace Cuelogic.Clrm.Api.Filter
                             throw new ClientWarning("No rights defined");
                     }
                 }
+            }
+            
+        }
+
+        public class CacheData : ActionFilterAttribute
+        {
+            public int TimeDuration { get; set; }
+            public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
+            {
+                actionExecutedContext.Response.Headers.CacheControl = new CacheControlHeaderValue
+                {
+                    MaxAge = TimeSpan.FromSeconds(TimeDuration),
+                    MustRevalidate = true,
+                    Public = true
+                };
             }
         }
 

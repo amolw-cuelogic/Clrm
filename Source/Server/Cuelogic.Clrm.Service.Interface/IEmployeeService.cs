@@ -10,5 +10,6 @@ namespace Cuelogic.Clrm.Service.Interface
         EmployeeVm GetItem(int employeeId);
         void Save(EmployeeVm employeeVm, UserContext userCtx);
         void Delete(int employeeId, int userId);
+        EmployeeVm GetMasterList();
     }
 }

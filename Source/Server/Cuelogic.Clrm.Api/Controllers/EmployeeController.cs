@@ -41,6 +41,15 @@ namespace Cuelogic.Clrm.Api.Controllers
             return Ok(employeeVm);
         }
 
+        [CacheData(TimeDuration = 60)]
+        [AuthorizeUserRights(IdentityRights.AdminEmployee, AuthorizeFlag.Read)]
+        [Route("GetMasterList")]
+        public IHttpActionResult GetMasterList()
+        {
+            var employeeVm = _employeeService.GetMasterList();
+            return Ok(employeeVm);
+        }
+
         [AuthorizeUserRights(IdentityRights.AdminEmployee, AuthorizeFlag.Write)]
         [Route("")]
         public IHttpActionResult Post([FromBody]EmployeeVm employeeVm)

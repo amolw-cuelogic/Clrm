@@ -80,7 +80,7 @@ export class EditEmployeeComponent {
             m => {
                 this.pageObject = m;
                 this.serviceAppConfig.AdjustBottomHeight();
-
+                this.LoadMasterList(id);
                 if (this.mode == this.formMode.View) {
                     this.SetFormModeView();
                 }
@@ -88,6 +88,17 @@ export class EditEmployeeComponent {
             );
     }
 
+    LoadMasterList(id: any) {
+        this.httpClient.get(this.baseUrl + this.apiController + "/GetMasterList"
+        ).subscribe(
+            m => {
+                this.pageObject.IdentityGroupList = m["IdentityGroupList"];
+                this.pageObject.MasterDepartmentList = m["MasterDepartmentList"];
+                this.pageObject.MasterOrganizationRoleList = m["MasterOrganizationRoleList"];
+                this.pageObject.MasterSkillList = m["MasterSkillList"];
+            }
+            );
+    }
 
     constructor(private httpClient: HttpClient, private serviceAppConfig: AppconfigService,
         private actroute: ActivatedRoute, private formMode: FormMode, private compSubSrv: ComponentSubscriptionService,

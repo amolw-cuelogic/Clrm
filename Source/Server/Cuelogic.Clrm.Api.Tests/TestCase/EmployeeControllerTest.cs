@@ -75,7 +75,33 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
             Assert.IsTrue(idResponse.IsSuccessStatusCode);
             Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
             Assert.IsInstanceOfType(contentResult.Content, typeof(EmployeeVm));
-            Assert.AreEqual(id, contentResult.Content.Employee.Id);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestEmployeeGetMasterList()
+        {
+            //ARRANGE
+            var mockData = EmployeeMockData.GetMockDataEmployeeVm();
+            mockService.Setup(m => m.GetMasterList()).Returns(mockData);
+            EmployeeController employeeController = new EmployeeController(mockService.Object)
+            {
+                Request = new System.Net.Http.HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
+
+            //ACT
+            IHttpActionResult response = employeeController.GetMasterList();
+            var contentResult = response as OkNegotiatedContentResult<EmployeeVm>;
+            var idResponse = response.ExecuteAsync(CancellationToken.None).Result;
+
+            //ASSERT
+            Assert.IsNotNull(response);
+            Assert.IsNotNull(idResponse);
+            Assert.IsNotNull(contentResult);
+            Assert.IsTrue(idResponse.IsSuccessStatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, idResponse.StatusCode);
+            Assert.IsInstanceOfType(contentResult.Content, typeof(EmployeeVm));
         }
 
         [TestMethod]

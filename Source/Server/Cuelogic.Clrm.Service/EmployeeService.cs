@@ -26,15 +26,20 @@ namespace Cuelogic.Clrm.Service
             _employeeRepository.MarkEmployeeInvalid(employeeId, userId);
         }
 
-        public EmployeeVm GetItem(int employeeId)
+        public EmployeeVm GetMasterList()
         {
             var employeeVm = new EmployeeVm();
             var employeeVmDs = _employeeRepository.GetMasterListForEmployees();
-            employeeVm.IdentityGroupList = employeeVmDs.Tables[TableName.IdentityGroup].ToList<IdentityGroup>(); 
+            employeeVm.IdentityGroupList = employeeVmDs.Tables[TableName.IdentityGroup].ToList<IdentityGroup>();
             employeeVm.MasterDepartmentList = employeeVmDs.Tables[TableName.MasterDepartment].ToList<MasterDepartment>();
             employeeVm.MasterSkillList = employeeVmDs.Tables[TableName.MasterSkill].ToList<MasterSkill>();
             employeeVm.MasterOrganizationRoleList = employeeVmDs.Tables[TableName.MasterOrganizationRole].ToList<MasterOrganizationRole>();
+            return employeeVm;
+        }
 
+        public EmployeeVm GetItem(int employeeId)
+        {
+            var employeeVm = new EmployeeVm();
             if (employeeId > 0)
             {
                 var employeeDs = _employeeRepository.GetEmployee(employeeId);

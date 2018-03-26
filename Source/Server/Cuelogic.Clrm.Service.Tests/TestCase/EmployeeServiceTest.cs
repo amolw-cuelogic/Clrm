@@ -53,8 +53,6 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             var data = serviceObject.GetItem(1);
 
             //ASSERT
-            mockService.Verify(m => m.GetMasterListForEmployees());
-            mockService.Verify(m => m.GetMasterListForEmployees(), Times.Once);
             mockService.Verify(m => m.GetEmployee(It.IsAny<int>()));
             mockService.Verify(m => m.GetEmployee(It.IsAny<int>()), Times.Once);
             mockService.Verify(m => m.GetChildListForEmployees(It.IsAny<int>()));
@@ -67,6 +65,31 @@ namespace Cuelogic.Clrm.Service.Tests.TestCase
             Assert.IsTrue(data.Employee.EmployeeDepartmentList.Count > 0);
             Assert.IsTrue(data.Employee.EmployeeOrganizationRoleList.Count > 0);
             Assert.IsTrue(data.Employee.EmployeeSkillList.Count > 0);
+        }
+
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void TestEmployeeServiceGetMasterList()
+        {
+            //ARRANGE
+            var privateObject = new PrivateObject(serviceObject);
+            var mockDataEmployeeVm = EmployeeMockData.GetMockDataMasterDependentListDataset();
+            mockService.Setup(m => m.GetMasterListForEmployees()).Returns(mockDataEmployeeVm);
+            privateObject.SetField(dependencyField, mockService.Object);
+
+            //ACT
+            var data = serviceObject.GetMasterList();
+
+            //ASSERT
+            mockService.Verify(m => m.GetMasterListForEmployees());
+            mockService.Verify(m => m.GetMasterListForEmployees(), Times.Once);
+            mockService.Verify();
+            Assert.IsNotNull(data);
+            Assert.IsInstanceOfType(data, typeof(EmployeeVm));
+            Assert.IsTrue(data.IdentityGroupList.Count > 0);
+            Assert.IsTrue(data.MasterDepartmentList.Count > 0);
+            Assert.IsTrue(data.MasterOrganizationRoleList.Count > 0);
+            Assert.IsTrue(data.MasterSkillList.Count > 0);
         }
 
         [TestMethod]
