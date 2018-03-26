@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestSettings name="TestSettings1" id="b4fc22c9-a71a-47d9-8748-2a09c4d160cd" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<TestSettings name="TestSettings" id="b4fc22c9-a71a-47d9-8748-2a09c4d160cd" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are default test settings for a local test run.</Description>
   <Deployment>
-    <DeploymentItem filename="Cuelogic.Clrm.Service.Tests\bin\Debug\Shared\" />
+    <DeploymentItem filename="Cuelogic.Clrm.Api\Shared\" />
   </Deployment>
   <Execution>
     <TestTypeSpecific>
