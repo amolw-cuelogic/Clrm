@@ -41,6 +41,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.DataAccess", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuelogic.Clrm.DataAccess.Tests", "Cuelogic.Clrm.DataAccess.Tests\Cuelogic.Clrm.DataAccess.Tests.csproj", "{EE3AA7BD-5DA2-4B4E-A446-9A484FAE1DE4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF83E92F-E255-467B-BD04-C2862E8506E3}"
+	ProjectSection(SolutionItems) = preProject
+		TestSettings1.testsettings = TestSettings1.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
