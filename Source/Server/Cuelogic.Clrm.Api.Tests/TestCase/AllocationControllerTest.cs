@@ -27,7 +27,7 @@ namespace Cuelogic.Clrm.Api.Tests.TestCase
         [TestCategory(_testCategory)]
         public void TestAllocationGet()
         {
-            //ARRANGE
+            //ARRANGE//
             var mockData = AllocationMockData.GetMockDataAllocationList();
             mockService.Setup(m => m.GetList(It.IsAny<SearchParam>())).Returns(mockData);
             AllocationController allocationController = new AllocationController(mockService.Object)
