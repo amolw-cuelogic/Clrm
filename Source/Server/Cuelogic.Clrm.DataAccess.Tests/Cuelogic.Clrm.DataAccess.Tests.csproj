@@ -154,14 +154,6 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Cuelogic.Clrm.Api\Shared\App.config">
-      <Link>Shared\App.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Cuelogic.Clrm.Api\Shared\ConnectionString.config">
-      <Link>Shared\ConnectionString.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +201,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /Y "$(SolutionDir)Cuelogic.Clrm.Api\Shared" "$(ProjectDir)Shared"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
